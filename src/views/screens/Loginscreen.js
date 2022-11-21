@@ -127,7 +127,7 @@ const Loginscreen = ({navigation}) => {
           
             <Button title='Login' onPress={validate}/>
             
-            <View style={{height: 120}}>
+            <View style={{height: 120, marginTop: 10}}>
               <Text style={Universalstyles.signwith}>Sign in with</Text>
               <View style={Universalstyles.Signwith}>
                 <TouchableOpacity  onPress={''}>

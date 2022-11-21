@@ -7,7 +7,7 @@ import { SafeAreaView } from 'react-native';
 import Userstypescreen from './src/views/screens/Userstypescreen';
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Home from "./src/views/screens/Studentscreen/Home";
+import Home from './src/views/screens/Studentscreen/Home'
 import Profile from './src/views/screens/Studentscreen/Profile'
 import Bookmark from './src/views/screens/Studentscreen/Bookmarks'
 import Activity from './src/views/screens/Studentscreen/Activity'
@@ -24,12 +24,6 @@ export default function App() {
 <NavigationContainer>
 <Stack.Navigator screenOptions={{headerShown: false}}>
 
-
- <Stack.Screen
-      name='Studentscreen'
-      component={Studentscreen}
-      />
- 
  <Stack.Screen options={{headerShown: false}}
       name='Users type'
       component={Userstypescreen}
@@ -42,10 +36,12 @@ export default function App() {
       name='Log in'
       component={Loginscreen}
       />
-    <Stack.Screen
-      name='Settings'
-      component={Settings}
+
+  <Stack.Screen
+      name='Studentscreen'
+      component={Studentscreen}
       />
+ 
   <Stack.Screen 
       name='Forgotscreen'
       component={Forgotscreen}
@@ -67,8 +63,6 @@ function Studentscreen () {
  
   return (
 
-   
-    <NavigationContainer independent={true}>
       <Tabs.Navigator
         screenOptions={({ route }) => ({
           headerTitleAlign: "center",
@@ -84,19 +78,19 @@ function Studentscreen () {
             let filePath;
             switch (route.name) {
               case "Home":
-                  filePath = require("../mobprog-midterm/assets/Lottie/Home.json");
+                  filePath = require("../Hanapp/assets/Lottie/Home.json");
                   break;
               case "Profile":
-                filePath = require("../mobprog-midterm/assets/Lottie/Profile.json");
+                filePath = require("../Hanapp/assets/Lottie/Profile.json");
                 break;
               case "Bookmarks":
-                filePath = require("../mobprog-midterm/assets/Lottie/Bookmarks.json");
+                filePath = require("../Hanapp/assets/Lottie/Bookmarks.json");
                 break;
               case "Activity":
-                filePath = require("../mobprog-midterm/assets/Lottie/Activitylog.json");
+                filePath = require("../Hanapp/assets/Lottie/Activitylog.json");
                 break;
               case "Settings":
-                filePath = require("../mobprog-midterm/assets/Lottie/Settings.json");
+                filePath = require("../Hanapp/assets/Lottie/Settings.json");
                 break;
               default:
                 iconName = focused
@@ -128,7 +122,6 @@ function Studentscreen () {
         component={Settings} />
 
       </Tabs.Navigator>
-    </NavigationContainer>
      );
     };
 

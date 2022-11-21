@@ -13,7 +13,7 @@ const Settings = ({navigation}) => {
   return (
     <ScrollView>
     <View style={Universalstyles.setAccount}>
-      <Text style={{fontSize: 40, fontWeight: '500'}}>Account</Text>
+      <Text style={{fontSize: 40, fontWeight: '500', }}>Account</Text>
       <Text style={{fontSize: 12}}>Update your info to keep your account secure</Text>
     </View>
     <TouchableOpacity onPress={() => navigation.navigate('')}>
