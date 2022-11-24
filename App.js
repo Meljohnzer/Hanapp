@@ -12,11 +12,17 @@ import Profile from './src/views/screens/Studentscreen/Profile'
 import Bookmark from './src/views/screens/Studentscreen/Bookmarks'
 import Activity from './src/views/screens/Studentscreen/Activity'
 import Settings from './src/views/screens/Studentscreen/Settings'
+import Home2 from './src/views/screens/Employerscreen/Home';
+import Applicant from './src/views/screens/Employerscreen/Applicant';
+import CreatePost from './src/views/screens/Employerscreen/Post';
+import Calendar from './src/views/screens/Employerscreen/Calendar';
 import LottieView from "lottie-react-native";
 
 
-const Stack = createNativeStackNavigator();
 
+
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
@@ -24,6 +30,11 @@ export default function App() {
 <NavigationContainer>
 <Stack.Navigator screenOptions={{headerShown: false}}>
 
+
+<Stack.Screen
+      name='Studentscreen'
+      component={Studentscreen}
+      />
  <Stack.Screen options={{headerShown: false}}
       name='Users type'
       component={Userstypescreen}
@@ -36,12 +47,6 @@ export default function App() {
       name='Log in'
       component={Loginscreen}
       />
-
-  <Stack.Screen
-      name='Studentscreen'
-      component={Studentscreen}
-      />
- 
   <Stack.Screen 
       name='Forgotscreen'
       component={Forgotscreen}
@@ -69,7 +74,7 @@ function Studentscreen () {
           headerStyle: {
             backgroundColor: '#F5E44C',
           },
-          
+          headerShown: false,
           tabBarStyle: {
             backgroundColor: '#F5E44C',
           },
@@ -125,3 +130,67 @@ function Studentscreen () {
      );
     };
 
+    const Tabs2 = createBottomTabNavigator();
+
+    function Employerscreen () {
+
+      return (
+        <Tabs2.Navigator
+        
+        screenOptions={({ route }) => ({
+          headerTitleAlign: "center",
+          headerStyle: {
+            backgroundColor: '#F5E44C',
+          },
+          
+          headerShown: false,
+          
+          tabBarStyle: {
+            backgroundColor: '#F5E44C',
+          },
+
+          tabBarIcon: ({ focused, color, size }) => {
+            let filePath;
+            switch (route.name) {
+              
+              case "Home":
+                  filePath = require("../Hanapp/assets/Lottie/Home.json");
+                  break;
+              case "Applicant":
+                  filePath = require("../Hanapp/assets/Lottie/Applicant.json");
+                  break;
+              case "Create post":
+                  filePath = require("../Hanapp/assets/Lottie/Add.json");
+                  break;
+              case "Calendar":
+                filePath = require("../Hanapp/assets/Lottie/Calendar.json");
+                break;
+              default:
+                iconName = focused
+                  ? "ios-information-circle"
+                  : "ios-information-circle-outline";
+            }
+            return <LottieView source={filePath} autoPlay={focused} />;
+          },
+        })}
+      >
+        <Tabs2.Screen 
+        name="Home" 
+        component={Home2} />
+       
+       <Tabs2.Screen 
+        name="Applicant" 
+        component={Applicant} />
+
+        <Tabs2.Screen 
+        name="Create post" 
+        component={CreatePost} />
+        
+        <Tabs.Screen 
+        name="Calendar" 
+        component={Calendar} />
+
+
+      </Tabs2.Navigator>
+     );
+    };

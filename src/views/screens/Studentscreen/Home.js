@@ -15,10 +15,10 @@ const Home = ({navigation}) => {
   }
 
   return (
-    <ScrollView style={Universalstyles.studscreen}>
 
+<ScrollView>
+<View style={{padding: 10, flexDirection: 'row', backgroundColor: '#F5E44C' }}>
 
-<View style={{ flex: 1,  height: '100%', borderRadius: 10, padding: 10, flexDirection: 'row' }}>
   <TouchableOpacity onPress={() => navigation.navigate('')}>
     <Image source={Logo} style={{
       width: 45,
@@ -27,12 +27,14 @@ const Home = ({navigation}) => {
       marginRight: 7
     }} />
   </TouchableOpacity>
+
   <Searchbar 
     IconName='search-web'
     placeholder='Search job'
     value={value}
     updateSearch={updateSearch}
     />
+
   <TouchableOpacity onPress={() => navigation.navigate('')}>
     <Icon
       name="bell"
@@ -47,17 +49,18 @@ const Home = ({navigation}) => {
       height: 100,
       marginRight: 7,
       borderRadius: 50,
-      marginTop: 10
+      marginTop: 10,
+      
     }}/>
     <View style={Universalstyles.jobContent2}>
-    <Text style={{borderBottomWidth: 1, marginBottom: 10}}>Company name : <Text style={{color: 'blue'}}> Be Sagunsa</Text> </Text>
+    <Text style={{ marginBottom: 5}}>Company name : <Text style={{color: 'blue', textTransform: 'capitalize'}}> be sagunsa</Text> </Text>
     
-    <Text style={{borderBottomWidth: 1, }}>Location : <Text style={{color: 'green'}}> Cagayan de Oro city</Text> </Text>
+    <Text style={{ }}>Location : <Text style={{color: 'green', textTransform: 'capitalize'}}> Cagayan de Oro city</Text> </Text>
 
    
       <TouchableOpacity onPress={() => navigation.navigate('')}>
       <View style={Universalstyles.jobContent3}>
-      <Text style={{color: 'white', fontWeight: 'bold', fontSize: 18}}>
+      <Text style={{color: 'white', fontWeight: 'bold', fontSize: 18,}}>
           Job description
       </Text>
       </View>
@@ -68,8 +71,11 @@ const Home = ({navigation}) => {
     
     
     </View>
+    
   </View>
-</ScrollView>
+ 
+  </ScrollView>
+  
     
   );
   

@@ -47,6 +47,21 @@ Signwith: {
     
 },
 
+HomeEmp: {
+    display: 'flex',
+    flexDirection: "row", 
+
+    alignItems: "center", 
+    justifyContent: "space-around",
+    
+},
+Logo1: {
+    flex: 1,
+    height: Dimensions.get('window').height,
+    width: Dimensions.get('window').width,
+    resizeMode: 'contain'
+},
+
 Ggl: {
     width: 50,
     height: 60,
@@ -93,22 +108,31 @@ userstype: {
     marginVertical: 10
 },
 studscreen:{
-    flex: 1
+    
 },
+
+studprofile:{
+    backgroundColor: 'white',
+    borderColor: '#e8e8e8',
+    margin: 10,
+    borderWidth:  2,
+    flexDirection: 'column',
+    borderRadius: 10
+},
+
 searchBar:{
     flex: 1,
-    height: Dimensions.get('window').height,
-    width: Dimensions.get('window').width,
+   
 },
 
 searchContainer:{
+    
     backgroundColor: 'white',
     height: 45,
     borderColor: '#e8e8e8',
     flexDirection: 'row',
     paddingHorizontal: 15,
     borderWidth: 1,
-   
     alignItems: 'center',
     borderRadius: 10
 
@@ -116,24 +140,25 @@ searchContainer:{
 
 jobPost: {
     flex: 1,
+    paddingHorizontal: 10,
     height: Dimensions.get('window').height,
     width: Dimensions.get('window').width,
-    position: 'absolute', 
-    marginVertical: 70,
+    marginVertical: 20,
 },
 
 jobContent: {
+    backgroundColor: 'white',
+    borderColor: '#e8e8e8',
     padding: 10,
-    borderTopWidth:  1,
-    borderBottomWidth:  1, 
-    flexDirection: 'row'
+    borderWidth:  2,
+    flexDirection: 'row',
+    borderRadius: 10
 },
 
 jobContent2: {
-    
     padding: 10,
     borderLeftWidth: 0.5,
-    marginLeft: 7,
+    marginLeft: 5,
     flex: 1
 
 },
@@ -143,6 +168,7 @@ jobContent3: {
     alignItems: 'center',
     marginBottom: 0,
     marginVertical: 10,
+    marginLeft: 10,
     padding: 10,
     borderRadius: 10,
     backgroundColor: '#4169e1',
@@ -151,7 +177,7 @@ setAccount: {
     padding: 10,
     paddingTop: 0,
     borderBottomWidth: 1,
-    borderTopWidth: 1,
+    
 },
 
 logout:{

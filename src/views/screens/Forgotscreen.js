@@ -100,7 +100,7 @@ const Forgotscreen = ({navigation}) => {
                 <Button title='Submit' onPress={validate}/>
                 
                 <Text 
-                onPress={() => navigation.navigate('Loginscreen')}
+                onPress={() => navigation.navigate('Log in')}
                 style={{color: 'blue', textAlign: 'center', padding: 10}}>Cancel
                 </Text>
                

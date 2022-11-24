@@ -46,7 +46,7 @@ const Settings = ({navigation}) => {
       </View>
     </View>
     </TouchableOpacity>
-    <View style={Universalstyles.setAccount}>
+    <View style={[Universalstyles.setAccount, {borderTopWidth: 1,}]}>
       <Text style={{fontSize: 40, fontWeight: '500'}}>Help and support   </Text>
     </View>
     <TouchableOpacity onPress={() => navigation.navigate('')}>
