@@ -107,17 +107,24 @@ userstype: {
     borderRadius: 50,
     marginVertical: 10
 },
-studscreen:{
-    
+studprofile2:{
+    flex: 1,
+    margin: 10,
+    borderColor: '#e8e8e8',
+    flexDirection: 'column',
+    paddingHorizontal: 15,
+    borderWidth: 2,
+    borderRadius: 10
+
 },
 
 studprofile:{
     backgroundColor: 'white',
     borderColor: '#e8e8e8',
-    margin: 10,
+    margin: 5,
     borderWidth:  2,
     flexDirection: 'column',
-    borderRadius: 10
+    borderRadius: 5
 },
 
 searchBar:{
@@ -146,6 +153,21 @@ jobPost: {
     marginVertical: 20,
 },
 
+profile1: {
+    
+    borderColor: '#e8e8e8',
+    padding: 10,
+    borderWidth: 2,
+    flexDirection: 'row',
+},
+
+profile2: {
+    padding: 10,
+    
+    marginLeft: 5,
+    flex: 1
+},
+
 jobContent: {
     backgroundColor: 'white',
     borderColor: '#e8e8e8',
@@ -166,7 +188,7 @@ jobContent3: {
     width: 'auto',
     height: 'auto',
     alignItems: 'center',
-    marginBottom: 0,
+    marginBottom: 5,
     marginVertical: 10,
     marginLeft: 10,
     padding: 10,

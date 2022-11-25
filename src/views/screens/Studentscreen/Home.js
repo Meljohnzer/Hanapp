@@ -35,7 +35,7 @@ const Home = ({navigation}) => {
     updateSearch={updateSearch}
     />
 
-  <TouchableOpacity onPress={() => navigation.navigate('')}>
+  <TouchableOpacity onPress={() => navigation.navigate('Notifications')}>
     <Icon
       name="bell"
       style={{ fontSize: 40, marginLeft: 5, color: 'black', }} />

@@ -11,7 +11,7 @@ const Home = ({navigation}) => {
     <ScrollView >
     <View style={[Universalstyles.HomeEmp, {backgroundColor: '#F5E44C', paddingVertical: 5, paddingHorizontal: 10, }]}>
 
-    <TouchableOpacity onPress={() => navigation.navigate('')}>
+    <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
       <Icon
       name="navicon"
       style={{ fontSize: 50,  color: 'black', }} />
@@ -19,7 +19,7 @@ const Home = ({navigation}) => {
 
       <Image source={Logo} style={[Universalstyles.Logo1, {height: height * 0.1, }]} />
 
-      <TouchableOpacity onPress={() => navigation.navigate('')}>
+      <TouchableOpacity onPress={() => navigation.navigate('Notification')}>
       <Icon2
       name="bell"
       style={{ fontSize: 50,  color: 'black', }} />

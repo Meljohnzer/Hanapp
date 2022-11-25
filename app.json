@@ -18,14 +18,24 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "userInterfaceStyle": "light"
     },
     "android": {
+      
+      "userInterfaceStyle": "light",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
+        
       }
     },
+    "plugins": [
+      [
+        "./plugin/withDisableForcedDarkModeAndroid.js",
+        {}
+      ]
+    ],
     "web": {
       "favicon": "./assets/favicon.png"
     }

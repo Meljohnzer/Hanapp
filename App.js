@@ -8,14 +8,18 @@ import Userstypescreen from './src/views/screens/Userstypescreen';
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Home from './src/views/screens/Studentscreen/Home'
+import Home2 from './src/views/screens/Employerscreen/Home';
 import Profile from './src/views/screens/Studentscreen/Profile'
+import Profile2 from './src/views/screens/Employerscreen/Profile';
 import Bookmark from './src/views/screens/Studentscreen/Bookmarks'
 import Activity from './src/views/screens/Studentscreen/Activity'
 import Settings from './src/views/screens/Studentscreen/Settings'
-import Home2 from './src/views/screens/Employerscreen/Home';
+import Settings2 from './src/views/screens/Employerscreen/Settings';
 import Applicant from './src/views/screens/Employerscreen/Applicant';
 import CreatePost from './src/views/screens/Employerscreen/Post';
 import Calendar from './src/views/screens/Employerscreen/Calendar';
+import Notif from './src/views/screens/Studentscreen/Notif';
+import Notif2 from './src/views/screens/Employerscreen/Notif';
 import LottieView from "lottie-react-native";
 
 
@@ -30,10 +34,32 @@ export default function App() {
 <NavigationContainer>
 <Stack.Navigator screenOptions={{headerShown: false}}>
 
+<Stack.Screen
+      name='Employerscreen'
+      component={Employerscreen}
+      />
+
 
 <Stack.Screen
       name='Studentscreen'
       component={Studentscreen}
+      />
+
+<Stack.Screen 
+      name='Settings'
+      component={Settings2}
+      />
+<Stack.Screen
+      name='Profile2'
+      component={Profile2}
+      />
+<Stack.Screen
+      name='Notifications'
+      component={Notif}
+      />
+<Stack.Screen
+      name='Notification'
+      component={Notif2}
       />
  <Stack.Screen options={{headerShown: false}}
       name='Users type'
