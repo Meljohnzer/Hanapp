@@ -25,6 +25,7 @@ const Input = ({
 
         />
         <TextInput 
+        
         keyboardType={phone}
         secureTextEntry={hidePassword}
         autoCorrect={false}

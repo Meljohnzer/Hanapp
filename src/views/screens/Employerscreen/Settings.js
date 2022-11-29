@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, ScrollView, Image} from 'react-native'
+import { View, Text, TouchableOpacity, Dimensions, ScrollView, Image, SafeAreaView, RefreshControl} from 'react-native'
 import React from 'react'
 import Universalstyles from '../../../const/Universalstyle'
 import Fontaw from 'react-native-vector-icons/FontAwesome';
@@ -6,12 +6,40 @@ import MatIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import MatIcon2 from 'react-native-vector-icons/MaterialIcons';
 import Logo1 from '../../../../assets/bg/bgimage5.jpg';
 
+
+
+const wait = (timeout) => {
+  return new Promise(resolve => setTimeout(resolve, timeout));
+}
+
+
 const Settings = ({navigation}) => {
   const logout = () =>{
     navigation.navigate('Log in')
   }
+
+  const [refreshing, setRefreshing] = React.useState(false);
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    wait(2000).then(() => setRefreshing(false));
+  }, []);
+
+
   return (
-    <ScrollView>
+    <SafeAreaView style={{flex: 1}}>
+     <ScrollView
+          contentContainerStyle={{
+            justifyContent: 'center',
+            height: Dimensions.get('window').height,
+            width: Dimensions.get('window').width,
+          }}
+          refreshControl={
+            <RefreshControl
+              refreshing={refreshing}
+              onRefresh={onRefresh}
+            />
+          }
+        >
        <TouchableOpacity onPress={() => navigation.navigate('Profile2')}>
       <View>
     <View style={Universalstyles.profile1}>
@@ -133,17 +161,19 @@ const Settings = ({navigation}) => {
         Report a problem
       </Text>
       </View>
-    </View>
+    </View >
     </TouchableOpacity>
-    <View style={{marginBottom: 50}}>
+ 
+    <View style={{marginBottom: 50, alignItems: 'center'}}>
     <TouchableOpacity  onPress={logout}>
       <View style={Universalstyles.logout}>
       <Text style={{color: 'white', fontWeight: 'bold', fontSize: 18}}>Log out</Text>
       </View>
     </TouchableOpacity>
-
     </View>
+  
     </ScrollView>
+    </SafeAreaView>
   )
 }
 

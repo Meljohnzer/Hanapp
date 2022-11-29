@@ -18,6 +18,11 @@ signupbg: {
     height: '100%',  
     padding: 10,
 },
+scrollView: {
+    height: Dimensions.get('window').height,
+    width: Dimensions.get('window').width,
+    flex: 1
+  },
 logo:{
        
     flex: 0,
@@ -86,6 +91,14 @@ txt: {
     fontWeight: '500',
 },
 
+txt2: {
+    color: '#2f2f2f', 
+    paddingBottom: 10,  
+    borderBottomWidth: 2,
+    borderColor: '#e8e8e8',
+    marginBottom: 10
+    
+},
 errotxt: {
     color: 'red', 
     fontSize: 12,
@@ -122,7 +135,7 @@ studprofile:{
     backgroundColor: 'white',
     borderColor: '#e8e8e8',
     margin: 5,
-    borderWidth:  2,
+    flex: 1,
     flexDirection: 'column',
     borderRadius: 5
 },
@@ -179,7 +192,8 @@ jobContent: {
 
 jobContent2: {
     padding: 10,
-    borderLeftWidth: 0.5,
+    borderColor: '#e8e8e8',
+    borderLeftWidth: 1.5,
     marginLeft: 5,
     flex: 1
 

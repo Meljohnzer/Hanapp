@@ -34,12 +34,16 @@ export default function App() {
 <NavigationContainer>
 <Stack.Navigator screenOptions={{headerShown: false}}>
 
+
+
 <Stack.Screen
       name='Employerscreen'
       component={Employerscreen}
       />
-
-
+<Stack.Screen
+      name='Users type'
+      component={Userstypescreen}
+      />
 <Stack.Screen
       name='Studentscreen'
       component={Studentscreen}
@@ -61,10 +65,7 @@ export default function App() {
       name='Notification'
       component={Notif2}
       />
- <Stack.Screen options={{headerShown: false}}
-      name='Users type'
-      component={Userstypescreen}
-      />
+ 
   <Stack.Screen
       name='Sign up'
       component={Signupscreen}
@@ -87,6 +88,7 @@ export default function App() {
    </SafeAreaView>
   );
 };
+
 
 const Tabs = createBottomTabNavigator();
 
@@ -117,7 +119,7 @@ function Studentscreen () {
               case "Bookmarks":
                 filePath = require("../Hanapp/assets/Lottie/Bookmarks.json");
                 break;
-              case "Activity":
+              case "Activity log":
                 filePath = require("../Hanapp/assets/Lottie/Activitylog.json");
                 break;
               case "Settings":
@@ -145,7 +147,7 @@ function Studentscreen () {
         component={Profile} />
 
         <Tabs.Screen 
-        name="Activity" 
+        name="Activity log" 
         component={Activity} />
       
         <Tabs.Screen 

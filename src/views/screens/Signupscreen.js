@@ -1,5 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { ScrollView, Text, View, ImageBackground, useWindowDimensions, Keyboard, Alert,Image} from 'react-native'
+import { ScrollView, Text, View, ImageBackground, useWindowDimensions, Dimensions, Keyboard, Alert,Image, SafeAreaView, RefreshControl} from 'react-native'
 import React from 'react'
 import Logo from '../../../assets/bg/Picture1.png';
 import Input from "../components/Input";
@@ -8,7 +8,9 @@ import Button from "../components/Button";
 import Loader from "../components/Loader";
 
 
-
+const wait = (timeout) => {
+  return new Promise(resolve => setTimeout(resolve, timeout));
+}
 
 
 const Signupscreen = ({navigation}) => {
@@ -20,6 +22,11 @@ const Signupscreen = ({navigation}) => {
     cpassword: '',
 
   });
+  const [refreshing, setRefreshing] = React.useState(false);
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    wait(2000).then(() => setRefreshing(false));
+  }, []);
   const {height} = useWindowDimensions();
   const [errors, setErrors] = React.useState({});
   const [loading, setLoading] = React.useState(false);
@@ -98,13 +105,20 @@ const Signupscreen = ({navigation}) => {
   }
   
   return (
-    
+    <SafeAreaView style={{flex: 1}}>
     <ScrollView
       contentContainerStyle={{
-            flex:1,
-            justifyContent: 'center',
-            
-        }}>
+        justifyContent: 'center',
+        height: Dimensions.get('window').height,
+        width: Dimensions.get('window').width,
+        }}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+          />
+        }
+      >
     <View
     style={[Universalstyles.signup, {height: 'auto'}]}>
 
@@ -192,7 +206,7 @@ const Signupscreen = ({navigation}) => {
         </View>
         
       </ScrollView>
-    
+      </SafeAreaView>
   );
 };
 

@@ -1,5 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { ScrollView, Text, View, ImageBackground, useWindowDimensions, TouchableOpacity, Keyboard, Alert,Image} from 'react-native'
+import { SafeAreaView, ScrollView, Text, View, ImageBackground, useWindowDimensions, TouchableOpacity, Keyboard, Alert,Image, RefreshControl} from 'react-native'
 import React, { useState } from 'react';
 import Logo from '../../../../assets/bg/Picture2.png';
 import Logo1 from '../../../../assets/bg/bgimage5.jpg';
@@ -7,16 +7,33 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Searchbar from '../../components/Searchbar';
 import Universalstyles from "../../../const/Universalstyle";
   
+const wait = (timeout) => {
+  return new Promise(resolve => setTimeout(resolve, timeout));
+}
 
 const Home = ({navigation}) => {
+
+  const [refreshing, setRefreshing] = React.useState(false);
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    wait(2000).then(() => setRefreshing(false));
+  }, []);
   const {width} = useWindowDimensions();
   const [value,setValue] = useState();
   function updateSearch(value){
   }
 
   return (
-
-<ScrollView>
+<SafeAreaView>
+<ScrollView
+        contentContainerStyle={Universalstyles.scrollView}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+          />
+        }
+      >
 <View style={{padding: 10, flexDirection: 'row', backgroundColor: '#F5E44C' }}>
 
   <TouchableOpacity onPress={() => navigation.navigate('')}>
@@ -59,7 +76,7 @@ const Home = ({navigation}) => {
 
    
       <TouchableOpacity onPress={() => navigation.navigate('')}>
-      <View style={Universalstyles.jobContent3}>
+      <View style={[Universalstyles.jobContent3, {}]}>
       <Text style={{color: 'white', fontWeight: 'bold', fontSize: 18,}}>
           Job description
       </Text>
@@ -76,7 +93,7 @@ const Home = ({navigation}) => {
  
   </ScrollView>
   
-    
+  </SafeAreaView>
   );
   
 };

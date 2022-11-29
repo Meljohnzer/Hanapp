@@ -1,14 +1,36 @@
-import { View, Text, Image, useWindowDimensions, TouchableOpacity, ScrollView } from 'react-native'
+import { View, Text, Image, useWindowDimensions, TouchableOpacity, ScrollView, SafeAreaView, RefreshControl} from 'react-native'
 import Logo from '../../../../assets/bg/Picture3.png'
 import Logo1 from '../../../../assets/bg/bgimage5.jpg';
 import React from 'react'
 import Universalstyles from '../../../const/Universalstyle'
 import Icon from 'react-native-vector-icons/EvilIcons'
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
+
+const wait = (timeout) => {
+  return new Promise(resolve => setTimeout(resolve, timeout));
+}
+
+
 const Home = ({navigation}) => {
     const {height} = useWindowDimensions();
+    const [refreshing, setRefreshing] = React.useState(false);
+    const onRefresh = React.useCallback(() => {
+      setRefreshing(true);
+      wait(2000).then(() => setRefreshing(false));
+    }, []);
+
+
   return (
-    <ScrollView >
+    <SafeAreaView>
+   <ScrollView style={{}}
+        contentContainerStyle={Universalstyles.scrollView}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+          />
+        }
+      >
     <View style={[Universalstyles.HomeEmp, {backgroundColor: '#F5E44C', paddingVertical: 5, paddingHorizontal: 10, }]}>
 
     <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
@@ -60,7 +82,7 @@ const Home = ({navigation}) => {
     
   </View>
     </ScrollView>
-   
+    </SafeAreaView>
   )
 }
 

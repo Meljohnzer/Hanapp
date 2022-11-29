@@ -1,5 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { ScrollView, Text, View, ImageBackground, useWindowDimensions, Keyboard, Alert, TouchableOpacity, Image} from 'react-native'
+import { ScrollView, Text, View, Dimensions, useWindowDimensions, Keyboard, Alert, TouchableOpacity, Image, SafeAreaView, RefreshControl} from 'react-native'
 import React from 'react';
 import Logo from '../../../assets/bg/Picture1.png';
 import Input from "../components/Input";
@@ -10,6 +10,10 @@ import Ggl from "../../../assets/bg/Google-Logo-PNG3.png";
 import Fb from "../../../assets/bg/Facebook-Logo-PNG4.png";
 import Apl from "../../../assets/bg/Apple-Logo-PNG5.png";
 
+const wait = (timeout) => {
+  return new Promise(resolve => setTimeout(resolve, timeout));
+}
+
 
 const Loginscreen = ({navigation}) => {
   
@@ -18,7 +22,11 @@ const Loginscreen = ({navigation}) => {
     password: '',
 
   });
-
+  const [refreshing, setRefreshing] = React.useState(false);
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    wait(2000).then(() => setRefreshing(false));
+  }, []);
   const [errors, setErrors] = React.useState({});
   const [loading, setLoading] = React.useState(false);
   const {height} = useWindowDimensions();
@@ -75,15 +83,20 @@ const Loginscreen = ({navigation}) => {
   }
   
   return (
-    
+    <SafeAreaView style={{flex: 1}}>
     <ScrollView
-    contentContainerStyle={{
-          
-          flex:1,
-          justifyContent: 'center',
-          
-      }}>
-    
+      contentContainerStyle={{
+        justifyContent: 'center',
+        height: Dimensions.get('window').height,
+        width: Dimensions.get('window').width,
+        }}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+          />
+        }
+      >
     <View
     style={[Universalstyles.signup, {height: 'auto'}]}>
 
@@ -156,7 +169,7 @@ const Loginscreen = ({navigation}) => {
             </View>
         </View>
       </ScrollView>
-
+      </SafeAreaView>
   );
 };
 

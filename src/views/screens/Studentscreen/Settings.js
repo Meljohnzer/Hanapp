@@ -1,17 +1,44 @@
-import { View, Text, TouchableOpacity, ScrollView} from 'react-native'
+import { View, Text, TouchableOpacity, ScrollView, Dimensions, SafeAreaView, RefreshControl} from 'react-native'
 import React from 'react'
 import Universalstyles from '../../../const/Universalstyle'
 import Fontaw from 'react-native-vector-icons/FontAwesome';
 import MatIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import MatIcon2 from 'react-native-vector-icons/MaterialIcons';
 
+const wait = (timeout) => {
+  return new Promise(resolve => setTimeout(resolve, timeout));
+}
+
 
 const Settings = ({navigation}) => {
+
+  const [refreshing, setRefreshing] = React.useState(false);
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    wait(2000).then(() => setRefreshing(false));
+  }, []);
   const logout = () =>{
     navigation.navigate('Log in')
   }
+
+
   return (
-    <ScrollView>
+
+    <SafeAreaView style={{flex: 1}}>
+     <ScrollView
+          contentContainerStyle={{
+            justifyContent: 'center',
+            height: Dimensions.get('window').height,
+            width: Dimensions.get('window').width,
+          }}
+          refreshControl={
+            <RefreshControl
+              refreshing={refreshing}
+              onRefresh={onRefresh}
+            />
+          }
+        >
+    <View style={{flex: 1}}>
     <View style={Universalstyles.setAccount}>
       <Text style={{fontSize: 40, fontWeight: '500', }}>Account</Text>
       <Text style={{fontSize: 12}}>Update your info to keep your account secure</Text>
@@ -110,15 +137,16 @@ const Settings = ({navigation}) => {
       </View>
     </View>
     </TouchableOpacity>
-
+    <View style={{marginBottom: 50, alignItems: 'center'}}>
     <TouchableOpacity  onPress={logout}>
       <View style={Universalstyles.logout}>
       <Text style={{color: 'white', fontWeight: 'bold', fontSize: 18}}>Log out</Text>
       </View>
     </TouchableOpacity>
-
-    
+    </View>
+    </View>
     </ScrollView>
+    </SafeAreaView>
   )
 }
 
