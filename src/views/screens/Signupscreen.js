@@ -16,8 +16,6 @@ const wait = (timeout) => {
 const Signupscreen = ({navigation}) => {
   const [inputs, setInputs] = React.useState({
     email: '',
-    firstname: '',
-    Lastname: '',
     password: '',
     cpassword: '',
 
@@ -39,20 +37,6 @@ const Signupscreen = ({navigation}) => {
       valid = false;
     } else if (!inputs.email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)){
       handleError('Please enter valid email address', 'email');
-      valid = false;
-    }
-    if (!inputs.firstname){
-      handleError('Please enter your Firstname', 'firstname');
-      valid = false;
-    } else if (inputs.firstname.match(/[0-9]/)){
-      handleError('Name should not have numbers', 'firstname');
-      valid = false;
-    }
-    if (!inputs.Lastname){
-      handleError('Please enter your Lastname', 'Lastname');
-      valid = false;
-    } else if (inputs.Lastname.match(/[0-9]/)){
-      handleError('Name should not have numbers', 'Lastname');
       valid = false;
     }
     if (!inputs.password){
@@ -89,7 +73,7 @@ const Signupscreen = ({navigation}) => {
       setLoading(false);
       try {
         AsyncStorage.setItem('user', JSON.stringify(inputs));
-        navigation.navigate('Homescreen',{fname:inputs.firstname,lname:inputs.Lastname,email:inputs.email});
+        navigation.navigate('Infoscreen', {fname:inputs.firstname,lname:inputs.Lastname,email:inputs.email, password:inputs.password});
       } catch (error) {
         Alert.alert('Error', 'Something went wrong')
       }
@@ -135,28 +119,6 @@ const Signupscreen = ({navigation}) => {
         </Text>
 
      
-        
-            <Input 
-            placeholder= 'Firstname' 
-            iconName= 'account-outline' 
-            
-            error={errors.firstname}
-            onFocus={() =>{
-              handleError(null, 'firstname');
-            }}
-            onChangeText = {text => handleOnChange(text, 'firstname')}
-            />
-
-<Input 
-            placeholder= 'Lastname' 
-            iconName= 'account-outline' 
-            
-            error={errors.Lastname}
-            onFocus={() =>{
-              handleError(null, 'Lastname');
-            }}
-            onChangeText = {text => handleOnChange(text, 'Lastname')}
-            />
             <Input 
             placeholder= 'Email' 
             iconName= 'email-outline' 

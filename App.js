@@ -1,6 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Loginscreen from './src/views/screens/Loginscreen';
 import Signupscreen from './src/views/screens/Signupscreen';
+import Infoscreen from './src/views/screens/Infoscreen';
 import Homescreen from './src/views/screens/Homescreen';
 import Forgotscreen from './src/views/screens/Forgotscreen';
 import { SafeAreaView } from 'react-native';
@@ -21,8 +22,7 @@ import Calendar from './src/views/screens/Employerscreen/Calendar';
 import Notif from './src/views/screens/Studentscreen/Notif';
 import Notif2 from './src/views/screens/Employerscreen/Notif';
 import LottieView from "lottie-react-native";
-
-
+import Infoscreen2 from './src/views/screens/Infoscreen2';
 
 
 
@@ -35,20 +35,28 @@ export default function App() {
 <Stack.Navigator screenOptions={{headerShown: false}}>
 
 
-
-<Stack.Screen
-      name='Employerscreen'
-      component={Employerscreen}
-      />
-<Stack.Screen
-      name='Users type'
-      component={Userstypescreen}
-      />
 <Stack.Screen
       name='Studentscreen'
       component={Studentscreen}
       />
 
+<Stack.Screen
+      name='Infoscreen2'
+      component={Infoscreen2}
+      />
+<Stack.Screen
+      name='Employerscreen'
+      component={Employerscreen}
+      />
+
+<Stack.Screen
+      name='Users type'
+      component={Userstypescreen}
+      />
+<Stack.Screen
+      name='Infoscreen'
+      component={Infoscreen}
+      />
 <Stack.Screen 
       name='Settings'
       component={Settings2}
@@ -57,7 +65,7 @@ export default function App() {
       name='Profile2'
       component={Profile2}
       />
-<Stack.Screen
+<Stack.Screen options={{headerShown: true}}
       name='Notifications'
       component={Notif}
       />

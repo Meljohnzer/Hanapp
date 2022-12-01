@@ -9,14 +9,14 @@ const Input = ({
     iconName, 
     error, 
     password, 
-    phone,
+    keyboardType,
     onFocus=()=>{},
     ...props
 }) => {
     const [isFocused, setisFocused] = React.useState(false);
     const [hidePassword, setHidePassword] = React.useState(password);
   return (
-    <View style={{marginBottom: 15,}}>
+    <View style={{marginBottom: 15, }}>
         
     <View style={[style.inputContainer,{borderColor: error ? 'red': isFocused ? 'black': '#e8e8e8', borderWidth: 1.5 }]}>
         <Icon 
@@ -26,7 +26,7 @@ const Input = ({
         />
         <TextInput 
         
-        keyboardType={phone}
+        keyboardType={keyboardType}
         secureTextEntry={hidePassword}
         autoCorrect={false}
         onFocus={() => {

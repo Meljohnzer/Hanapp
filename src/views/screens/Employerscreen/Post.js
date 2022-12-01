@@ -4,7 +4,7 @@ import Input from "../../components/Input";
 import {Universalstyles} from "../../../const/Universalstyle";
 import Loader from "../../components/Loader";
 import React, { useState } from "react";
-
+import Selectlist from "../../components/Selectlist";
 
 
 const wait = (timeout) => {
@@ -21,6 +21,15 @@ const Post = ({navigation}) => {
     Lookingfor: '',
     Jobloc: '',
     Jobdesc: '',
+    startdate: '',
+    enddate:'',
+    attachcor: '',
+    attachstudid: '',
+    policecler: '',
+    idengent: '',
+    currivitae: '',
+
+
   });
   const [refreshing, setRefreshing] = React.useState(false);
   const onRefresh = React.useCallback(() => {
@@ -69,8 +78,27 @@ const Post = ({navigation}) => {
       handleError('Please enter the job description', 'Jobdesc');
       valid = false;
     } 
+    if (!inputs.currivitae){
+      handleError('Please attach file of your Curriculum vitae', 'currivitae');
+      valid = false;
+    }
+    if (!inputs.attachcor){
+      handleError('Please attach picture of your COR', 'attachcor');
+      valid = false;
+    }
+    if (!inputs.attachstudid){
+      handleError('Please attach picture of your student identification', 'attachstudid');
+      valid = false;
+    }
+    if (!inputs.policecler){
+      handleError('Please attach picture of your police clearance', 'policecler');
+      valid = false;
+    }
+    if (!inputs.idengent){
+      handleError('Please attach picture of your indigency', 'idengent');
+      valid = false;
+    }
 
-    
     if (valid) {
       register();
     }
@@ -98,12 +126,10 @@ const Post = ({navigation}) => {
   }
   
   return (
-    <SafeAreaView style={{flex: 1, height: 'auto'}}>
+    <SafeAreaView style={{flex: 1}}>
     <ScrollView
         contentContainerStyle={{ 
-          justifyContent: 'center',
-          height: Dimensions.get('window').height,
-          width: Dimensions.get('window').width,
+          
         }}
           refreshControl={
             <RefreshControl
@@ -119,7 +145,7 @@ const Post = ({navigation}) => {
       <Loader visible={loading}/>
   
    
-          <View style={{height: 'auto', padding: 10}}>
+          <View style={{height: 'auto', padding: 10, flex: 1}}>
             <View  style= {Universalstyles.txt2}>
             <Text style={{ fontSize: 40, fontWeight: '500',}}>Create post</Text>
             <Text style={{ fontSize: 12, marginLeft: 5}}>Create a job hiring application with valid information</Text>
@@ -191,9 +217,71 @@ const Post = ({navigation}) => {
             }}
             onChangeText = {text => handleOnChange(text, 'Jobdesc')}
             />
+
+{/* TEMPORAY */}
+
+             <Selectlist
+            
+            error={errors.Edustage}
+            onFocus={() =>{
+                handleError(null, 'Edustage');
+              }}
+            onChangeText = {text => handleOnChange(text, 'Edustage')}
+            />
+
+             <Input 
+            placeholder= 'Curriculum vitae (CV)' 
+            iconName= 'attachment' 
+            
+            error={errors.currivitae}
+            onFocus={() =>{
+              handleError(null, 'currivitae');
+            }}
+            onChangeText = {text => handleOnChange(text, 'currivitae')}
+            />
+             <Input 
+            placeholder= 'Certificate of registration (COR)' 
+            iconName= 'attachment' 
+            
+            error={errors.attachcor}
+            onFocus={() =>{
+              handleError(null, 'attachcor');
+            }}
+            onChangeText = {text => handleOnChange(text, 'attachcor')}
+            />
+            <Input 
+            placeholder= 'Student identification (ID)' 
+            iconName= 'attachment' 
+            
+            error={errors.attachstudid}
+            onFocus={() =>{
+              handleError(null, 'attachstudid');
+            }}
+            onChangeText = {text => handleOnChange(text, 'attachstudid')}
+            />
+             <Input 
+            placeholder= 'Police clearance' 
+            iconName= 'attachment' 
+            
+            error={errors.policecler}
+            onFocus={() =>{
+              handleError(null, 'policecler');
+            }}
+            onChangeText = {text => handleOnChange(text, 'policecler')}
+            />
+             <Input 
+            placeholder= 'Indigency' 
+            iconName= 'attachment' 
+            
+            error={errors.idengent}
+            onFocus={() =>{
+              handleError(null, 'idengent');
+            }}
+            onChangeText = {text => handleOnChange(text, 'idengent')}
+            />
 <View style={{marginBottom: 50, alignItems: 'center'}}>
     <TouchableOpacity  onPress={validate}>
-      <View style={Universalstyles.logout}>
+      <View style={[Universalstyles.logout, {height: 'auto'}]}>
       <Text style={{color: 'white', fontWeight: 'bold', fontSize: 18}}>Post</Text>
       </View>
     </TouchableOpacity>

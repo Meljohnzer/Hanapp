@@ -30,15 +30,7 @@ const Notif = () => {
             />
           }
         >
-     <View style={[Universalstyles.signup, {height: 'auto'}]}>
-    <View style={{height: 'auto', padding: 10}}>
-            <View  style= {Universalstyles.txt2}>
-            <Text style={{ fontSize: 40, fontWeight: '500',}}>Notification</Text>
-            <Text style={{ fontSize: 12, marginLeft: 5}}>Updates from the employers and availbale jobs</Text>
-            </View>
-
-      </View>
-      </View>
+     <View></View>
     </ScrollView>
     </SafeAreaView>
   )
