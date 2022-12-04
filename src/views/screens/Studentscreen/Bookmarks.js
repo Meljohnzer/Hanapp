@@ -27,13 +27,14 @@ const Bookmarks = () => {
             <RefreshControl
               refreshing={refreshing}
               onRefresh={onRefresh}
+              colors={['#F5E44C']}
             />
           }
         >
     <View style={[Universalstyles.signup, {height: 'auto'}]}>
     <View style={{height: 'auto', padding: 10}}>
             <View  style= {Universalstyles.txt2}>
-            <Text style={{ fontSize: 40, fontWeight: '500',}}>Bookmark</Text>
+            <Text style={{ fontSize: 40, fontWeight: '500',}}>Bookmarks</Text>
             <Text style={{ fontSize: 12, marginLeft: 5}}>Your saved job will be place here for you to review</Text>
             </View>
 

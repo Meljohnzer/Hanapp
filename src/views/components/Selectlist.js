@@ -48,7 +48,7 @@ const Selectlist = ({
          
         
         <SelectList 
-        
+       
         boxStyles={{marginBottom: 7, borderColor: error ? 'red': isFocused ? 'black': '#e8e8e8', borderWidth: 1.5}}
         inputStyles={{iconName: 'school',color: 'grey', }}
         dropdownStyles={{marginBottom: 7, marginTop: 0, borderColor: '#e8e8e8', padding: 5, width: 'auto'}}

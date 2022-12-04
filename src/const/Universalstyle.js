@@ -195,7 +195,7 @@ jobContent2: {
     borderColor: '#e8e8e8',
     borderLeftWidth: 1.5,
     marginLeft: 5,
-    flex: 1
+
 
 },
 jobContent3: {

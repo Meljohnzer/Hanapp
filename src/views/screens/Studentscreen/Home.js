@@ -1,5 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { SafeAreaView, ScrollView, Text, View, ImageBackground, useWindowDimensions, TouchableOpacity, Keyboard, Alert,Image, RefreshControl} from 'react-native'
+import { SafeAreaView, ScrollView, Text, View, Dimensions, useWindowDimensions, TouchableOpacity, Keyboard, Alert,Image, RefreshControl} from 'react-native'
 import React, { useState } from 'react';
 import Logo from '../../../../assets/bg/Picture2.png';
 import Logo1 from '../../../../assets/bg/bgimage5.jpg';
@@ -18,6 +18,7 @@ const Home = ({navigation}) => {
     setRefreshing(true);
     wait(2000).then(() => setRefreshing(false));
   }, []);
+  
   const {width} = useWindowDimensions();
   const [value,setValue] = useState();
   function updateSearch(value){
@@ -26,11 +27,15 @@ const Home = ({navigation}) => {
   return (
 <SafeAreaView>
 <ScrollView
-        contentContainerStyle={Universalstyles.scrollView}
+        contentContainerStyle={{
+          justifyContent: 'center',
+          width: Dimensions.get('window').width,
+        }}
         refreshControl={
           <RefreshControl
             refreshing={refreshing}
             onRefresh={onRefresh}
+            colors={['#F5E44C']}
           />
         }
       >
@@ -75,7 +80,7 @@ const Home = ({navigation}) => {
     <Text style={{ }}>Location : <Text style={{color: 'green', textTransform: 'capitalize'}}> Cagayan de Oro city</Text> </Text>
 
    
-      <TouchableOpacity onPress={() => navigation.navigate('')}>
+      <TouchableOpacity onPress={() => navigation.navigate('Job description')}>
       <View style={[Universalstyles.jobContent3, {}]}>
       <Text style={{color: 'white', fontWeight: 'bold', fontSize: 18,}}>
           Job description

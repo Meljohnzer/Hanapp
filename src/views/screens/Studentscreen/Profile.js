@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, Image, ScrollView, SafeAreaView, RefreshControl} from 'react-native'
+import { View, Text, TouchableOpacity, Image, ScrollView, SafeAreaView, RefreshControl, Dimensions} from 'react-native'
 import React from 'react'
 import Universalstyles from '../../../const/Universalstyle'
 import Logo1 from '../../../../assets/bg/bgimage5.jpg';
@@ -19,30 +19,135 @@ const Profile = ({navigation}) => {
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
     <ScrollView style={{}}
-     contentContainerStyle={{}}
+     contentContainerStyle={{
+      justifyContent: 'center',
+      width: Dimensions.get('window').width,
+     }}
      refreshControl={
        <RefreshControl
          refreshing={refreshing}
          onRefresh={onRefresh}
+         colors={['#F5E44C']}
        />
      }>
+      
       <View style={[Universalstyles.studprofile, {borderWidth: 2,}]}>
-      <TouchableOpacity onPress={() => navigation.navigate('')}>
-        <View style={{ }}>
-        <Image source={Logo1} style={{
-     marginTop: 20,
-     marginBottom: 20,
-     borderWidth: 1, 
-     borderRadius: 50, 
-     width: 100, 
-     height: 100, 
-     alignSelf: 'center',
-    }}/>
+      
+        <View style={{flex: 1, margin:10, flexDirection: 'row', alignSelf: 'flex-end',}}>
+        <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center',  }}> 
+          <Text style={{ opacity: 0.6}}>
+          Email: 
+        </Text>
+        <Text style={{opacity: 0.6}}>
+          Contact number: 
+        </Text>
+        <Text style={{opacity: 0.6}}>
+          Address: 
+        </Text>
         </View>
-      </TouchableOpacity>
+       
+        <TouchableOpacity onPress={() => navigation.navigate('')}>
+        <Image source={Logo1} style={{
+     marginTop: 10,
+     marginBottom: 20,
+     marginLeft: 0,
+     borderRadius: 65, 
+     width: 130, 
+     height: 130, 
+     resizeMode: 'contain'
+    }}/>
+  </TouchableOpacity>
+        </View>
+        <View style={{borderWidth: .3, borderColor: '#aba9ab', marginHorizontal: 10, position: 'relative'}}></View>
+        <View style={{paddingHorizontal: 5, paddingVertical: 20, alignSelf: 'flex-start'}}>
+        <Text style={{fontSize: 20, fontWeight: '500'}}> Personal information</Text>
+        <View style={{padding: 5}}>
+        <Text style={{opacity: 0.6}}>
+          Full name: 
+        </Text>
+        <Text style={{opacity: 0.6}}>
+          Birthday: 
+        </Text>
+        <Text style={{opacity: 0.6}}>
+          Age: 
+        </Text>
+        <Text style={{opacity: 0.6}}>
+          Blood type: 
+        </Text>
+        <Text style={{opacity: 0.6}}>
+          Nationality: 
+        </Text>
+        <Text style={{opacity: 0.6}}>
+          Language: 
+        </Text>
+        
+        </View>
       </View>
-      <View style={{padding: 10}}></View>
-      <View style={Universalstyles.studprofile}>
+      <View>
+
+      </View>
+      <View style={{borderWidth: .3, borderColor: '#aba9ab', marginHorizontal: 10, position: 'relative'}}></View>
+        <View style={{paddingHorizontal: 5, paddingVertical: 20, alignSelf: 'flex-start'}}>
+        <Text style={{fontSize: 20, fontWeight: '500'}}> Family information</Text>
+        <View style={{padding: 5}}>
+        <Text style={{opacity: 0.6}}>
+          Father's name: 
+        </Text>
+        <Text style={{opacity: 0.6}}>
+          Birthday: 
+        </Text>
+        <Text style={{opacity: 0.6}}>
+          Age: 
+        </Text>
+        <Text></Text>
+        <Text style={{opacity: 0.6}}>
+          Mother's name: 
+        </Text>
+        <Text style={{opacity: 0.6}}>
+          Birthday: 
+        </Text>
+        <Text style={{opacity: 0.6}}>
+          Age: 
+        </Text>
+        <Text></Text>
+        <Text style={{opacity: 0.6}}>
+          Guardian name: 
+        </Text>
+        <Text style={{opacity: 0.6}}>
+          Contact number: 
+        </Text>
+        </View>
+      </View>
+      <View style={{borderWidth: .3, borderColor: '#aba9ab', marginHorizontal: 10, position: 'relative', }}></View>
+        <View style={{paddingHorizontal: 5, paddingVertical: 20, alignSelf: 'flex-start'}}>
+        <Text style={{fontSize: 20, fontWeight: '500'}}> Educational background (current)</Text>
+        <View style={{padding: 5}}>
+        <Text style={{opacity: 0.6}}>
+          School name
+        </Text>
+        <Text style={{opacity: 0.6}}>
+          School address
+        </Text>
+        <Text style={{opacity: 0.6}}>
+          Year & level
+        </Text>
+        <Text style={{opacity: 0.6}}>
+          Course
+        </Text>
+        </View>
+      </View>
+      <View style={{borderWidth: .3, borderColor: '#aba9ab', marginHorizontal: 10, position: 'relative'}}></View>
+        <View style={{paddingHorizontal: 5, paddingVertical: 20, alignSelf: 'flex-start'}}>
+        <Text style={{fontSize: 20, fontWeight: '500'}}> Skills</Text>
+        <View style={{padding: 5}}>
+        <Text style={{opacity: 0.6}}>
+        {'\u2022'}
+        </Text>
+      </View>
+      </View>
+      </View>
+      
+      {/* <View style={Universalstyles.studprofile}>
           <Text style={{textAlign: 'center', fontWeight: '400', fontSize: 20, borderBottomWidth: 2, borderColor: '#e8e8e8', width: 'auto', textTransform: 'uppercase'}}>samuel george y. dela cruz</Text>
           <Text style={{textAlign: 'center', fontWeight: '500', textTransform: 'capitalize', color: 'blue'}}>name</Text>
       </View>
@@ -73,7 +178,7 @@ const Profile = ({navigation}) => {
       <View style={[Universalstyles.studprofile, {marginVertical: 20}]}>
           <Text style={{textAlign: 'center', fontWeight: '400', fontSize: 20, borderBottomWidth: 2, borderColor: '#e8e8e8', width: 'auto', textTransform: 'uppercase'}}>BS - Information technology</Text>
           <Text style={{textAlign: 'center', fontWeight: '500', textTransform: 'capitalize', color: 'blue'}}>Course</Text>
-      </View>
+      </View> */}
      
      <View style={{marginBottom: 50}}>
       <TouchableOpacity  onPress={''}>

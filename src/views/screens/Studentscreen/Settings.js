@@ -35,6 +35,7 @@ const Settings = ({navigation}) => {
             <RefreshControl
               refreshing={refreshing}
               onRefresh={onRefresh}
+              colors={['#F5E44C']}
             />
           }
         >

@@ -27,6 +27,7 @@ const Activity = () => {
             <RefreshControl
               refreshing={refreshing}
               onRefresh={onRefresh}
+              colors={['#F5E44C']}
             />
           }
         >

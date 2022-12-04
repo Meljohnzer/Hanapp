@@ -37,34 +37,11 @@ const Settings = ({navigation}) => {
             <RefreshControl
               refreshing={refreshing}
               onRefresh={onRefresh}
+              colors={['#F5E44C']}
             />
           }
         >
-       <TouchableOpacity onPress={() => navigation.navigate('Profile2')}>
-      <View>
-    <View style={Universalstyles.profile1}>
-    <Image source={Logo1} style={{
-      width: 70,
-      height: 70,
-      marginRight: 7,
-      borderRadius: 50,
-      marginTop: 10,
-      
-    }}/>
-   
-    <View style={Universalstyles.profile2}>
-    
-    <Text style={{  marginBottom: 0, fontSize: 30}}><Text style={{textTransform: 'uppercase',}}>Be sagunsa Inc.</Text> </Text>
-    
-    <Text style={{fontSize: 20, fontWeight: '300', }}><Text style={{textTransform: 'capitalize'}}>View your profile</Text> </Text>
-
-    
-    </View> 
-  
-    </View>
-    
-  </View>
-  </TouchableOpacity> 
+          <View style={{flex: 1}}>
     <View style={Universalstyles.setAccount}>
       <Text style={{fontSize: 40, fontWeight: '500', }}>Account</Text>
       <Text style={{fontSize: 12}}>Update your info to keep your account secure</Text>
@@ -171,7 +148,7 @@ const Settings = ({navigation}) => {
       </View>
     </TouchableOpacity>
     </View>
-  
+    </View>
     </ScrollView>
     </SafeAreaView>
   )

@@ -129,12 +129,14 @@ const Post = ({navigation}) => {
     <SafeAreaView style={{flex: 1}}>
     <ScrollView
         contentContainerStyle={{ 
-          
+          justifyContent: 'center',
+          width: Dimensions.get('window').width,
         }}
           refreshControl={
             <RefreshControl
               refreshing={refreshing}
               onRefresh={onRefresh}
+               colors={['#F5E44C']}
             />
           }
         >

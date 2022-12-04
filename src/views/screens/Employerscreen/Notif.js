@@ -27,18 +27,11 @@ const Notif = () => {
             <RefreshControl
               refreshing={refreshing}
               onRefresh={onRefresh}
+              colors={['#F5E44C']}
             />
           }
         >
-     <View style={[Universalstyles.signup, {height: 'auto'}]}>
-    <View style={{height: 'auto', padding: 10}}>
-            <View  style= {Universalstyles.txt2}>
-            <Text style={{ fontSize: 40, fontWeight: '500',}}>Notification</Text>
-            <Text style={{ fontSize: 12, marginLeft: 5}}>You will be updated if someone applied in your job</Text>
-            </View>
-
-      </View>
-      </View>
+     <View></View>
     </ScrollView>
     </SafeAreaView>
   )

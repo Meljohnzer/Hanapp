@@ -1,4 +1,4 @@
-import { View, Text, Image, useWindowDimensions, TouchableOpacity, ScrollView, SafeAreaView, RefreshControl} from 'react-native'
+import { View, Text, Image, useWindowDimensions, TouchableOpacity, ScrollView, SafeAreaView, RefreshControl, Dimensions} from 'react-native'
 import Logo from '../../../../assets/bg/Picture3.png'
 import Logo1 from '../../../../assets/bg/bgimage5.jpg';
 import React from 'react'
@@ -23,11 +23,15 @@ const Home = ({navigation}) => {
   return (
     <SafeAreaView>
    <ScrollView style={{}}
-        contentContainerStyle={Universalstyles.scrollView}
+        contentContainerStyle={{
+          justifyContent: 'center',
+          width: Dimensions.get('window').width,
+        }}
         refreshControl={
           <RefreshControl
             refreshing={refreshing}
             onRefresh={onRefresh}
+            colors={['#F5E44C']}
           />
         }
       >
@@ -66,7 +70,7 @@ const Home = ({navigation}) => {
 
     <Text style={{ }}>Number of applicant : <Text style={{color: 'red', textTransform: 'capitalize'}}> 100</Text> </Text>
 
-      <TouchableOpacity onPress={() => navigation.navigate('')}>
+      <TouchableOpacity onPress={() => navigation.navigate('Manage')}>
       <View style={Universalstyles.jobContent3}>
       <Text style={{color: 'white', fontWeight: 'bold', fontSize: 18,}}>
           Manage

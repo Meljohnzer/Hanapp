@@ -23,7 +23,8 @@ import Notif from './src/views/screens/Studentscreen/Notif';
 import Notif2 from './src/views/screens/Employerscreen/Notif';
 import LottieView from "lottie-react-native";
 import Infoscreen2 from './src/views/screens/Infoscreen2';
-
+import Jobdesc from './src/views/screens/Studentscreen/Jobdesc';
+import Empmanage from './src/views/screens/Employerscreen/Empmanage';
 
 
 const Stack = createNativeStackNavigator();
@@ -35,19 +36,29 @@ export default function App() {
 <Stack.Navigator screenOptions={{headerShown: false}}>
 
 
-<Stack.Screen
+{/* <Stack.Screen
       name='Studentscreen'
       component={Studentscreen}
-      />
+      /> */}
 
-<Stack.Screen
-      name='Infoscreen2'
-      component={Infoscreen2}
-      />
 <Stack.Screen
       name='Employerscreen'
       component={Employerscreen}
       />
+
+<Stack.Screen options={{headerShown: true}}
+      name='Job description'
+      component={Jobdesc}
+      />
+<Stack.Screen options={{headerShown: true}}
+      name='Manage'
+      component={Empmanage}
+      />
+<Stack.Screen
+      name='Infoscreen2'
+      component={Infoscreen2}
+      />
+
 
 <Stack.Screen
       name='Users type'
@@ -61,15 +72,15 @@ export default function App() {
       name='Settings'
       component={Settings2}
       />
-<Stack.Screen
-      name='Profile2'
+<Stack.Screen options={{headerShown: true}}
+      name='Company profile'
       component={Profile2}
       />
 <Stack.Screen options={{headerShown: true}}
       name='Notifications'
       component={Notif}
       />
-<Stack.Screen
+<Stack.Screen options={{headerShown: true}}
       name='Notification'
       component={Notif2}
       />
@@ -198,8 +209,8 @@ function Studentscreen () {
               case "Create post":
                   filePath = require("../Hanapp/assets/Lottie/Add.json");
                   break;
-              case "Calendar":
-                filePath = require("../Hanapp/assets/Lottie/Calendar.json");
+              case "Profile":
+                filePath = require("../Hanapp/assets/Lottie/Profile.json");
                 break;
               default:
                 iconName = focused
@@ -223,8 +234,8 @@ function Studentscreen () {
         component={CreatePost} />
         
         <Tabs.Screen 
-        name="Calendar" 
-        component={Calendar} />
+        name="Profile" 
+        component={Profile2} />
 
 
       </Tabs2.Navigator>
