@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Loginscreen from './src/views/screens/Loginscreen';
 import Signupscreen from './src/views/screens/Signupscreen';
-import Infoscreen from './src/views/screens/Infoscreen';
+import Infoscreen from './src/views/screens/Signupscreen';
 import Homescreen from './src/views/screens/Homescreen';
 import Forgotscreen from './src/views/screens/Forgotscreen';
 import { SafeAreaView } from 'react-native';
@@ -22,9 +22,11 @@ import Calendar from './src/views/screens/Employerscreen/Calendar';
 import Notif from './src/views/screens/Studentscreen/Notif';
 import Notif2 from './src/views/screens/Employerscreen/Notif';
 import LottieView from "lottie-react-native";
-import Infoscreen2 from './src/views/screens/Infoscreen2';
+import Signupscreen2 from './src/views/screens/Signupscreen2';
 import Jobdesc from './src/views/screens/Studentscreen/Jobdesc';
 import Empmanage from './src/views/screens/Employerscreen/Empmanage';
+import Cprofile from './src/views/screens/Studentscreen/Cprofile'
+import JSprofile from './src/views/screens/Employerscreen/JSprofile';
 
 
 const Stack = createNativeStackNavigator();
@@ -39,7 +41,7 @@ export default function App() {
 {/* <Stack.Screen
       name='Studentscreen'
       component={Studentscreen}
-      /> */}
+      />
 
 <Stack.Screen
       name='Employerscreen'
@@ -53,28 +55,32 @@ export default function App() {
 <Stack.Screen options={{headerShown: true}}
       name='Manage'
       component={Empmanage}
-      />
+      /> */}
 <Stack.Screen
-      name='Infoscreen2'
-      component={Infoscreen2}
+      name='Sign upp'
+      component={Signupscreen2}
       />
-
+ <Stack.Screen
+      name='Sign up'
+      component={Signupscreen}
+      />
 
 <Stack.Screen
       name='Users type'
       component={Userstypescreen}
       />
-<Stack.Screen
-      name='Infoscreen'
-      component={Infoscreen}
-      />
+
 <Stack.Screen 
       name='Settings'
       component={Settings2}
       />
 <Stack.Screen options={{headerShown: true}}
       name='Company profile'
-      component={Profile2}
+      component={Cprofile}
+      />
+<Stack.Screen options={{headerShown: true}}
+      name='Applicant profile'
+      component={JSprofile}
       />
 <Stack.Screen options={{headerShown: true}}
       name='Notifications'
@@ -83,11 +89,6 @@ export default function App() {
 <Stack.Screen options={{headerShown: true}}
       name='Notification'
       component={Notif2}
-      />
- 
-  <Stack.Screen
-      name='Sign up'
-      component={Signupscreen}
       />
   <Stack.Screen 
       name='Log in'

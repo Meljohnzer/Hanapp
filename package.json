@@ -23,6 +23,7 @@
     "react-datepicker": "^4.8.0",
     "react-hook-form": "^7.38.0",
     "react-native": "0.69.6",
+    "react-native-axios": "^0.17.1",
     "react-native-datepicker": "^1.7.2",
     "react-native-dropdown-select-list": "^2.0.2",
     "react-native-hooks": "^0.9.0",

@@ -131,7 +131,7 @@ const Empmanage = ({navigation}) => {
     <Text style={{ opacity: .5}}>Location : <Text style={{color: 'green', textTransform: 'capitalize'}}></Text> </Text>
 
       <View style={{marginHorizontal: 5}}>
-      <TouchableOpacity onPress={() => navigation.navigate('Job description')}>
+      <TouchableOpacity onPress={() => navigation.navigate('Applicant profile')}>
       <View style={[Universalstyles.jobContent3, {paddingHorizontal: 20}]}>
       <Text style={{color: 'white', fontWeight: 'bold', fontSize: 18,}}>
           View profile
