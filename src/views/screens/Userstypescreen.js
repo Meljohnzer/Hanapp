@@ -24,10 +24,10 @@ const Userstypescreen = ({navigation}) => {
 
         <Text style={{fontSize: 25}}>What are you?</Text>
 
-              <TouchableOpacity onPress={() => navigation.navigate('Sign up')}>
+              <TouchableOpacity onPress={() => navigation.navigate('Sign up', { type: 'Student' })}>
                   <Text style={Universalstyles.userstype}>Student</Text>
               </TouchableOpacity>
-              <TouchableOpacity onPress={() => navigation.navigate('Sign up')}>
+              <TouchableOpacity onPress={() => navigation.navigate('Sign up', { type: 'Employer' })}>
               <Text style={Universalstyles.userstype}>Employer</Text>
               </TouchableOpacity>
               

@@ -63,7 +63,7 @@ const Forgotscreen = ({navigation}) => {
                   'user', JSON.stringify({...userData, loggedIn: true}),
                 );
                 Alert.alert('Forgotten Password', userData.password)
-               navigation.navigate('Homescreen',{fname:userData.firstname,lname:userData.Lastname,email:userData.email});
+               navigation.navigate('Log in',{fname:userData.firstname,lname:userData.Lastname,email:userData.email});
                 setValid(true)
               } 
               else {
@@ -90,13 +90,11 @@ const Forgotscreen = ({navigation}) => {
               />
             }
           >
-         <View
-    style={[Universalstyles.signup, {height: 'auto', justifyContent: 'center', padding: 10, }]}>
+            <Loader visible={loading}/>
+
+         <View style={[Universalstyles.signup, {height: 'auto', paddingVertical: 100}]}>
    
-          <Loader visible={loading}/>
-           
-              
-          <View style={[Universalstyles.signupbg, {height: 'auto', borderWidth: 2, borderRadius: 10, borderColor: '#e8e8e8'}]}>
+          <View style={[Universalstyles.signupbg, {height: 'auto', justifyContent: 'center'}]}>
           <Image source={Logo} style={[Universalstyles.logo, {height: height * 0.19, marginLeft: 10}]} />
           <Text style= {Universalstyles.txt}>
             Verify Email

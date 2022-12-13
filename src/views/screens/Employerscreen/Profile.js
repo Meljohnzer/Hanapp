@@ -39,9 +39,6 @@ const Profile = ({navigation}) => {
           Company email: 
         </Text>
         <Text style={{opacity: 0.6}}>
-          Contact number: 
-        </Text>
-        <Text style={{opacity: 0.6}}>
           Address: 
         </Text>
         </View>
@@ -88,12 +85,8 @@ const Profile = ({navigation}) => {
           Employer name: 
         </Text>
         <Text style={{opacity: 0.6}}>
-          Age: 
+          Address: 
         </Text>
-        <Text style={{opacity: 0.6}}>
-          Job position: 
-        </Text>
-        
         </View>
       </View>
      

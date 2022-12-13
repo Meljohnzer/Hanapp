@@ -30,6 +30,7 @@ const Loginscreen = ({navigation}) => {
   const [errors, setErrors] = React.useState({});
   const [loading, setLoading] = React.useState(false);
   const {height} = useWindowDimensions();
+  
   const validate = () => {
     Keyboard.dismiss();
     let valid = true;
@@ -37,6 +38,10 @@ const Loginscreen = ({navigation}) => {
       handleError('Please enter your email', 'email');
       valid = false;
     } 
+    else if (!inputs.email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)){
+      handleError('Please enter valid email address', 'email');
+      valid = false;
+    }
 
     if (!inputs.password){
       handleError('Please enter your password', 'password');
@@ -62,7 +67,7 @@ const Loginscreen = ({navigation}) => {
             AsyncStorage.setItem(
               'user', JSON.stringify({...userData, loggedIn: true}),
             );
-            navigation.navigate('Studentscreen');
+            navigation.navigate('StudInfo');
           } 
           else {
               Alert.alert('Error', 'Invalid credentials')
@@ -83,9 +88,10 @@ const Loginscreen = ({navigation}) => {
   }
   
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={{flex: 1, }}>
     <ScrollView
       contentContainerStyle={{
+        
         justifyContent: 'center',
         height: Dimensions.get('window').height,
         width: Dimensions.get('window').width,
@@ -97,12 +103,13 @@ const Loginscreen = ({navigation}) => {
           />
         }
       >
+        <Loader visible={loading}/>
     <View
-    style={[Universalstyles.signup, {height: 'auto'}]}>
+    style={[Universalstyles.signup, {height: 'auto', paddingVertical: 20}]}>
 
-      <Loader visible={loading}/>
+      
         
-          <View style={[Universalstyles.signupbg, {height: 'auto'}]}>
+          <View style={[Universalstyles.signupbg, {height: 'auto', paddingVertical: 20}]}>
           <Image source={Logo} style={[Universalstyles.logo, {height: height * 0.19, marginLeft: 10}]} />
       <Text style= {Universalstyles.txt}>
         Login account

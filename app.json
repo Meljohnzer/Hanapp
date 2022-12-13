@@ -30,12 +30,7 @@
         
       }
     },
-    "plugins": [
-      [
-        "./plugin/withDisableForcedDarkModeAndroid.js",
-        {}
-      ]
-    ],
+    
     "web": {
       "favicon": "./assets/favicon.png"
     }

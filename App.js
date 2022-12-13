@@ -23,8 +23,10 @@ import Notif from './src/views/screens/Studentscreen/Notif';
 import Notif2 from './src/views/screens/Employerscreen/Notif';
 import LottieView from "lottie-react-native";
 import Signupscreen2 from './src/views/screens/Signupscreen2';
-import Jobdesc from './src/views/screens/Studentscreen/Jobdesc';
-import Empmanage from './src/views/screens/Employerscreen/Empmanage';
+import StudInfo from './src/views/screens/Studentscreen/StudInfo';
+import EmpInfo from './src/views/screens/Employerscreen/EmpInfo';
+import Description from './src/views/screens/Studentscreen/Description';
+import Manage from './src/views/screens/Employerscreen/Manage';
 import Cprofile from './src/views/screens/Studentscreen/Cprofile'
 import JSprofile from './src/views/screens/Employerscreen/JSprofile';
 
@@ -39,35 +41,45 @@ export default function App() {
 
 
 {/* <Stack.Screen
+      name='Users type'
+      component={Userstypescreen}
+      /> */}
+
+{/* <Stack.Screen
+      name='Sign up'
+      component={Signupscreen}
+      />
+<Stack.Screen options={{headerShown: false}}
+      name='StudInfo'
+      component={StudInfo}
+      />
+<Stack.Screen
       name='Studentscreen'
       component={Studentscreen}
       />
+
+ <Stack.Screen options={{headerShown: false}}
+      name='EmpInfo'
+      component={EmpInfo}
+      /> */}
 
 <Stack.Screen
       name='Employerscreen'
       component={Employerscreen}
       />
-
-<Stack.Screen options={{headerShown: true}}
-      name='Job description'
-      component={Jobdesc}
-      />
-<Stack.Screen options={{headerShown: true}}
-      name='Manage'
-      component={Empmanage}
-      /> */}
 <Stack.Screen
       name='Sign upp'
       component={Signupscreen2}
       />
- <Stack.Screen
-      name='Sign up'
-      component={Signupscreen}
-      />
 
-<Stack.Screen
-      name='Users type'
-      component={Userstypescreen}
+
+<Stack.Screen options={{headerShown: true}}
+      name='Job description'
+      component={Description}
+      />
+<Stack.Screen options={{headerShown: true}}
+      name='Manage'
+      component={Manage}
       />
 
 <Stack.Screen 

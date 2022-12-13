@@ -16,10 +16,10 @@ const Applicant = () => {
   }, []);
 
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={{flex: 1, }}>
       <ScrollView
         contentContainerStyle={{ 
-          justifyContent: 'center',
+          
           height: Dimensions.get('window').height,
           width: Dimensions.get('window').width,
         }}
@@ -30,15 +30,7 @@ const Applicant = () => {
             />
           }
         >
-     <View style={[Universalstyles.signup, {height: 'auto'}]}>
-    <View style={{height: 'auto', padding: 10}}>
-            <View  style= {Universalstyles.txt2}>
-            <Text style={{ fontSize: 40, fontWeight: '500',}}>Applicant</Text>
-            <Text style={{ fontSize: 12, marginLeft: 5}}>Applicants information and their submitted requirements </Text>
-            </View>
-
-      </View>
-      </View>
+    
     </ScrollView>
     </SafeAreaView>
   )

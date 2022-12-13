@@ -21,11 +21,12 @@ const Home = ({navigation}) => {
 
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{flex: 1, }}>
    <ScrollView style={{}}
         contentContainerStyle={{
-          justifyContent: 'center',
+          
           width: Dimensions.get('window').width,
+          height: Dimensions.get('window').height,
         }}
         refreshControl={
           <RefreshControl
@@ -54,32 +55,25 @@ const Home = ({navigation}) => {
    
 <View style={Universalstyles.jobPost}>
     <View style={Universalstyles.jobContent}>
-    <Image source={Logo1} style={{
-      width: 100,
-      height: 100,
-      marginRight: 7,
-      borderRadius: 50,
-      marginTop: 10,
-      
-    }}/>
+    <Image source={Logo1} style={Universalstyles.Jobimage}/>
     <View style={Universalstyles.jobContent2}>
 
-    <Text style={{ marginBottom: 5}}>Looking for: <Text style={{color: 'blue', textTransform: 'capitalize'}}> Front-end developer</Text> </Text>
+    <Text style={{fontSize: 20, borderBottomWidth: 1, marginBottom: 5, borderColor: '#cbc8ce'}}><Icon2 name='briefcase-outline' style={{fontSize: 23, color: 'black',}}/><Text style={{color: 'black', }}> Back-end developer </Text></Text>
     
-    <Text style={{marginBottom: 5}}>Application : <Text style={{color: 'green', textTransform: 'capitalize'}}> Open</Text> </Text>
+    <Text style={{opacity:.5}}><Icon name='exclamation' style={{fontSize: 20, color: 'orange', alignContent: 'center'}}/> {'Status: '} <Text style={{color: 'green', }}>Open</Text></Text>
 
-    <Text style={{ }}>Number of applicant : <Text style={{color: 'red', textTransform: 'capitalize'}}> 100</Text> </Text>
+    <Text style={{opacity:.5}}><Icon2 name='account-group' style={{fontSize: 20, color: 'brown', alignContent: 'center'}}/> {'Applicants: '} <Text style={{color: 'blue', }}>87</Text></Text>
 
-      <TouchableOpacity onPress={() => navigation.navigate('Manage')}>
-      <View style={Universalstyles.jobContent3}>
+    <TouchableOpacity onPress={() => navigation.navigate('Manage')}>
+    <View style={Universalstyles.jobContent3}>
+      
       <Text style={{color: 'white', fontWeight: 'bold', fontSize: 18,}}>
           Manage
       </Text>
       </View>
       </TouchableOpacity>
-  
-   
-    </View>
+      </View>
+    
     
     
     </View>

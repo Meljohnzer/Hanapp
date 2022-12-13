@@ -3,7 +3,7 @@ import { Dimensions, StyleSheet } from 'react-native'
 export const Universalstyles = StyleSheet.create({
 
 signup: {
-    backgroundColor : 'white' , 
+    padding: 10,
     flex: 1,
     resizeMode: 'cover',
     height: Dimensions.get('window').height,
@@ -12,11 +12,10 @@ signup: {
 },
 
 signupbg: {
-    marginVertical: 20,
+    flex: 1,
+    borderRadius: 10,
     backgroundColor: 'white',
-    width: '100%',
-    height: '100%',  
-    padding: 10,
+    paddingHorizontal: 10,
 },
 scrollView: {
     height: Dimensions.get('window').height,
@@ -160,10 +159,9 @@ searchContainer:{
 
 jobPost: {
     flex: 1,
-    paddingHorizontal: 10,
-    height: Dimensions.get('window').height,
-    width: Dimensions.get('window').width,
-    marginVertical: 20,
+    marginVertical: 10,
+    margin: 5,
+    
 },
 
 profile1: {
@@ -176,28 +174,55 @@ profile1: {
 
 profile2: {
     padding: 10,
-    
     marginLeft: 5,
     flex: 1
 },
 
+text: {
+    paddingHorizontal: 5, 
+    paddingBottom: 5, 
+    fontSize: 15,
+    opacity:.5,
+
+},
+text2: {
+    padding: 5, 
+    paddingBottom: 5, 
+    marginBottom: 10, 
+    fontSize: 30, 
+    borderBottomWidth: 1, 
+    borderColor: '#cbc8ce'
+    
+},
+
+Jobimage:{
+    width: 100,
+    height: 100,
+    marginRight: 10,
+    borderRadius: 50,
+    alignSelf: 'center'
+},
+
 jobContent: {
+    padding: 10,
     backgroundColor: 'white',
     borderColor: '#e8e8e8',
-    padding: 10,
     borderWidth:  2,
     flexDirection: 'row',
     borderRadius: 10
 },
 
 jobContent2: {
-    padding: 10,
+    paddingHorizontal: 10,
+    flex: 1,
     borderColor: '#e8e8e8',
     borderLeftWidth: 1.5,
-    marginLeft: 5,
-
+    marginLeft: 0,
+    flexDirection: 'column',
+    justifyContent: 'center'
 
 },
+
 jobContent3: {
     width: 'auto',
     height: 'auto',

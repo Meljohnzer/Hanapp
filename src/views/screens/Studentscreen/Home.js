@@ -65,21 +65,23 @@ const Home = ({navigation}) => {
 </View>
 
 <View style={Universalstyles.jobPost}>
+  
     <View style={Universalstyles.jobContent}>
-    <Image source={Logo1} style={{
-      width: 100,
-      height: 100,
-      marginRight: 7,
-      borderRadius: 50,
-      marginTop: 10,
       
-    }}/>
-    <View style={Universalstyles.jobContent2}>
-    <Text style={{ marginBottom: 5}}>Company name : <Text style={{color: 'blue', textTransform: 'capitalize'}}> be sagunsa</Text> </Text>
-    
-    <Text style={{ }}>Location : <Text style={{color: 'green', textTransform: 'capitalize'}}> Cagayan de Oro city</Text> </Text>
-
+    <Image source={Logo1} style={Universalstyles.Jobimage}/>
    
+    <View style={Universalstyles.jobContent2}>
+    <View style={{flex: 1,  flexDirection: 'row' ,alignSelf: 'flex-end', left: 5, bottom: 5}}>
+    <TouchableOpacity onPress={() => navigation.navigate('')}>
+      <Icon name='dots-horizontal' style={{fontSize: 30, color: 'black', }}/>
+      </TouchableOpacity>
+    </View>
+    <Text style={{fontSize: 20, borderBottomWidth: 1, marginBottom: 5, borderColor: '#cbc8ce'}}><Icon name='briefcase-outline' style={{fontSize: 23, color: 'black',}}/> Back-end developer</Text>
+    <Text style={{opacity: .5}}><Icon name='warehouse' style={{fontSize: 20, color: 'black',}}/> Be sagunsa INC.</Text>
+    <Text style={{opacity: .5 }}><Icon name='map-marker' style={{fontSize: 20, color: 'red', }}/> Zone 4 Imbatug, Baungon, Bukidnon</Text>
+    <Text style={{opacity: .5 }}><Icon name='clock-outline' style={{fontSize: 20, color: 'black', }}/> 2 hours ago</Text>
+    
+    
       <TouchableOpacity onPress={() => navigation.navigate('Job description')}>
       <View style={[Universalstyles.jobContent3, {}]}>
       <Text style={{color: 'white', fontWeight: 'bold', fontSize: 18,}}>
@@ -87,14 +89,11 @@ const Home = ({navigation}) => {
       </Text>
       </View>
       </TouchableOpacity>
-  
-   
+    </View>
     </View>
     
-    
     </View>
     
-  </View>
  
   </ScrollView>
   

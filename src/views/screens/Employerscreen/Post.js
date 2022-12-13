@@ -129,8 +129,7 @@ const Post = ({navigation}) => {
     <SafeAreaView style={{flex: 1}}>
     <ScrollView
         contentContainerStyle={{ 
-          justifyContent: 'center',
-          width: Dimensions.get('window').width,
+         
         }}
           refreshControl={
             <RefreshControl
@@ -147,45 +146,73 @@ const Post = ({navigation}) => {
       <Loader visible={loading}/>
   
    
-          <View style={{height: 'auto', padding: 10, flex: 1}}>
-            <View  style= {Universalstyles.txt2}>
+          <View style={{height: 'auto', padding: 5, flex: 1,  }}>
+            <View  style= {[Universalstyles.txt2, {}]}>
             <Text style={{ fontSize: 40, fontWeight: '500',}}>Create post</Text>
             <Text style={{ fontSize: 12, marginLeft: 5}}>Create a job hiring application with valid information</Text>
             </View>
-
 
             <Input 
             placeholder= 'Company name' 
             iconName= 'warehouse' 
             
-            error={errors.Cname}
+            error={errors.compname}
             onFocus={() =>{
-              handleError(null, 'Cname');
+              handleError(null, 'compname');
             }}
-            onChangeText = {text => handleOnChange(text, 'Cname')}
+            onChangeText = {text => handleOnChange(text, 'compname')}
             />
-
-            <Input 
-            placeholder= 'Employer name' 
-            iconName= 'account-outline' 
+<Input 
+            placeholder= 'Company address' 
+            iconName= 'map-marker' 
             
-            error={errors.Empname}
+            error={errors.compaddress}
             onFocus={() =>{
-              handleError(null, 'Empname');
+              handleError(null, 'compaddress');
             }}
-            onChangeText = {text => handleOnChange(text, 'Empname')}
+            onChangeText = {text => handleOnChange(text, 'compaddress')}
             />
-           
-             <Input 
+<Input 
             placeholder= 'Company email' 
             iconName= 'email-outline' 
             
-            error={errors.email}
+            error={errors.compemail}
             onFocus={() =>{
-              handleError(null, 'email');
+              handleError(null, 'compemail');
             }}
-            onChangeText = {text => handleOnChange(text, 'email')}
+            onChangeText = {text => handleOnChange(text, 'compemail')}
             />
+
+
+<Input 
+            placeholder= 'Year started' 
+            iconName= 'calendar' 
+            keyboardType= 'numeric'
+            error={errors.yearstart}
+            onFocus={() =>{
+              handleError(null, 'yearstart');
+            }}
+            onChangeText = {text => handleOnChange(text, 'yearstart')}
+            />
+<Input 
+            placeholder= 'Employee hired' 
+            iconName= 'account-group' 
+            error={errors.emphired}
+            onFocus={() =>{
+              handleError(null, 'emphired');
+            }}
+            onChangeText = {text => handleOnChange(text, 'emphired')}
+            />
+<Input 
+            placeholder= 'Number of customer serve' 
+            iconName= 'account-group' 
+            error={errors.custserve}
+            onFocus={() =>{
+              handleError(null, 'custserve');
+            }}
+            onChangeText = {text => handleOnChange(text, 'custserve')}
+            />
+            
 
             <Input 
             placeholder= 'Vacant job position' 

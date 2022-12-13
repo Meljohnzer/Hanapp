@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, useWindowDimensions, ActivityIndicator } from 'react-native'
+import { View, Text, StyleSheet, useWindowDimensions, ActivityIndicator, Dimensions } from 'react-native'
 import React from 'react'
 
 
@@ -9,7 +9,7 @@ const {height, width} = useWindowDimensions();
     <View style={[style.container,{height: '100%', width}]}>
       <View style={style.loader}>
       <ActivityIndicator size ='large' color = 'blue'/>
-        <Text style={{marginRight: 15, fontSize: 15}}> Loading...</Text>
+        <Text style={{marginRight: 15, fontSize: 15}}> Please wait...</Text>
      </View>
     </View>
     )
@@ -22,7 +22,7 @@ const style = StyleSheet.create ({
       zIndex: 10,
       backgroundColor: 'rgba(133, 130, 129, 0.45)',
       justifyContent: 'center',
-
+      
     },
     loader: {
         height: 70,
