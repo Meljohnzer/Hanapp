@@ -1,7 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ScrollView, Text, View, ImageBackground, useWindowDimensions, Dimensions, Keyboard, Alert,Image, SafeAreaView, RefreshControl} from 'react-native'
 import React from 'react'
-// import Logo from '../../../assets/bg/Picture1.png';
+
 import Input from "../../components/Input";
 import {Universalstyles} from "../../../const/Universalstyle";
 import Button from "../../components/Button";
@@ -14,15 +14,12 @@ const wait = (timeout) => {
 }
 
 
-const EmpInfo = ({navigation, error,  onFocus=()=>{}, ...props
+const Skills = ({navigation, error,  onFocus=()=>{}, ...props
 }) => {
     const [isFocused, setisFocused] = React.useState(false);
   const [inputs, setInputs] = React.useState({
+    skills: '',
    
-    empname: '',
-    empaddress: '',
-    Busecer: '',
-
   });
   const [refreshing, setRefreshing] = React.useState(false);
   const onRefresh = React.useCallback(() => {
@@ -38,21 +35,8 @@ const EmpInfo = ({navigation, error,  onFocus=()=>{}, ...props
     
     Keyboard.dismiss();
     let valid = true;
-   
-    if (!inputs.empname){
-      handleError('Please enter your name', 'empname');
-      valid = false;
-    } else if (inputs.empname.match(/[0-9]/)){
-      handleError('Name should not have numbers', 'empname');
-      valid = false;
-    }
-
-    if (!inputs.empaddress){
-        handleError('Please enter your address', 'empaddress');
-        valid = false;
-    }
     
-    
+  
     if (valid) {
       register();
     }
@@ -64,7 +48,7 @@ const EmpInfo = ({navigation, error,  onFocus=()=>{}, ...props
       setLoading(false);
       try {
         AsyncStorage.setItem('user', JSON.stringify(inputs));
-        navigation.navigate('Employerscreen', {empname:inputs.empname});
+        navigation.navigate('Studentscreen', {firstname:inputs.firstname, lastname:inputs.lastname});
       } catch (error) {
         Alert.alert('Error', 'Something went wrong')
       }
@@ -80,8 +64,8 @@ const EmpInfo = ({navigation, error,  onFocus=()=>{}, ...props
   }
   
   return (
-    <SafeAreaView style={{flex: 1,}}>
-    <ScrollView
+    <SafeAreaView style={{flex: 1,  }}>
+    <ScrollView 
       contentContainerStyle={{
        
         }}
@@ -92,72 +76,34 @@ const EmpInfo = ({navigation, error,  onFocus=()=>{}, ...props
           />
         }
       >
-    <View
-    style={[Universalstyles.signup, {}]}>
-
-      <Loader visible={loading}/>
+        
+        <Loader visible={loading}/>
+    <View style={[Universalstyles.signup, {}]}>
+    
   
-   
-          <View style={[Universalstyles.signupbg, {height: 'auto', paddingBottom: 50, justifyContent: 'center'}]}>
+          <View style={[Universalstyles.signupbg, { height: 'auto', paddingBottom: 50, justifyContent: 'center'}]}>
       
-         
-            <Text style= {{
+          <Text style= {{
             color: '#2f2f2f', 
-            marginTop: 10,
             paddingVertical: 10,  
             fontSize: 25, 
             fontWeight: '500',
           }}>
 
-        Employer information
+        Skills
         </Text>
-
+        
         <Input 
-            placeholder= 'Employer name' 
-            iconName= 'account-outline' 
             
-            error={errors.empname}
+            placeholder= 'What are your skills...' 
+            iconName= 'bullseye-arrow' 
+            
+            error={errors.Course}
             onFocus={() =>{
-              handleError(null, 'empname');
+              handleError(null, 'Course');
             }}
-            onChangeText = {text => handleOnChange(text, 'empname')}
+            onChangeText = {text => handleOnChange(text, 'Course')}
             />
-         <Input 
-            placeholder= 'Address' 
-            iconName= 'map-marker' 
-            
-            error={errors.empaddress}
-            onFocus={() =>{
-              handleError(null, 'empaddress');
-            }}
-            onChangeText = {text => handleOnChange(text, 'empaddress')}
-            />
-          
-             
-{/* TEMPORARY */}
-        {/* <Text style= {{
-            color: '#2f2f2f', 
-            marginTop: 10,
-            paddingVertical: 10,  
-            fontSize: 25, 
-            fontWeight: '500',
-          }}>
-
-        Company proof of legitimacy
-        </Text>
-<Input 
-            
-            placeholder= 'Business certificate' 
-            iconName= 'attachment' 
-            
-            error={errors.Busecer}
-            onFocus={() =>{
-              handleError(null, 'Busecer');
-            }}
-            onChangeText = {text => handleOnChange(text, 'Busecer')}
-            /> */}
-
-
 
             <View style={{}}>
             <Button title='Done' onPress={validate}/>
@@ -172,4 +118,4 @@ const EmpInfo = ({navigation, error,  onFocus=()=>{}, ...props
   );
 };
 
-export default EmpInfo
+export default Skills

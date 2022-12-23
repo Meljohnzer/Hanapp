@@ -3,7 +3,6 @@ import { Dimensions, StyleSheet } from 'react-native'
 export const Universalstyles = StyleSheet.create({
 
 signup: {
-    padding: 10,
     flex: 1,
     resizeMode: 'cover',
     height: Dimensions.get('window').height,

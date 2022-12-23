@@ -18,12 +18,14 @@ import Settings from './src/views/screens/Studentscreen/Settings'
 import Settings2 from './src/views/screens/Employerscreen/Settings';
 import Applicant from './src/views/screens/Employerscreen/Applicant';
 import CreatePost from './src/views/screens/Employerscreen/Post';
-import Calendar from './src/views/screens/Employerscreen/Calendar';
 import Notif from './src/views/screens/Studentscreen/Notif';
 import Notif2 from './src/views/screens/Employerscreen/Notif';
 import LottieView from "lottie-react-native";
-import StudInfo from './src/views/screens/Studentscreen/StudInfo';
-import EmpInfo from './src/views/screens/Employerscreen/EmpInfo';
+import Userinfo from './src/views/screens/Userinfo';
+import Educbg from './src/views/screens/Studentscreen/Educbg';
+import Guardianbg from './src/views/screens/Studentscreen/Guardianbg';
+import Skills from './src/views/screens/Studentscreen/Skills';
+import Compdetails from './src/views/screens/Employerscreen/Compdetails';
 import Description from './src/views/screens/Studentscreen/Description';
 import Manage from './src/views/screens/Employerscreen/Manage';
 import Cprofile from './src/views/screens/Studentscreen/Cprofile'
@@ -40,33 +42,46 @@ export default function App() {
 <Stack.Navigator screenOptions={{headerShown: false}}>
 
 
-{/* <Stack.Screen
+<Stack.Screen
+      name='Company details'
+      component={Compdetails}
+      />
+<Stack.Screen
+      name='User info'
+      component={Userinfo}
+      />
+<Stack.Screen
+      name='Education'
+      component={Educbg}
+      />
+<Stack.Screen
+      name='Guardian'
+      component={Guardianbg}
+      />
+<Stack.Screen
+      name='Skills'
+      component={Skills}
+      />
+<Stack.Screen
       name='Users type'
       component={Userstypescreen}
-      /> */}
+      />
 
-{/* <Stack.Screen
+<Stack.Screen
       name='Sign up'
       component={Signupscreen}
       />
-<Stack.Screen options={{headerShown: false}}
-      name='StudInfo'
-      component={StudInfo}
-      /> */}
-{/* <Stack.Screen
+
+<Stack.Screen
       name='Studentscreen'
       component={Studentscreen}
       />
 
- <Stack.Screen options={{headerShown: false}}
-      name='EmpInfo'
-      component={EmpInfo}
-      />
 
 <Stack.Screen
       name='Location'
       component={Location}
-      /> */}
+      />
 <Stack.Screen
       name='Employerscreen'
       component={Employerscreen}

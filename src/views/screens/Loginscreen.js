@@ -105,7 +105,7 @@ const Loginscreen = ({navigation}) => {
       >
         <Loader visible={loading}/>
     <View
-    style={[Universalstyles.signup, {height: 'auto', paddingVertical: 20}]}>
+    style={[Universalstyles.signup, {}]}>
 
       
         

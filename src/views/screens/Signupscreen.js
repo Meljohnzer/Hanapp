@@ -71,7 +71,7 @@ const Signupscreen = ({navigation, error,  onFocus=()=>{}, ...props
       valid = false;
 
     }
-    if (inputs.usertype == null){
+    if (inputs.usertype == ''){
       handleError('Please choose user type', 'usertype');
       valid = false;
     }
@@ -142,7 +142,7 @@ const Signupscreen = ({navigation, error,  onFocus=()=>{}, ...props
                 handleError(null, 'usertype');
               }}
               
-            onChange = {text => handleOnChange(text, 'usertype')}
+            onChange = {item => handleOnChange(item.value, 'usertype')}
             
             />
           <Input 
