@@ -4,7 +4,7 @@ import Input from "../../components/Input";
 import {Universalstyles} from "../../../const/Universalstyle";
 import Loader from "../../components/Loader";
 import React, { useState } from "react";
-import Selectlist from "../../components/Selectlist";
+import Selectlist2 from "../../components/Selectlist2";
 
 
 const wait = (timeout) => {
@@ -21,6 +21,7 @@ const Post = ({navigation}) => {
     Lookingfor: '',
     Jobloc: '',
     Jobdesc: '',
+    Jobtype: '',
     startdate: '',
     enddate:'',
     attachcor: '',
@@ -31,6 +32,12 @@ const Post = ({navigation}) => {
 
 
   });
+  const data = [
+   'Parttime',
+   'OJT',
+   'Remote'
+    
+  ];
   const [refreshing, setRefreshing] = React.useState(false);
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
@@ -67,6 +74,11 @@ const Post = ({navigation}) => {
       handleError('Please enter the job location', 'Jobloc');
       valid = false;
     }
+    if (inputs.Jobtype == null){
+      handleError('Please choose what type of job', 'Jobtype');
+      valid = false;
+    }
+    
     if (!inputs.Lookingfor){
       handleError('Please enter the employer name', 'Lookingfor');
       valid = false;
@@ -236,7 +248,22 @@ const Post = ({navigation}) => {
             onChangeText = {text => handleOnChange(text, 'Jobloc')}
             />
             
-            <Input 
+
+{/* TEMPORAY */}
+
+             <Selectlist2
+            error={errors.Jobtype}
+            
+            onFocus={() =>{
+              
+                handleError(null, 'Jobtype');
+              }}
+              
+            onChange = {text => handleOnChange(text, 'Jobtype')}
+            
+            />
+            
+<Input 
             placeholder= 'Job description' 
             iconName= 'newspaper-variant-outline' 
             
@@ -245,28 +272,6 @@ const Post = ({navigation}) => {
               handleError(null, 'Jobdesc');
             }}
             onChangeText = {text => handleOnChange(text, 'Jobdesc')}
-            />
-
-{/* TEMPORAY */}
-
-             <Selectlist
-            
-            error={errors.Edustage}
-            onFocus={() =>{
-                handleError(null, 'Edustage');
-              }}
-            onChangeText = {text => handleOnChange(text, 'Edustage')}
-            />
-
-             <Input 
-            placeholder= 'Curriculum vitae (CV)' 
-            iconName= 'attachment' 
-            
-            error={errors.currivitae}
-            onFocus={() =>{
-              handleError(null, 'currivitae');
-            }}
-            onChangeText = {text => handleOnChange(text, 'currivitae')}
             />
              <Input 
             placeholder= 'Certificate of registration (COR)' 
@@ -288,26 +293,7 @@ const Post = ({navigation}) => {
             }}
             onChangeText = {text => handleOnChange(text, 'attachstudid')}
             />
-             <Input 
-            placeholder= 'Police clearance' 
-            iconName= 'attachment' 
-            
-            error={errors.policecler}
-            onFocus={() =>{
-              handleError(null, 'policecler');
-            }}
-            onChangeText = {text => handleOnChange(text, 'policecler')}
-            />
-             <Input 
-            placeholder= 'Indigency' 
-            iconName= 'attachment' 
-            
-            error={errors.idengent}
-            onFocus={() =>{
-              handleError(null, 'idengent');
-            }}
-            onChangeText = {text => handleOnChange(text, 'idengent')}
-            />
+        
 <View style={{marginBottom: 50, alignItems: 'center'}}>
     <TouchableOpacity  onPress={validate}>
       <View style={[Universalstyles.logout, {height: 'auto'}]}>

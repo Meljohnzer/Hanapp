@@ -3,6 +3,7 @@ import { View, useWindowDimensions, Dimensions, Text, SafeAreaView, ScrollView, 
 import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
 import Logo from '../../../../assets/bg/bgimage5.jpg';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon4 from 'react-native-vector-icons/Fontisto';
 import Universalstyles from '../../../const/Universalstyle';
 import Logo1 from '../../../../assets/bg/bgimage5.jpg';
 import Icon2 from 'react-native-vector-icons/AntDesign';
@@ -13,13 +14,13 @@ const FirstRoute = ({navigation}) => (
     <ScrollView style={{}}>
    
    <View style={{borderWidth: 2, borderColor: '#e8e8e8', margin: 5, borderRadius: 10, padding: 5}}>
-      <Text style={Universalstyles.text2}><Icon name='briefcase-outline' style={{fontSize: 30, color: 'black', }}/> Back-end developer</Text>
+      <Text style={Universalstyles.text2}><Icon4 name='person' style={{fontSize: 30, color: 'black', }}/>  Back-end developer</Text>
       {/* <Text style={{ paddingHorizontal: 5, paddingBottom: 5, fontSize: 30}}>Company name:</Text>
       <Text style={Universalstyles.text}><Icon name='email' style={{fontSize: 20, color: 'black', marginRight: 10}}/> Company email address: </Text> */}
       <Text style={Universalstyles.text}><Icon name='warehouse' style={{fontSize: 20, color: 'black',}}/>  Be sagunsa INC. </Text>
       {/* <Text style={{ paddingHorizontal: 5, paddingBottom: 5, fontSize: 15,opacity:.5,}}><Icon name='map-marker' style={{fontSize: 20, color: 'black', }}/> Workplace address </Text> */}
       <Text style={Universalstyles.text}><Icon name='account' style={{fontSize: 20, color: 'blue', }}/>  Richard Gomez</Text>
-      <Text style={Universalstyles.text}><Icon name='map-marker' style={{fontSize: 20, color: 'red', }}/>  Zone 5 Imbatug, Baungon, Bukidnon </Text>
+      <Text style={Universalstyles.text}><Icon name='map-marker' style={{fontSize: 20, color: 'red', }}/>  Zone 4 Imbatug, Baungon, Bukidnon </Text>
       {/* <Text style={Universalstyles.text}><Icon name='calendar-month' style={{fontSize: 20, color: 'black', marginRight: 10}}/> Year company started: </Text>
       <Text style={Universalstyles.text}><Icon name='account-group' style={{fontSize: 20, color: 'black', marginRight: 10}}/> Employees hired: </Text>
       <Text style={Universalstyles.text}><Icon name='account-group' style={{fontSize: 20, color: 'black', marginRight: 10}}/> Number of customers serve: </Text> */}

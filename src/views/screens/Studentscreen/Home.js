@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Logo from '../../../../assets/bg/Picture2.png';
 import Logo1 from '../../../../assets/bg/bgimage5.jpg';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon2 from 'react-native-vector-icons/Fontisto';
 import Searchbar from '../../components/Searchbar';
 import Universalstyles from "../../../const/Universalstyle";
   
@@ -76,11 +77,12 @@ const Home = ({navigation}) => {
       <Icon name='dots-horizontal' style={{fontSize: 30, color: 'black', }}/>
       </TouchableOpacity>
     </View>
-    <Text style={{fontSize: 20, borderBottomWidth: 1, marginBottom: 5, borderColor: '#cbc8ce'}}><Icon name='briefcase-outline' style={{fontSize: 23, color: 'black',}}/> Back-end developer</Text>
+    <Text style={{fontSize: 20, borderBottomWidth: 1, marginBottom: 5, borderColor: '#cbc8ce'}}><Icon2 name='person' style={{fontSize: 23, color: 'black',}}/>  Back-end developer</Text>
     <Text style={{opacity: .5}}><Icon name='warehouse' style={{fontSize: 20, color: 'black',}}/> Be sagunsa INC.</Text>
-    <Text style={{opacity: .5 }}><Icon name='map-marker' style={{fontSize: 20, color: 'red', }}/> Zone 4 Imbatug, Baungon, Bukidnon</Text>
+    <Text style={{opacity: .5 }}><Icon name='map-marker' style={{fontSize: 20, color: 'black', }}/> Zone 4 Imbatug, Baungon, Bukidnon</Text>
+    <Text style={{opacity: .5 }}><Icon name='briefcase-outline' style={{fontSize: 20, color: 'black', }}/> Part time</Text>   
     <Text style={{opacity: .5 }}><Icon name='clock-outline' style={{fontSize: 20, color: 'black', }}/> 2 hours ago</Text>
-    
+
     
       <TouchableOpacity onPress={() => navigation.navigate('Job description')}>
       <View style={[Universalstyles.jobContent3, {}]}>

@@ -22,13 +22,13 @@ import Calendar from './src/views/screens/Employerscreen/Calendar';
 import Notif from './src/views/screens/Studentscreen/Notif';
 import Notif2 from './src/views/screens/Employerscreen/Notif';
 import LottieView from "lottie-react-native";
-import Signupscreen2 from './src/views/screens/Signupscreen2';
 import StudInfo from './src/views/screens/Studentscreen/StudInfo';
 import EmpInfo from './src/views/screens/Employerscreen/EmpInfo';
 import Description from './src/views/screens/Studentscreen/Description';
 import Manage from './src/views/screens/Employerscreen/Manage';
 import Cprofile from './src/views/screens/Studentscreen/Cprofile'
 import JSprofile from './src/views/screens/Employerscreen/JSprofile';
+import Location from './src/views/components/Location';
 
 
 const Stack = createNativeStackNavigator();
@@ -52,8 +52,8 @@ export default function App() {
 <Stack.Screen options={{headerShown: false}}
       name='StudInfo'
       component={StudInfo}
-      />
-<Stack.Screen
+      /> */}
+{/* <Stack.Screen
       name='Studentscreen'
       component={Studentscreen}
       />
@@ -61,17 +61,16 @@ export default function App() {
  <Stack.Screen options={{headerShown: false}}
       name='EmpInfo'
       component={EmpInfo}
-      /> */}
+      />
 
+<Stack.Screen
+      name='Location'
+      component={Location}
+      /> */}
 <Stack.Screen
       name='Employerscreen'
       component={Employerscreen}
       />
-<Stack.Screen
-      name='Sign upp'
-      component={Signupscreen2}
-      />
-
 
 <Stack.Screen options={{headerShown: true}}
       name='Job description'

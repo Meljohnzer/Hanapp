@@ -21,8 +21,8 @@ const Input = ({
     <View style={[style.inputContainer,{borderColor: error ? 'red': isFocused ? 'black': '#e8e8e8', borderWidth: 1.5 }]}>
         <Icon 
             name={iconName}
-            style={{fontSize: 22, color: 'grey', marginRight: 10}}
-
+            style={{fontSize: 22, marginRight: 10}}
+            color={isFocused ? '#F5E44C' : 'grey'}
         />
         <TextInput 
         

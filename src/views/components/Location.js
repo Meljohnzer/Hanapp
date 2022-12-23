@@ -22,7 +22,7 @@ import React, { useState } from 'react';
       if (value || isFocus) {
         return (
           <Text style={[styles.label, isFocus && { color: 'blue' }]}>
-     
+            Dropdown label
           </Text>
         );
       }
@@ -39,11 +39,12 @@ import React, { useState } from 'react';
           inputSearchStyle={styles.inputSearchStyle}
           iconStyle={styles.iconStyle}
           data={data}
+          search
           maxHeight={300}
           labelField="label"
           valueField="value"
           placeholder={!isFocus ? 'Select item' : '...'}
-          
+          searchPlaceholder="Search..."
           value={value}
           onFocus={() => setIsFocus(true)}
           onBlur={() => setIsFocus(false)}
@@ -68,11 +69,10 @@ import React, { useState } from 'react';
 
   const styles = StyleSheet.create({
     container: {
-     
+      backgroundColor: 'white',
       padding: 16,
     },
     dropdown: {
-      backgroundColor: 'white',
       height: 50,
       borderColor: 'gray',
       borderWidth: 0.5,
@@ -83,11 +83,11 @@ import React, { useState } from 'react';
       marginRight: 5,
     },
     label: {
-      position: 'relative',
+      position: 'absolute',
       backgroundColor: 'white',
       left: 22,
       top: 8,
-     
+      zIndex: 999,
       paddingHorizontal: 8,
       fontSize: 14,
     },
@@ -102,8 +102,7 @@ import React, { useState } from 'react';
       height: 20,
     },
     inputSearchStyle: {
-      
-        height: 40,
+      height: 40,
       fontSize: 16,
     },
   });

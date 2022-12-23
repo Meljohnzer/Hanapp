@@ -5,6 +5,7 @@ import React from 'react'
 import Universalstyles from '../../../const/Universalstyle'
 import Icon from 'react-native-vector-icons/EvilIcons'
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon3 from 'react-native-vector-icons/Fontisto'
 
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
@@ -58,7 +59,7 @@ const Home = ({navigation}) => {
     <Image source={Logo1} style={Universalstyles.Jobimage}/>
     <View style={Universalstyles.jobContent2}>
 
-    <Text style={{fontSize: 20, borderBottomWidth: 1, marginBottom: 5, borderColor: '#cbc8ce'}}><Icon2 name='briefcase-outline' style={{fontSize: 23, color: 'black',}}/><Text style={{color: 'black', }}> Back-end developer </Text></Text>
+    <Text style={{fontSize: 20, borderBottomWidth: 1, marginBottom: 5, borderColor: '#cbc8ce'}}><Icon3 name='person' style={{fontSize: 23, color: 'black',}}/><Text style={{color: 'black', }}>  Back-end developer </Text></Text>
     
     <Text style={{opacity:.5}}><Icon name='exclamation' style={{fontSize: 20, color: 'orange', alignContent: 'center'}}/> {'Status: '} <Text style={{color: 'green', }}>Open</Text></Text>
 

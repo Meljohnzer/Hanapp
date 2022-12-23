@@ -7,13 +7,13 @@ import Universalstyles from '../../../const/Universalstyle';
 import Logo1 from '../../../../assets/bg/bgimage5.jpg';
 import Icon2 from 'react-native-vector-icons/AntDesign';
 import Icon3 from 'react-native-vector-icons/Entypo';
-
+import Icon4 from 'react-native-vector-icons/Fontisto';
 
 const FirstRoute = ({navigation}) => (
     <ScrollView style={{}}>
    
    <View style={{borderWidth: 2, borderColor: '#e8e8e8', margin: 5, borderRadius: 10, padding: 5}}>
-      <Text style={Universalstyles.text2}><Icon name='briefcase-outline' style={{fontSize: 25, color: 'black',}}/> Back-end developer</Text>
+      <Text style={Universalstyles.text2}><Icon4 name='person' style={{fontSize: 25, color: 'black',}}/>  Back-end developer</Text>
       {/* <Text style={{ paddingHorizontal: 5, paddingBottom: 5, fontSize: 30}}>Company name:</Text>
       <Text style=style={Universalstyles.text}><Icon name='email' style={{fontSize: 20, color: 'black', marginRight: 10}}/> Company email address: </Text> */}
       <Text style={Universalstyles.text}><Icon name='warehouse' style={{fontSize: 20, color: 'black', marginRight: 10}}/> Be sagunsa INC.</Text>
@@ -23,7 +23,7 @@ const FirstRoute = ({navigation}) => (
       {/* <Text style={Universalstyles.text}><Icon name='calendar-month' style={{fontSize: 20, color: 'black', marginRight: 10}}/> Year company started: </Text>
       <Text style={Universalstyles.text}><Icon name='account-group' style={{fontSize: 20, color: 'black', marginRight: 10}}/> Employees hired: </Text>
       <Text style={Universalstyles.text}><Icon name='account-group' style={{fontSize: 20, color: 'black', marginRight: 10}}/> Number of customers serve: </Text> */}
-      <Text style={Universalstyles.text}><Icon2 name='exclamationcircleo' style={{fontSize: 20, color: 'orange', marginRight: 10}}/>  {''}<Text style={{color: 'green', }}>Open</Text> </Text>
+    <Text style={Universalstyles.text}><Icon name='briefcase-outline' style={{fontSize: 20, color: 'black', }}/> Part time</Text> 
 
       
       <View style={{ alignItems: 'center', flexDirection:'row', justifyContent: 'flex-start'}}>

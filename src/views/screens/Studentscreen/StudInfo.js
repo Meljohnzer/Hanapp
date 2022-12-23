@@ -29,14 +29,9 @@ const StudInfo = ({navigation, error,  onFocus=()=>{}, ...props
     address: '',
     nationality: '',
     language: '',
-    fname: '',
-    fage: '',
-    fbirthday: '',
-    mname: '',
-    mage: '',
-    mbirthday: '',
     gname: '',
     gcontactno: '',
+    gaddress: '',
     schname: '',
     schaddress: '',
     course: '',
@@ -117,6 +112,10 @@ if (!inputs.gname){
 }
 if (!inputs.gcontactno){
   handleError("Please enter your guardian's contact number", 'gcontactno');
+  valid = false;
+}
+if (!inputs.gaddress){
+  handleError('Please enter your guardian address', 'gaddress');
   valid = false;
 }
     if (!inputs.schname){
@@ -339,6 +338,16 @@ if (!inputs.gcontactno){
               handleError(null, 'gcontactno');
             }}
             onChangeText = {text => handleOnChange(text, 'gcontactno')}
+            />
+            <Input 
+            placeholder= 'Complete address' 
+            iconName= 'map-marker' 
+            
+            error={errors.gaddress}
+            onFocus={() =>{
+              handleError(null, 'gaddress');
+            }}
+            onChangeText = {text => handleOnChange(text, 'gaddress')}
             />
         
             <Text style= {{

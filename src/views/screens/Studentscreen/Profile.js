@@ -66,16 +66,13 @@ const Profile = ({navigation}) => {
           Full name: 
         </Text>
         <Text style={{opacity: 0.6}}>
-          Birthday: 
+          Birthdate: 
         </Text>
         <Text style={{opacity: 0.6}}>
           Age: 
         </Text>
         <Text style={{opacity: 0.6}}>
           Blood type: 
-        </Text>
-        <Text style={{opacity: 0.6}}>
-          Nationality: 
         </Text>
         <Text style={{opacity: 0.6}}>
           Language: 
@@ -88,28 +85,9 @@ const Profile = ({navigation}) => {
       </View>
       <View style={{borderWidth: .3, borderColor: '#aba9ab', marginHorizontal: 10, position: 'relative'}}></View>
         <View style={{paddingHorizontal: 5, paddingVertical: 20, alignSelf: 'flex-start'}}>
-        <Text style={{fontSize: 20, fontWeight: '500'}}> Family information</Text>
+        <Text style={{fontSize: 20, fontWeight: '500'}}> Guardian information</Text>
         <View style={{padding: 5}}>
-        <Text style={{opacity: 0.6}}>
-          Father's name: 
-        </Text>
-        <Text style={{opacity: 0.6}}>
-          Birthday: 
-        </Text>
-        <Text style={{opacity: 0.6}}>
-          Age: 
-        </Text>
-        <Text></Text>
-        <Text style={{opacity: 0.6}}>
-          Mother's name: 
-        </Text>
-        <Text style={{opacity: 0.6}}>
-          Birthday: 
-        </Text>
-        <Text style={{opacity: 0.6}}>
-          Age: 
-        </Text>
-        <Text></Text>
+        
         <Text style={{opacity: 0.6}}>
           Guardian name: 
         </Text>
