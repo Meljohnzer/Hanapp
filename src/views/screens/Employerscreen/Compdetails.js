@@ -4,8 +4,6 @@ import Input from "../../components/Input";
 import {Universalstyles} from "../../../const/Universalstyle";
 import Loader from "../../components/Loader";
 import React, { useState } from "react";
-import Selectlist2 from "../../components/Selectlist2";
-import Button from "../../components/Button";
 
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
@@ -20,14 +18,8 @@ const Compdetails = ({navigation}) => {
     WebsiteURL: '',
     Compdesc: '',
 
-
   });
-  const data = [
-   'Parttime',
-   'OJT',
-   'Remote'
-    
-  ];
+
   const [refreshing, setRefreshing] = React.useState(false);
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
@@ -37,6 +29,7 @@ const Compdetails = ({navigation}) => {
   const {height} = useWindowDimensions();
   const [errors, setErrors] = React.useState({});
   const [loading, setLoading] = React.useState(false);
+  
   const validate = () => {
     
     Keyboard.dismiss();
@@ -52,7 +45,7 @@ const Compdetails = ({navigation}) => {
       valid = false;
     }
     if (!inputs.Compdesc){
-        handleError('Please enter the company description', 'Comdesc');
+        handleError('Please enter the company description', 'Compdesc');
       valid = false;
     }
     
@@ -134,7 +127,6 @@ const Compdetails = ({navigation}) => {
  <Input 
             placeholder= 'Website URL' 
             iconName= 'link' 
-            keyboardType= 'numeric'
             error={errors.WebsiteURL}
             onFocus={() =>{
               handleError(null, 'WebsiteURL');
@@ -158,10 +150,10 @@ const Compdetails = ({navigation}) => {
             />
              
         
-             <View style={{}}>
+             
              <View style={{marginBottom: 50, alignItems: 'center', flexDirection:'row', justifyContent: 'space-around'}}>
     <TouchableOpacity  onPress={() => navigation.navigate('Employerscreen')}>
-    <View style={{borderColor: 'orange',
+    <View style={{borderColor: 'red',
     alignSelf: 'center',
     width: 150,
     height: 'auto',
@@ -175,7 +167,7 @@ const Compdetails = ({navigation}) => {
       </View>
     </TouchableOpacity>
     <TouchableOpacity  onPress={validate}>
-      <View style={{borderColor: '#4169e1',
+    <View style={{backgroundColor: '#4169e1',
     alignSelf: 'center',
     width: 150,
     height: 'auto',
@@ -184,17 +176,17 @@ const Compdetails = ({navigation}) => {
     marginVertical: 10,
     padding: 10,
     borderRadius: 30,
-    borderWidth: 1,}}>
-      <Text style={{color: 'black', fontWeight: 'light', fontSize: 18}}>Done</Text>
+    }}>
+      <Text style={{color: 'white', fontWeight: 'light', fontSize: 18}}>Done</Text>
       </View>
     </TouchableOpacity>
+
     </View>
             
     </View>
             
         </View>
         
-        </View>
         
       </ScrollView>
       </SafeAreaView>
