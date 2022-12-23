@@ -18,33 +18,10 @@ const Signupscreen = ({navigation, error,  onFocus=()=>{}, ...props
 }) => {
     const [isFocused, setisFocused] = React.useState(false);
   const [inputs, setInputs] = React.useState({
-    firstname: '',
-    lastname: '',
-    midname: '',
-    suffname: '',
-    birthday: '',
-    age: '',
-    bloodtype: '',
-    contactno: '',
-    address: '',
-    nationality: '',
-    language: '',
-    fname: '',
-    fage: '',
-    fbirthday: '',
-    mname: '',
-    mage: '',
-    mbirthday: '',
-    gname: '',
-    gcontactno: '',
-    schname: '',
-    schaddress: '',
-    course: '',
-    yearlevel: '',
-    skills: '',
     email: '',
     password: '',
     cpassword: '',
+    usertype: ''
 
 
 
@@ -93,6 +70,10 @@ const Signupscreen = ({navigation, error,  onFocus=()=>{}, ...props
       handleError('Password do not match', 'cpassword');
       valid = false;
 
+    }
+    if (inputs.usertype == null){
+      handleError('Please choose user type', 'usertype');
+      valid = false;
     }
 //     if (!inputs.firstname){
 //       handleError('Please enter your first name', 'firstname');
@@ -545,6 +526,17 @@ const Signupscreen = ({navigation, error,  onFocus=()=>{}, ...props
 
         Register account
         </Text>
+        <Selectlist
+            error={errors.usertype}
+            
+            onFocus={() =>{
+              
+                handleError(null, 'usertype');
+              }}
+              
+            onChange = {text => handleOnChange(text, 'usertype')}
+            
+            />
           <Input 
             placeholder= 'Email' 
             iconName= 'email-outline' 
