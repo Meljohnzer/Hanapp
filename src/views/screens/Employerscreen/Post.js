@@ -5,7 +5,8 @@ import {Universalstyles} from "../../../const/Universalstyle";
 import Loader from "../../components/Loader";
 import React, { useState } from "react";
 import Selectlist2 from "../../components/Selectlist2";
-import axios from 'axios'
+//import axios from 'axios'
+import { axiosRequest } from "../../components/api";
 
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
@@ -114,7 +115,7 @@ var Data ={
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-     axios.post('http://192.168.43.58:8080/api/post.php', JSON.stringify(Data), headers)  
+     axiosRequest.post('/api/post.php', JSON.stringify(Data), headers)  
       .then((response) => {
         console.log(response.data);
          if(response.data = "Post created Successfully"){

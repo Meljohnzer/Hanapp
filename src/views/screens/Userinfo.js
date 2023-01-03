@@ -6,7 +6,8 @@ import Input from "../components/Input";
 import {Universalstyles} from "../../const/Universalstyle";
 import Button from "../components/Button";
 import Loader from "../components/Loader";
-import axios from 'axios'
+//import axios from 'axios'
+import { axiosRequest } from "../components/api";
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
 }
@@ -122,7 +123,7 @@ var Data ={
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-axios.post('http://192.168.43.58:8080/api/user.php', JSON.stringify(Data), headers)  
+axiosRequest.post('/api/user.php', JSON.stringify(Data), headers)  
       .then((response) => {
         console.log(response.data);
           if (response.data == "Student") {

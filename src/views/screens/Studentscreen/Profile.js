@@ -2,7 +2,8 @@ import { View, Text, TouchableOpacity, Image, ScrollView, SafeAreaView, RefreshC
 import React from 'react'
 import Universalstyles from '../../../const/Universalstyle'
 import Logo1 from '../../../../assets/bg/bgimage5.jpg';
-import axios from 'axios'
+//import axios from 'axios'
+import { axiosRequest } from '../../components/api';
 
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
@@ -23,7 +24,7 @@ const Profile = ({navigation}) => {
   
  
   React.useEffect(()=>{
- axios.get('http://192.168.43.58:8080/api/sprofile.php').then((response)=>response.data).then((data)=>{
+ axiosRequest.get('/api/sprofile.php').then((response)=>response.data).then((data)=>{
 setGet (prevState => ({...prevState, profile: data}));
   
   console.log(gets.profile)

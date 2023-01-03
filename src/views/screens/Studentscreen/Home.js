@@ -7,7 +7,8 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon2 from 'react-native-vector-icons/Fontisto';
 import Searchbar from '../../components/Searchbar';
 import Universalstyles from "../../../const/Universalstyle";
-import axios from 'axios'
+//import axios from 'axios'
+import { axiosRequest } from "../../components/api";
 import moment from 'moment'
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
@@ -45,7 +46,7 @@ var Data ={
 React.useEffect(()=>{
  navigation.addListener('focus',async () => {
   
- await axios.get('http://192.168.43.58:8080/api/feed.php').then((response)=>{
+ await axiosRequest.get('/api/feed.php').then((response)=>{
      
 setGet (prevState => ({...prevState, post: response.data}))
      

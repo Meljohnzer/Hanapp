@@ -8,7 +8,8 @@ import Universalstyles from '../../../const/Universalstyle';
 import Logo1 from '../../../../assets/bg/bgimage5.jpg';
 import Icon2 from 'react-native-vector-icons/AntDesign';
 import Icon3 from 'react-native-vector-icons/Entypo';
-import axios from 'axios'
+//import axios from 'axios'
+import { axiosRequest } from '../../components/api';
 
 const FirstRoute = ({arr}) => (
     <ScrollView style={{}}>
@@ -155,7 +156,7 @@ var Data ={
 React.useEffect(()=>{
  navigation.addListener('focus',async () => {
   
- await axios.post('http://192.168.43.58:8080/api/manage.php', JSON.stringify(Data), headers)  
+ await axiosRequest.post('/api/manage.php', JSON.stringify(Data), headers)  
       .then((response) => {
 
 setGet (prevState => ({...prevState, post: response.data}))

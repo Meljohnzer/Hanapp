@@ -9,7 +9,8 @@ import Loader from "../components/Loader";
 import Ggl from "../../../assets/bg/Google-Logo-PNG3.png";
 import Fb from "../../../assets/bg/Facebook-Logo-PNG4.png";
 import Apl from "../../../assets/bg/Apple-Logo-PNG5.png";
-import axios from 'axios'
+//import axios from 'axios'
+import { axiosRequest } from "../components/api";
 import moment from 'moment';
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
@@ -72,7 +73,7 @@ const Loginscreen = ({navigation}) => {
     setLoading(true);
     await setTimeout(async() => {
       setLoading(false);
-await axios.post('http://192.168.43.58:8080/api/login.php', JSON.stringify(Data), headers)  
+await axiosRequest.post('/api/login.php', JSON.stringify(Data), headers)  
       .then((response) => {
         console.log(response.data);
        switch (response.data) {
