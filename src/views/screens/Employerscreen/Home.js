@@ -6,10 +6,12 @@ import Universalstyles from '../../../const/Universalstyle'
 import Icon from 'react-native-vector-icons/EvilIcons'
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon3 from 'react-native-vector-icons/Fontisto'
-
+import axios from 'axios'
+import moment from 'moment'
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
 }
+
 
 
 const Home = ({navigation}) => {
@@ -20,6 +22,39 @@ const Home = ({navigation}) => {
       wait(2000).then(() => setRefreshing(false));
     }, []);
 
+     const [gets,setGet] = React.useState({
+      post : []
+     })
+const [postID,setPostID] = React.useState()
+
+var Data ={
+      postID : postID
+      };
+
+      var headers = {
+        'Access-Control-Allow-Origin': 'true',
+        'Content-Type': 'application/json',
+      };
+  
+
+
+React.useEffect(()=>{
+ navigation.addListener('focus',async () => {
+  
+ await axios.get('http://localhost:8080/api/posted.php').then((response)=>{
+     
+setGet (prevState => ({...prevState, post: response.data}))
+     
+})
+
+
+
+}
+
+  )},[])
+
+
+console.log(gets.post)
 
   return (
     <SafeAreaView style={{flex: 1, }}>
@@ -54,22 +89,29 @@ const Home = ({navigation}) => {
       </TouchableOpacity>    
     </View>
    
-<View style={Universalstyles.jobPost}>
-    <View style={Universalstyles.jobContent}>
+<View  style={Universalstyles.jobPost}>
+{gets.post.map((label,index)=>(
+    <View key = {index} style={Universalstyles.jobContent}>
     <Image source={Logo1} style={Universalstyles.Jobimage}/>
     <View style={Universalstyles.jobContent2}>
 
-    <Text style={{fontSize: 20, borderBottomWidth: 1, marginBottom: 5, borderColor: '#cbc8ce'}}><Icon3 name='person' style={{fontSize: 23, color: 'black',}}/><Text style={{color: 'black', }}>  Back-end developer </Text></Text>
+    <Text style={{fontSize: 20, borderBottomWidth: 1, marginBottom: 5, borderColor: '#cbc8ce'}}><Icon3 name='person' style={{fontSize: 23, color: 'black',}}/><Text style={{color: 'black', }}>  {label.lookingfor}</Text></Text>
     
-    <Text style={{opacity:.5}}><Icon name='exclamation' style={{fontSize: 20, color: 'orange', alignContent: 'center'}}/> {'Status: '} <Text style={{color: 'green', }}>Open</Text></Text>
+   { label.status ? <Text style={{opacity:.5}}><Icon name='exclamation' style={{fontSize: 20, color: 'orange', alignContent: 'center'}}/> {'Status: '} <Text style={{color: 'green', }}>open</Text></Text> : <Text style={{opacity:.5}}><Icon name='exclamation' style={{fontSize: 20, color: 'orange', alignContent: 'center'}}/> {'Status: '} <Text style={{color: 'red', }}>close</Text></Text>}
 
     <Text style={{opacity:.5}}><Icon2 name='account-group' style={{fontSize: 20, color: 'brown', alignContent: 'center'}}/> {'Applicants: '} <Text style={{color: 'blue', }}>87</Text></Text>
 
-    <TouchableOpacity onPress={() => navigation.navigate('Manage')}>
+    <TouchableOpacity onPress={()=>{
+     setPostID(label.postID)
+ 
+        navigation.navigate('Manage', { itemId : label.postID, })
+
+    }
+    }>
     <View style={Universalstyles.jobContent3}>
       
       <Text style={{color: 'white', fontWeight: 'bold', fontSize: 18,}}>
-          Manage
+          {label.lookingfor}
       </Text>
       </View>
       </TouchableOpacity>
@@ -77,9 +119,10 @@ const Home = ({navigation}) => {
     
     
     
-    </View>
+    </View>))}
     
   </View>
+  
     </ScrollView>
     </SafeAreaView>
   )

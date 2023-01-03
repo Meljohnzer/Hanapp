@@ -8,22 +8,24 @@ import Logo1 from '../../../../assets/bg/bgimage5.jpg';
 import Icon2 from 'react-native-vector-icons/AntDesign';
 import Icon3 from 'react-native-vector-icons/Entypo';
 import Icon4 from 'react-native-vector-icons/Fontisto';
+import axios from 'axios'
+const FirstRoute = ({arr}) => 
 
-const FirstRoute = ({navigation}) => (
+
     <ScrollView style={{}}>
-   
+   {arr.map((label,index)=>(<View key = {index}>
    <View style={{borderWidth: 2, borderColor: '#e8e8e8', margin: 5, borderRadius: 10, padding: 5}}>
-      <Text style={Universalstyles.text2}><Icon4 name='person' style={{fontSize: 25, color: 'black',}}/>  Back-end developer</Text>
+      <Text style={Universalstyles.text2}><Icon4 name='person' style={{fontSize: 25, color: 'black',}}/>  {label.lookingfor}</Text>
       {/* <Text style={{ paddingHorizontal: 5, paddingBottom: 5, fontSize: 30}}>Company name:</Text>
       <Text style=style={Universalstyles.text}><Icon name='email' style={{fontSize: 20, color: 'black', marginRight: 10}}/> Company email address: </Text> */}
-      <Text style={Universalstyles.text}><Icon name='warehouse' style={{fontSize: 20, color: 'black', marginRight: 10}}/> Be sagunsa INC.</Text>
+     { label.compname && <Text style={Universalstyles.text}><Icon name='warehouse' style={{fontSize: 20, color: 'black', marginRight: 10}}/> {label.compname}</Text>}
       {/* <Text style={{ paddingHorizontal: 5, paddingBottom: 5, fontSize: 15,opacity:.5,}}><Icon name='map-marker' style={{fontSize: 20, color: 'black', }}/> Workplace address </Text> */}
-      <Text style={Universalstyles.text}><Icon name='account' style={{fontSize: 20, color: 'blue', marginRight: 10}}/> Richard Gomez</Text>
-      <Text style={Universalstyles.text}><Icon name='map-marker' style={{fontSize: 20, color: 'red', marginRight: 10}}/> Zone 5 Imbatug, Baungon, Bukidnon</Text>
+      <Text style={Universalstyles.text}><Icon name='account' style={{fontSize: 20, color: 'blue', marginRight: 10}}/> {label.lastname}, {label.firstname} {label.midname}</Text>
+      <Text style={Universalstyles.text}><Icon name='map-marker' style={{fontSize: 20, color: 'red', marginRight: 10}}/> {label.street} {label.city} {label.province} {label.zipcode}</Text>
       {/* <Text style={Universalstyles.text}><Icon name='calendar-month' style={{fontSize: 20, color: 'black', marginRight: 10}}/> Year company started: </Text>
       <Text style={Universalstyles.text}><Icon name='account-group' style={{fontSize: 20, color: 'black', marginRight: 10}}/> Employees hired: </Text>
       <Text style={Universalstyles.text}><Icon name='account-group' style={{fontSize: 20, color: 'black', marginRight: 10}}/> Number of customers serve: </Text> */}
-    <Text style={Universalstyles.text}><Icon name='briefcase-outline' style={{fontSize: 20, color: 'black', }}/> Part time</Text> 
+    <Text style={Universalstyles.text}><Icon name='briefcase-outline' style={{fontSize: 20, color: 'black', }}/> {label.jobtype}</Text> 
 
       
       <View style={{ alignItems: 'center', flexDirection:'row', justifyContent: 'flex-start'}}>
@@ -31,8 +33,8 @@ const FirstRoute = ({navigation}) => (
       <Text style={{ paddingHorizontal: 80, paddingBottom: 5, fontSize: 15,opacity:.5}}><Icon name='calendar-month' style={{fontSize: 20, color: 'red', marginRight: 10}}/> Hiring end in: </Text>
       </View>
       <View style={{ alignItems: 'center', flexDirection:'row', justifyContent: 'flex-start'}}>
-      <Text style={{ paddingHorizontal: 7,  fontSize: 15, opacity:.5}}>01-05-23{' / '}11:59PM </Text>
-      <Text style={{ paddingHorizontal: 63,  fontSize: 15, opacity:.5}}>01-30-23{' / '}11:59PM </Text>
+      <Text style={{  marginRight:10, fontSize: 15, opacity:.5}}>{label.startdate} </Text>
+      <Text style={{marginRight:10,paddingHorizontal:80,fontSize: 15, opacity:.5}}>{label.enddate}</Text>
       </View>
       <Text style={Universalstyles.text}></Text>
      </View>
@@ -44,11 +46,11 @@ const FirstRoute = ({navigation}) => (
     <Text style={{fontSize:20, textAlign: 'center', fontWeight: '500'}}>Job Description</Text>
     </View>
     <View style={{padding: 5, }}>
-    <Text style={{paddingBottom: 10, margin: 3, fontSize: 10, alignSelf: 'center', fontWeight: '500'}}>
-      This is the content 
+    <Text style={{paddingBottom: 10, margin: 3, fontSize: 20, alignSelf: 'center', fontWeight: '500'}}> {label.jobdesc}
     </Text>
     </View>
     </View>
+    </View>))}
     <View style={{marginTop: 15, marginBottom: 50, alignItems: 'center', flexDirection:'row', justifyContent: 'space-around'}}>
     <TouchableOpacity  onPress={() => navigation.navigate('Home')}>
     <View style={{borderColor: 'orange',
@@ -79,9 +81,8 @@ const FirstRoute = ({navigation}) => (
       </View>
     </TouchableOpacity>
     </View>
-    
    </ScrollView>
- );
+ 
 
 
 const SecondRoute = ({navigation}) => (
@@ -119,7 +120,7 @@ const SecondRoute = ({navigation}) => (
       <View style={{ flex: 1, flexDirection: 'row',  alignSelf: 'center' , }}>
       
       
-      <View style={{alignItems: 'center', flexDirection: 'row', marginLeft: 15, }}>
+      <View style={{alignItems: 'center', flexDirection: 'row',justifyContent:"flex-end", width:"100%" }}>
       <TouchableOpacity onPress={() => navigation.navigate('')}>
       <Icon2 name='closecircle' style={{fontSize: 25, color: 'red', marginRight: 10}}/>
       </TouchableOpacity>
@@ -158,14 +159,46 @@ const SecondRoute = ({navigation}) => (
 
 
 
-export default function Manage({navigation}) {
+export default function Manage({navigation,route}) {
+ 
+ 
+ const [gets,setGet] = React.useState({
+      post : []
+     })
+     
+     const { itemId } = route.params
+     
+var Data ={
+      postID : itemId
+      };
+
+      var headers = {
+        'Access-Control-Allow-Origin': 'true',
+        'Content-Type': 'application/json',
+      };
+     
+ 
+React.useEffect(()=>{
+ navigation.addListener('focus',async () => {
+  
+ await axios.post('http://localhost:8080/api/manage.php', JSON.stringify(Data), headers)  
+      .then((response) => {
+       
+setGet (prevState => ({...prevState, post: response.data}))
+
+      })
+}
+
+  )},[])
+  //console.log(gets.post)
+
     
     const renderScene = ({ route }) => {
         switch (route.key) {
           case 'first':
-            return <FirstRoute navigation={navigation} />;
+            return <FirstRoute arr = {gets.post}/>;
           case 'second':
-            return <SecondRoute navigation={navigation} />;
+            return <SecondRoute nav />;
           default:
             return null;
         }
@@ -181,7 +214,6 @@ export default function Manage({navigation}) {
 
   return (
     <SafeAreaView style={{flex: 1}}>
-        
     <Image source={Logo} style={[{  
      
      width: 'auto',
@@ -191,13 +223,18 @@ export default function Manage({navigation}) {
    
      }]} 
      />
-    <TabView
+     {gets.post.map((label,index)=>(
+     
+<TabView key= {index}
     navigationState={{ index, routes }}
     renderScene={renderScene}
     renderTabBar={renderTabBar}
     onIndexChange={setIndex}
     initialLayout={{ width: Dimensions.get('window').width }}
     />
+     
+     ))
+    }
 </SafeAreaView>
   );
 }

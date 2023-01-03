@@ -4,7 +4,7 @@ import Input from "../../components/Input";
 import {Universalstyles} from "../../../const/Universalstyle";
 import Loader from "../../components/Loader";
 import React, { useState } from "react";
-
+import axios from 'axios'
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
 }
@@ -19,6 +19,18 @@ const Compdetails = ({navigation}) => {
     Compdesc: '',
 
   });
+  
+var Data ={
+        compname: inputs.Compname ,
+        establishdate: inputs.Establishdate,
+        websiteurl: inputs.WebsiteURL,
+        compdesc: inputs.Compdesc
+      };
+
+      var headers = {
+        'Access-Control-Allow-Origin': 'true',
+        'Content-Type': 'application/json',
+      };
 
   const [refreshing, setRefreshing] = React.useState(false);
   const onRefresh = React.useCallback(() => {
@@ -41,7 +53,7 @@ const Compdetails = ({navigation}) => {
       valid = false;
     } 
     if (!inputs.Establishdate){
-        handleError('Please enter the establishment date', 'Establishdate');
+        handleError('Please enter the establishment date (YYYY-MM-DD)', 'Establishdate');
       valid = false;
     }
     if (!inputs.Compdesc){
@@ -58,12 +70,15 @@ const Compdetails = ({navigation}) => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-      try {
-        AsyncStorage.setItem('user', JSON.stringify(inputs));
-        navigation.navigate('Employerscreen',{fname:inputs.firstname,lname:inputs.Lastname,email:inputs.email});
-      } catch (error) {
-        Alert.alert('Error', 'Something went wrong')
-      }
+     
+axios.post('http://localhost:8080/api/company.php', JSON.stringify(Data), headers)  
+      .then((response) => {
+        console.log(response.data);
+          if (response.data == "Registered successfully!") {
+          navigation.navigate("Employerscreen");
+           }
+      });
+     
     }, 3000);
   };
 

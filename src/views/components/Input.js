@@ -8,7 +8,7 @@ const Input = ({
     label,
     iconName, 
     error, 
-    password, 
+    password,
     keyboardType,
     onFocus=()=>{},
     ...props

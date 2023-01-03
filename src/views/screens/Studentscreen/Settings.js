@@ -4,7 +4,7 @@ import Universalstyles from '../../../const/Universalstyle'
 import Fontaw from 'react-native-vector-icons/FontAwesome';
 import MatIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import MatIcon2 from 'react-native-vector-icons/MaterialIcons';
-
+import axios from 'axios'
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
 }
@@ -18,7 +18,17 @@ const Settings = ({navigation}) => {
     wait(2000).then(() => setRefreshing(false));
   }, []);
   const logout = () =>{
-    navigation.navigate('Log in')
+     setTimeout(async()=>{
+     axios.get('http://localhost:8080/api/logout.php')  
+      .then((response) => {
+        console.log(response.data);
+navigation.navigate('Log in')
+         
+        
+        
+      });
+      
+     },1000)
   }
 
 

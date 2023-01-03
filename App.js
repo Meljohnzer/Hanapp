@@ -31,16 +31,25 @@ import Manage from './src/views/screens/Employerscreen/Manage';
 import Cprofile from './src/views/screens/Studentscreen/Cprofile'
 import JSprofile from './src/views/screens/Employerscreen/JSprofile';
 import Location from './src/views/components/Location';
-
+import axios from 'axios'
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+ 
+ axios.get('http://localhost:8080/api/check.php').then((response)=>{
+  console.log(response.data)
+ })
+ 
   return (
     <SafeAreaView style={{flex: 1, paddingTop: 30, backgroundColor: "#eee"}}>
 <NavigationContainer>
 <Stack.Navigator screenOptions={{headerShown: false}}>
 
+ <Stack.Screen 
+      name='Log in'
+      component={Loginscreen}
+      />
 
 <Stack.Screen
       name='Company details'
@@ -116,10 +125,7 @@ export default function App() {
       name='Notification'
       component={Notif2}
       />
-  <Stack.Screen 
-      name='Log in'
-      component={Loginscreen}
-      />
+
   <Stack.Screen 
       name='Forgotscreen'
       component={Forgotscreen}
@@ -128,6 +134,8 @@ export default function App() {
       name='Homescreen'
       component={Homescreen}
       />
+ 
+
 
     </Stack.Navigator>
    </NavigationContainer>
@@ -157,19 +165,19 @@ function Studentscreen () {
             let filePath;
             switch (route.name) {
               case "Home":
-                  filePath = require("../Hanapp/assets/Lottie/Home.json");
+                  filePath = require("../test/assets/Lottie/Home.json");
                   break;
               case "Profile":
-                filePath = require("../Hanapp/assets/Lottie/Profile.json");
+                filePath = require("../test/assets/Lottie/Profile.json");
                 break;
               case "Bookmarks":
-                filePath = require("../Hanapp/assets/Lottie/Bookmarks.json");
+                filePath = require("../test/assets/Lottie/Bookmarks.json");
                 break;
               case "Activity log":
-                filePath = require("../Hanapp/assets/Lottie/Activitylog.json");
+                filePath = require("../test/assets/Lottie/Activitylog.json");
                 break;
               case "Settings":
-                filePath = require("../Hanapp/assets/Lottie/Settings.json");
+                filePath = require("../test/assets/Lottie/Settings.json");
                 break;
               default:
                 iconName = focused
@@ -228,16 +236,16 @@ function Studentscreen () {
             switch (route.name) {
               
               case "Home":
-                  filePath = require("../Hanapp/assets/Lottie/Home.json");
+                  filePath = require("../test/assets/Lottie/Home.json");
                   break;
               case "Applicant":
-                  filePath = require("../Hanapp/assets/Lottie/Applicant.json");
+                  filePath = require("../test/assets/Lottie/Applicant.json");
                   break;
               case "Create post":
-                  filePath = require("../Hanapp/assets/Lottie/Add.json");
+                  filePath = require("../test/assets/Lottie/Add.json");
                   break;
               case "Profile":
-                filePath = require("../Hanapp/assets/Lottie/Profile.json");
+                filePath = require("../test/assets/Lottie/Profile.json");
                 break;
               default:
                 iconName = focused

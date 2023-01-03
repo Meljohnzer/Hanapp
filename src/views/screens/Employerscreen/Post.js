@@ -5,7 +5,7 @@ import {Universalstyles} from "../../../const/Universalstyle";
 import Loader from "../../components/Loader";
 import React, { useState } from "react";
 import Selectlist2 from "../../components/Selectlist2";
-
+import axios from 'axios'
 
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
@@ -15,29 +15,37 @@ const wait = (timeout) => {
 const Post = ({navigation}) => {
  
   const [inputs, setInputs] = React.useState({
-    email: '',
-    Cname: '',
-    Empname: '',
+    
     Lookingfor: '',
-    Jobloc: '',
+    street: '',
+    city: '',
+    province: '',
+    zipcode: '',
     Jobdesc: '',
     Jobtype: '',
     startdate: '',
     enddate:'',
-    attachcor: '',
-    attachstudid: '',
-    policecler: '',
-    idengent: '',
-    currivitae: '',
-
-
+   
   });
-  const data = [
-   'Parttime',
-   'OJT',
-   'Remote'
-    
-  ];
+  
+  
+var Data ={
+       lookingfor:inputs.Lookingfor,
+       street:inputs.street,
+       city:inputs.city,
+       province:inputs.province,
+       zipcode:inputs.zipcode,
+       jobdesc:inputs.Jobdesc,
+       jobtype:inputs.Jobtype,
+       startdate:inputs.startdate,
+       enddate:inputs.enddate,
+      };
+
+      var headers = {
+        'Access-Control-Allow-Origin': 'true',
+        'Content-Type': 'application/json',
+      };
+  
   const [refreshing, setRefreshing] = React.useState(false);
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
@@ -52,29 +60,24 @@ const Post = ({navigation}) => {
     Keyboard.dismiss();
     let valid = true;
 
-    if (!inputs.email){
-      handleError('Please enter the company email', 'email');
-      valid = false;
-    } else if (!inputs.email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)){
-      handleError('Please enter valid email address', 'email');
+    
+    if (!inputs.street){
+      handleError('Please enter the street', 'street');
       valid = false;
     }
-    if (!inputs.Cname){
-      handleError('Please enter the company name', 'Cname');
-      valid = false;
-    } 
-    if (!inputs.Empname){
-      handleError('Please enter the employer name', 'Empname');
-      valid = false;
-    } else if (inputs.Empname.match(/[0-9]/)){
-      handleError('This field should not have numbers', 'Empname');
+    if (!inputs.city){
+      handleError('Please enter the city', 'city');
       valid = false;
     }
-    if (!inputs.Jobloc){
-      handleError('Please enter the job location', 'Jobloc');
+    if (!inputs.province){
+      handleError('Please enter the province', 'province');
       valid = false;
     }
-    if (inputs.Jobtype == null){
+    if (!inputs.zipcode){
+      handleError('Please enter the zipcode', 'zipcode');
+      valid = false;
+    }
+    if (inputs.Jobtype == ""){
       handleError('Please choose what type of job', 'Jobtype');
       valid = false;
     }
@@ -90,26 +93,17 @@ const Post = ({navigation}) => {
       handleError('Please enter the job description', 'Jobdesc');
       valid = false;
     } 
-    if (!inputs.currivitae){
-      handleError('Please attach file of your Curriculum vitae', 'currivitae');
+    
+    if (!inputs.startdate){
+      handleError('Please Input Hiring Start Date', 'startdate');
       valid = false;
     }
-    if (!inputs.attachcor){
-      handleError('Please attach picture of your COR', 'attachcor');
+    if (!inputs.enddate){
+      handleError('Please Input Hiring End Date', 'enddate');
       valid = false;
     }
-    if (!inputs.attachstudid){
-      handleError('Please attach picture of your student identification', 'attachstudid');
-      valid = false;
-    }
-    if (!inputs.policecler){
-      handleError('Please attach picture of your police clearance', 'policecler');
-      valid = false;
-    }
-    if (!inputs.idengent){
-      handleError('Please attach picture of your indigency', 'idengent');
-      valid = false;
-    }
+   
+    
 
     if (valid) {
       register();
@@ -120,12 +114,15 @@ const Post = ({navigation}) => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-      try {
-        AsyncStorage.setItem('user', JSON.stringify(inputs));
-        navigation.navigate('Home',{fname:inputs.firstname,lname:inputs.Lastname,email:inputs.email});
-      } catch (error) {
-        Alert.alert('Error', 'Something went wrong')
-      }
+     axios.post('http://localhost:8080/api/post.php', JSON.stringify(Data), headers)  
+      .then((response) => {
+        console.log(response.data);
+         if(response.data = "Post created Successfully"){
+          navigation.navigate("Home");
+         }else{
+          alert(response.data)
+         }
+      });
     }, 3000);
   };
 
@@ -164,67 +161,7 @@ const Post = ({navigation}) => {
             <Text style={{ fontSize: 12, marginLeft: 5}}>Create a job hiring application with valid information</Text>
             </View>
 
-            <Input 
-            placeholder= 'Company name' 
-            iconName= 'warehouse' 
-            
-            error={errors.compname}
-            onFocus={() =>{
-              handleError(null, 'compname');
-            }}
-            onChangeText = {text => handleOnChange(text, 'compname')}
-            />
-<Input 
-            placeholder= 'Company address' 
-            iconName= 'map-marker' 
-            
-            error={errors.compaddress}
-            onFocus={() =>{
-              handleError(null, 'compaddress');
-            }}
-            onChangeText = {text => handleOnChange(text, 'compaddress')}
-            />
-<Input 
-            placeholder= 'Company email' 
-            iconName= 'email-outline' 
-            
-            error={errors.compemail}
-            onFocus={() =>{
-              handleError(null, 'compemail');
-            }}
-            onChangeText = {text => handleOnChange(text, 'compemail')}
-            />
-
-
-<Input 
-            placeholder= 'Year started' 
-            iconName= 'calendar' 
-            keyboardType= 'numeric'
-            error={errors.yearstart}
-            onFocus={() =>{
-              handleError(null, 'yearstart');
-            }}
-            onChangeText = {text => handleOnChange(text, 'yearstart')}
-            />
-<Input 
-            placeholder= 'Employee hired' 
-            iconName= 'account-group' 
-            error={errors.emphired}
-            onFocus={() =>{
-              handleError(null, 'emphired');
-            }}
-            onChangeText = {text => handleOnChange(text, 'emphired')}
-            />
-<Input 
-            placeholder= 'Number of customer serve' 
-            iconName= 'account-group' 
-            error={errors.custserve}
-            onFocus={() =>{
-              handleError(null, 'custserve');
-            }}
-            onChangeText = {text => handleOnChange(text, 'custserve')}
-            />
-            
+           
 
             <Input 
             placeholder= 'Vacant job position' 
@@ -237,16 +174,56 @@ const Post = ({navigation}) => {
             onChangeText = {text => handleOnChange(text, 'Lookingfor')}
             />
             
-             <Input 
-            placeholder= 'Job location' 
+ <Text style={{fontSize: 20, fontWeight: '500' ,opacity:0.6}}> Job Location</Text>
+            
+           <View style = {{flex:2,flexDirection:"row",justifyContent:"space-around"}}>
+           
+  <Input 
+            placeholder= 'street' 
             iconName= 'map-marker' 
             
             error={errors.Jobloc}
             onFocus={() =>{
-              handleError(null, 'Jobloc');
+              handleError(null, 'street');
             }}
-            onChangeText = {text => handleOnChange(text, 'Jobloc')}
+            onChangeText = {text => handleOnChange(text, 'street')}
+            style = {{maxWidth:50}}
             />
+             <Input 
+            placeholder= 'city' 
+            iconName= 'map-marker' 
+            
+            error={errors.Jobloc}
+            onFocus={() =>{
+              handleError(null, 'city');
+            }}
+            onChangeText = {text => handleOnChange(text, 'city')}
+           style = {{maxWidth:50}}
+            />
+             <Input 
+            placeholder= 'province' 
+            iconName= 'map-marker' 
+            
+            error={errors.Jobloc}
+            onFocus={() =>{
+              handleError(null, 'province');
+            }}
+            onChangeText = {text => handleOnChange(text, 'province')}
+            style = {{maxWidth:50}}
+            />
+             <Input 
+            placeholder= 'zipcode' 
+            iconName= 'map-marker' 
+            
+            error={errors.Jobloc}
+            onFocus={() =>{
+              handleError(null, 'zipcode');
+            }}
+            onChangeText = {text => handleOnChange(text, 'zipcode')}
+           style = {{macWidth:50}}
+            />
+           
+           </View>
             
 
 {/* TEMPORAY */}
@@ -259,40 +236,42 @@ const Post = ({navigation}) => {
                 handleError(null, 'Jobtype');
               }}
               
-            onChange = {text => handleOnChange(text, 'Jobtype')}
+            onChange = {item => handleOnChange(item.label, 'Jobtype')}
             
             />
+            
+ <Input 
+            placeholder= 'Hiring Start Date (YYYY-MM-DD)' 
+            iconName= 'calendar-month' 
+            
+            error={errors.startdate}
+            onFocus={() =>{
+              handleError(null, 'startdate');
+            }}
+            onChangeText = {text => handleOnChange(text, 'startdate')}
+            />
+            <Input 
+            placeholder= 'Hiring End Date (YYYY-MM-DD)' 
+            iconName= 'calendar-month' 
+            
+            error={errors.enddate}
+            onFocus={() =>{
+              handleError(null, 'enddate');
+            }}
+            onChangeText = {text => handleOnChange(text, 'enddate')}
+            />
+            
             
 <Input 
             placeholder= 'Job description' 
             iconName= 'newspaper-variant-outline' 
-            
             error={errors.Jobdesc}
             onFocus={() =>{
               handleError(null, 'Jobdesc');
             }}
             onChangeText = {text => handleOnChange(text, 'Jobdesc')}
             />
-             <Input 
-            placeholder= 'Certificate of registration (COR)' 
-            iconName= 'attachment' 
             
-            error={errors.attachcor}
-            onFocus={() =>{
-              handleError(null, 'attachcor');
-            }}
-            onChangeText = {text => handleOnChange(text, 'attachcor')}
-            />
-            <Input 
-            placeholder= 'Student identification (ID)' 
-            iconName= 'attachment' 
-            
-            error={errors.attachstudid}
-            onFocus={() =>{
-              handleError(null, 'attachstudid');
-            }}
-            onChangeText = {text => handleOnChange(text, 'attachstudid')}
-            />
         
 <View style={{marginBottom: 50, alignItems: 'center'}}>
     <TouchableOpacity  onPress={validate}>

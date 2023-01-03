@@ -2,7 +2,7 @@ import { View, Text, TouchableOpacity, Image, ScrollView, SafeAreaView, RefreshC
 import React from 'react'
 import Universalstyles from '../../../const/Universalstyle'
 import Logo1 from '../../../../assets/bg/bgimage5.jpg';
-
+import axios from 'axios'
 
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
@@ -10,11 +10,33 @@ const wait = (timeout) => {
 
 
 const Profile = ({navigation}) => {
+
+const [gets,setGet] = React.useState({
+   profile: []
+  })
+
+
+ 
   const [refreshing, setRefreshing] = React.useState(false);
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
     wait(2000).then(() => setRefreshing(false));
   }, []);
+  
+React.useEffect(()=>{
+ navigation.addListener('focus',async () => {
+  
+ await axios.get('http://localhost:8080/api/sprofile.php').then((response)=>response.data).then((data)=>{
+setGet (prevState => ({...prevState, profile: data}))
+console.log(data)
+
+ })
+  
+ })
+
+ 
+  },[])
+  
   
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
@@ -31,17 +53,25 @@ const Profile = ({navigation}) => {
        />
      }>
       
-      <View style={[Universalstyles.studprofile, {borderWidth: 2,}]}>
+     {gets.profile.map((profiles,index)=>(<View key = {index} style={[Universalstyles.studprofile, {borderWidth: 2,}]}>
       
         <View style={{flex: 1, margin:10, flexDirection: 'row', alignSelf: 'flex-end',}}>
-        <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center',  }}> 
+    {  profiles.compname ? <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center',  }}> 
+        
           <Text style={{ opacity: 0.6}}>
           Company email: 
         </Text>
         <Text style={{opacity: 0.6}}>
           Address: 
         </Text>
-        </View>
+        </View> : <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center',  }}> 
+        
+          <TouchableOpacity  onPress={()=> navigation.navigate('Company details')}>
+      <View style={[Universalstyles.logout,{marginVertical: 20,}]}>
+      <Text style={{color: 'white', fontWeight: 'bold', fontSize: 18}}>Add Company</Text>
+      </View>
+    </TouchableOpacity>
+        </View>}
        
         <TouchableOpacity onPress={() => navigation.navigate('')}>
         <Image source={Logo1} style={{
@@ -55,42 +85,41 @@ const Profile = ({navigation}) => {
     }}/>
   </TouchableOpacity>
         </View>
-        <View style={{borderWidth: .3, borderColor: '#aba9ab', marginHorizontal: 10, position: 'relative'}}></View>
-        <View style={{paddingHorizontal: 5, paddingVertical: 20, alignSelf: 'flex-start'}}>
+       
+       { profiles.compname && <View style={{paddingHorizontal: 5, paddingVertical: 20, alignSelf: 'flex-start'}}>
         <Text style={{fontSize: 20, fontWeight: '500'}}> Company information</Text>
         <View style={{padding: 5}}>
         <Text style={{opacity: 0.6}}>
-          Company name: 
+          {profiles.compname}
         </Text>
         <Text style={{opacity: 0.6}}>
-          Year company started: 
+          {profiles.establishdate}
         </Text>
         <Text style={{opacity: 0.6}}>
-          Employees hired: 
+            {profiles.websiteurl}
         </Text>
-        <Text style={{opacity: 0.6}}>
-          Number of customer serve:  
-        </Text>
-        
+       
         </View>
-      </View>
+      </View>}
       <View>
 
       </View>
       <View style={{borderWidth: .3, borderColor: '#aba9ab', marginHorizontal: 10, position: 'relative'}}></View>
+      
+      
         <View style={{paddingHorizontal: 5, paddingVertical: 20, alignSelf: 'flex-start'}}>
         <Text style={{fontSize: 20, fontWeight: '500'}}> Employer information</Text>
         <View style={{padding: 5}}>
         <Text style={{opacity: 0.6}}>
-          Employer name: 
+          {profiles.lastname}, {profiles.firstname} {profiles.midname}
         </Text>
         <Text style={{opacity: 0.6}}>
-          Address: 
+          {profiles.street}, {profiles.city} {profiles.province} {profiles.zipcode}
         </Text>
         </View>
       </View>
      
-      </View>
+      </View>))} 
       
       {/* <View style={Universalstyles.studprofile}>
           <Text style={{textAlign: 'center', fontWeight: '400', fontSize: 20, borderBottomWidth: 2, borderColor: '#e8e8e8', width: 'auto', textTransform: 'uppercase'}}>samuel george y. dela cruz</Text>

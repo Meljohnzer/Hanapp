@@ -7,7 +7,7 @@ import {Universalstyles} from "../../../const/Universalstyle";
 import Button from "../../components/Button";
 import Loader from "../../components/Loader";
 import Selectlist from "../../components/Selectlist";
-
+import axios from 'axios'
 
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
@@ -25,6 +25,18 @@ const Guardianbg = ({navigation, error,  onFocus=()=>{}, ...props
     
    
   });
+  
+var Data ={
+        gname:inputs.gname,
+        gcontactno:inputs.gcontactno,
+        gaddress:inputs.gaddress
+      };
+
+      var headers = {
+        'Access-Control-Allow-Origin': 'true',
+        'Content-Type': 'application/json',
+      };
+  
   const [refreshing, setRefreshing] = React.useState(false);
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
@@ -66,12 +78,16 @@ if (!inputs.gaddress){
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-      try {
-        AsyncStorage.setItem('user', JSON.stringify(inputs));
-        navigation.navigate('Skills', {firstname:inputs.firstname, lastname:inputs.lastname});
-      } catch (error) {
-        Alert.alert('Error', 'Something went wrong')
-      }
+axios.post('http://localhost:8080/api/guardian.php', JSON.stringify(Data), headers)  
+      .then((response) => {
+        console.log(response.data);
+          if (response.data == "Registered successfully!") {
+          navigation.navigate("Education");
+          
+           }else{
+            alert(response.data)
+           }
+      });
     }, 3000);
   };
 

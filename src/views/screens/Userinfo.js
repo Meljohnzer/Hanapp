@@ -6,7 +6,7 @@ import Input from "../components/Input";
 import {Universalstyles} from "../../const/Universalstyle";
 import Button from "../components/Button";
 import Loader from "../components/Loader";
-
+import axios from 'axios'
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
 }
@@ -23,9 +23,31 @@ const Userinfo = ({navigation, error,  onFocus=()=>{}, ...props
     birthday: '',
     age: '',
     contactno: '',
-    address: '',
+    street: '',
+    city: '',
+    province: '',
+    zipcode: '',
 
   });
+var Data ={
+        fname:inputs.firstname,
+        lname:inputs.lastname,
+        mname:inputs.midname,
+        sname:inputs.suffname,
+        birth:inputs.birthday,
+        age:inputs.age,
+        contact:inputs.contactno,
+        street:inputs.street,
+        city:inputs.city,
+        province:inputs.province,
+        zipcode:inputs.zipcode
+      };
+
+      var headers = {
+        'Access-Control-Allow-Origin': 'true',
+        'Content-Type': 'application/json',
+      };
+  
   const [refreshing, setRefreshing] = React.useState(false);
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
@@ -73,8 +95,20 @@ const Userinfo = ({navigation, error,  onFocus=()=>{}, ...props
         valid = false;
     }
 
-    if (!inputs.address){
-        handleError('Please enter your address', 'address');
+    if (!inputs.street){
+        handleError('Please enter your street', 'street');
+        valid = false;
+    }
+    if (!inputs.city){
+        handleError('Please enter your city', 'city');
+        valid = false;
+    }
+    if (!inputs.province){
+        handleError('Please enter your province', 'province');
+        valid = false;
+    }
+    if (!inputs.zipcode){
+        handleError('Please enter your zipcode', 'zipcode');
         valid = false;
     }
 
@@ -88,12 +122,20 @@ const Userinfo = ({navigation, error,  onFocus=()=>{}, ...props
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-      try {
-        AsyncStorage.setItem('user', JSON.stringify(inputs));
-        navigation.navigate('Education', {firstname:inputs.firstname, lastname:inputs.lastname});
-      } catch (error) {
-        Alert.alert('Error', 'Something went wrong')
-      }
+axios.post('http://localhost:8080/api/user.php', JSON.stringify(Data), headers)  
+      .then((response) => {
+        console.log(response.data);
+          if (response.data == "Student") {
+          navigation.navigate("Guardian");
+          
+           }else if(response.data == "Employer"){
+            navigation.navigate("Company details")
+           }
+           else{
+            alert(response.data)
+           }
+      });
+      
     }, 3000);
   };
 
@@ -182,7 +224,7 @@ const Userinfo = ({navigation, error,  onFocus=()=>{}, ...props
             onChangeText = {text => handleOnChange(text, 'suffname')}
             />
           <Input 
-            placeholder= 'Birthdate (mm-dd-yy)' 
+            placeholder= 'Birthdate (YYYY-MM-DD)' 
             iconName= 'calendar' 
             keyboardType= 'numeric'
             error={errors.birthday}
@@ -214,17 +256,59 @@ const Userinfo = ({navigation, error,  onFocus=()=>{}, ...props
             onChangeText = {text => handleOnChange(text, 'contactno')}
             />
 
+      <Text style= {{
+            color: '#2f2f2f', 
+            marginTop: 10,
+            paddingVertical: 10,  
+            fontSize: 25, 
+            fontWeight: '500',
+          }}>
+
+        Complete Address
+        </Text>
+
           <Input 
-            placeholder= 'Complete address' 
+            placeholder= 'street' 
             iconName= 'map-marker' 
             
-            error={errors.address}
+            error={errors.street}
             onFocus={() =>{
-              handleError(null, 'address');
+              handleError(null, 'street');
             }}
-            onChangeText = {text => handleOnChange(text, 'address')}
+            onChangeText = {text => handleOnChange(text, 'street')}
             />
-
+            
+  <Input 
+            placeholder= 'city' 
+            iconName= 'map-marker' 
+            
+            error={errors.city}
+            onFocus={() =>{
+              handleError(null, 'city');
+            }}
+            onChangeText = {text => handleOnChange(text, 'city')}
+            />
+            
+  <Input 
+            placeholder= 'province' 
+            iconName= 'map-marker' 
+            
+            error={errors.province}
+            onFocus={() =>{
+              handleError(null, 'province');
+            }}
+            onChangeText = {text => handleOnChange(text, 'province')}
+            />
+  <Input 
+            placeholder= 'zipcode' 
+            iconName= 'map-marker' 
+            
+            error={errors.zipcode}
+            onFocus={() =>{
+              handleError(null, 'zipcode');
+            }}
+            onChangeText = {text => handleOnChange(text, 'zipcode')}
+            />
          
             <View style={{}}>
             <Button title='Next' onPress={validate}/>

@@ -7,7 +7,7 @@ import {Universalstyles} from "../../../const/Universalstyle";
 import Button from "../../components/Button";
 import Loader from "../../components/Loader";
 import Selectlist from "../../components/Selectlist";
-
+import axios from 'axios'
 
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
@@ -25,6 +25,19 @@ const Educbg = ({navigation, error,  onFocus=()=>{}, ...props
     yearlevel: '',
    
   });
+  
+var Data ={
+       schname:inputs.schname,
+       schaddress:inputs.schaddress,
+       course:inputs.course,
+       yearlevel:inputs.yearlevel
+      };
+
+      var headers = {
+        'Access-Control-Allow-Origin': 'true',
+        'Content-Type': 'application/json',
+      };
+  
   const [refreshing, setRefreshing] = React.useState(false);
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
@@ -52,6 +65,7 @@ const Educbg = ({navigation, error,  onFocus=()=>{}, ...props
     handleError('Please enter what your year & level', 'yearlevel');
     valid = false;
 }
+
     
     if (valid) {
       register();
@@ -62,12 +76,15 @@ const Educbg = ({navigation, error,  onFocus=()=>{}, ...props
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-      try {
-        AsyncStorage.setItem('user', JSON.stringify(inputs));
-        navigation.navigate('Guardian', {firstname:inputs.firstname, lastname:inputs.lastname});
-      } catch (error) {
-        Alert.alert('Error', 'Something went wrong')
-      }
+    axios.post('http://localhost:8080/api/educ.php', JSON.stringify(Data), headers)  
+      .then((response) => {
+        console.log(response.data);
+        if(response.data == "Registered successfully!"){
+         navigation.navigate('Studentscreen')
+        }else{
+         alert(response.data)
+        }
+      });
     }, 3000);
   };
 
@@ -145,9 +162,9 @@ const Educbg = ({navigation, error,  onFocus=()=>{}, ...props
             
             error={errors.Course}
             onFocus={() =>{
-              handleError(null, 'Course');
+              handleError(null, 'course');
             }}
-            onChangeText = {text => handleOnChange(text, 'Course')}
+            onChangeText = {text => handleOnChange(text, 'course')}
             />
           
             <View style={{}}>

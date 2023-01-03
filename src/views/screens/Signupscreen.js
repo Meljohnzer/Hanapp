@@ -7,7 +7,7 @@ import {Universalstyles} from "../../const/Universalstyle";
 import Button from "../components/Button";
 import Loader from "../components/Loader";
 import Selectlist from "../components/Selectlist";
-
+import axios from 'axios'
 
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
@@ -17,16 +17,26 @@ const wait = (timeout) => {
 const Signupscreen = ({navigation, error,  onFocus=()=>{}, ...props
 }) => {
     const [isFocused, setisFocused] = React.useState(false);
+    
+    
   const [inputs, setInputs] = React.useState({
     email: '',
     password: '',
     cpassword: '',
     usertype: ''
-
-
-
-
   });
+  
+var Data ={
+        email: inputs.email ,
+        password: inputs.password,
+        usertype: inputs.usertype,
+      };
+
+      var headers = {
+        'Access-Control-Allow-Origin': 'true',
+        'Content-Type': 'application/json',
+      };
+      
   const [refreshing, setRefreshing] = React.useState(false);
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
@@ -85,12 +95,15 @@ const Signupscreen = ({navigation, error,  onFocus=()=>{}, ...props
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-      try {
-        AsyncStorage.setItem('user', JSON.stringify(inputs));
-        navigation.navigate('Log in', {email:inputs.email, password:inputs.password});
-      } catch (error) {
-        Alert.alert('Error', 'Something went wrong')
-      }
+ 
+axios.post('http://localhost:8080/api/register.php', JSON.stringify(Data), headers)  
+      .then((response) => {
+        console.log(response.data);
+          if (response.data == "Registered successfully!") {
+          navigation.navigate("Log in");
+           }
+      });
+     
     }, 3000);
   };
 

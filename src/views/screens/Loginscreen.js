@@ -9,19 +9,32 @@ import Loader from "../components/Loader";
 import Ggl from "../../../assets/bg/Google-Logo-PNG3.png";
 import Fb from "../../../assets/bg/Facebook-Logo-PNG4.png";
 import Apl from "../../../assets/bg/Apple-Logo-PNG5.png";
-
+import axios from 'axios'
+import moment from 'moment';
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
 }
 
 
 const Loginscreen = ({navigation}) => {
+ 
   
   const [inputs, setInputs] = React.useState({
     email: '',
     password: '',
 
   });
+  
+      var Data ={
+        email: inputs.email,
+        password: inputs.password
+      };
+
+      var headers = {
+        'Access-Control-Allow-Origin': 'true',
+        'Content-Type': 'application/json',
+      };
+  
   const [refreshing, setRefreshing] = React.useState(false);
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
@@ -31,64 +44,73 @@ const Loginscreen = ({navigation}) => {
   const [loading, setLoading] = React.useState(false);
   const {height} = useWindowDimensions();
   
-  const validate = () => {
+  const validate = async () => {
     Keyboard.dismiss();
     let valid = true;
     if (!inputs.email){
-      handleError('Please enter your email', 'email');
+     await  handleError('Please enter your email', 'email');
       valid = false;
     } 
     else if (!inputs.email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)){
-      handleError('Please enter valid email address', 'email');
+      await handleError('Please enter valid email address', 'email');
       valid = false;
     }
 
     if (!inputs.password){
-      handleError('Please enter your password', 'password');
+     await  handleError('Please enter your password', 'password');
     valid = false;
 }   
     
     if (valid) {
-      login();
+     await login();
     }
+    
+    
   };
 
-  const login = () => {
+  const login = async () => {
     setLoading(true);
-    setTimeout(async() => {
+    await setTimeout(async() => {
       setLoading(false);
-      let userData = await AsyncStorage.getItem('user');
-      if (userData) {
-        userData = JSON.parse(userData);
-     
-        if (inputs.email == userData.email &&
-          inputs.password == userData.password
-          ){
-            AsyncStorage.setItem(
-              'user', JSON.stringify({...userData, loggedIn: true}),
-            );
-            navigation.navigate('StudInfo');
-          } 
-          else {
-              Alert.alert('Error', 'Invalid credentials')
-          }
-      }
-          else {
-              Alert.alert('Error','User does not exists')
-          }
+await axios.post('http://localhost:8080/api/login.php', JSON.stringify(Data), headers)  
+      .then((response) => {
+        console.log(response.data);
+       switch (response.data) {
+        case 'no details yet':
+         navigation.navigate('User info')
+         break;
+       case 'Student Login':
+         navigation.navigate('Studentscreen')
+         break;
+       case 'Employer Login':
+         navigation.navigate('Employerscreen')
+         break;
+        default:
+         alert(response.data)
+       }
+      });
         }, 3000)
   };
 
-  const handleOnChange = (text, input) => {
-    setInputs (prevState => ({...prevState, [input]: text}));
+
+  
+
+  const handleOnChange = async  (text, input) => {
+
+  
+await setInputs (prevState => ({...prevState, [input]: text}));
+ 
+
   };
   
-  const handleError = (errorMessage, input) =>{
-    setErrors((prevState) => ({...prevState, [input]: errorMessage}))
+  const handleError = async (errorMessage, input) =>{
+   await setErrors((prevState) => ({...prevState, [input]: errorMessage}))
   }
   
+ // console.log(moment("2023-01-02 11:31:27").local().startOf('seconds').fromNow());
   return (
     <SafeAreaView style={{flex: 1, }}>
+    
     <ScrollView
       contentContainerStyle={{
         

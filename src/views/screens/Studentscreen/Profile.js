@@ -2,7 +2,7 @@ import { View, Text, TouchableOpacity, Image, ScrollView, SafeAreaView, RefreshC
 import React from 'react'
 import Universalstyles from '../../../const/Universalstyle'
 import Logo1 from '../../../../assets/bg/bgimage5.jpg';
-
+import axios from 'axios'
 
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
@@ -10,11 +10,27 @@ const wait = (timeout) => {
 
 
 const Profile = ({navigation}) => {
+ 
+ 
+  const [gets,setGet] = React.useState({
+   profile: []
+  })
   const [refreshing, setRefreshing] = React.useState(false);
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
     wait(2000).then(() => setRefreshing(false));
   }, []);
+  
+ 
+  React.useEffect(()=>{
+ axios.get('http://localhost:8080/api/sprofile.php').then((response)=>response.data).then((data)=>{
+setGet (prevState => ({...prevState, profile: data}));
+  
+  console.log(gets.profile)
+  
+ })
+  },[])
+ 
   
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
@@ -30,19 +46,21 @@ const Profile = ({navigation}) => {
          colors={['#F5E44C']}
        />
      }>
-      
-      <View style={[Universalstyles.studprofile, {borderWidth: 2,}]}>
+  {gets.profile.map((profiles,index) => (
+      <View key = {index} style={[Universalstyles.studprofile, {borderWidth: 2,}]}>
       
         <View style={{flex: 1, margin:10, flexDirection: 'row', alignSelf: 'flex-end',}}>
+      
         <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center',  }}> 
+        
           <Text style={{ opacity: 0.6}}>
-          Email: 
+          Email:{profiles.email}
         </Text>
         <Text style={{opacity: 0.6}}>
-          Contact number: 
+          Contact number: {profiles.contactno}
         </Text>
         <Text style={{opacity: 0.6}}>
-          Address: 
+          Address: {profiles.street} {profiles.city} {profiles.province} {profiles.zipcode}
         </Text>
         </View>
        
@@ -63,20 +81,16 @@ const Profile = ({navigation}) => {
         <Text style={{fontSize: 20, fontWeight: '500'}}> Personal information</Text>
         <View style={{padding: 5}}>
         <Text style={{opacity: 0.6}}>
-          Full name: 
+          {profiles.lastname},{profiles.firstname} {profiles.midname}
         </Text>
         <Text style={{opacity: 0.6}}>
-          Birthdate: 
+          {profiles.birthday}
         </Text>
         <Text style={{opacity: 0.6}}>
-          Age: 
+         {profiles.age}
         </Text>
-        <Text style={{opacity: 0.6}}>
-          Blood type: 
-        </Text>
-        <Text style={{opacity: 0.6}}>
-          Language: 
-        </Text>
+        
+       
         
         </View>
       </View>
@@ -89,10 +103,10 @@ const Profile = ({navigation}) => {
         <View style={{padding: 5}}>
         
         <Text style={{opacity: 0.6}}>
-          Guardian name: 
+         {profiles.gname}
         </Text>
         <Text style={{opacity: 0.6}}>
-          Contact number: 
+         {profiles.gcontactno}
         </Text>
         </View>
       </View>
@@ -101,16 +115,16 @@ const Profile = ({navigation}) => {
         <Text style={{fontSize: 20, fontWeight: '500'}}> Educational background (current)</Text>
         <View style={{padding: 5}}>
         <Text style={{opacity: 0.6}}>
-          School name
+          {profiles.schname}
         </Text>
         <Text style={{opacity: 0.6}}>
-          School address
+          {profiles.schaddress}
         </Text>
         <Text style={{opacity: 0.6}}>
-          Year & level
+          {profiles.yearlevel}
         </Text>
         <Text style={{opacity: 0.6}}>
-          Course
+          {profiles.course}
         </Text>
         </View>
       </View>
@@ -123,7 +137,7 @@ const Profile = ({navigation}) => {
         </Text>
       </View>
       </View>
-      </View>
+      </View>))}
       
       {/* <View style={Universalstyles.studprofile}>
           <Text style={{textAlign: 'center', fontWeight: '400', fontSize: 20, borderBottomWidth: 2, borderColor: '#e8e8e8', width: 'auto', textTransform: 'uppercase'}}>samuel george y. dela cruz</Text>
