@@ -19,9 +19,8 @@ const Settings = ({navigation}) => {
   }, []);
   const logout = () =>{
      setTimeout(async()=>{
-     axios.get('http://localhost:8080/api/logout.php')  
+     axios.get('http://192.168.43.58:8080/api/logout.php')  
       .then((response) => {
-        console.log(response.data);
 navigation.navigate('Log in')
          
         

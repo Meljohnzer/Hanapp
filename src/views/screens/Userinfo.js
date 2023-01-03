@@ -122,7 +122,7 @@ var Data ={
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-axios.post('http://localhost:8080/api/user.php', JSON.stringify(Data), headers)  
+axios.post('http://192.168.43.58:8080/api/user.php', JSON.stringify(Data), headers)  
       .then((response) => {
         console.log(response.data);
           if (response.data == "Student") {

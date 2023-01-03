@@ -71,7 +71,7 @@ var Data ={
     setTimeout(() => {
       setLoading(false);
      
-axios.post('http://localhost:8080/api/company.php', JSON.stringify(Data), headers)  
+axios.post('http://192.168.43.58:8080/api/company.php', JSON.stringify(Data), headers)  
       .then((response) => {
         console.log(response.data);
           if (response.data == "Registered successfully!") {

@@ -155,7 +155,7 @@ var Data ={
 React.useEffect(()=>{
  navigation.addListener('focus',async () => {
   
- await axios.post('http://localhost:8080/api/manage.php', JSON.stringify(Data), headers)  
+ await axios.post('http://192.168.43.58:8080/api/manage.php', JSON.stringify(Data), headers)  
       .then((response) => {
 
 setGet (prevState => ({...prevState, post: response.data}))

@@ -26,7 +26,7 @@ const [gets,setGet] = React.useState({
 React.useEffect(()=>{
  navigation.addListener('focus',async () => {
   
- await axios.get('http://localhost:8080/api/sprofile.php').then((response)=>response.data).then((data)=>{
+ await axios.get('http://192.168.43.58:8080/api/sprofile.php').then((response)=>response.data).then((data)=>{
 setGet (prevState => ({...prevState, profile: data}))
 console.log(data)
 

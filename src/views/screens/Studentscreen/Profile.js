@@ -23,7 +23,7 @@ const Profile = ({navigation}) => {
   
  
   React.useEffect(()=>{
- axios.get('http://localhost:8080/api/sprofile.php').then((response)=>response.data).then((data)=>{
+ axios.get('http://192.168.43.58:8080/api/sprofile.php').then((response)=>response.data).then((data)=>{
 setGet (prevState => ({...prevState, profile: data}));
   
   console.log(gets.profile)

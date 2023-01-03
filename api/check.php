@@ -12,11 +12,8 @@ function check_login($connect_db){
    }  
 
  }
-
-
-header("location:login.php");
+ echo("ERROR NOT FOUND");
 die;
 }
-
 ?>
 

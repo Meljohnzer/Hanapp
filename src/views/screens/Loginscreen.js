@@ -72,7 +72,7 @@ const Loginscreen = ({navigation}) => {
     setLoading(true);
     await setTimeout(async() => {
       setLoading(false);
-await axios.post('http://localhost:8080/api/login.php', JSON.stringify(Data), headers)  
+await axios.post('http://192.168.43.58:8080/api/login.php', JSON.stringify(Data), headers)  
       .then((response) => {
         console.log(response.data);
        switch (response.data) {
@@ -98,13 +98,13 @@ await axios.post('http://localhost:8080/api/login.php', JSON.stringify(Data), he
   const handleOnChange = async  (text, input) => {
 
   
-await setInputs (prevState => ({...prevState, [input]: text}));
+    setInputs(prevState => ({ ...prevState, [input]: text }));
  
 
   };
   
   const handleError = async (errorMessage, input) =>{
-   await setErrors((prevState) => ({...prevState, [input]: errorMessage}))
+   setErrors((prevState) => ({ ...prevState, [input]: errorMessage }))
   }
   
  // console.log(moment("2023-01-02 11:31:27").local().startOf('seconds').fromNow());
