@@ -9,8 +9,8 @@ import Loader from "../components/Loader";
 import Ggl from "../../../assets/bg/Google-Logo-PNG3.png";
 import Fb from "../../../assets/bg/Facebook-Logo-PNG4.png";
 import Apl from "../../../assets/bg/Apple-Logo-PNG5.png";
-import axios from 'axios'
-import moment from 'moment';
+import { axiosRequest } from "../components/api";
+
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
 }
@@ -70,11 +70,12 @@ const Loginscreen = ({navigation}) => {
 
   const login = async () => {
     setLoading(true);
-    await setTimeout(async() => {
+    await setTimeout( async() => {
       setLoading(false);
-await axios.post('http://localhost:8080/api/login.php', JSON.stringify(Data), headers)  
+      await axiosRequest.post('/api/login.php', JSON.stringify(Data), headers)  
       .then((response) => {
         console.log(response.data);
+        
        switch (response.data) {
         case 'no details yet':
          navigation.navigate('User info')
@@ -90,7 +91,9 @@ await axios.post('http://localhost:8080/api/login.php', JSON.stringify(Data), he
        }
       });
         }, 3000)
+        
   };
+  
 
 
   

@@ -1,8 +1,8 @@
 import { View, Text, TouchableOpacity, Image, ScrollView, SafeAreaView, RefreshControl, Dimensions} from 'react-native'
 import React from 'react'
 import Universalstyles from '../../../const/Universalstyle'
-import Logo1 from '../../../../assets/bg/bgimage5.jpg';
-import axios from 'axios'
+import Logo1 from '../../../../assets/bg/profile.png';
+import { axiosRequest } from '../../components/api';
 
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
@@ -23,7 +23,7 @@ const Profile = ({navigation}) => {
   
  
   React.useEffect(()=>{
- axios.get('http://localhost:8080/api/sprofile.php').then((response)=>response.data).then((data)=>{
+ axiosRequest.get('/api/sprofile.php').then((response)=>response.data).then((data)=>{
 setGet (prevState => ({...prevState, profile: data}));
   
   console.log(gets.profile)
@@ -54,13 +54,13 @@ setGet (prevState => ({...prevState, profile: data}));
         <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center',  }}> 
         
           <Text style={{ opacity: 0.6}}>
-          Email:{profiles.email}
+          {profiles.email}
         </Text>
         <Text style={{opacity: 0.6}}>
-          Contact number: {profiles.contactno}
+          {profiles.contactno}
         </Text>
         <Text style={{opacity: 0.6}}>
-          Address: {profiles.street} {profiles.city} {profiles.province} {profiles.zipcode}
+        {profiles.street} {profiles.city} {profiles.province} {profiles.zipcode}
         </Text>
         </View>
        
@@ -128,15 +128,7 @@ setGet (prevState => ({...prevState, profile: data}));
         </Text>
         </View>
       </View>
-      <View style={{borderWidth: .3, borderColor: '#aba9ab', marginHorizontal: 10, position: 'relative'}}></View>
-        <View style={{paddingHorizontal: 5, paddingVertical: 20, alignSelf: 'flex-start'}}>
-        <Text style={{fontSize: 20, fontWeight: '500'}}> Skills</Text>
-        <View style={{padding: 5}}>
-        <Text style={{opacity: 0.6}}>
-        {'\u2022'}
-        </Text>
-      </View>
-      </View>
+      
       </View>))}
       
       {/* <View style={Universalstyles.studprofile}>

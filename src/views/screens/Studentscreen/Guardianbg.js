@@ -7,7 +7,7 @@ import {Universalstyles} from "../../../const/Universalstyle";
 import Button from "../../components/Button";
 import Loader from "../../components/Loader";
 import Selectlist from "../../components/Selectlist";
-import axios from 'axios'
+import { axiosRequest } from '../../components/api';
 
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
@@ -78,7 +78,7 @@ if (!inputs.gaddress){
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-axios.post('http://localhost:8080/api/guardian.php', JSON.stringify(Data), headers)  
+axiosRequest.post('/api/guardian.php', JSON.stringify(Data), headers)  
       .then((response) => {
         console.log(response.data);
           if (response.data == "Registered successfully!") {

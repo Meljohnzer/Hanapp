@@ -1,8 +1,11 @@
 import { View, Text, TouchableOpacity, Image, ScrollView, SafeAreaView, RefreshControl, Dimensions} from 'react-native'
 import React from 'react'
 import Universalstyles from '../../../const/Universalstyle'
-import Logo1 from '../../../../assets/bg/bgimage5.jpg';
+import Logo1 from '../../../../assets/bg/profile2.png';
 import axios from 'axios'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { axiosRequest } from '../../components/api';
+
 
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
@@ -26,7 +29,7 @@ const [gets,setGet] = React.useState({
 React.useEffect(()=>{
  navigation.addListener('focus',async () => {
   
- await axios.get('http://localhost:8080/api/sprofile.php').then((response)=>response.data).then((data)=>{
+ await axiosRequest.get('/api/sprofile.php').then((response)=>response.data).then((data)=>{
 setGet (prevState => ({...prevState, profile: data}))
 console.log(data)
 
@@ -58,17 +61,33 @@ console.log(data)
         <View style={{flex: 1, margin:10, flexDirection: 'row', alignSelf: 'flex-end',}}>
     {  profiles.compname ? <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center',  }}> 
         
-          <Text style={{ opacity: 0.6}}>
-          Company email: 
+        <Text style={{fontSize: 20, fontWeight: '500'}}> Company information</Text>
+        <View style={{padding: 5}}>
+        <Text style={{paddingBottom: 5, fontSize: 15,opacity:.5}}> 
+        <Icon name='warehouse' style={{fontSize: 20, color: 'black', marginRight: 10}}/>
+        <Text> {profiles.compname}</Text>
+        </Text> 
+
+        <Text style={{paddingBottom: 5, fontSize: 15,opacity:.5}}> 
+        <Icon name='calendar' style={{fontSize: 20, color: 'black', marginRight: 10}}/>
+        <Text> {profiles.establishdate}</Text>
+        </Text> 
+        
+        <Text style={{paddingBottom: 5, fontSize: 15,opacity:.5}}> 
+        <Icon name='web' style={{fontSize: 20, color: 'black', marginRight: 10}}/>
+        <Text> {profiles.websiteurl}</Text>
         </Text>
-        <Text style={{opacity: 0.6}}>
-          Address: 
-        </Text>
-        </View> : <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center',  }}> 
+        
+        {/* <Text style={{ fontSize: 15,opacity:.5}}> 
+        <Icon name='trophy' style={{fontSize: 20, color: 'black', marginRight: 10}}/>
+        <Text> {profiles.compdesc}</Text>
+        </Text> */}
+        </View>
+      </View> : <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center',  }}> 
         
           <TouchableOpacity  onPress={()=> navigation.navigate('Company details')}>
-      <View style={[Universalstyles.logout,{marginVertical: 20,}]}>
-      <Text style={{color: 'white', fontWeight: 'bold', fontSize: 18}}>Add Company</Text>
+      <View style={[Universalstyles.jobContent3, {marginRight: 20}]}>
+      <Text style={{color: 'white', fontWeight: 'bold', fontSize: 18,}}>Add Company</Text>
       </View>
     </TouchableOpacity>
         </View>}
@@ -86,21 +105,7 @@ console.log(data)
   </TouchableOpacity>
         </View>
        
-       { profiles.compname && <View style={{paddingHorizontal: 5, paddingVertical: 20, alignSelf: 'flex-start'}}>
-        <Text style={{fontSize: 20, fontWeight: '500'}}> Company information</Text>
-        <View style={{padding: 5}}>
-        <Text style={{opacity: 0.6}}>
-          {profiles.compname}
-        </Text>
-        <Text style={{opacity: 0.6}}>
-          {profiles.establishdate}
-        </Text>
-        <Text style={{opacity: 0.6}}>
-            {profiles.websiteurl}
-        </Text>
-       
-        </View>
-      </View>}
+
       <View>
 
       </View>

@@ -122,7 +122,7 @@ var Data ={
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-axios.post('http://localhost:8080/api/user.php', JSON.stringify(Data), headers)  
+axios.post('http://192.168.43.157:8080/api/user.php', JSON.stringify(Data), headers)  
       .then((response) => {
         console.log(response.data);
           if (response.data == "Student") {
@@ -162,7 +162,7 @@ axios.post('http://localhost:8080/api/user.php', JSON.stringify(Data), headers)
       >
         
         <Loader visible={loading}/>
-    <View style={[Universalstyles.signup, {}]}>
+    <View style={[Universalstyles.signup, {height: 'auto'}]}>
     
   
           <View style={[Universalstyles.signupbg, { height: 'auto', paddingBottom: 50, justifyContent: 'center'}]}>

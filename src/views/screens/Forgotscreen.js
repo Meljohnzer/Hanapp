@@ -92,7 +92,7 @@ const Forgotscreen = ({navigation}) => {
           >
             <Loader visible={loading}/>
 
-         <View style={[Universalstyles.signup, {height: 'auto', paddingVertical: 100}]}>
+         <View style={[Universalstyles.signup, {height: 'auto', paddingVertical: 100, backgroundColor: 'white'}]}>
    
           <View style={[Universalstyles.signupbg, {height: 'auto', justifyContent: 'center'}]}>
           <Image source={Logo} style={[Universalstyles.logo, {height: height * 0.19, marginLeft: 10}]} />

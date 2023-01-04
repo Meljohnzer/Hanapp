@@ -12,7 +12,7 @@ const wait = (timeout) => {
 }
 
 
-const Compdetails = ({navigation}) => {
+const Attachfile = ({navigation}) => {
  
   const [inputs, setInputs] = React.useState({
     Compname: '',
@@ -51,15 +51,19 @@ var Data ={
 
    
     if (!inputs.Compname){
-      handleError('Please enter the company name', 'Compname');
+      handleError('Please attach file', 'Compname');
       valid = false;
     } 
     if (!inputs.Establishdate){
-        handleError('Please enter the establishment date (YYYY-MM-DD)', 'Establishdate');
+        handleError('Please attach picture', 'Establishdate');
       valid = false;
     }
     if (!inputs.Compdesc){
-        handleError('Please enter the company description', 'Compdesc');
+        handleError('Please attach file', 'Compdesc');
+      valid = false;
+    }
+    if (!inputs.WebsiteURL){
+        handleError('Please provide link', 'WebsiteURL');
       valid = false;
     }
     
@@ -119,11 +123,11 @@ axiosRequest.post('/api/company.php', JSON.stringify(Data), headers)
             fontWeight: '500',
           }}>
 
-        Company details
+        Attach file
         </Text>
             <Input 
-            placeholder= 'Company name' 
-            iconName= 'warehouse' 
+            placeholder= 'Certificate Of Registration' 
+            iconName= 'file' 
             
             error={errors.Compname}
             onFocus={() =>{
@@ -132,32 +136,8 @@ axiosRequest.post('/api/company.php', JSON.stringify(Data), headers)
             onChangeText = {text => handleOnChange(text, 'Compname')}
             />
             <Input 
-            placeholder= 'Establishment date' 
-            iconName= 'calendar' 
-            keyboardType= 'numeric'
-            error={errors.Establishdate}
-            onFocus={() =>{
-              handleError(null, 'Establishdate');
-            }}
-            onChangeText = {text => handleOnChange(text, 'Establishdate')}
-            />
- <Input 
-            placeholder= 'Website URL' 
-            iconName= 'link' 
-            error={errors.WebsiteURL}
-            onFocus={() =>{
-              handleError(null, 'WebsiteURL');
-            }}
-            onChangeText = {text => handleOnChange(text, 'WebsiteURL')}
-            />
-            
-
-{/* TEMPORAY */}
-
-            
-<Input 
-            placeholder= 'Company description' 
-            iconName= 'newspaper-variant-outline' 
+            placeholder= 'Cover letter' 
+            iconName= 'file' 
             
             error={errors.Compdesc}
             onFocus={() =>{
@@ -165,24 +145,29 @@ axiosRequest.post('/api/company.php', JSON.stringify(Data), headers)
             }}
             onChangeText = {text => handleOnChange(text, 'Compdesc')}
             />
-             
-        
+            <Input 
+            placeholder= 'School ID picture' 
+            iconName= 'image' 
+            keyboardType= 'numeric'
+            error={errors.Establishdate}
+            onFocus={() =>{
+              handleError(null, 'Establishdate');
+            }}
+            onChangeText = {text => handleOnChange(text, 'Establishdate')}
+            />
+            <Input 
+            placeholder= 'Facebook profile link' 
+            iconName= 'link' 
+            error={errors.WebsiteURL}
+            onFocus={() =>{
+              handleError(null, 'WebsiteURL');
+            }}
+            onChangeText = {text => handleOnChange(text, 'WebsiteURL')}
+            />
+                   
              
              <View style={{marginBottom: 50, alignItems: 'center', flexDirection:'row', justifyContent: 'space-around'}}>
-    <TouchableOpacity  onPress={() => navigation.navigate('Employerscreen')}>
-    <View style={{borderColor: 'red',
-    alignSelf: 'center',
-    width: 150,
-    height: 'auto',
-    alignItems: 'center',
-    marginBottom: 0,
-    marginVertical: 10,
-    padding: 10,
-    borderRadius: 30,
-    borderWidth: 1,}}>
-      <Text style={{color: 'black', fontWeight: '400', fontSize: 18}}>Skip</Text>
-      </View>
-    </TouchableOpacity>
+    
     <TouchableOpacity  onPress={validate}>
     <View style={{backgroundColor: '#4169e1',
     alignSelf: 'center',
@@ -194,7 +179,7 @@ axiosRequest.post('/api/company.php', JSON.stringify(Data), headers)
     padding: 10,
     borderRadius: 30,
     }}>
-      <Text style={{color: 'white', fontWeight: 'light', fontSize: 18}}>Done</Text>
+      <Text style={{color: 'white', fontWeight: 'light', fontSize: 18}}>Apply</Text>
       </View>
     </TouchableOpacity>
 
@@ -210,4 +195,4 @@ axiosRequest.post('/api/company.php', JSON.stringify(Data), headers)
   );
 };
 
-export default Compdetails
+export default Attachfile

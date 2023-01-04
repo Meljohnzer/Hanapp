@@ -2,13 +2,14 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { SafeAreaView, ScrollView, Text, View, Dimensions, useWindowDimensions, TouchableOpacity, Keyboard, Alert,Image, RefreshControl} from 'react-native'
 import React, { useState } from 'react';
 import Logo from '../../../../assets/bg/Picture2.png';
-import Logo1 from '../../../../assets/bg/bgimage5.jpg';
+import Logo1 from '../../../../assets/bg/profile2.png';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon2 from 'react-native-vector-icons/Fontisto';
 import Searchbar from '../../components/Searchbar';
 import Universalstyles from "../../../const/Universalstyle";
-import axios from 'axios'
+import { axiosRequest } from '../../components/api';
 import moment from 'moment'
+
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
 }
@@ -31,21 +32,21 @@ const Home = ({navigation}) => {
      })
 const [postID,setPostID] = React.useState()
 
-var Data ={
-      postID : postID
-      };
+// var Data ={
+//       postID : postID
+//       };
 
-      var headers = {
-        'Access-Control-Allow-Origin': 'true',
-        'Content-Type': 'application/json',
-      };
+//       var headers = {
+//         'Access-Control-Allow-Origin': 'true',
+//         'Content-Type': 'application/json',
+//       };
   
 
 
 React.useEffect(()=>{
  navigation.addListener('focus',async () => {
   
- await axios.get('http://localhost:8080/api/feed.php').then((response)=>{
+ await axiosRequest.get('/api/feed.php').then((response)=>{
      
 setGet (prevState => ({...prevState, post: response.data}))
      
@@ -96,9 +97,10 @@ setGet (prevState => ({...prevState, post: response.data}))
   </TouchableOpacity>
 </View>
 
-<View style={Universalstyles.jobPost}>
+{gets.post.map((label,index)=>(
+<View key = {index} style={Universalstyles.jobPost}>
   
-    {gets.post.map((label,index)=>(<View key = {index} style={Universalstyles.jobContent}>
+    <View style={Universalstyles.jobContent}>
       
     <Image source={Logo1} style={Universalstyles.Jobimage}/>
    
@@ -127,9 +129,9 @@ setGet (prevState => ({...prevState, post: response.data}))
       </View>
       </TouchableOpacity>
     </View>
-    </View>))}
-    
     </View>
+    
+    </View>))}
     
  
   </ScrollView>

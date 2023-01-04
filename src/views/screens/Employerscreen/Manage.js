@@ -9,7 +9,9 @@ import Icon2 from 'react-native-vector-icons/AntDesign';
 import Icon3 from 'react-native-vector-icons/Entypo';
 import Icon4 from 'react-native-vector-icons/Fontisto';
 import axios from 'axios'
-const FirstRoute = ({arr}) => 
+import { axiosRequest } from '../../components/api';
+
+const FirstRoute = ({navigation,arr}) => 
 
 
     <ScrollView style={{}}>
@@ -159,7 +161,7 @@ const SecondRoute = ({navigation}) => (
 
 
 
-export default function Manage({navigation,route}) {
+export default function Manage({navigation,route,}) {
  
  
  const [gets,setGet] = React.useState({
@@ -181,7 +183,7 @@ var Data ={
 React.useEffect(()=>{
  navigation.addListener('focus',async () => {
   
- await axios.post('http://localhost:8080/api/manage.php', JSON.stringify(Data), headers)  
+ await axiosRequest.post('/api/manage.php', JSON.stringify(Data), headers)  
       .then((response) => {
        
 setGet (prevState => ({...prevState, post: response.data}))
@@ -196,9 +198,11 @@ setGet (prevState => ({...prevState, post: response.data}))
     const renderScene = ({ route }) => {
         switch (route.key) {
           case 'first':
-            return <FirstRoute arr = {gets.post}/>;
+            return <FirstRoute navigation={navigation} arr = {gets.post}/>;
           case 'second':
-            return <SecondRoute nav />;
+            return <SecondRoute navigation={navigation} />;
+         
+            
           default:
             return null;
         }

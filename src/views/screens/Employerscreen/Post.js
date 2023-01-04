@@ -6,6 +6,7 @@ import Loader from "../../components/Loader";
 import React, { useState } from "react";
 import Selectlist2 from "../../components/Selectlist2";
 import axios from 'axios'
+import { axiosRequest } from "../../components/api";
 
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
@@ -83,7 +84,7 @@ var Data ={
     }
     
     if (!inputs.Lookingfor){
-      handleError('Please enter the employer name', 'Lookingfor');
+      handleError('Please enter the vacant job position', 'Lookingfor');
       valid = false;
     } else if (inputs.Lookingfor.match(/[0-9]/)){
       handleError('This field should not have numbers', 'Lookingfor');
@@ -114,7 +115,7 @@ var Data ={
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-     axios.post('http://localhost:8080/api/post.php', JSON.stringify(Data), headers)  
+     axiosRequest.post('/api/post.php', JSON.stringify(Data), headers)  
       .then((response) => {
         console.log(response.data);
          if(response.data = "Post created Successfully"){
@@ -161,74 +162,8 @@ var Data ={
             <Text style={{ fontSize: 12, marginLeft: 5}}>Create a job hiring application with valid information</Text>
             </View>
 
-           
-
-            <Input 
-            placeholder= 'Vacant job position' 
-            iconName= 'account-outline' 
-            
-            error={errors.Lookingfor}
-            onFocus={() =>{
-              handleError(null, 'Lookingfor');
-            }}
-            onChangeText = {text => handleOnChange(text, 'Lookingfor')}
-            />
-            
- <Text style={{fontSize: 20, fontWeight: '500' ,opacity:0.6}}> Job Location</Text>
-            
-           <View style = {{flex:2,flexDirection:"row",justifyContent:"space-around"}}>
-           
-  <Input 
-            placeholder= 'street' 
-            iconName= 'map-marker' 
-            
-            error={errors.Jobloc}
-            onFocus={() =>{
-              handleError(null, 'street');
-            }}
-            onChangeText = {text => handleOnChange(text, 'street')}
-            style = {{maxWidth:50}}
-            />
-             <Input 
-            placeholder= 'city' 
-            iconName= 'map-marker' 
-            
-            error={errors.Jobloc}
-            onFocus={() =>{
-              handleError(null, 'city');
-            }}
-            onChangeText = {text => handleOnChange(text, 'city')}
-           style = {{maxWidth:50}}
-            />
-             <Input 
-            placeholder= 'province' 
-            iconName= 'map-marker' 
-            
-            error={errors.Jobloc}
-            onFocus={() =>{
-              handleError(null, 'province');
-            }}
-            onChangeText = {text => handleOnChange(text, 'province')}
-            style = {{maxWidth:50}}
-            />
-             <Input 
-            placeholder= 'zipcode' 
-            iconName= 'map-marker' 
-            
-            error={errors.Jobloc}
-            onFocus={() =>{
-              handleError(null, 'zipcode');
-            }}
-            onChangeText = {text => handleOnChange(text, 'zipcode')}
-           style = {{macWidth:50}}
-            />
-           
-           </View>
-            
-
-{/* TEMPORAY */}
-
-             <Selectlist2
+            <Text style={{fontSize: 20, fontWeight: '500' ,opacity:0.6, marginBottom: 10}}> Job information</Text>
+            <Selectlist2
             error={errors.Jobtype}
             
             onFocus={() =>{
@@ -239,6 +174,81 @@ var Data ={
             onChange = {item => handleOnChange(item.label, 'Jobtype')}
             
             />
+            <Input 
+            placeholder= 'Vacant job position' 
+            iconName= 'account-outline' 
+            
+            error={errors.Lookingfor}
+            onFocus={() =>{
+              handleError(null, 'Lookingfor');
+            }}
+            onChangeText = {text => handleOnChange(text, 'Lookingfor')}
+            />
+             <Input 
+            placeholder= 'Job description' 
+            iconName= 'newspaper-variant-outline' 
+            error={errors.Jobdesc}
+            onFocus={() =>{
+              handleError(null, 'Jobdesc');
+            }}
+            onChangeText = {text => handleOnChange(text, 'Jobdesc')}
+            />
+            
+ <Text style={{fontSize: 20, fontWeight: '500' ,opacity:0.6, marginBottom: 10}}> Job Location</Text>
+            
+           <View style = {{}}>
+           
+  <Input 
+            placeholder= 'Street' 
+            iconName= 'map-marker' 
+            
+            error={errors.street}
+            onFocus={() =>{
+              handleError(null, 'street');
+            }}
+            onChangeText = {text => handleOnChange(text, 'street')}
+            
+            />
+             <Input 
+            placeholder= 'City' 
+            iconName= 'map-marker' 
+            
+            error={errors.city}
+            onFocus={() =>{
+              handleError(null, 'city');
+            }}
+            onChangeText = {text => handleOnChange(text, 'city')}
+           
+            />
+             <Input 
+            placeholder= 'Province' 
+            iconName= 'map-marker' 
+            
+            error={errors.province}
+            onFocus={() =>{
+              handleError(null, 'province');
+            }}
+            onChangeText = {text => handleOnChange(text, 'province')}
+            
+            />
+             <Input 
+            placeholder= 'Zipcode' 
+            iconName= 'map-marker' 
+            
+            error={errors.zipcode}
+            onFocus={() =>{
+              handleError(null, 'zipcode');
+            }}
+            onChangeText = {text => handleOnChange(text, 'zipcode')}
+           
+            />
+           
+           </View>
+            
+
+          <Text style={{fontSize: 20, fontWeight: '500' ,opacity:0.6, marginBottom: 10}}> Hiring start and end</Text>
+
+             
             
  <Input 
             placeholder= 'Hiring Start Date (YYYY-MM-DD)' 
@@ -260,19 +270,7 @@ var Data ={
             }}
             onChangeText = {text => handleOnChange(text, 'enddate')}
             />
-            
-            
-<Input 
-            placeholder= 'Job description' 
-            iconName= 'newspaper-variant-outline' 
-            error={errors.Jobdesc}
-            onFocus={() =>{
-              handleError(null, 'Jobdesc');
-            }}
-            onChangeText = {text => handleOnChange(text, 'Jobdesc')}
-            />
-            
-        
+     
 <View style={{marginBottom: 50, alignItems: 'center'}}>
     <TouchableOpacity  onPress={validate}>
       <View style={[Universalstyles.logout, {height: 'auto'}]}>

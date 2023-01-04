@@ -5,7 +5,7 @@ import Fontaw from 'react-native-vector-icons/FontAwesome';
 import MatIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import MatIcon2 from 'react-native-vector-icons/MaterialIcons';
 import Logo1 from '../../../../assets/bg/bgimage5.jpg';
-import axios from 'axios'
+import { axiosRequest } from '../../components/api';
 
 
 const wait = (timeout) => {
@@ -16,7 +16,7 @@ const wait = (timeout) => {
 const Settings = ({navigation}) => {
   const logout = () =>{
    
-    axios.get('http://localhost:8080/api/logout.php')  
+    axiosRequest.get('/api/logout.php')  
       .then((response) => {
         console.log(response.data);
         navigation.navigate('Log in')

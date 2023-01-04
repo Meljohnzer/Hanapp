@@ -157,10 +157,8 @@ searchContainer:{
 },
 
 jobPost: {
-    flex: 1,
-    marginVertical: 10,
+    marginVertical: 5,
     margin: 5,
-    
 },
 
 profile1: {
