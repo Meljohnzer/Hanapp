@@ -59,6 +59,7 @@ var Data ={
       handleError('Please enter valid email address', 'email');
       valid = false;
     }
+    
     if (!inputs.password){
       handleError('Please enter your password', 'password');
     valid = false;
