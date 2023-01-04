@@ -18,7 +18,7 @@ const Settings = ({navigation}) => {
    
     axiosRequest.get('/api/logout.php')  
       .then((response) => {
-        console.log(response.data);
+        
         navigation.navigate('Log in')
       });
   }

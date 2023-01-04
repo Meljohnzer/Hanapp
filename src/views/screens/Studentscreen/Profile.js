@@ -54,13 +54,13 @@ setGet (prevState => ({...prevState, profile: data}));
         <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center',  }}> 
         
           <Text style={{ opacity: 0.6}}>
-          {profiles.email}
+          Email:{profiles.email}
         </Text>
         <Text style={{opacity: 0.6}}>
           {profiles.contactno}
         </Text>
         <Text style={{opacity: 0.6}}>
-        {profiles.street} {profiles.city} {profiles.province} {profiles.zipcode}
+          Address: {profiles.street} {profiles.city} {profiles.province} {profiles.zipcode}
         </Text>
         </View>
        

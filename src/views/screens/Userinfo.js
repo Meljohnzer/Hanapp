@@ -6,7 +6,8 @@ import Input from "../components/Input";
 import {Universalstyles} from "../../const/Universalstyle";
 import Button from "../components/Button";
 import Loader from "../components/Loader";
-import axios from 'axios'
+//import axios from 'axios'
+import { axiosRequest } from "../components/api";
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
 }

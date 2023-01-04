@@ -22,7 +22,6 @@ const Settings = ({navigation}) => {
      setTimeout(async()=>{
       axiosRequest.get('/api/logout.php')  
       .then((response) => {
-        console.log(response.data);
 navigation.navigate('Log in')
          
         

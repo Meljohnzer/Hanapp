@@ -101,13 +101,13 @@ const Loginscreen = ({navigation}) => {
   const handleOnChange = async  (text, input) => {
 
   
-await setInputs (prevState => ({...prevState, [input]: text}));
+    setInputs(prevState => ({ ...prevState, [input]: text }));
  
 
   };
   
   const handleError = async (errorMessage, input) =>{
-   await setErrors((prevState) => ({...prevState, [input]: errorMessage}))
+   setErrors((prevState) => ({ ...prevState, [input]: errorMessage }))
   }
   
  // console.log(moment("2023-01-02 11:31:27").local().startOf('seconds').fromNow());

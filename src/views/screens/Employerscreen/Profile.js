@@ -31,8 +31,6 @@ React.useEffect(()=>{
   
  await axiosRequest.get('/api/sprofile.php').then((response)=>response.data).then((data)=>{
 setGet (prevState => ({...prevState, profile: data}))
-console.log(data)
-
  })
   
  })

@@ -6,10 +6,9 @@ import Universalstyles from '../../../const/Universalstyle'
 import Icon from 'react-native-vector-icons/EvilIcons'
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon3 from 'react-native-vector-icons/Fontisto'
-import axios from 'axios'
+//import axios from 'axios'
 import moment from 'moment'
 import { axiosRequest } from '../../components/api';
-
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
 }
@@ -55,8 +54,6 @@ setGet (prevState => ({...prevState, post: response.data}))
 
   )},[])
 
-
-console.log(gets.post)
 
   return (
     <SafeAreaView style={{flex: 1, }}>
@@ -107,7 +104,6 @@ console.log(gets.post)
 
     <TouchableOpacity onPress={()=>{
      setPostID(label.postID)
- 
         navigation.navigate('Manage', { itemId : label.postID, })
 
     }
