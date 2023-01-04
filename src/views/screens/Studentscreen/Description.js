@@ -100,7 +100,7 @@ const SecondRoute = ({arr}) => (
       {/* <Text style={Universalstyles.text}><Icon name='calendar-month' style={{fontSize: 20, color: 'black', marginRight: 10}}/> Year company started: </Text>
       <Text style={Universalstyles.text}><Icon name='account-group' style={{fontSize: 20, color: 'black', marginRight: 10}}/> Employees hired: </Text>
       <Text style={Universalstyles.text}><Icon name='account-group' style={{fontSize: 20, color: 'black', marginRight: 10}}/> Number of customers serve: </Text> */}
-      <Text style={Universalstyles.text}><Icon name='medal-outline' style={{fontSize: 20, color: 'gold', }}/>  Since {label.establishdate} </Text>
+      {label.establishdate && <Text style={Universalstyles.text}><Icon name='medal-outline' style={{fontSize: 20, color: 'gold', }}/>  Since {label.establishdate} </Text>}
       
      </View>
 

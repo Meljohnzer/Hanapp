@@ -90,7 +90,7 @@ setGet (prevState => ({...prevState, post: response.data}))
    
 <View  style={Universalstyles.jobPost}>
 {gets.post.map((label,index)=>(
-    <View key = {index} style={Universalstyles.jobContent}>
+    <View  key = {index} style={Universalstyles.jobContent}>
     <Image source={Logo1} style={Universalstyles.Jobimage}/>
     <View style={Universalstyles.jobContent2}>
 

@@ -13,7 +13,7 @@ function check_login($connect_db){
 
  }
  echo("ERROR NOT FOUND");
-die;
+ die;
 }
 ?>
 
