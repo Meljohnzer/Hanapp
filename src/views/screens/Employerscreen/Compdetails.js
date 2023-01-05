@@ -17,19 +17,18 @@ const Compdetails = ({navigation}) => {
   const [date, setDate] = useState(new Date());
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
-  const [text, setText] = useState('Establish date');
+  const [text, setText] = useState();
 
   const onChange = (event, selectedDate) => {
+    
     const currentDate = selectedDate || date;
     setShow(false);
     setDate(currentDate);
-
     let tempDate = new Date(currentDate);
     let fDate = tempDate.getFullYear() + '-' + (tempDate.getMonth() + 1) + '-' + tempDate.getDate() ;
-    setText(fDate)
-    console.log(fDate)
+    setInputs ({ Establishdate: fDate})
   };
-
+  
   const showMode = (currentMode) => {
     setShow(true);
     setMode(currentMode);
@@ -44,8 +43,9 @@ const Compdetails = ({navigation}) => {
     Establishdate: '',
     WebsiteURL: '',
     Compdesc: '',
-
   });
+  
+ 
   
 var Data ={
         compname: inputs.Compname ,
@@ -111,6 +111,7 @@ axiosRequest.post('/api/company.php', JSON.stringify(Data), headers)
 
   const handleOnChange = (text, input) => {
     setInputs (prevState => ({...prevState, [input]: text}));
+   
   };
   
   const handleError = (errorMessage, input) =>{
@@ -156,16 +157,18 @@ axiosRequest.post('/api/company.php', JSON.stringify(Data), headers)
             }}
             onChangeText = {text => handleOnChange(text, 'Compname')}
             />
-            <Input onPress = {() => showMode('date')}
-            placeholder= {text} 
-            iconName= 'calendar' 
-            keyboardType= 'numeric'
+            <TouchableOpacity onPress={showDatePicker}>
+            <Input
+            value = {inputs.Establishdate}
+            placeholder= 'Establish date'
+            iconName= 'calendar'
+            keyboardType='none'
+            editable={true}
+            showSoftInputOnFocus = {false}
             error={errors.Establishdate}
-            onFocus={() =>{
-              showDatePicker,
-              handleError(null, 'Establishdate');
-            }}
-            onChangeText = {text => handleOnChange(text, 'Establishdate')}
+            onFocus = {()=>{handleError(null,'Establishdate')
+          Keyboard.dismiss()}}
+            onChange = {text => handleOnChange(text,'Establishdate')}
             />
             {show && (
               <DateTimePicker
@@ -177,6 +180,7 @@ axiosRequest.post('/api/company.php', JSON.stringify(Data), headers)
               onChange={onChange}
               />
               )}
+              </TouchableOpacity>
           <Input 
             placeholder= 'Website URL' 
             iconName= 'link' 

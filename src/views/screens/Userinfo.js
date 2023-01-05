@@ -1,5 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { ScrollView, Text, View, ImageBackground, useWindowDimensions, Dimensions, Keyboard, Alert,Image, SafeAreaView, RefreshControl} from 'react-native'
+import { ScrollView, Text, View, ImageBackground, useWindowDimensions, Dimensions, Keyboard, Alert,Image, SafeAreaView, RefreshControl, TouchableOpacity} from 'react-native'
 import React, { useState } from "react";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import Input from "../components/Input";
@@ -24,11 +24,10 @@ const Userinfo = ({navigation, error,  onFocus=()=>{}, ...props
     const currentDate = selectedDate || date;
     setShow(false);
     setDate(currentDate);
-
     let tempDate = new Date(currentDate);
     let fDate = tempDate.getFullYear() + '-' + (tempDate.getMonth() + 1) + '-' + tempDate.getDate() ;
-    setText(fDate)
-    console.log(fDate)
+    setInputs (prevState => ({...prevState, birthday: fDate}));
+    
   };
 
   const showMode = (currentMode) => {
@@ -249,15 +248,21 @@ axiosRequest.post('/api/user.php', JSON.stringify(Data), headers)
             }}
             onChangeText = {text => handleOnChange(text, 'suffname')}
             />
-          <Input onPress = {() => showMode('date')}
+            <TouchableOpacity onPress = {showDatePicker}>
+          <Input 
             placeholder= {textt}
+            value = {inputs.birthday}
             iconName= 'calendar' 
-            keyboardType= 'numeric'
+            keyboardType= 'none'
             error={errors.birthday}
-            onFocus = {showDatePicker}
+            showSoftInputOnFocus = {false}
+            onFocus = {() =>{
+              handleError(null, 'birthday');
+              keyboard.dismiss()
+            }}
             
             onChangeText = {text => handleOnChange(text, 'birthday')}
-            />
+            /></TouchableOpacity>
             {show && (
               <DateTimePicker
               testID="dateTimePicker"
