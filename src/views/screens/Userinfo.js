@@ -1,7 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ScrollView, Text, View, ImageBackground, useWindowDimensions, Dimensions, Keyboard, Alert,Image, SafeAreaView, RefreshControl} from 'react-native'
-import React from 'react'
-
+import React, { useState } from "react";
+import DateTimePicker from "@react-native-community/datetimepicker";
 import Input from "../components/Input";
 import {Universalstyles} from "../../const/Universalstyle";
 import Button from "../components/Button";
@@ -15,8 +15,33 @@ const wait = (timeout) => {
 
 const Userinfo = ({navigation, error,  onFocus=()=>{}, ...props
 }) => {
+  const [date, setDate] = useState(new Date());
+  const [mode, setMode] = useState('date');
+  const [show, setShow] = useState(false);
+  const [textt, setText] = useState('Date of birth');
+
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate || date;
+    setShow(false);
+    setDate(currentDate);
+
+    let tempDate = new Date(currentDate);
+    let fDate = tempDate.getFullYear() + '-' + (tempDate.getMonth() + 1) + '-' + tempDate.getDate() ;
+    setText(fDate)
+    console.log(fDate)
+  };
+
+  const showMode = (currentMode) => {
+    setShow(true);
+    setMode(currentMode);
+  };
+
+  const showDatePicker = () => {
+    showMode('date');
+  };
+
     const [isFocused, setisFocused] = React.useState(false);
-  const [inputs, setInputs] = React.useState({
+    const [inputs, setInputs] = React.useState({
     firstname: '',
     lastname: '',
     midname: '',
@@ -224,16 +249,25 @@ axios.post('http://192.168.43.157:8080/api/user.php', JSON.stringify(Data), head
             }}
             onChangeText = {text => handleOnChange(text, 'suffname')}
             />
-          <Input 
-            placeholder= 'Birthdate (YYYY-MM-DD)' 
+          <Input onPress = {() => showMode('date')}
+            placeholder= {textt}
             iconName= 'calendar' 
             keyboardType= 'numeric'
             error={errors.birthday}
-            onFocus={() =>{
-              handleError(null, 'birthday');
-            }}
+            onFocus = {showDatePicker}
+            
             onChangeText = {text => handleOnChange(text, 'birthday')}
             />
+            {show && (
+              <DateTimePicker
+              testID="dateTimePicker"
+              value={date}
+              mode={mode}
+              is24Hour={true}
+              display='default'
+              onChange={onChange}
+              />
+              )}
 
           <Input 
             placeholder= 'Age' 

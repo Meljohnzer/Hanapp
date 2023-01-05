@@ -4,6 +4,7 @@ import Input from "../../components/Input";
 import {Universalstyles} from "../../../const/Universalstyle";
 import Loader from "../../components/Loader";
 import React, { useState } from "react";
+import DateTimePicker from "@react-native-community/datetimepicker";
 import axios from 'axios'
 import { axiosRequest } from "../../components/api";
 
@@ -11,9 +12,33 @@ const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
 }
 
-
 const Compdetails = ({navigation}) => {
  
+  const [date, setDate] = useState(new Date());
+  const [mode, setMode] = useState('date');
+  const [show, setShow] = useState(false);
+  const [text, setText] = useState('Establish date');
+
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate || date;
+    setShow(false);
+    setDate(currentDate);
+
+    let tempDate = new Date(currentDate);
+    let fDate = tempDate.getFullYear() + '-' + (tempDate.getMonth() + 1) + '-' + tempDate.getDate() ;
+    setText(fDate)
+    console.log(fDate)
+  };
+
+  const showMode = (currentMode) => {
+    setShow(true);
+    setMode(currentMode);
+  };
+
+  const showDatePicker = () => {
+    showMode('date');
+  };
+
   const [inputs, setInputs] = React.useState({
     Compname: '',
     Establishdate: '',
@@ -131,17 +156,28 @@ axiosRequest.post('/api/company.php', JSON.stringify(Data), headers)
             }}
             onChangeText = {text => handleOnChange(text, 'Compname')}
             />
-            <Input 
-            placeholder= 'Establishment date' 
+            <Input onPress = {() => showMode('date')}
+            placeholder= {text} 
             iconName= 'calendar' 
             keyboardType= 'numeric'
             error={errors.Establishdate}
             onFocus={() =>{
+              showDatePicker,
               handleError(null, 'Establishdate');
             }}
             onChangeText = {text => handleOnChange(text, 'Establishdate')}
             />
- <Input 
+            {show && (
+              <DateTimePicker
+              testID="dateTimePicker"
+              value={date}
+              mode={mode}
+              is24Hour={true}
+              display='default'
+              onChange={onChange}
+              />
+              )}
+          <Input 
             placeholder= 'Website URL' 
             iconName= 'link' 
             error={errors.WebsiteURL}
@@ -155,7 +191,7 @@ axiosRequest.post('/api/company.php', JSON.stringify(Data), headers)
 {/* TEMPORAY */}
 
             
-<Input 
+            <Input 
             placeholder= 'Company description' 
             iconName= 'newspaper-variant-outline' 
             
