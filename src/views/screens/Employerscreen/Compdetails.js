@@ -161,10 +161,7 @@ axiosRequest.post('/api/company.php', JSON.stringify(Data), headers)
             iconName= 'calendar' 
             keyboardType= 'numeric'
             error={errors.Establishdate}
-            onFocus={() =>{
-              showDatePicker,
-              handleError(null, 'Establishdate');
-            }}
+            onFocus={showDatePicker}
             onChangeText = {text => handleOnChange(text, 'Establishdate')}
             />
             {show && (

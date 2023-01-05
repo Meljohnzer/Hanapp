@@ -56,7 +56,7 @@ import Universalstyles from '../../const/Universalstyle';
             <Icon
               style={{fontSize: 22, marginRight: 10}}
               color={isFocused ? '#F5E44C' : 'grey'}
-              name="briefcase-outline"
+              name="account-outline"
               size={20}
             />
           )}

@@ -29,11 +29,13 @@ const Userinfo = ({navigation, error,  onFocus=()=>{}, ...props
     let fDate = tempDate.getFullYear() + '-' + (tempDate.getMonth() + 1) + '-' + tempDate.getDate() ;
     setText(fDate)
     console.log(fDate)
+    
   };
 
   const showMode = (currentMode) => {
     setShow(true);
     setMode(currentMode);
+    
   };
 
   const showDatePicker = () => {
@@ -53,7 +55,8 @@ const Userinfo = ({navigation, error,  onFocus=()=>{}, ...props
     city: '',
     province: '',
     zipcode: '',
-
+    date: '',
+    
   });
 var Data ={
         fname:inputs.firstname,
@@ -255,7 +258,6 @@ axiosRequest.post('/api/user.php', JSON.stringify(Data), headers)
             keyboardType= 'numeric'
             error={errors.birthday}
             onFocus = {showDatePicker}
-            
             onChangeText = {text => handleOnChange(text, 'birthday')}
             />
             {show && (
@@ -266,6 +268,7 @@ axiosRequest.post('/api/user.php', JSON.stringify(Data), headers)
               is24Hour={true}
               display='default'
               onChange={onChange}
+              
               />
               )}
 

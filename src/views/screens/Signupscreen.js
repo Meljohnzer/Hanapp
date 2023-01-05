@@ -150,14 +150,10 @@ var Data ={
         </Text>
         <Selectlist
             error={errors.usertype}
-            
-            onFocus={() =>{
-              
+            onFocus={() =>{ 
                 handleError(null, 'usertype');
               }}
-              
             onChange = {item => handleOnChange(item.value, 'usertype')}
-            
             />
           <Input 
             placeholder= 'Email' 
