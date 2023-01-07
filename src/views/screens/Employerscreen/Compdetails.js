@@ -17,7 +17,6 @@ const Compdetails = ({navigation}) => {
   const [date, setDate] = useState(new Date());
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
-  const [text, setText] = useState();
 
   const onChange = (event, selectedDate) => {
     
@@ -26,7 +25,7 @@ const Compdetails = ({navigation}) => {
     setDate(currentDate);
     let tempDate = new Date(currentDate);
     let fDate = tempDate.getFullYear() + '-' + (tempDate.getMonth() + 1) + '-' + tempDate.getDate() ;
-    setInputs ({ Establishdate: fDate})
+    setInputs (prevState => ({...prevState, Establishdate: fDate}));
   };
   
   const showMode = (currentMode) => {
@@ -157,14 +156,15 @@ axiosRequest.post('/api/company.php', JSON.stringify(Data), headers)
             }}
             onChangeText = {text => handleOnChange(text, 'Compname')}
             />
-            <TouchableOpacity onPress={showDatePicker}>
-            
+            <TouchableOpacity onPress={()=>{showDatePicker()
+            handleError(null, 'Establishdate')
+            }}>
             <Input
             value = {inputs.Establishdate}
             placeholder= 'Establish date'
             iconName= 'calendar'
             keyboardType='none'
-            editable={true}
+            editable={false}
             showSoftInputOnFocus = {false}
             error={errors.Establishdate}
             onFocus = {()=>{handleError(null,'Establishdate')

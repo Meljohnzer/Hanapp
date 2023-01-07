@@ -14,6 +14,34 @@ const wait = (timeout) => {
 
 
 const Post = ({navigation}) => {
+  const [date1, setDate1] = useState(new Date());
+  const [mode1, setMode1] = useState('date');
+  const [show1, setShow1] = useState(false);
+
+  const onChange1 = (event, selectedDate) => {
+    
+    const currentDate = selectedDate || event;
+    setShow1(false);
+    setDate1(currentDate);
+    let tempDate = new Date(currentDate);
+    let fDate = tempDate.getFullYear() + '-' + (tempDate.getMonth() + 1) + '-' + tempDate.getDate() ;
+    setInputs (prevState => ({...prevState, startdate: fDate}));
+   
+  };
+
+  
+  const showMode1 = (currentMode) => {
+    setShow1(true);
+    setMode1(currentMode);
+  };
+
+  const showDatePicker1 = () => {
+    showMode1('date');
+  };
+
+
+
+  
  
   const [inputs, setInputs] = React.useState({
     
@@ -276,27 +304,44 @@ var Data ={
           <Text style={{fontSize: 20, fontWeight: '500' ,opacity:0.6, marginBottom: 10}}> Hiring start and end</Text>
 
              
-            
+          <TouchableOpacity onPress={()=>{showDatePicker1()
+            handleError(null, 'startdate')
+            }}>
  <Input 
             placeholder= 'Hiring Start Date (YYYY-MM-DD)' 
             iconName= 'calendar-month' 
-            
+            editable={false}
+            value = {inputs.startdate}
             error={errors.startdate}
             onFocus={() =>{
               handleError(null, 'startdate');
             }}
             onChangeText = {text => handleOnChange(text, 'startdate')}
-            />
+            /></TouchableOpacity>
+              {show1 && (
+              <DateTimePicker
+              testID="dateTimePicker"
+              value={date1}
+              mode={mode1}
+              is24Hour={true}
+              display='default'
+              onChange={onChange1}
+              />
+              )}
+            <TouchableOpacity onPress={()=>{
+            handleError(null, 'enddate')
+            }}>
             <Input 
             placeholder= 'Hiring End Date (YYYY-MM-DD)' 
             iconName= 'calendar-month' 
-            
+            value={inputs.enddate}
+            editable={true}
             error={errors.enddate}
             onFocus={() =>{
               handleError(null, 'enddate');
             }}
             onChangeText = {text => handleOnChange(text, 'enddate')}
-            />
+            /></TouchableOpacity>
      
 <View style={{marginBottom: 50, alignItems: 'center'}}>
     <TouchableOpacity  onPress={validate}>

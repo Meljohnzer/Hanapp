@@ -38,11 +38,11 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
  
- axiosRequest.get('/api/check.php')
- .then((response)=>{
-  console.log(response.data)
- })
- .catch(error => console.log(error));
+//  axiosRequest.get('/api/check.php')
+//  .then((response)=>{
+//   console.log(response.data)
+//  })
+//  .catch(error => console.log(error));
   return (
     <SafeAreaView style={{flex: 1, paddingTop: 30, backgroundColor: "#eee"}}>
 <NavigationContainer>
