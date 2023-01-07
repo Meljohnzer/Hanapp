@@ -18,10 +18,13 @@ $street = $Decode_React_APP_Data['street'];
 $city = $Decode_React_APP_Data['city'];
 $province = $Decode_React_APP_Data['province'];
 $zipcode = $Decode_React_APP_Data['zipcode'];
+$salary = $Decode_React_APP_Data['salary'];
+$rate = $Decode_React_APP_Data['rate'];
+
 $id = $_SESSION['id'];
 
 
-$Reg_Query = "INSERT INTO post (`userID`,`lookingfor`,`jobdesc`, `jobtype`,`startdate`,`enddate`,`street`,`city`,`province`,`zipcode`) VALUES ('$id','$lookingfor', '$jobdesc','$jobtype','$startdate','$enddate','$street','$city','$province','$zipcode')";
+$Reg_Query = "INSERT INTO post (`userID`,`lookingfor`,`jobdesc`, `jobtype`,`startdate`,`enddate`,`street`,`city`,`province`,`zipcode`,`salary`,`rate`) VALUES ('$id','$lookingfor', '$jobdesc','$jobtype','$startdate','$enddate','$street','$city','$province','$zipcode','$salary','$rate')";
    $Reg_Query_Result = mysqli_query($connect_db, $Reg_Query);
   
     if ($Reg_Query_Result) 

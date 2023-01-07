@@ -4,6 +4,7 @@ import Input from "../../components/Input";
 import {Universalstyles} from "../../../const/Universalstyle";
 import Loader from "../../components/Loader";
 import React, { useState } from "react";
+import DateTimePicker from "@react-native-community/datetimepicker";
 import Selectlist2 from "../../components/Selectlist2";
 import Selectlist3 from "../../components/Selectlist3";
 import { axiosRequest } from "../../components/api";
@@ -70,6 +71,8 @@ var Data ={
        jobtype:inputs.Jobtype,
        startdate:inputs.startdate,
        enddate:inputs.enddate,
+       rate:inputs.rate,
+       salary:inputs.salary
       };
 
       var headers = {
@@ -237,7 +240,7 @@ var Data ={
             onFocus={() =>{ 
                 handleError(null, 'rate');
               }}
-            onChange = {item => handleOnChange(item.value, 'rate')}
+            onChange = {item => handleOnChange(item.label, 'rate')}
             />
              <Input 
             placeholder= 'Job description' 

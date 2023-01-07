@@ -58,6 +58,8 @@ CREATE TABLE IF NOT EXISTS post (
   zipcode int(12) NOT NULL,
   status tinyint(1) NOT NULL DEFAULT '1',
   createdat timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  salary int(12) NOT NULL,
+  rate varchar(50) NOT NULL,
   PRIMARY KEY (postID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
