@@ -248,19 +248,21 @@ axiosRequest.post('/api/user.php', JSON.stringify(Data), headers)
             }}
             onChangeText = {text => handleOnChange(text, 'suffname')}
             />
-            <TouchableOpacity onPress = {showDatePicker}>
+            <TouchableOpacity onPress = {()=>{showDatePicker()
+            handleError(null, 'birthday')}
+            }>
           <Input 
-            placeholder= {textt}
+            placeholder= {"Birthday"}
             value = {inputs.birthday}
             iconName= 'calendar' 
             keyboardType= 'none'
+            editable={false}
             error={errors.birthday}
             showSoftInputOnFocus = {false}
             onFocus = {() =>{
-              handleError(null, 'birthday');
-              keyboard.dismiss()
+              handleError(null, 'birthday')
+              Keyboard.dismiss()
             }}
-            
             onChangeText = {text => handleOnChange(text, 'birthday')}
             /></TouchableOpacity>
             {show && (
@@ -342,7 +344,7 @@ axiosRequest.post('/api/user.php', JSON.stringify(Data), headers)
   <Input 
             placeholder= 'zipcode' 
             iconName= 'map-marker' 
-            
+            keyboardType= 'numeric'
             error={errors.zipcode}
             onFocus={() =>{
               handleError(null, 'zipcode');
