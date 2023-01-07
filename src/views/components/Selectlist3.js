@@ -5,9 +5,10 @@ import React, { useState } from 'react';
 import Universalstyles from '../../const/Universalstyle';
   
 const data = [
-    { label: 'Student', value: '1' },
-    { label: 'Employer', value: '2' },
-    
+    { label: 'Per Hour', value: '1' },
+    { label: 'Per Day', value: '2' },
+    { label: 'Per Month', value: '3' },
+    { label: 'Per Year', value: '4' },
   ];
 
   const DropdownComponent = ({
@@ -40,7 +41,7 @@ const data = [
           maxHeight={300}
           labelField="label"
           valueField="value"
-          placeholder={!isFocused ? 'User type' : '...'}
+          placeholder={!isFocused ? 'Rate per' : '...'}
           dropdownPosition = 'bottom'
           itemContainerStyle = {{}}
           selectedTextStyle={styles.selectedTextStyle}
@@ -57,7 +58,7 @@ const data = [
             <Icon
               style={{fontSize: 22, marginRight: 10}}
               color={isFocused ? '#F5E44C' : 'grey'}
-              name="account-outline"
+              name="clock-check-outline"
               size={20}
             />
           )}

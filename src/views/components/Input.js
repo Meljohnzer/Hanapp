@@ -7,7 +7,11 @@ import {Universalstyles} from '../../const/Universalstyle';
 const Input = ({
     label,
     iconName, 
+    value,
     error, 
+    editable,
+    onBlur,
+    showSoftInputOnFocus,
     password,
     keyboardType,
     onFocus=()=>{},
@@ -25,10 +29,12 @@ const Input = ({
             color={isFocused ? '#F5E44C' : 'grey'}
         />
         <TextInput 
-        
+        editable = {editable}
         keyboardType={keyboardType}
         secureTextEntry={hidePassword}
         autoCorrect={false}
+        showSoftInputOnFocus = {showSoftInputOnFocus}
+        value = {value}
         onFocus={() => {
             onFocus();
             setisFocused(true);

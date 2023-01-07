@@ -9,6 +9,7 @@ import Loader from "../components/Loader";
 import Selectlist from "../components/Selectlist";
 import { axiosRequest } from "../components/api";
 
+
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
 }
@@ -148,6 +149,7 @@ var Data ={
 
         Register account
         </Text>
+        
         <Selectlist
             error={errors.usertype}
             onFocus={() =>{ 
@@ -155,6 +157,7 @@ var Data ={
               }}
             onChange = {item => handleOnChange(item.value, 'usertype')}
             />
+         
           <Input 
             placeholder= 'Email' 
             iconName= 'email-outline' 

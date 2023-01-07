@@ -5,7 +5,7 @@ import {Universalstyles} from "../../../const/Universalstyle";
 import Loader from "../../components/Loader";
 import React, { useState } from "react";
 import Selectlist2 from "../../components/Selectlist2";
-import axios from 'axios'
+import Selectlist3 from "../../components/Selectlist3";
 import { axiosRequest } from "../../components/api";
 
 const wait = (timeout) => {
@@ -26,7 +26,9 @@ const Post = ({navigation}) => {
     Jobtype: '',
     startdate: '',
     enddate:'',
-   
+    rate: '',
+    salary:'',
+
   });
   
   
@@ -82,7 +84,14 @@ var Data ={
       handleError('Please choose what type of job', 'Jobtype');
       valid = false;
     }
-    
+    if (!inputs.salary){
+      handleError('Please enter the salary', 'salary');
+      valid = false;
+    }
+    if (!inputs.rate){
+      handleError('Please choose ratings', 'rate');
+      valid = false;
+    }
     if (!inputs.Lookingfor){
       handleError('Please enter the vacant job position', 'Lookingfor');
       valid = false;
@@ -184,6 +193,24 @@ var Data ={
             }}
             onChangeText = {text => handleOnChange(text, 'Lookingfor')}
             />
+            <Input 
+            placeholder= 'Salary of employee' 
+            iconName= 'currency-php' 
+            keyboardType= 'numeric'
+            error={errors.salary}
+            onFocus={() =>{
+              handleError(null, 'salary');
+            }}
+            onChangeText = {text => handleOnChange(text, 'salary')}
+            
+            />
+             <Selectlist3
+            error={errors.rate}
+            onFocus={() =>{ 
+                handleError(null, 'rate');
+              }}
+            onChange = {item => handleOnChange(item.value, 'rate')}
+            />
              <Input 
             placeholder= 'Job description' 
             iconName= 'newspaper-variant-outline' 
@@ -198,7 +225,7 @@ var Data ={
             
            <View style = {{}}>
            
-  <Input 
+            <Input 
             placeholder= 'Street' 
             iconName= 'map-marker' 
             

@@ -1,5 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { ScrollView, Text, View, ImageBackground, useWindowDimensions, Dimensions, Keyboard, Alert,Image, SafeAreaView, RefreshControl} from 'react-native'
+import { ScrollView, Text, View, ImageBackground, useWindowDimensions, Dimensions, Keyboard, Alert,Image, SafeAreaView, RefreshControl, TouchableOpacity} from 'react-native'
 import React, { useState } from "react";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import Input from "../components/Input";
@@ -24,11 +24,9 @@ const Userinfo = ({navigation, error,  onFocus=()=>{}, ...props
     const currentDate = selectedDate || date;
     setShow(false);
     setDate(currentDate);
-
     let tempDate = new Date(currentDate);
     let fDate = tempDate.getFullYear() + '-' + (tempDate.getMonth() + 1) + '-' + tempDate.getDate() ;
-    setText(fDate)
-    console.log(fDate)
+    setInputs (prevState => ({...prevState, birthday: fDate}));
     
   };
 
@@ -42,6 +40,7 @@ const Userinfo = ({navigation, error,  onFocus=()=>{}, ...props
     showMode('date');
   };
 
+  
     const [isFocused, setisFocused] = React.useState(false);
     const [inputs, setInputs] = React.useState({
     firstname: '',
@@ -176,6 +175,7 @@ axiosRequest.post('/api/user.php', JSON.stringify(Data), headers)
     setErrors((prevState) => ({...prevState, [input]: errorMessage}))
   }
   
+  
   return (
     <SafeAreaView style={{flex: 1,  }}>
     <ScrollView 
@@ -252,14 +252,24 @@ axiosRequest.post('/api/user.php', JSON.stringify(Data), headers)
             }}
             onChangeText = {text => handleOnChange(text, 'suffname')}
             />
-          <Input onPress = {() => showMode('date')}
+            
+            <TouchableOpacity onPress = {showDatePicker} >
+            
+          <Input 
             placeholder= {textt}
+            value = {inputs.birthday}
             iconName= 'calendar' 
-            keyboardType= 'numeric'
             error={errors.birthday}
-            onFocus = {showDatePicker}
+            showSoftInputOnFocus = {false}
+            onFocus = {() =>{
+              handleError(null, 'birthday');
+              Keyboard.dismiss();
+              }}
+            
             onChangeText = {text => handleOnChange(text, 'birthday')}
             />
+           
+            </TouchableOpacity>
             {show && (
               <DateTimePicker
               testID="dateTimePicker"
@@ -268,7 +278,6 @@ axiosRequest.post('/api/user.php', JSON.stringify(Data), headers)
               is24Hour={true}
               display='default'
               onChange={onChange}
-              
               />
               )}
 
@@ -306,7 +315,7 @@ axiosRequest.post('/api/user.php', JSON.stringify(Data), headers)
         </Text>
 
           <Input 
-            placeholder= 'street' 
+            placeholder= 'Street' 
             iconName= 'map-marker' 
             
             error={errors.street}
@@ -317,7 +326,7 @@ axiosRequest.post('/api/user.php', JSON.stringify(Data), headers)
             />
             
   <Input 
-            placeholder= 'city' 
+            placeholder= 'City' 
             iconName= 'map-marker' 
             
             error={errors.city}
@@ -328,7 +337,7 @@ axiosRequest.post('/api/user.php', JSON.stringify(Data), headers)
             />
             
   <Input 
-            placeholder= 'province' 
+            placeholder= 'Province' 
             iconName= 'map-marker' 
             
             error={errors.province}
@@ -338,7 +347,7 @@ axiosRequest.post('/api/user.php', JSON.stringify(Data), headers)
             onChangeText = {text => handleOnChange(text, 'province')}
             />
   <Input 
-            placeholder= 'zipcode' 
+            placeholder= 'Zipcode' 
             iconName= 'map-marker' 
             
             error={errors.zipcode}
