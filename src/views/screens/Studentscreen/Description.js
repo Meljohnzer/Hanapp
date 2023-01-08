@@ -11,7 +11,7 @@ import Icon3 from 'react-native-vector-icons/Entypo';
 
 import { axiosRequest } from '../../components/api';
 
-const FirstRoute = ({navigation, arr}) => (
+const FirstRoute = ({navigation, arr,bookmark,Remove,save}) => (
     <ScrollView style={{}}>
    { arr.map((label,index)=>(<View key={index}>
    <View style={{borderWidth: 2, borderColor: '#e8e8e8', margin: 5, borderRadius: 10, padding: 5}}>
@@ -52,7 +52,20 @@ const FirstRoute = ({navigation, arr}) => (
     </View>
     </View>
     <View style={{marginTop: 15, marginBottom: 50, alignItems: 'center', flexDirection:'row', justifyContent: 'space-around'}}>
-    <TouchableOpacity  onPress={() => navigation.navigate('Home')}>
+   { save ? <TouchableOpacity  onPress={Remove}>
+    <View style={{borderColor: 'red',
+    alignSelf: 'center',
+    width: 150,
+    height: 'auto',
+    alignItems: 'center',
+    marginBottom: 0,
+    marginVertical: 10,
+    padding: 10,
+    borderRadius: 30,
+    borderWidth: 1,}}>
+      <Text style={{color: 'black', fontWeight: '400', fontSize: 18}}>unsaved</Text>
+    </View>
+    </TouchableOpacity> : <TouchableOpacity  onPress={bookmark}>
     <View style={{borderColor: 'orange',
     alignSelf: 'center',
     width: 150,
@@ -63,9 +76,11 @@ const FirstRoute = ({navigation, arr}) => (
     padding: 10,
     borderRadius: 30,
     borderWidth: 1,}}>
-      <Text style={{color: 'black', fontWeight: '400', fontSize: 18}}>Save</Text>
+      <Text style={{color: 'black', fontWeight: '400', fontSize: 18}}>save</Text>
       </View>
     </TouchableOpacity>
+    
+   }
     <TouchableOpacity  onPress={() => navigation.navigate('Apply')}>
       <View style={{borderColor: '#4169e1',
     alignSelf: 'center',
@@ -181,6 +196,8 @@ export default function Description({navigation,route}) {
       post : []
      })
      
+     const [save,setSave] = React.useState()
+     
      const { itemId } = route.params
      
 var Data ={
@@ -191,7 +208,29 @@ var Data ={
         'Access-Control-Allow-Origin': 'true',
         'Content-Type': 'application/json',
       };
-     
+    
+    
+    
+    
+ const Bookmark = () => {
+ axiosRequest.post('/api/save.php', JSON.stringify(Data), headers) 
+      .then((response) => {
+         console.log(response.data)
+         setSave(current => !current)
+         
+      })
+
+
+ }
+ 
+ const Remove = () => {
+ axiosRequest.post('/api/unsaved.php', JSON.stringify(Data), headers) 
+      .then((response) => {
+         console.log(response.data)
+         setSave(current => !current)
+      })
+ }
+ 
  
 React.useEffect(()=>{
  navigation.addListener('focus',async () => {
@@ -200,16 +239,27 @@ React.useEffect(()=>{
       .then((response) => {
 
 setGet (prevState => ({...prevState, post: response.data}))
-
       })
+      
+await axiosRequest.post('api/save.php',JSON.stringify(Data),headers).then((res)=>{
+     console.log(res.data)
+     if(res.data == 'Already Save'){
+      setSave(true)
+     }else{
+      
+     }
+     
+    })
+      
 }
 
+ 
   )},[])
     
     const renderScene = ({ route }) => {
         switch (route.key) {
           case 'first':
-            return <FirstRoute navigation={navigation} arr = {gets.post}/>;
+            return <FirstRoute bookmark = {Bookmark} Remove = {Remove} save = {save} navigation={navigation} arr = {gets.post}/>;
           case 'second':
             return <SecondRoute arr={gets.post} />;
           default:

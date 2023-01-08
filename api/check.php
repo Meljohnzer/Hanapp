@@ -9,11 +9,16 @@ function check_login($connect_db){
    if($result && mysqli_num_rows($result) >= 0){
      $user_data = mysqli_fetch_assoc($result);
      return $user_data;
+     
+header("location:login.php");
+die;
    }  
 
  }
- echo("ERROR NOT FOUND");
- die;
+
+
+
 }
+
 ?>
 
