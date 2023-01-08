@@ -104,7 +104,7 @@ setGet (prevState => ({...prevState, post: response.data}))
 
     <TouchableOpacity onPress={()=>{
      setPostID(label.postID)
-        navigation.navigate('Manage', { itemId : label.postID, })
+        navigation.navigate('Manage', { itemId : label.postID,title:label.lookingfor })
 
     }
     }>
