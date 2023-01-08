@@ -232,16 +232,17 @@ var Data ={
  }
  
  
+
+ 
 React.useEffect(()=>{
  navigation.addListener('focus',async () => {
-  
  await axiosRequest.post('/api/manage.php', JSON.stringify(Data), headers)  
       .then((response) => {
 
 setGet (prevState => ({...prevState, post: response.data}))
       })
       
-await axiosRequest.post('api/save.php',JSON.stringify(Data),headers).then((res)=>{
+await axiosRequest.post('api/condition2.php',JSON.stringify(Data),headers).then((res)=>{
      console.log(res.data)
      if(res.data == 'Already Save'){
       setSave(true)
