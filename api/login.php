@@ -2,7 +2,7 @@
 include('conDB.php');
 session_start();
 include('check.php');
-header("Access-Control-Allow-Headers: *");
+header("Access-Control-Allow-Headers: Authorization, Content-Type");
 header("Access-Control-Allow-Origin: *");
 header('content-type: application/json; charset=utf-8');
 
@@ -19,12 +19,18 @@ $DB_Elements= mysqli_fetch_array($query_result);
     if ($DB_Elements['password'] == $password && $DB_Elements['email'] == $email) {
       //  $Message = "Logged In Successfully";
        $id = $DB_Elements['userID'];
-       $query = "SELECT * FROM `userDetails` WHERE `userID` = '$id'";
+       $query = "SELECT * FROM `userDetails` LEFT JOIN guardian ON userDetails.userID = guardian.userID LEFT JOIN educationBG ON guardian.userID = educationBG.userID WHERE userDetails.userID = '$id'";
        $result = mysqli_query($connect_db,$query);
+       $element = mysqli_fetch_array($result);
       if($DB_Elements['usertype']== 1){
-       if(!mysqli_num_rows($result)){
+       if(!$element['firstname']){
            $Message = "no details yet";
-       }else{
+       }else if(!$element['gname']){
+        $Message = "no guardian yet";
+       }else if(!$element['schname']){
+        $Message = "no school yet";
+       }
+       else{
         $Message = "Student Login";
        }
        

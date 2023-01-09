@@ -119,7 +119,7 @@ setGet (prevState => ({...prevState, post: response.data}))
     
       <TouchableOpacity onPress={()=>{
      setPostID(label.postID)
-        navigation.navigate('Job description', { itemId : label.postID, })
+        navigation.navigate('Job description', { itemId : label.postID, title : label.lookingfor})
     }
     }>
       <View style={[Universalstyles.jobContent3, {}]}>

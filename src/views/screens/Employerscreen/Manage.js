@@ -168,7 +168,7 @@ export default function Manage({navigation,route,}) {
       post : []
      })
      
-     const { itemId } = route.params
+     const { itemId,title } = route.params
      
 var Data ={
       postID : itemId
@@ -181,6 +181,14 @@ var Data ={
      
  
 React.useEffect(()=>{
+ 
+navigation.setOptions({
+   title: title,
+   headerTitleAlign: 'center',
+   headerStyle: { backgroundColor: '#eede28', height: 150 },
+   headerTitleStyle: { fontWeight: '100', fontSize: 30 }
+  })
+ 
  navigation.addListener('focus',async () => {
   
  await axiosRequest.post('/api/manage.php', JSON.stringify(Data), headers)  

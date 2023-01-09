@@ -79,6 +79,12 @@ const Loginscreen = ({navigation}) => {
         case 'no details yet':
          navigation.navigate('User info')
          break;
+         case 'no guardian yet':
+         navigation.navigate('Guardian')
+         break;
+         case 'no school yet':
+         navigation.navigate('Education')
+         break;
        case 'Student Login':
          navigation.navigate('Studentscreen')
          break;
