@@ -361,6 +361,7 @@ axiosRequest.post('/api/user.php', JSON.stringify(Data), headers)
             <View style={{}}>
             <Button title='Next' onPress={validate}/>
             
+            
             </View>
         </View>
         

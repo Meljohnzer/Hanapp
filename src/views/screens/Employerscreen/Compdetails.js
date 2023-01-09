@@ -211,7 +211,7 @@ axiosRequest.post('/api/company.php', JSON.stringify(Data), headers)
              
         
              
-             <View style={{marginBottom: 50, alignItems: 'center', flexDirection:'row', justifyContent: 'space-around'}}>
+    <View style={{marginBottom: 50, alignItems: 'center', flexDirection:'row', justifyContent: 'space-around'}}>
     <TouchableOpacity  onPress={() => navigation.navigate('Employerscreen')}>
     <View style={{borderColor: 'red',
     alignSelf: 'center',
