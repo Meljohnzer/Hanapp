@@ -12,7 +12,7 @@ $id = $_SESSION['id'];
 
 
  
- $select = "SELECT postID,lookingfor,status,createdat FROM post WHERE userID = '$id'";
+ $select = "SELECT postID,lookingfor,status,createdat FROM post WHERE userID = '$id' ORDER BY createdat DESC";
 
 $exec = mysqli_query($connect_db,$select);
  $i=0;

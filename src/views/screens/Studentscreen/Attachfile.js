@@ -6,6 +6,7 @@ import Loader from "../../components/Loader";
 import React, { useState } from "react";
 import axios from 'axios'
 import { axiosRequest } from "../../components/api";
+import * as DocumentPicker from "expo-document-picker"
 
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
@@ -15,18 +16,18 @@ const wait = (timeout) => {
 const Attachfile = ({navigation}) => {
  
   const [inputs, setInputs] = React.useState({
-    Compname: '',
-    Establishdate: '',
-    WebsiteURL: '',
-    Compdesc: '',
+    CoR: '',
+    SchoolID: '',
+    Facebook: '',
+    CovLet: '',
 
   });
   
 var Data ={
-        compname: inputs.Compname ,
-        establishdate: inputs.Establishdate,
-        websiteurl: inputs.WebsiteURL,
-        compdesc: inputs.Compdesc
+        CoR: inputs.CoR.uri ,
+        SchoolID: inputs.SchoolID.uri,
+        Facebook: inputs.Facebook,
+        CovLet: inputs.CovLet.uri
       };
 
       var headers = {
@@ -50,20 +51,20 @@ var Data ={
     let valid = true;
 
    
-    if (!inputs.Compname){
-      handleError('Please attach file', 'Compname');
+    if (!inputs.CoR){
+      handleError('Please attach file', 'CoR');
       valid = false;
     } 
-    if (!inputs.Establishdate){
-        handleError('Please attach picture', 'Establishdate');
+    if (!inputs.SchoolID){
+        handleError('Please attach picture', 'SchoolID');
       valid = false;
     }
-    if (!inputs.Compdesc){
-        handleError('Please attach file', 'Compdesc');
+    if (!inputs.CovLet){
+        handleError('Please attach file', 'CovLet');
       valid = false;
     }
-    if (!inputs.WebsiteURL){
-        handleError('Please provide link', 'WebsiteURL');
+    if (!inputs.Facebook){
+        handleError('Please provide link', 'Facebook');
       valid = false;
     }
     
@@ -95,6 +96,32 @@ axiosRequest.post('/api/company.php', JSON.stringify(Data), headers)
   const handleError = (errorMessage, input) =>{
     setErrors((prevState) => ({...prevState, [input]: errorMessage}))
   }
+
+
+  const PickFile = async (file) => {
+      let File = await DocumentPicker.getDocumentAsync({
+        
+        type: ['application/*','image/*']
+       
+
+      })
+      if(File.type === 'cancel'){
+        console.log("cancel")
+      }else{
+      setInputs (prevState => ({...prevState, [file]: File}));
+      console.log(File.uri)
+      }
+  }
+
+  React.useEffect(()=> {
+    navigation.setOptions({
+      title: "Apply",
+      headerTitleAlign: 'center',
+      headerStyle: { backgroundColor: '#eede28', height: 150 },
+      headerTitleStyle: { fontWeight: '100', fontSize: 30 }
+     })
+  },[])
+ 
   
   return (
     <SafeAreaView style={{flex: 1}}>
@@ -114,8 +141,8 @@ axiosRequest.post('/api/company.php', JSON.stringify(Data), headers)
       <Loader visible={loading}/>
       <View style={[Universalstyles.signup, {}]}>
   
-        <View style={[Universalstyles.signupbg, { height: 'auto', paddingBottom: 50, justifyContent: 'center'}]}>
-          
+        <View style={[Universalstyles.signupbg, { height: 'auto', paddingBottom: 50, justifyContent:'center'}]}>
+        {/* {Data.SchoolID && <Image style= {{height:100,width:100,alignSelf:'center',borderRadius:100}} source={{uri : Data.SchoolID}}/>} */}
         <Text style= {{
             color: '#2f2f2f', 
             paddingVertical: 10,  
@@ -125,44 +152,64 @@ axiosRequest.post('/api/company.php', JSON.stringify(Data), headers)
 
         Attach file
         </Text>
-            <Input 
+            
+            <TouchableOpacity onPress={()=>{PickFile('CoR')
+            handleError(null, 'CoR')
+
+            }}>
+              <Input 
             placeholder= 'Certificate Of Registration' 
             iconName= 'file' 
-            
-            error={errors.Compname}
+            value={inputs.CoR.name}
+            editable={false}
+            error={errors.CoR}
             onFocus={() =>{
-              handleError(null, 'Compname');
+              handleError(null, 'CoR');
             }}
-            onChangeText = {text => handleOnChange(text, 'Compname')}
+            onChangeText = {text => handleOnChange(text, 'CoR')}
             />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={()=>{PickFile('CovLet')
+            handleError(null, 'CovLet')
+
+            }}>
             <Input 
             placeholder= 'Cover letter' 
+            value={inputs.CovLet.name}
             iconName= 'file' 
-            
-            error={errors.Compdesc}
+            editable={false}
+            error={errors.CovLet}
             onFocus={() =>{
-              handleError(null, 'Compdesc');
+              handleError(null, 'CovLet');
             }}
-            onChangeText = {text => handleOnChange(text, 'Compdesc')}
-            />
+            onChangeText = {text => handleOnChange(text, 'CovLet')}
+            /></TouchableOpacity>
+            
+            <TouchableOpacity  onPress={()=>{PickFile('SchoolID')
+            handleError(null, 'SchoolID')
+
+            }}
+            >
             <Input 
             placeholder= 'School ID picture' 
+            value={inputs.SchoolID.name}
             iconName= 'image' 
+            editable={false}
             keyboardType= 'numeric'
-            error={errors.Establishdate}
+            error={errors.SchoolID}
             onFocus={() =>{
-              handleError(null, 'Establishdate');
+              handleError(null, 'SchoolID');
             }}
-            onChangeText = {text => handleOnChange(text, 'Establishdate')}
-            />
+            onChangeText = {text => handleOnChange(text, 'SchoolID')}
+            /></TouchableOpacity>
             <Input 
             placeholder= 'Facebook profile link' 
             iconName= 'link' 
-            error={errors.WebsiteURL}
+            error={errors.Facebook}
             onFocus={() =>{
-              handleError(null, 'WebsiteURL');
+              handleError(null, 'Facebook');
             }}
-            onChangeText = {text => handleOnChange(text, 'WebsiteURL')}
+            onChangeText = {text => handleOnChange(text, 'Facebook')}
             />
                    
              

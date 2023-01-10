@@ -1,15 +1,81 @@
-import * as React from 'react';
-import { View, useWindowDimensions, Dimensions, Text, SafeAreaView, ScrollView, Image, TouchableOpacity} from 'react-native';
+import React, {useState} from 'react';
+import { View, useWindowDimensions, Dimensions, StyleSheet, Text, SafeAreaView, ScrollView, Image, Alert, TouchableOpacity} from 'react-native';
 import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
-import Logo from '../../../../assets/bg/bgimage5.jpg';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Universalstyles from '../../../const/Universalstyle';
-import Logo1 from '../../../../assets/bg/bgimage5.jpg';
+import * as ImagePicker from 'expo-image-picker';
+import Logo1 from '../../../../assets/bg/profile.png';
+import Logo from './../../../../assets/bg/bgimage5.jpg'
 import Icon2 from 'react-native-vector-icons/AntDesign';
 import Icon3 from 'react-native-vector-icons/Entypo';
 import Icon4 from 'react-native-vector-icons/Fontisto';
-import axios from 'axios'
+import { Menu, MenuProvider, MenuOptions, MenuOption, MenuTrigger } from 'react-native-popup-menu';
 import { axiosRequest } from '../../components/api';
+
+
+
+const checkIconAlert = () => Alert.alert(
+  "",
+  "Are you sure you want to accept new applicant?",
+  [
+    {
+      text: "Yes",
+      onPress: () => console.log("Yes Pressed"),
+      style: "yes"
+    },
+    { 
+      text: "No", onPress: () => console.log("No Pressed") 
+    }
+  ]
+);
+
+const closeIconAlert = () => Alert.alert(
+  "", 
+  "Are you sure you want to reject the applicant?",
+  [
+    {
+      text: "Yes",
+      onPress: () => console.log("Yes Pressed"),
+      style: "yes"
+    },
+    { 
+      text: "No", onPress: () => console.log("No Pressed")
+    }
+  ]
+);
+
+const ViewProfileMenu = ({ text,navigation }) => (
+  <MenuOption
+     onPress={() => navigation.navigate('Applicant profile')}
+    customStyles={{
+      optionWrapper: {
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
+      },
+    
+    }}
+  >
+    <Text>{text}</Text>
+  </MenuOption>
+);
+const ReportMenu = ({ text, value }) => (
+  <MenuOption
+    onSelect={() => alert(`You clicked ${value}`)}
+    customStyles={{
+      optionWrapper: {
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
+      },
+    }}
+  >
+    <Text>{text}</Text>
+  </MenuOption>
+);
+
+const Divider = () => <View style={styles.divider} />;
+
 
 const FirstRoute = ({navigation,arr}) => 
 
@@ -23,7 +89,7 @@ const FirstRoute = ({navigation,arr}) =>
      { label.compname && <Text style={Universalstyles.text}><Icon name='warehouse' style={{fontSize: 20, color: 'black', marginRight: 10}}/> {label.compname}</Text>}
       {/* <Text style={{ paddingHorizontal: 5, paddingBottom: 5, fontSize: 15,opacity:.5,}}><Icon name='map-marker' style={{fontSize: 20, color: 'black', }}/> Workplace address </Text> */}
       <Text style={Universalstyles.text}><Icon name='account' style={{fontSize: 20, color: 'blue', marginRight: 10}}/> {label.lastname}, {label.firstname} {label.midname}</Text>
-      <Text style={Universalstyles.text}><Icon name='map-marker' style={{fontSize: 20, color: 'red', marginRight: 10}}/> {label.street} {label.city} {label.province} {label.zipcode}</Text>
+      <Text style={Universalstyles.text}><Icon name='map-marker' style={{fontSize: 20, color: 'red', marginRight: 10}}/> {label.street}, {label.city}, {label.province}, {label.zipcode}</Text>
       {/* <Text style={Universalstyles.text}><Icon name='calendar-month' style={{fontSize: 20, color: 'black', marginRight: 10}}/> Year company started: </Text>
       <Text style={Universalstyles.text}><Icon name='account-group' style={{fontSize: 20, color: 'black', marginRight: 10}}/> Employees hired: </Text>
       <Text style={Universalstyles.text}><Icon name='account-group' style={{fontSize: 20, color: 'black', marginRight: 10}}/> Number of customers serve: </Text> */}
@@ -32,11 +98,11 @@ const FirstRoute = ({navigation,arr}) =>
       
       <View style={{ alignItems: 'center', flexDirection:'row', justifyContent: 'flex-start'}}>
       <Text style={Universalstyles.text}><Icon name='calendar-month' style={{fontSize: 20, color: 'blue', marginRight: 10}}/> Hiring start in:</Text> 
-      <Text style={{ paddingHorizontal: 80, paddingBottom: 5, fontSize: 15,opacity:.5}}><Icon name='calendar-month' style={{fontSize: 20, color: 'red', marginRight: 10}}/> Hiring end in: </Text>
+      <Text style={{ paddingHorizontal: 80, paddingBottom: 5, fontSize: 15,opacity:.5}}><Icon name='calendar-month' style={{fontSize: 20, color: 'red', marginRight: 10}}/> Hiring end on: </Text>
       </View>
       <View style={{ alignItems: 'center', flexDirection:'row', justifyContent: 'flex-start'}}>
-      <Text style={{  marginRight:10, fontSize: 15, opacity:.5}}>{label.startdate} </Text>
-      <Text style={{marginRight:10,paddingHorizontal:80,fontSize: 15, opacity:.5}}>{label.enddate}</Text>
+      <Text style={{paddingHorizontal: 25, fontSize: 15, opacity:.5}}>{label.startdate} </Text>
+      <Text style={{paddingHorizontal: 100,fontSize: 15, opacity:.5}}>{label.enddate}</Text>
       </View>
       <Text style={Universalstyles.text}></Text>
      </View>
@@ -123,15 +189,45 @@ const SecondRoute = ({navigation}) => (
       
       
       <View style={{alignItems: 'center', flexDirection: 'row',justifyContent:"flex-end", width:"100%" }}>
-      <TouchableOpacity onPress={() => navigation.navigate('')}>
-      <Icon2 name='closecircle' style={{fontSize: 25, color: 'red', marginRight: 10}}/>
+      <TouchableOpacity onPress={closeIconAlert}>
+      <Icon2 name='closecircle' style={{fontSize: 25, color: 'red', marginHorizontal: 10}}/>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate('')}>
+      <TouchableOpacity onPress={checkIconAlert}>
       <Icon2 name='checkcircle' style={{fontSize: 25, color: 'green', marginHorizontal: 10}}/>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate('')}>
-      <Icon3 name='dots-three-vertical' style={{fontSize: 25, color: 'black',}}/>
-      </TouchableOpacity>
+      
+      <MenuProvider style={styles.container}>
+                <Menu>
+                  <MenuTrigger
+                    customStyles={{
+                      triggerWrapper: {
+                        top: 0,
+                      },
+                    }}
+                  >
+                    <Icon3 name='dots-three-vertical' style={{fontSize: 25, color: 'black', marginHorizontal: 5 }}/>
+                  </MenuTrigger>
+                  <MenuOptions
+                    customStyles={{
+                       optionsContainer: {
+                        borderRadius: 10,
+                      },
+
+                    }}
+                  >
+                    <ViewProfileMenu
+                      text="View profile"
+                      value="View Profile"
+                      
+                    />
+                    <Divider />
+                    <ReportMenu
+                      text="Report"
+                      value="Report"
+                    />
+                  </MenuOptions>
+                </Menu>
+              </MenuProvider>
       </View>
       </View>
       
@@ -158,12 +254,29 @@ const SecondRoute = ({navigation}) => (
     />
 );
 
+const PlaceholderImage = require('../../../../assets/bg/bgimage5.jpg');
 
 
-
-export default function Manage({navigation,route,}) {
+export default function Manage({navigation,route, }) {
  
- 
+
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  const pickImageAsync = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      
+      allowsEditing: true,
+      quality: 1,
+    });
+
+
+    if (!result.canceled) {
+      setSelectedImage(()=> {result.assets[0].uri});
+    } else{
+      alert('You did not select any image.'); 
+    }
+  };
+
  const [gets,setGet] = React.useState({
       post : []
      })
@@ -226,15 +339,37 @@ setGet (prevState => ({...prevState, post: response.data}))
 
   return (
     <SafeAreaView style={{flex: 1}}>
-    <Image source={Logo} style={[{  
      
+      
+    { selectedImage ? <Image 
+   source= {{uri: selectedImage}}
+    style={[{  
      width: 'auto',
-     height: 'auto',
-     resizeMode: 'cover',height: height * 0.20, 
-    
-   
+     height: 100,
+     resizeMode: 'cover', height: height * 0.20, 
      }]} 
-     />
+     /> :  <Image 
+     source= {Logo}
+      style={[{  
+       width: 'auto',
+       height: 100,
+       resizeMode: 'cover', height: height * 0.20, 
+       }]} 
+       /> }
+     
+     <View style={{padding: 5, position: 'absolute', flex: 1}}>
+     <TouchableOpacity onPress={pickImageAsync}>
+     <View style={{backgroundColor: 'grey', width: 50, height: 50,  borderRadius: 25, padding: 6}}>
+     <Icon3 name='edit' style={{
+      fontSize: 35, 
+      color: 'gold', 
+      margin: 1
+      
+      }}/>
+     </View>
+     </TouchableOpacity>
+     </View>
+     
      {gets.post.map((label,index)=>(
      
 <TabView key= {index}
@@ -250,3 +385,15 @@ setGet (prevState => ({...prevState, post: response.data}))
 </SafeAreaView>
   );
 }
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    marginVertical: 0,
+    marginHorizontal: 0,
+  },
+  divider: {
+    height: StyleSheet.hairlineWidth,
+    backgroundColor: "#7F8487",
+  },
+ });
