@@ -18,10 +18,10 @@ const FirstRoute = ({navigation, arr,bookmark,Remove,save}) => (
       <Text style={Universalstyles.text2}><Icon4 name='person' style={{fontSize: 30, color: 'black', }}/> {label.lookingfor}</Text>
       {/* <Text style={{ paddingHorizontal: 5, paddingBottom: 5, fontSize: 30}}>Company name:</Text>
       <Text style={Universalstyles.text}><Icon name='email' style={{fontSize: 20, color: 'black', marginRight: 10}}/> Company email address: </Text> */}
-     {label.compname && <Text style={Universalstyles.text}><Icon name='warehouse' style={{fontSize: 20, color: 'black',}}/>{label.compname}</Text>}
+     {label.compname && <Text style={Universalstyles.text}><Icon name='warehouse' style={{fontSize: 20, color: 'black',}}/> {label.compname}</Text>}
       {/* <Text style={{ paddingHorizontal: 5, paddingBottom: 5, fontSize: 15,opacity:.5,}}><Icon name='map-marker' style={{fontSize: 20, color: 'black', }}/> Workplace address </Text> */}
-      <Text style={Universalstyles.text}><Icon name='account' style={{fontSize: 20, color: 'blue', }}/>{label.lastname}, {label.firstname} {label.midname}</Text>
-      <Text style={Universalstyles.text}><Icon name='map-marker' style={{fontSize: 20, color: 'red', }}/>  {label.street} {label.city} {label.province} {label.zipcode}</Text>
+      <Text style={Universalstyles.text}><Icon name='account' style={{fontSize: 20, color: 'blue', }}/> {label.lastname}, {label.firstname} {label.midname}</Text>
+      <Text style={Universalstyles.text}><Icon name='map-marker' style={{fontSize: 20, color: 'red', }}/> {label.street}, {label.city}, {label.province}, {label.zipcode}</Text>
       <Text style={Universalstyles.text}><Icon name='currency-php' style={{fontSize: 20, color: 'red', }}/> {label.salary} {label.rate} </Text>
       {/* <Text style={Universalstyles.text}><Icon name='calendar-month' style={{fontSize: 20, color: 'black', marginRight: 10}}/> Year company started: </Text>
       <Text style={Universalstyles.text}><Icon name='account-group' style={{fontSize: 20, color: 'black', marginRight: 10}}/> Employees hired: </Text>
@@ -30,11 +30,11 @@ const FirstRoute = ({navigation, arr,bookmark,Remove,save}) => (
       
       <View style={{ alignItems: 'center', flexDirection:'row', justifyContent: 'flex-start'}}>
       <Text style={Universalstyles.text}><Icon name='calendar-month' style={{fontSize: 20, color: 'blue', marginRight: 10}}/> Hiring start in: </Text>
-      <Text style={{ paddingHorizontal: 80, paddingBottom: 5, fontSize: 15,opacity:.5}}><Icon name='calendar-month' style={{fontSize: 20, color: 'red', marginRight: 10}}/> Hiring end in: </Text>
+      <Text style={{ paddingHorizontal: 80, paddingBottom: 5, fontSize: 15,opacity:.5}}><Icon name='calendar-month' style={{fontSize: 20, color: 'red', marginRight: 10}}/> Hiring end on: </Text>
       </View>
       <View style={{ alignItems: 'center', flexDirection:'row', justifyContent: 'flex-start'}}>
-      <Text style={{ paddingHorizontal: 5,  fontSize: 15, opacity:.5}}> {label.startdate}</Text>
-      <Text style={{ paddingHorizontal: 125,  fontSize: 15, opacity:.5}}>{label.enddate}</Text>
+      <Text style={{ paddingHorizontal: 25,  fontSize: 15, opacity:.5, color: "blue"}}> {label.startdate}</Text>
+      <Text style={{ paddingHorizontal: 105,  fontSize: 15, opacity:.5, color: "red"}}>{label.enddate}</Text>
       </View>
       <Text style={Universalstyles.text}></Text>
      </View>
@@ -141,8 +141,8 @@ const SecondRoute = ({arr}) => (
           }}>
             Employer information
         </Text>
-      <Text style={Universalstyles.text}><Icon name='account' style={{fontSize: 20, color: 'blue', }}/>  {label.lastname}, {label.firstname} {label.midname} {label.suffname}</Text>
-      <Text style={Universalstyles.text}><Icon name='map-marker' style={{fontSize: 20, color: 'red', }}/> {label.street} {label.city} {label.province} {label.zipcode}</Text>
+      <Text style={Universalstyles.text}><Icon name='account' style={{fontSize: 20, color: 'blue', }}/> {label.lastname}, {label.firstname} {label.midname} {label.suffname}</Text>
+      <Text style={Universalstyles.text}><Icon name='map-marker' style={{fontSize: 20, color: 'red', }}/> {label.street}, {label.city}, {label.province}, {label.zipcode}</Text>
       {/* <Text style={Universalstyles.text}><Icon name='calendar-month' style={{fontSize: 20, color: 'black', marginRight: 10}}/> Year company started: </Text>
       <Text style={Universalstyles.text}><Icon name='account-group' style={{fontSize: 20, color: 'black', marginRight: 10}}/> Employees hired: </Text>
       <Text style={Universalstyles.text}><Icon name='account-group' style={{fontSize: 20, color: 'black', marginRight: 10}}/> Number of customers serve: </Text> */}

@@ -94,9 +94,10 @@ txt2: {
     paddingBottom: 10,  
     borderBottomWidth: 2,
     borderColor: '#e8e8e8',
-    marginBottom: 10
+    
     
 },
+
 errotxt: {
     color: 'red', 
     fontSize: 12,

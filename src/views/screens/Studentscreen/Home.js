@@ -112,7 +112,7 @@ setGet (prevState => ({...prevState, post: response.data}))
     </View>
     <Text style={{fontSize: 20, borderBottomWidth: 1, marginBottom: 5, borderColor: '#cbc8ce'}}><Icon2 name='person' style={{fontSize: 23, color: 'black',}}/>  {label.lookingfor}</Text>
     {label.compname && <Text style={{opacity: .5}}><Icon name='warehouse' style={{fontSize: 20, color: 'black',}}/> {label.compname}</Text>}
-    <Text style={{opacity: .5 }}><Icon name='map-marker' style={{fontSize: 20, color: 'black', }}/> {label.street} {label.city} {label.province} {label.zipcode}</Text>
+    <Text style={{opacity: .5 }}><Icon name='map-marker' style={{fontSize: 20, color: 'black', }}/> {label.street}, {label.city}, {label.province}, {label.zipcode}</Text>
     <Text style={{opacity: .5 }}><Icon name='briefcase-outline' style={{fontSize: 20, color: 'black', }}/> {label.jobtype}</Text>   
     <Text style={{opacity: .5 }}><Icon name='clock-outline' style={{fontSize: 20, color: 'black', }}/> {moment(label.createdat).local().startOf('seconds').fromNow()}</Text>
 
@@ -130,7 +130,7 @@ setGet (prevState => ({...prevState, post: response.data}))
       </TouchableOpacity>
     </View>
     </View>
-    
+  
     </View>))}
     
  

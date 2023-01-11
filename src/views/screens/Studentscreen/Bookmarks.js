@@ -45,7 +45,6 @@ setGet (prevState => ({...prevState, post: response.data}))
       <ScrollView
         contentContainerStyle={{ 
           justifyContent: 'center',
-          height: Dimensions.get('window').height,
           width: Dimensions.get('window').width,
         }}
           refreshControl={
@@ -57,14 +56,17 @@ setGet (prevState => ({...prevState, post: response.data}))
           }
         >
         
-    <View style={[Universalstyles.signup, {height: 'auto'}]}>
-    <View style={{height: 'auto', padding: 10}}>
+    <View style={[{}]}>
+    <View style={{padding: 10, }}>
             <View  style= {Universalstyles.txt2}>
             <Text style={{ fontSize: 40, fontWeight: '500',}}>Bookmarks</Text>
             <Text style={{ fontSize: 12, marginLeft: 5}}>Your saved job will be place here for you to review</Text>
             </View>
+             </View>
+      </View>
+
       {gets.post.map((label,index)=>(
-<View key = {index} style={Universalstyles.jobPost}>
+<View key = {index} style={[Universalstyles.jobPost, {}]}>
   
     <View style={Universalstyles.jobContent}>
       
@@ -98,11 +100,7 @@ setGet (prevState => ({...prevState, post: response.data}))
     </View>
     
     </View>))}
-      </View>
-      
-
-      </View>
-
+     
     </ScrollView>
     </SafeAreaView>
   )

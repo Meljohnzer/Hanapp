@@ -1,6 +1,6 @@
 import { View, Text, Image, useWindowDimensions, TouchableOpacity, ScrollView, SafeAreaView, RefreshControl, Dimensions} from 'react-native'
 import Logo from '../../../../assets/bg/Picture3.png'
-import Logo1 from '../../../../assets/bg/bgimage5.jpg';
+import Logo1 from '../../../../assets/bg/profile2.png';
 import React from 'react'
 import Universalstyles from '../../../const/Universalstyle'
 import Icon from 'react-native-vector-icons/EvilIcons'
@@ -99,7 +99,7 @@ setGet (prevState => ({...prevState, post: response.data}))
     
    { label.status ? <Text style={{opacity:.5}}><Icon name='exclamation' style={{fontSize: 20, color: 'orange', alignContent: 'center'}}/> {'Status: '} <Text style={{color: 'green', }}>open</Text></Text> : <Text style={{opacity:.5}}><Icon name='exclamation' style={{fontSize: 20, color: 'orange', alignContent: 'center'}}/> {'Status: '} <Text style={{color: 'red', }}>close</Text></Text>}
 
-    <Text style={{opacity:.5}}><Icon2 name='account-group' style={{fontSize: 20, color: 'brown', alignContent: 'center'}}/> {'Applicants: '} <Text style={{color: 'blue', }}>87</Text></Text>
+    <Text style={{opacity:.5}}><Icon2 name='account-group' style={{fontSize: 20, color: 'brown', alignContent: 'center'}}/> Applicants: <Text style={{color: 'blue', }}> 87</Text></Text>
 <Text style={{opacity: .5 }}><Icon2 name='clock-outline' style={{fontSize: 20, color: 'black', }}/> {moment(label.createdat).local().startOf('seconds').fromNow()}</Text>
 
     <TouchableOpacity onPress={()=>{

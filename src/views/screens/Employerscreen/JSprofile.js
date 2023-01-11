@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity, Image, ScrollView, SafeAreaView, RefreshControl, Dimensions} from 'react-native'
 import React from 'react'
 import Universalstyles from '../../../const/Universalstyle'
-import Logo1 from '../../../../assets/bg/bgimage5.jpg';
+import Logo1 from '../../../../assets/bg/profile.png';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
@@ -37,13 +37,13 @@ const Profile = ({navigation}) => {
         <View style={{flex: 1, margin:10, flexDirection: 'row', alignSelf: 'flex-end',}}>
         <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center',  }}> 
           <Text style={{ opacity: 0.6}}>
-          Email: 
+          Email: <Text style={{fontWeight: 'bold',}}></Text>
         </Text>
         <Text style={{opacity: 0.6}}>
-          Contact number: 
+          Contact number: <Text style={{fontWeight: 'bold',}}></Text>
         </Text>
         <Text style={{opacity: 0.6}}>
-          Address: 
+          Address: <Text style={{fontWeight: 'bold',}}></Text>
         </Text>
         </View>
        
@@ -64,22 +64,13 @@ const Profile = ({navigation}) => {
         <Text style={{fontSize: 20, fontWeight: '500'}}> Personal information</Text>
         <View style={{padding: 5}}>
         <Text style={{opacity: 0.6}}>
-          Full name: 
+          Full name: <Text style={{fontWeight: 'bold', textTransform: 'capitalize'}}></Text>
         </Text>
         <Text style={{opacity: 0.6}}>
-          Birthday: 
+          Birthday: <Text style={{fontWeight: 'bold', textTransform: 'capitalize'}}></Text>
         </Text>
         <Text style={{opacity: 0.6}}>
-          Age: 
-        </Text>
-        <Text style={{opacity: 0.6}}>
-          Blood type: 
-        </Text>
-        <Text style={{opacity: 0.6}}>
-          Nationality 
-        </Text>
-        <Text style={{opacity: 0.6}}>
-          Language: 
+          Age: <Text style={{fontWeight: 'bold', textTransform: 'capitalize'}}></Text>
         </Text>
         
         </View>
@@ -93,10 +84,10 @@ const Profile = ({navigation}) => {
         <View style={{padding: 5}}>
         
         <Text style={{opacity: 0.6}}>
-          Guardian name: 
+          Guardian name: <Text style={{fontWeight: 'bold', textTransform: 'capitalize'}}></Text>
         </Text>
         <Text style={{opacity: 0.6}}>
-          Contact number: 
+          Contact number: <Text style={{fontWeight: 'bold', textTransform: 'capitalize'}}></Text>
         </Text>
         </View>
       </View>
@@ -105,77 +96,72 @@ const Profile = ({navigation}) => {
         <Text style={{fontSize: 20, fontWeight: '500'}}> Educational background (current)</Text>
         <View style={{padding: 5}}>
         <Text style={{opacity: 0.6}}>
-          School name
+          School name: <Text style={{fontWeight: 'bold', }}></Text>
         </Text>
         <Text style={{opacity: 0.6}}>
-          School address
+          School address: <Text style={{fontWeight: 'bold', }}></Text>
         </Text>
         <Text style={{opacity: 0.6}}>
-          Year & level
+          Year & level: <Text style={{fontWeight: 'bold', textTransform: 'capitalize'}}></Text>
         </Text>
         <Text style={{opacity: 0.6}}>
-          Course
+        <Text style={{fontWeight: 'bold', textTransform: 'capitalize'}}></Text>
         </Text>
         </View>
       </View>
-      <View style={{borderWidth: .3, borderColor: '#aba9ab', marginHorizontal: 10, position: 'relative'}}></View>
-        <View style={{paddingHorizontal: 5, paddingVertical: 20, alignSelf: 'flex-start'}}>
-        <Text style={{fontSize: 20, fontWeight: '500'}}> Skills</Text>
-        <View style={{padding: 5}}>
-        <Text style={{opacity: 0.6}}>
-        {'\u2022'}
-        </Text>
-      </View>
-      </View>
+  
       <View style={{borderWidth: .3, borderColor: '#aba9ab', marginHorizontal: 10, position: 'relative'}}></View>
         <View style={{paddingHorizontal: 5, paddingVertical: 20, alignSelf: 'flex-start'}}>
         <Text style={{fontSize: 20, fontWeight: '500'}}> Submitted requirements</Text>
         <View style={{padding: 5}}>
-        <Text style={{opacity: 0.6}}>
-        <Icon 
-            name= 'attachment'
-            style={{fontSize: 22, color: 'grey', marginRight: 10}}
-
-        />
-        </Text>
-      </View>
-      </View>
-      </View>
+        <View style={{ flex: 1, flexDirection: 'row',  alignSelf: 'center' , }}>
       
-      {/* <View style={Universalstyles.studprofile}>
-          <Text style={{textAlign: 'center', fontWeight: '400', fontSize: 20, borderBottomWidth: 2, borderColor: '#e8e8e8', width: 'auto', textTransform: 'uppercase'}}>samuel george y. dela cruz</Text>
-          <Text style={{textAlign: 'center', fontWeight: '500', textTransform: 'capitalize', color: 'blue'}}>name</Text>
+      <View style={{}}>
+      <TouchableOpacity onPress={() => navigation.navigate('')}>
+      <View style={[Universalstyles.jobContent3, {flexDirection: 'column',height: 45, alignItems: 'center' }]}>
+      <Text style={{fontSize: 20, color: 'white', fontWeight: 'bold'}}>Cover letter</Text>
       </View>
-      <View style={[Universalstyles.studprofile, {marginVertical: 20}]}>
-          <Text style={{textAlign: 'center', fontWeight: '400', fontSize: 20, borderBottomWidth: 2, borderColor: '#e8e8e8',  width: 'auto', textTransform: 'uppercase'}}>25 years old</Text>
-          <Text style={{textAlign: 'center', fontWeight: '500', textTransform: 'capitalize', color: 'blue'}}>Age</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate('')}>
+      <View style={[Universalstyles.jobContent3, {flexDirection: 'column',height: 45 }]}>
+      <Text style={{fontSize: 20, color: 'white', fontWeight: 'bold'}}>Certificate of Registration</Text>
       </View>
-      <View style={[Universalstyles.studprofile]}>
-          <Text style={{textAlign: 'center', fontWeight: '400', fontSize: 20, borderBottomWidth: 2, borderColor: '#e8e8e8',  width: 'auto', textTransform: 'uppercase'}}>0123-456-7890</Text>
-          <Text style={{textAlign: 'center', fontWeight: '500', textTransform: 'capitalize', color: 'blue'}}>Contact number</Text>
+      </TouchableOpacity>
       </View>
-      <View style={[Universalstyles.studprofile, {marginVertical: 20}]}>
-          <Text style={{textAlign: 'center', fontWeight: '400', fontSize: 20, borderBottomWidth: 2, borderColor: '#e8e8e8', width: 'auto', textTransform: 'capitalize'}}>C.M. Recto Avenue Lapasan, Cagayan de Oro City 9000</Text>
-          <Text style={{textAlign: 'center', fontWeight: '500', textTransform: 'capitalize', color: 'blue'}}>Address</Text>
       </View>
-      <View style={[Universalstyles.studprofile]}>
-          <Text style={{textAlign: 'center', fontWeight: '400', fontSize: 20, borderBottomWidth: 2, borderColor: '#e8e8e8', width: 'auto', textTransform: 'capitalize'}}>University of science and technology of the philippines</Text>
-          <Text style={{textAlign: 'center', fontWeight: '500', textTransform: 'capitalize', color: 'blue'}}>School name</Text>
       </View>
-      <View style={[Universalstyles.studprofile, {marginVertical: 20}]}>
-          <Text style={{textAlign: 'center', fontWeight: '400', fontSize: 20, borderBottomWidth: 2, borderColor: '#e8e8e8', width: 'auto', textTransform: 'uppercase'}}>College</Text>
-          <Text style={{textAlign: 'center', fontWeight: '500', textTransform: 'capitalize', color: 'blue'}}>Education stage</Text>
       </View>
-      <View style={[Universalstyles.studprofile]}>
-          <Text style={{textAlign: 'center', fontWeight: '400', fontSize: 20, borderBottomWidth: 2, borderColor: '#e8e8e8', width: 'auto', textTransform: 'uppercase'}}>1st year college</Text>
-          <Text style={{textAlign: 'center', fontWeight: '500', textTransform: 'capitalize', color: 'blue'}}>Year & level</Text>
       </View>
-      <View style={[Universalstyles.studprofile, {marginVertical: 20}]}>
-          <Text style={{textAlign: 'center', fontWeight: '400', fontSize: 20, borderBottomWidth: 2, borderColor: '#e8e8e8', width: 'auto', textTransform: 'uppercase'}}>BS - Information technology</Text>
-          <Text style={{textAlign: 'center', fontWeight: '500', textTransform: 'capitalize', color: 'blue'}}>Course</Text>
-      </View> */}
-     
-
+      <View style={{marginTop: 15, marginBottom: 50, alignItems: 'center', flexDirection:'row', justifyContent: 'space-around'}}>
+    <TouchableOpacity  onPress={() => navigation.navigate('Home')}>
+    <View style={{borderColor: 'red',
+    alignSelf: 'center',
+    width: 150,
+    height: 'auto',
+    alignItems: 'center',
+    marginBottom: 0,
+    marginVertical: 10,
+    padding: 10,
+    borderRadius: 30,
+    borderWidth: 1,}}>
+      <Text style={{color: 'black', fontWeight: '400', fontSize: 18}}>Decline</Text>
+      </View>
+    </TouchableOpacity>
+    <TouchableOpacity  onPress={() => navigation.navigate('Home')}>
+      <View style={{borderColor: '#4169e1',
+    alignSelf: 'center',
+    width: 150,
+    height: 'auto',
+    alignItems: 'center',
+    marginBottom: 0,
+    marginVertical: 10,
+    padding: 10,
+    borderRadius: 30,
+    borderWidth: 1,}}>
+      <Text style={{color: 'black', fontWeight: 'light', fontSize: 18}}>Approve</Text>
+      </View>
+    </TouchableOpacity>
+    </View>
 
     </ScrollView>
     </SafeAreaView>

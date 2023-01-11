@@ -115,6 +115,7 @@ export default function App() {
       name='Company profile'
       component={Cprofile}
       />
+
 <Stack.Screen options={{headerShown: true}}
       name='Applicant profile'
       component={JSprofile}

@@ -83,7 +83,7 @@ setGet (prevState => ({...prevState, profile: data}))
         </View>
       </View> : <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center',  }}> 
         
-          <TouchableOpacity  onPress={()=> navigation.navigate('Company details')}>
+      <TouchableOpacity  onPress={()=> navigation.navigate('Company details')}>
       <View style={[Universalstyles.jobContent3, {marginRight: 20}]}>
       <Text style={{color: 'white', fontWeight: 'bold', fontSize: 18,}}>Add Company</Text>
       </View>

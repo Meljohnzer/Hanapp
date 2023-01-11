@@ -54,13 +54,13 @@ setGet (prevState => ({...prevState, profile: data}));
         <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center',  }}> 
         
           <Text style={{ opacity: 0.6}}>
-          Email:{profiles.email}
+          Email: <Text style={{fontWeight: 'bold',}}>{profiles.email}</Text>
         </Text>
         <Text style={{opacity: 0.6}}>
-          {profiles.contactno}
+          Contact no: <Text style={{fontWeight: 'bold',}}>{profiles.contactno}</Text>
         </Text>
         <Text style={{opacity: 0.6}}>
-          Address: {profiles.street} {profiles.city} {profiles.province} {profiles.zipcode}
+          Address: <Text style={{fontWeight: 'bold',}}>{profiles.street}, {profiles.city}, {profiles.province}, {profiles.zipcode}</Text>
         </Text>
         </View>
        
@@ -80,14 +80,11 @@ setGet (prevState => ({...prevState, profile: data}));
         <View style={{paddingHorizontal: 5, paddingVertical: 20, alignSelf: 'flex-start'}}>
         <Text style={{fontSize: 20, fontWeight: '500'}}> Personal information</Text>
         <View style={{padding: 5}}>
-        <Text style={{opacity: 0.6}}>
-          {profiles.lastname},{profiles.firstname} {profiles.midname}
+        <Text style={{opacity: 0.6}}>Fullname: <Text style={{fontWeight: 'bold', textTransform: 'capitalize'}}>{profiles.lastname}, {profiles.firstname} {profiles.midname}</Text>
         </Text>
-        <Text style={{opacity: 0.6}}>
-          {profiles.birthday}
+        <Text style={{opacity: 0.6}}>Date of birth: <Text style={{fontWeight: 'bold', textTransform: 'capitalize'}}>{profiles.birthday}</Text>
         </Text>
-        <Text style={{opacity: 0.6}}>
-         {profiles.age}
+        <Text style={{opacity: 0.6}}>Age: <Text style={{fontWeight: 'bold', textTransform: 'capitalize'}}>{profiles.age}</Text>
         </Text>
         
        
@@ -102,11 +99,9 @@ setGet (prevState => ({...prevState, profile: data}));
         <Text style={{fontSize: 20, fontWeight: '500'}}> Guardian information</Text>
         <View style={{padding: 5}}>
         
-        <Text style={{opacity: 0.6}}>
-         {profiles.gname}
+        <Text style={{opacity: 0.6}}>Guardian name: <Text style={{fontWeight: 'bold', textTransform: 'capitalize'}}>{profiles.gname}</Text>
         </Text>
-        <Text style={{opacity: 0.6}}>
-         {profiles.gcontactno}
+        <Text style={{opacity: 0.6}}>Contact no: <Text style={{fontWeight: 'bold', textTransform: 'capitalize'}}>{profiles.gcontactno}</Text>
         </Text>
         </View>
       </View>
@@ -114,17 +109,13 @@ setGet (prevState => ({...prevState, profile: data}));
         <View style={{paddingHorizontal: 5, paddingVertical: 20, alignSelf: 'flex-start'}}>
         <Text style={{fontSize: 20, fontWeight: '500'}}> Educational background (current)</Text>
         <View style={{padding: 5}}>
-        <Text style={{opacity: 0.6}}>
-          {profiles.schname}
+        <Text style={{opacity: 0.6}}>School name: <Text style={{fontWeight: 'bold'}}>{profiles.schname}</Text>
         </Text>
-        <Text style={{opacity: 0.6}}>
-          {profiles.schaddress}
+        <Text style={{opacity: 0.6}}>School address: <Text style={{fontWeight: 'bold'}}>{profiles.schaddress}</Text>
         </Text>
-        <Text style={{opacity: 0.6}}>
-          {profiles.yearlevel}
+        <Text style={{opacity: 0.6}}>Year & level: <Text style={{fontWeight: 'bold', textTransform: 'capitalize'}}>{profiles.yearlevel}</Text>
         </Text>
-        <Text style={{opacity: 0.6}}>
-          {profiles.course}
+        <Text style={{opacity: 0.6}}><Text style={{fontWeight: 'bold', textTransform: 'uppercase'}}>{profiles.course}</Text>
         </Text>
         </View>
       </View>

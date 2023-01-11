@@ -331,30 +331,17 @@ var Data ={
               onChange={onChange1}
               />
               )}
-              <TouchableOpacity onPress={()=>{showDatePicker1()
-            handleError(null, 'enddate')
-            }}>
-            <Input 
-            placeholder= 'Hiring End Date (YYYY-MM-DD)' 
+              <Input 
+            placeholder= 'Hiring Start Date (YYYY-MM-DD)' 
             iconName= 'calendar-month' 
-            editable={false}
-            value = {inputs.enddate}
+            keyboardType='numeric'
             error={errors.enddate}
             onFocus={() =>{
               handleError(null, 'enddate');
             }}
             onChangeText = {text => handleOnChange(text, 'enddate')}
-            /></TouchableOpacity>
-              {show1 && (
-              <DateTimePicker
-              testID="dateTimePicker"
-              value={date1}
-              mode={mode1}
-              is24Hour={true}
-              display='default'
-              onChange={onChange1}
-              />
-              )}
+           
+            />
            
      
 <View style={{marginBottom: 50, alignItems: 'center'}}>
