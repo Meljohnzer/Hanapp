@@ -8,6 +8,7 @@ import Universalstyles from '../../../const/Universalstyle';
 import Logo1 from '../../../../assets/bg/profile2.png';
 import Icon2 from 'react-native-vector-icons/AntDesign';
 import Icon3 from 'react-native-vector-icons/Entypo';
+import * as DocumentPicker from "expo-document-picker"
 
 import { axiosRequest } from '../../components/api';
 
@@ -210,7 +211,22 @@ var Data ={
       };
     
     
-    
+    // const [myimg,setMyimg] = React.useState()
+
+
+    // const Chimg = async() =>{
+    //   let File = await DocumentPicker.getDocumentAsync({
+    //     type: 'image/*'
+    //   })
+    //   if(File.type === 'cancel'){
+    //     console.log("cancel")
+    //   }else{
+    //   setMyimg(()=> File.uri);
+    //   console.log(File.uri)
+    //   }
+
+
+    // }
     
  const Bookmark = () => {
  axiosRequest.post('/api/save.php', JSON.stringify(Data), headers) 
@@ -288,15 +304,16 @@ await axiosRequest.post('api/condition2.php',JSON.stringify(Data),headers).then(
   return (
     <SafeAreaView style={{flex: 1}}>
         
-    <Image source={Logo} style={[{  
+   <Image source={Logo} style={[{  
      
-     width: 'auto',
-     height: 'auto',
-     resizeMode: 'cover',height: height * 0.20, 
+      width: 'auto',
+      height: 'auto',
+      resizeMode: 'cover',height: height * 0.20, 
+     
     
-   
-     }]} 
-     />
+      }]} 
+      /> 
+
     <TabView
     navigationState={{ index, routes }}
     renderScene={renderScene}

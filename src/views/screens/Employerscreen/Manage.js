@@ -5,12 +5,15 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Universalstyles from '../../../const/Universalstyle';
 import * as ImagePicker from 'expo-image-picker';
 import Logo1 from '../../../../assets/bg/profile.png';
+import Logo from './../../../../assets/bg/bgimage5.jpg'
 import Icon2 from 'react-native-vector-icons/AntDesign';
 import Icon3 from 'react-native-vector-icons/Entypo';
 import Icon4 from 'react-native-vector-icons/Fontisto';
-import { Menu, MenuProvider, MenuOptions, MenuOption, MenuTrigger } from 'react-native-popup-menu';
+import OptionsMenu from "react-native-option-menu";
 import { axiosRequest } from '../../components/api';
 
+
+const myIcon = (<Icon3 name='dots-three-vertical' size={30} color="black " />)
 
 
 const checkIconAlert = () => Alert.alert(
@@ -43,39 +46,26 @@ const closeIconAlert = () => Alert.alert(
   ]
 );
 
-const ViewProfileMenu = ({ text,navigation }) => (
-  <MenuOption
-     onPress={() => navigation.navigate('Applicant profile')}
-    customStyles={{
-      optionWrapper: {
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "space-between",
+const report = () => Alert.alert(
+    "", 
+    "Are you sure you want to report this applicant?",
+    [
+      {
+        text: "Yes",
+        onPress: () => console.log("Yes Pressed"),
+        style: "yes"
       },
-    
-    }}
-  >
-    <Text>{text}</Text>
-  </MenuOption>
-);
-const ReportMenu = ({ text, value }) => (
-  <MenuOption
-    onSelect={() => alert(`You clicked ${value}`)}
-    customStyles={{
-      optionWrapper: {
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "space-between",
-      },
-    }}
-  >
-    <Text>{text}</Text>
-  </MenuOption>
-);
-
-const Divider = () => <View style={styles.divider} />;
-
-
+      { 
+        text: "No", onPress: () => console.log("No Pressed")
+      }
+    ]
+  );
+  
+  const profile = (navigation, onPress=()=>{}) => {
+    onPress = () => {navigation.navigate('Applicant profile')}
+  }
+      
+  
 const FirstRoute = ({navigation,arr}) => 
 
 
@@ -152,7 +142,7 @@ const FirstRoute = ({navigation,arr}) =>
  
 
 
-const SecondRoute = ({navigation}) => (
+const SecondRoute = ({navigation, onPress}) => (
  
 <ScrollView style={{}}>
 <View style={{height: 'auto', borderWidth: 2, borderColor: '#e8e8e8', borderRadius: 0, margin: 0}}>
@@ -189,44 +179,18 @@ const SecondRoute = ({navigation}) => (
       
       <View style={{alignItems: 'center', flexDirection: 'row',justifyContent:"flex-end", width:"100%" }}>
       <TouchableOpacity onPress={closeIconAlert}>
-      <Icon2 name='closecircle' style={{fontSize: 25, color: 'red', marginHorizontal: 10}}/>
+      <Icon2 name='closecircle' style={{fontSize: 30, color: 'red', marginHorizontal: 10}}/>
       </TouchableOpacity>
       <TouchableOpacity onPress={checkIconAlert}>
-      <Icon2 name='checkcircle' style={{fontSize: 25, color: 'green', marginHorizontal: 10}}/>
+      <Icon2 name='checkcircle' style={{fontSize: 30, color: 'green', marginHorizontal: 10}}/>
       </TouchableOpacity>
+      <OptionsMenu
       
-      <MenuProvider style={styles.container}>
-                <Menu>
-                  <MenuTrigger
-                    customStyles={{
-                      triggerWrapper: {
-                        top: 0,
-                      },
-                    }}
-                  >
-                    <Icon3 name='dots-three-vertical' style={{fontSize: 25, color: 'black', marginHorizontal: 5 }}/>
-                  </MenuTrigger>
-                  <MenuOptions
-                    customStyles={{
-                       optionsContainer: {
-                        borderRadius: 10,
-                        
-                      },
-                    }}
-                  >
-                    <ViewProfileMenu
-                      text="View profile"
-                      value="View Profile"
-                      
-                    />
-                    <Divider />
-                    <ReportMenu
-                      text="Report"
-                      value="Report"
-                    />
-                  </MenuOptions>
-                </Menu>
-              </MenuProvider>
+      customButton={myIcon}
+      options={["Profile", "Report", "Cancel"]}
+      actions={[profile, report]}
+      />
+     
       </View>
       </View>
       
@@ -253,26 +217,26 @@ const SecondRoute = ({navigation}) => (
     />
 );
 
-const PlaceholderImage = require('../../../../assets/bg/bgimage5.jpg');
+// const PlaceholderImage = require('../../../../assets/bg/bgimage5.jpg');
 
 
-export default function Manage({navigation,route, }) {
+export default function Manage({navigation,route, onPress }) {
  
 
   const [selectedImage, setSelectedImage] = useState(null);
 
   const pickImageAsync = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
+      
       allowsEditing: true,
       quality: 1,
     });
 
-    console.log(result);
 
     if (!result.canceled) {
-      setSelectedImage(result.assets[0].uri);
-    } else {
-      alert('You did not select any image.');
+      setSelectedImage(()=> {result.assets[0].uri});
+    } else{
+      alert('You did not select any image.'); 
     }
   };
 
@@ -339,15 +303,21 @@ setGet (prevState => ({...prevState, post: response.data}))
   return (
     <SafeAreaView style={{flex: 1}}>
      
-      
-     <Image 
-   source= {{uri: selectedImage}}
+    { selectedImage ? <Image 
+    source= {{uri: selectedImage}}
     style={[{  
      width: 'auto',
      height: 100,
      resizeMode: 'cover', height: height * 0.20, 
      }]} 
-     /> 
+     /> :  <Image 
+     source= {Logo}
+      style={[{  
+       width: 'auto',
+       height: 100,
+       resizeMode: 'cover', height: height * 0.20, 
+       }]} 
+       /> }
      
      <View style={{padding: 5, position: 'absolute', flex: 1}}>
      <TouchableOpacity onPress={pickImageAsync}>
@@ -377,15 +347,3 @@ setGet (prevState => ({...prevState, post: response.data}))
 </SafeAreaView>
   );
 }
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    marginVertical: 0,
-    marginHorizontal: 0,
-  },
-  divider: {
-    height: StyleSheet.hairlineWidth,
-    backgroundColor: "#7F8487",
-  },
- });

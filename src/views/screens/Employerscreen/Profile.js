@@ -117,7 +117,7 @@ setGet (prevState => ({...prevState, profile: data}))
           {profiles.lastname}, {profiles.firstname} {profiles.midname}
         </Text>
         <Text style={{opacity: 0.6}}>
-          {profiles.street}, {profiles.city} {profiles.province} {profiles.zipcode}
+          {profiles.street}, {profiles.city}, {profiles.province}, {profiles.zipcode}
         </Text>
         </View>
       </View>
