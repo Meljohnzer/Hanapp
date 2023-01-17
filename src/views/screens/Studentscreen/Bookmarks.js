@@ -73,11 +73,7 @@ setGet (prevState => ({...prevState, post: response.data}))
     <Image source={Logo1} style={Universalstyles.Jobimage}/>
    
     <View style={Universalstyles.jobContent2}>
-    <View style={{flex: 1,  flexDirection: 'row' ,alignSelf: 'flex-end', left: 5, bottom: 5}}>
-    <TouchableOpacity onPress={() => navigation.navigate('')}>
-      <Icon name='dots-horizontal' style={{fontSize: 30, color: 'black', }}/>
-      </TouchableOpacity>
-    </View>
+   
     <Text style={{fontSize: 20, borderBottomWidth: 1, marginBottom: 5, borderColor: '#cbc8ce'}}><Icon2 name='person' style={{fontSize: 23, color: 'black',}}/>  {label.lookingfor}</Text>
     {label.compname && <Text style={{opacity: .5}}><Icon name='warehouse' style={{fontSize: 20, color: 'black',}}/> {label.compname}</Text>}
     <Text style={{opacity: .5 }}><Icon name='map-marker' style={{fontSize: 20, color: 'black', }}/> {label.street} {label.city} {label.province} {label.zipcode}</Text>

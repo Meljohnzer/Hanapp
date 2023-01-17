@@ -45,6 +45,7 @@ import Review from './src/views/screens/Employerscreen/Review';
 import Interview from './src/views/screens/Employerscreen/Interview';
 import Interviewinfo from './src/views/screens/Studentscreen/Interviewinfo';
 import Richtext from './src/views/components/Richtext';
+import Appstatus from './src/views/screens/Studentscreen/Appstatus';
 
 
 const Stack = createNativeStackNavigator();
@@ -133,6 +134,10 @@ export default function App() {
 <Stack.Screen options={{headerShown: true}}
       name='Interview information'
       component={Interviewinfo}
+      />
+<Stack.Screen options={{headerShown: true}}
+      name='Application status'
+      component={Appstatus}
       />
 <Stack.Screen options={{headerShown: true}}
       name='Richtext'

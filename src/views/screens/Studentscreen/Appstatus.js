@@ -19,7 +19,7 @@ const wait = (timeout) => {
     return new Promise(resolve => setTimeout(resolve, timeout));
   }
 
-export default function Interviewinfo({navigation,}) {
+export default function Appstatus({navigation,}) {
  
   
   const {height, width} = useWindowDimensions();

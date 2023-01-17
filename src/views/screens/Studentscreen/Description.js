@@ -16,21 +16,14 @@ const FirstRoute = ({navigation, arr,bookmark,Remove,save,apply}) => (
     <ScrollView style={{}}>
    { arr.map((label,index)=>(<View key={index}>
    <View style={{borderWidth: 2, borderColor: '#e8e8e8', margin: 5, borderRadius: 10, padding: 5}}>
-      <Text style={Universalstyles.text2}><Icon4 name='person' style={{fontSize: 30, color: 'black', }}/> {label.lookingfor}</Text>
-      {/* <Text style={{ paddingHorizontal: 5, paddingBottom: 5, fontSize: 30}}>Company name:</Text>
-      <Text style={Universalstyles.text}><Icon name='email' style={{fontSize: 20, color: 'black', marginRight: 10}}/> Company email address: </Text> */}
-     {label.compname && <Text style={Universalstyles.text}><Icon name='warehouse' style={{fontSize: 20, color: 'black',}}/> {label.compname}</Text>}
-      {/* <Text style={{ paddingHorizontal: 5, paddingBottom: 5, fontSize: 15,opacity:.5,}}><Icon name='map-marker' style={{fontSize: 20, color: 'black', }}/> Workplace address </Text> */}
+      <Text style={Universalstyles.text2}><Icon4 name='person' style={{fontSize: 30, color: 'grey', }}/> {label.lookingfor}</Text>
+      {label.compname && <Text style={Universalstyles.text}><Icon name='warehouse' style={{fontSize: 20, color: 'blue',}}/> {label.compname}</Text>}
       <Text style={Universalstyles.text}><Icon name='account' style={{fontSize: 20, color: 'blue', }}/> {label.lastname}, {label.firstname} {label.midname}</Text>
-      <Text style={Universalstyles.text}><Icon name='map-marker' style={{fontSize: 20, color: 'red', }}/> {label.street}, {label.city}, {label.province}, {label.zipcode}</Text>
-      <Text style={Universalstyles.text}><Icon name='currency-php' style={{fontSize: 20, color: 'red', }}/> {label.salary} {label.rate} </Text>
-      {/* <Text style={Universalstyles.text}><Icon name='calendar-month' style={{fontSize: 20, color: 'black', marginRight: 10}}/> Year company started: </Text>
-      <Text style={Universalstyles.text}><Icon name='account-group' style={{fontSize: 20, color: 'black', marginRight: 10}}/> Employees hired: </Text>
-      <Text style={Universalstyles.text}><Icon name='account-group' style={{fontSize: 20, color: 'black', marginRight: 10}}/> Number of customers serve: </Text> */}
-
+      <Text style={Universalstyles.text}><Icon name='map-marker' style={{fontSize: 20, color: 'blue', }}/> {label.street}, {label.city}, {label.province}, {label.zipcode}</Text>
+      <Text style={Universalstyles.text}><Icon name='currency-php' style={{fontSize: 20, color: 'blue', }}/> {label.salary} {label.rate} </Text>
       
       <View style={{ alignItems: 'center', flexDirection:'row', justifyContent: 'flex-start'}}>
-      <Text style={Universalstyles.text}><Icon name='calendar-month' style={{fontSize: 20, color: 'blue', marginRight: 10}}/> Hiring start in: </Text>
+      <Text style={Universalstyles.text}><Icon name='calendar-month' style={{fontSize: 20, color: 'green', marginRight: 10}}/> Hiring start in: </Text>
       <Text style={{ paddingHorizontal: 80, paddingBottom: 5, fontSize: 15,opacity:.5}}><Icon name='calendar-month' style={{fontSize: 20, color: 'red', marginRight: 10}}/> Hiring end on: </Text>
       </View>
       <View style={{ alignItems: 'center', flexDirection:'row', justifyContent: 'flex-start'}}>
@@ -142,11 +135,7 @@ const SecondRoute = ({arr}) => (
     }}/>
     </View>
     </View>
-      {/* <Text style={{ paddingHorizontal: 5, paddingVertical: 0, fontSize: 30}}><Icon name='star' style={{fontSize: 30, color: 'gold',}}/> Back-end developer</Text> */}
-      {/* <Text style={{ paddingHorizontal: 5, paddingBottom: 5, fontSize: 30}}>Company name:</Text>
-      <Text style={Universalstyles.text}><Icon name='email' style={{fontSize: 20, color: 'black', marginRight: 10}}/> Company email address: </Text> */}
-      {/* <Text style={{ paddingHorizontal: 5, paddingBottom: 5, fontSize: 15,opacity:.5,}}><Icon name='map-marker' style={{fontSize: 20, color: 'black', }}/> Workplace address </Text> */}
-      <Text style= {{
+     <Text style= {{
             color: '#2f2f2f', 
             paddingVertical: 10, 
             paddingHorizontal: 5,  
@@ -155,11 +144,8 @@ const SecondRoute = ({arr}) => (
           }}>
             Employer information
         </Text>
-      <Text style={Universalstyles.text}><Icon name='account' style={{fontSize: 20, color: 'blue', }}/> {label.lastname}, {label.firstname} {label.midname} {label.suffname}</Text>
-      <Text style={Universalstyles.text}><Icon name='map-marker' style={{fontSize: 20, color: 'red', }}/> {label.street}, {label.city}, {label.province}, {label.zipcode}</Text>
-      {/* <Text style={Universalstyles.text}><Icon name='calendar-month' style={{fontSize: 20, color: 'black', marginRight: 10}}/> Year company started: </Text>
-      <Text style={Universalstyles.text}><Icon name='account-group' style={{fontSize: 20, color: 'black', marginRight: 10}}/> Employees hired: </Text>
-      <Text style={Universalstyles.text}><Icon name='account-group' style={{fontSize: 20, color: 'black', marginRight: 10}}/> Number of customers serve: </Text> */}
+      <Text style={Universalstyles.text}><Icon name='account-outline' style={{fontSize: 20, color: 'blue', }}/> {label.lastname}, {label.firstname} {label.midname} {label.suffname}</Text>
+      <Text style={Universalstyles.text}><Icon name='map-marker' style={{fontSize: 20, color: 'blue', }}/> {label.street}, {label.city}, {label.province}, {label.zipcode}</Text>
       {label.compname &&<Text style= {{
             color: '#2f2f2f', 
             paddingVertical: 10, 
@@ -169,8 +155,8 @@ const SecondRoute = ({arr}) => (
           }}>
             Company information
         </Text>}
-      {label.compname && <Text style={Universalstyles.text}><Icon name='warehouse' style={{fontSize: 25, color: 'black',}}/> {label.compname} </Text>}
-      {label.establishdate &&<Text style={Universalstyles.text}><Icon name='medal-outline' style={{fontSize: 20, color: 'gold', }}/>  Since {label.establishdate} </Text>}
+      {label.compname && <Text style={Universalstyles.text}><Icon name='warehouse' style={{fontSize: 25, color: 'blue',}}/> {label.compname} </Text>}
+      {label.establishdate &&<Text style={Universalstyles.text}><Icon name='medal-outline' style={{fontSize: 20, color: 'blue', }}/>  Since {label.establishdate} </Text>}
       
      </View>
 

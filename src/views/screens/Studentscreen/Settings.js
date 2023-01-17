@@ -1,10 +1,12 @@
-import { View, Text, TouchableOpacity, ScrollView, Dimensions, SafeAreaView, RefreshControl} from 'react-native'
+import { View, Text, TouchableOpacity, Dimensions, ScrollView, Image, SafeAreaView, RefreshControl} from 'react-native'
 import React from 'react'
 import Universalstyles from '../../../const/Universalstyle'
 import Fontaw from 'react-native-vector-icons/FontAwesome';
 import MatIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import MatIcon2 from 'react-native-vector-icons/MaterialIcons';
+import Logo1 from '../../../../assets/bg/bgimage5.jpg';
 import { axiosRequest } from '../../components/api';
+
 
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
@@ -12,28 +14,23 @@ const wait = (timeout) => {
 
 
 const Settings = ({navigation}) => {
+  const logout = () =>{
+   
+    axiosRequest.get('/api/logout.php')  
+      .then((response) => {
+        
+        navigation.navigate('Log in')
+      });
+  }
 
   const [refreshing, setRefreshing] = React.useState(false);
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
     wait(2000).then(() => setRefreshing(false));
   }, []);
-  const logout = () =>{
-     setTimeout(async()=>{
-      axiosRequest.get('/api/logout.php')  
-      .then((response) => {
-navigation.navigate('Log in')
-         
-        
-        
-      });
-      
-     },1000)
-  }
 
 
   return (
-
     <SafeAreaView style={{flex: 1}}>
      <ScrollView
           contentContainerStyle={{
@@ -49,12 +46,12 @@ navigation.navigate('Log in')
             />
           }
         >
-    <View style={{flex: 1}}>
+          <View style={{flex: 1}}>
     <View style={Universalstyles.setAccount}>
       <Text style={{fontSize: 40, fontWeight: '500', }}>Account</Text>
       <Text style={{fontSize: 12}}>Update your info to keep your account secure</Text>
     </View>
-    <TouchableOpacity onPress={() => navigation.navigate('')}>
+    <TouchableOpacity onPress={() => navigation.navigate('Personal & account information')}>
     <View style={{flexDirection: 'row', alignItems: 'center' , }}>
     <Fontaw 
       name='user-circle'
@@ -69,7 +66,7 @@ navigation.navigate('Log in')
       </View>
     </View>
     </TouchableOpacity>
-    <TouchableOpacity onPress={() => navigation.navigate('')}>
+    <TouchableOpacity onPress={() => navigation.navigate('Password and security')}>
     <View style={{flexDirection: 'row', alignItems: 'center' , }}>
     <MatIcon 
       name='security'
@@ -87,7 +84,7 @@ navigation.navigate('Log in')
     <View style={[Universalstyles.setAccount, {borderTopWidth: 1,}]}>
       <Text style={{fontSize: 40, fontWeight: '500'}}>Help and support   </Text>
     </View>
-    <TouchableOpacity onPress={() => navigation.navigate('')}>
+    <TouchableOpacity onPress={() => navigation.navigate('Help')}>
     <View style={{flexDirection: 'row', alignItems: 'center' , }}>
     <Fontaw 
       name='support'
@@ -103,7 +100,7 @@ navigation.navigate('Log in')
     </View>
     </TouchableOpacity>
 
-    <TouchableOpacity onPress={() => navigation.navigate('')}>
+    <TouchableOpacity onPress={() => navigation.navigate('Support inbox')}>
     <View style={{flexDirection: 'row', alignItems: 'center' , }}>
     <Fontaw 
       name='inbox'
@@ -118,7 +115,7 @@ navigation.navigate('Log in')
       </View>
     </View>
     </TouchableOpacity>
-<TouchableOpacity onPress={() => navigation.navigate('')}>
+<TouchableOpacity onPress={() => navigation.navigate('About us')}>
     <View style={{flexDirection: 'row', alignItems: 'center'}}>
     <Fontaw 
       name='exclamation-circle'
@@ -133,7 +130,7 @@ navigation.navigate('Log in')
       </View>
     </View>
     </TouchableOpacity>
-    <TouchableOpacity onPress={() => navigation.navigate('')}>
+    <TouchableOpacity onPress={() => navigation.navigate('Report a problem')}>
     <View style={{flexDirection: 'row', alignItems: 'center'}}>
     <MatIcon2 
       name='report-problem'
@@ -146,8 +143,9 @@ navigation.navigate('Log in')
         Report a problem
       </Text>
       </View>
-    </View>
+    </View >
     </TouchableOpacity>
+ 
     <View style={{marginBottom: 50, alignItems: 'center'}}>
     <TouchableOpacity  onPress={logout}>
       <View style={Universalstyles.logout}>
