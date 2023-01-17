@@ -62,10 +62,10 @@ const report = () => Alert.alert(
   );
   
   
-<<<<<<< HEAD
-=======
 
->>>>>>> 38505d50bab43f10e27994dcfe8e9c903b94536c
+
+
+
       
   
 const FirstRoute = ({navigation,arr}) => 
@@ -145,13 +145,13 @@ const FirstRoute = ({navigation,arr}) =>
  
 
 
-<<<<<<< HEAD
-const SecondRoute = ({navigation, onPress,profile}) => (
+
+
  
-=======
+
 const SecondRoute = ({navigation, profile}) => (
   
->>>>>>> 38505d50bab43f10e27994dcfe8e9c903b94536c
+
 <ScrollView style={{}}>
 <View style={{height: 'auto', borderWidth: 2, borderColor: '#e8e8e8', borderRadius: 0, margin: 0}}>
     
@@ -243,12 +243,12 @@ export default function Manage({navigation,route, }) {
 
 
     if (!result.canceled) {
-<<<<<<< HEAD
+
       setSelectedImage(result.assets[0].uri);
       console.log(result.assets[0].uri)
-=======
+
       setSelectedImage (result.assets[0].uri);
->>>>>>> 38505d50bab43f10e27994dcfe8e9c903b94536c
+
     } else{
       alert('You did not select any image.'); 
     }
@@ -258,15 +258,15 @@ export default function Manage({navigation,route, }) {
       post : []
      })
      
-<<<<<<< HEAD
+
  const Profile = () => {
     navigation.navigate('Applicant profile')
   }
      
-     const { itemId,title } = route.params
-=======
+    
+
 const { itemId,title } = route.params
->>>>>>> 38505d50bab43f10e27994dcfe8e9c903b94536c
+
      
 var Data ={
       postID : itemId
@@ -306,11 +306,11 @@ setGet (prevState => ({...prevState, post: response.data}))
           case 'first':
             return <FirstRoute navigation={navigation} arr = {gets.post}/>;
           case 'second':
-<<<<<<< HEAD
+
             return <SecondRoute navigation={navigation}  profile = {Profile}  />;
-=======
+
             return <SecondRoute navigation={navigation} profile={profile} />;
->>>>>>> 38505d50bab43f10e27994dcfe8e9c903b94536c
+
          
             
           default:
