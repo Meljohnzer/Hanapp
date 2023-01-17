@@ -20,6 +20,13 @@ const wait = (timeout) => {
 
 const Home = ({navigation}) => {
 
+
+const [id,setId] = React.useState()
+
+const gg = {
+ gg : id
+}
+console.log(id)
   const [refreshing, setRefreshing] = React.useState(false);
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
@@ -30,6 +37,10 @@ const Home = ({navigation}) => {
   const [value,setValue] = useState();
   function updateSearch(value){
   }
+  
+
+
+
   
  const [gets,setGet] = React.useState({
       post : []
@@ -66,20 +77,23 @@ const report = () => Alert.alert(
       }
     ]
   );
-  const save = () => Alert.alert(
+  function Save(id){ Alert.alert(
     "", 
     "Are you sure you want to save this post?",
     [
       {
         text: "Yes",
-        onPress: () => console.log("Yes Pressed"),
+        onPress:  () =>{console.log(id)}
+        ,
         style: "yes"
       },
       { 
         text: "No", onPress: () => console.log("No Pressed")
       }
     ]
-  );
+  )
+  };
+  
   
   return (
 <SafeAreaView>
@@ -134,14 +148,18 @@ const report = () => Alert.alert(
 
     <View style={Universalstyles.jobContent2}>
     <View style={{flex: 1,  flexDirection: 'row' ,alignSelf: 'flex-end', left: 5, bottom: 5}}>
-    
     <OptionsMenu
+    key={label.postID}
   customButton={myIcon}
-
   options={["Save", "Report", "Cancel"]}
-  actions={[save, report]}
+  actions={[Save, report]}
+  
+ // onPress = {()=>setId(()=>{label.postID})}
+  
+  
+
   />
-     
+
     </View>
     <Text style={{fontSize: 20, borderBottomWidth: 1, marginBottom: 5, borderColor: '#cbc8ce'}}><Icon2 name='person' style={{fontSize: 23, color: 'black',}}/>  {label.lookingfor}</Text>
     {label.compname && <Text style={{opacity: .5}}><Icon name='warehouse' style={{fontSize: 20, color: 'black',}}/> {label.compname}</Text>}

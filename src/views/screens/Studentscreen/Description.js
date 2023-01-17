@@ -82,7 +82,7 @@ const FirstRoute = ({navigation, arr,bookmark,Remove,save}) => (
     </TouchableOpacity>
     
    }
-    <TouchableOpacity  onPress={() => navigation.navigate('Apply')}>
+    <TouchableOpacity  onPress={() => navigation.navigate('Apply',{postID:label.postID})}>
       <View style={{borderColor: '#4169e1',
     alignSelf: 'center',
     width: 150,

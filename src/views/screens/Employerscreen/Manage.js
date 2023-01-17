@@ -61,9 +61,7 @@ const report = () => Alert.alert(
     ]
   );
   
-  const profile = (navigation, onPress=()=>{}) => {
-    onPress = () => {navigation.navigate('Applicant profile')}
-  }
+  
       
   
 const FirstRoute = ({navigation,arr}) => 
@@ -142,7 +140,7 @@ const FirstRoute = ({navigation,arr}) =>
  
 
 
-const SecondRoute = ({navigation, onPress}) => (
+const SecondRoute = ({navigation, onPress,profile}) => (
  
 <ScrollView style={{}}>
 <View style={{height: 'auto', borderWidth: 2, borderColor: '#e8e8e8', borderRadius: 0, margin: 0}}>
@@ -233,8 +231,10 @@ export default function Manage({navigation,route, onPress }) {
     });
 
 
+
     if (!result.canceled) {
-      setSelectedImage(()=> {result.assets[0].uri});
+      setSelectedImage(result.assets[0].uri);
+      console.log(result.assets[0].uri)
     } else{
       alert('You did not select any image.'); 
     }
@@ -243,6 +243,10 @@ export default function Manage({navigation,route, onPress }) {
  const [gets,setGet] = React.useState({
       post : []
      })
+     
+ const Profile = () => {
+    navigation.navigate('Applicant profile')
+  }
      
      const { itemId,title } = route.params
      
@@ -284,7 +288,7 @@ setGet (prevState => ({...prevState, post: response.data}))
           case 'first':
             return <FirstRoute navigation={navigation} arr = {gets.post}/>;
           case 'second':
-            return <SecondRoute navigation={navigation} />;
+            return <SecondRoute navigation={navigation}  profile = {Profile}  />;
          
             
           default:
