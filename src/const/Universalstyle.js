@@ -193,6 +193,16 @@ text2: {
     
 },
 
+text3: {
+    padding: 5, 
+    paddingBottom: 5, 
+    marginBottom: 10, 
+    fontSize: 30, 
+    borderBottomWidth: 1, 
+    borderColor: '#cbc8ce',
+    textAlign: 'center'
+},
+
 Jobimage:{
     width: 100,
     height: 100,
@@ -231,6 +241,18 @@ jobContent3: {
     padding: 10,
     borderRadius: 10,
     backgroundColor: '#4169e1',
+},
+
+jobstatus: {
+    width: 'auto',
+    height: 'auto',
+    alignItems: 'center',
+    marginBottom: 5,
+    marginVertical: 10,
+    marginLeft: 10,
+    padding: 10,
+    borderRadius: 10,
+    backgroundColor: 'orange',
 },
 setAccount: {
     padding: 10,
