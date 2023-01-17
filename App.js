@@ -44,6 +44,7 @@ import Cemail from './src/views/screens/Employerscreen/Cemail';
 import Review from './src/views/screens/Employerscreen/Review';
 import Interview from './src/views/screens/Employerscreen/Interview';
 import Interviewinfo from './src/views/screens/Studentscreen/Interviewinfo';
+import Richtext from './src/views/components/Richtext';
 
 
 const Stack = createNativeStackNavigator();
@@ -132,6 +133,10 @@ export default function App() {
 <Stack.Screen options={{headerShown: true}}
       name='Interview information'
       component={Interviewinfo}
+      />
+<Stack.Screen options={{headerShown: true}}
+      name='Richtext'
+      component={Richtext}
       />
 <Stack.Screen options={{headerShown: true}}
       name='Settings'

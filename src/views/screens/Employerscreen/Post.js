@@ -8,6 +8,7 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 import Selectlist2 from "../../components/Selectlist2";
 import Selectlist3 from "../../components/Selectlist3";
 import { axiosRequest } from "../../components/api";
+import RichText from "../../components/Richtext";
 
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
@@ -242,7 +243,7 @@ var Data ={
               }}
             onChange = {item => handleOnChange(item.label, 'rate')}
             />
-             <Input 
+             {/* <Input 
             placeholder= 'Job description' 
             iconName= 'newspaper-variant-outline' 
             error={errors.Jobdesc}
@@ -250,8 +251,15 @@ var Data ={
               handleError(null, 'Jobdesc');
             }}
             onChangeText = {text => handleOnChange(text, 'Jobdesc')}
+            /> */}
+            <RichText
+              placeholder= 'Job description...' 
+              error={errors.Jobdesc}
+              onFocus={() =>{
+                handleError(null, 'Jobdesc');
+              }}
+              onChange = {text => handleOnChange(text, 'Jobdesc')}
             />
-            
  <Text style={{fontSize: 20, fontWeight: '500' ,opacity:0.6, marginBottom: 10}}> Job Location</Text>
             
            <View style = {{}}>
