@@ -7,6 +7,9 @@ import React, { useState } from "react";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import axios from 'axios'
 import { axiosRequest } from "../../components/api";
+import RichText from "../../components/Richtext";
+
+
 
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
@@ -198,17 +201,14 @@ axiosRequest.post('/api/company.php', JSON.stringify(Data), headers)
 {/* TEMPORAY */}
 
             
-            <Input 
-            placeholder= 'Company description' 
-            iconName= 'newspaper-variant-outline' 
-            
-            error={errors.Compdesc}
-            onFocus={() =>{
-              handleError(null, 'Compdesc');
-            }}
-            onChangeText = {text => handleOnChange(text, 'Compdesc')}
+<RichText
+              placeholder= 'Company description...' 
+              error={errors.compdesc}
+              onFocus={() =>{
+                handleError(null, 'compdesc');
+              }}
+              onChange = {text => handleOnChange(text, 'compdesc')}
             />
-             
         
              
     <View style={{marginBottom: 50, alignItems: 'center', flexDirection:'row', justifyContent: 'space-around'}}>
