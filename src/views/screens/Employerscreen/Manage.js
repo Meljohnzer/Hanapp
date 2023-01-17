@@ -61,9 +61,8 @@ const report = () => Alert.alert(
     ]
   );
   
-  const profile = (navigation, onPress=()=>{}) => {
-    onPress = () => {navigation.navigate('Applicant profile')}
-  }
+  
+
       
   
 const FirstRoute = ({navigation,arr}) => 
@@ -83,6 +82,7 @@ const FirstRoute = ({navigation,arr}) =>
       <Text style={Universalstyles.text}><Icon name='account-group' style={{fontSize: 20, color: 'black', marginRight: 10}}/> Employees hired: </Text>
       <Text style={Universalstyles.text}><Icon name='account-group' style={{fontSize: 20, color: 'black', marginRight: 10}}/> Number of customers serve: </Text> */}
     <Text style={Universalstyles.text}><Icon name='briefcase-outline' style={{fontSize: 20, color: 'black', }}/> {label.jobtype}</Text> 
+    <Text style={Universalstyles.text}><Icon name='currency-php' style={{fontSize: 20, color: 'red', }}/> {label.salary} {label.rate} </Text>
 
       
       <View style={{ alignItems: 'center', flexDirection:'row', justifyContent: 'flex-start'}}>
@@ -142,8 +142,8 @@ const FirstRoute = ({navigation,arr}) =>
  
 
 
-const SecondRoute = ({navigation, onPress}) => (
- 
+const SecondRoute = ({navigation, profile}) => (
+  
 <ScrollView style={{}}>
 <View style={{height: 'auto', borderWidth: 2, borderColor: '#e8e8e8', borderRadius: 0, margin: 0}}>
     
@@ -220,9 +220,9 @@ const SecondRoute = ({navigation, onPress}) => (
 // const PlaceholderImage = require('../../../../assets/bg/bgimage5.jpg');
 
 
-export default function Manage({navigation,route, onPress }) {
+export default function Manage({navigation,route, }) {
  
-
+  const profile = () => navigation.navigate('Applicant profile');
   const [selectedImage, setSelectedImage] = useState(null);
 
   const pickImageAsync = async () => {
@@ -234,7 +234,7 @@ export default function Manage({navigation,route, onPress }) {
 
 
     if (!result.canceled) {
-      setSelectedImage(()=> {result.assets[0].uri});
+      setSelectedImage (result.assets[0].uri);
     } else{
       alert('You did not select any image.'); 
     }
@@ -244,7 +244,7 @@ export default function Manage({navigation,route, onPress }) {
       post : []
      })
      
-     const { itemId,title } = route.params
+const { itemId,title } = route.params
      
 var Data ={
       postID : itemId
@@ -261,8 +261,8 @@ React.useEffect(()=>{
 navigation.setOptions({
    title: title,
    headerTitleAlign: 'center',
-   headerStyle: { backgroundColor: '#eede28', height: 150 },
-   headerTitleStyle: { fontWeight: '100', fontSize: 30 }
+   headerStyle: { backgroundColor: 'white', height: 150 },
+   headerTitleStyle: { fontWeight: '100', fontSize: 25 }
   })
  
  navigation.addListener('focus',async () => {
@@ -284,7 +284,7 @@ setGet (prevState => ({...prevState, post: response.data}))
           case 'first':
             return <FirstRoute navigation={navigation} arr = {gets.post}/>;
           case 'second':
-            return <SecondRoute navigation={navigation} />;
+            return <SecondRoute navigation={navigation} profile={profile} />;
          
             
           default:
@@ -299,10 +299,10 @@ setGet (prevState => ({...prevState, post: response.data}))
     { key: 'second', title: 'Applicants' },
   ]
   );
-
+  
   return (
     <SafeAreaView style={{flex: 1}}>
-     
+    
     { selectedImage ? <Image 
     source= {{uri: selectedImage}}
     style={[{  
@@ -318,10 +318,10 @@ setGet (prevState => ({...prevState, post: response.data}))
        resizeMode: 'cover', height: height * 0.20, 
        }]} 
        /> }
-     
-     <View style={{padding: 5, position: 'absolute', flex: 1}}>
+     <View style={{flexDirection: 'row-reverse',  justifyContent: 'flex-start', alignItems: 'flex-end'}}>
+     <View style={{padding: 5, position: 'absolute', flex: 1, }}>
      <TouchableOpacity onPress={pickImageAsync}>
-     <View style={{backgroundColor: 'grey', width: 50, height: 50,  borderRadius: 25, padding: 6}}>
+     <View style={{backgroundColor: 'grey', width: 50, height: 50,  borderRadius: 25, padding: 6,}}>
      <Icon3 name='edit' style={{
       fontSize: 35, 
       color: 'gold', 
@@ -331,7 +331,7 @@ setGet (prevState => ({...prevState, post: response.data}))
      </View>
      </TouchableOpacity>
      </View>
-     
+     </View>
      {gets.post.map((label,index)=>(
      
 <TabView key= {index}

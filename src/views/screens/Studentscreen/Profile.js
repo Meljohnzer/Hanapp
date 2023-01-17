@@ -9,7 +9,7 @@ const wait = (timeout) => {
 }
 
 
-const Profile = ({navigation}) => {
+const Profile = ({navigation,}) => {
  
  
   const [gets,setGet] = React.useState({
@@ -23,14 +23,19 @@ const Profile = ({navigation}) => {
   
  
   React.useEffect(()=>{
- axiosRequest.get('/api/sprofile.php').then((response)=>response.data).then((data)=>{
-setGet (prevState => ({...prevState, profile: data}));
-  
-  console.log(gets.profile)
-  
- })
-  },[])
  
+    navigation.addListener('focus',async () => {
+  
+      await axiosRequest.get('/api/sprofile.php').then((response)=>response.data).then((data)=>{
+     setGet (prevState => ({...prevState, profile: data}))
+      })
+       
+      })
+     
+      
+       },[])
+       
+       
   
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
@@ -80,7 +85,7 @@ setGet (prevState => ({...prevState, profile: data}));
         <View style={{paddingHorizontal: 5, paddingVertical: 20, alignSelf: 'flex-start'}}>
         <Text style={{fontSize: 20, fontWeight: '500'}}> Personal information</Text>
         <View style={{padding: 5}}>
-        <Text style={{opacity: 0.6}}>Fullname: <Text style={{fontWeight: 'bold', textTransform: 'capitalize'}}>{profiles.lastname}, {profiles.firstname} {profiles.midname}</Text>
+        <Text style={{opacity: 0.6}}>Name: <Text style={{fontWeight: 'bold', textTransform: 'capitalize'}}>{profiles.lastname}, {profiles.firstname} {profiles.midname}</Text>
         </Text>
         <Text style={{opacity: 0.6}}>Date of birth: <Text style={{fontWeight: 'bold', textTransform: 'capitalize'}}>{profiles.birthday}</Text>
         </Text>
