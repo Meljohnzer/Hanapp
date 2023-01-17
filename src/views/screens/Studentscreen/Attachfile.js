@@ -102,7 +102,15 @@ var Data ={
 axiosRequest.post('/api/apply.php',formData,config)
       .then((response) => {
         console.log(response.data);
-       // console.log(form);
+       Alert.alert("Applcation Sent Successfully","Wait for the Employer to respond for your application",
+        [
+    {
+      text: "Okay!",
+      onPress: () => navigation.navigate("Home"),
+      style: "yes"
+    }
+  ]
+       )
           
       });
      

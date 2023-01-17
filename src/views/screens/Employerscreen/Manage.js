@@ -11,6 +11,9 @@ import Icon3 from 'react-native-vector-icons/Entypo';
 import Icon4 from 'react-native-vector-icons/Fontisto';
 import OptionsMenu from "react-native-option-menu";
 import { axiosRequest } from '../../components/api';
+import { WebView } from 'react-native-webview';
+import HTMLView from 'react-native-htmlview';
+
 
 
 const myIcon = (<Icon3 name='dots-three-vertical' size={30} color="black " />)
@@ -105,9 +108,14 @@ const FirstRoute = ({navigation,arr}) =>
    <View style={{padding: 10, margin: 10, borderBottomWidth: 1, borderColor: '#cbc8ce'}}>
     <Text style={{fontSize:20, textAlign: 'center', fontWeight: '500'}}>Job Description</Text>
     </View>
-    <View style={{padding: 5, }}>
-    <Text style={{paddingBottom: 10, margin: 3, fontSize: 20, alignSelf: 'center', fontWeight: '500'}}> {label.jobdesc}
-    </Text>
+    <View style={{paddingHorizontal: 50,paddingVertical:20}}>
+  {/* <Text style={{paddingBottom: 10, margin: 3, fontSize: 20, alignSelf: 'center', fontWeight: '500'}}> {label.jobdesc}
+    </Text>*/}
+    
+    <HTMLView
+    
+    value = {label.jobdesc}
+  />
     </View>
     </View>
     </View>))}

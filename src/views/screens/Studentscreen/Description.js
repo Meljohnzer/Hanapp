@@ -12,7 +12,7 @@ import * as DocumentPicker from "expo-document-picker"
 
 import { axiosRequest } from '../../components/api';
 
-const FirstRoute = ({navigation, arr,bookmark,Remove,save}) => (
+const FirstRoute = ({navigation, arr,bookmark,Remove,save,apply}) => (
     <ScrollView style={{}}>
    { arr.map((label,index)=>(<View key={index}>
    <View style={{borderWidth: 2, borderColor: '#e8e8e8', margin: 5, borderRadius: 10, padding: 5}}>
@@ -82,7 +82,20 @@ const FirstRoute = ({navigation, arr,bookmark,Remove,save}) => (
     </TouchableOpacity>
     
    }
-    <TouchableOpacity  onPress={() => navigation.navigate('Apply',{postID:label.postID})}>
+    {apply ? <TouchableOpacity  >
+      <View style={{borderColor: 'red',
+    alignSelf: 'center',
+    width: 150,
+    height: 'auto',
+    alignItems: 'center',
+    marginBottom: 0,
+    marginVertical: 10,
+    padding: 10,
+    borderRadius: 30,
+    borderWidth: 1,}}>
+      <Text style={{color: 'black', fontWeight: 'light', fontSize: 18}}>Abort</Text>
+      </View>
+    </TouchableOpacity> : <TouchableOpacity  onPress={() => navigation.navigate('Apply',{postID:label.postID})}>
       <View style={{borderColor: '#4169e1',
     alignSelf: 'center',
     width: 150,
@@ -95,7 +108,7 @@ const FirstRoute = ({navigation, arr,bookmark,Remove,save}) => (
     borderWidth: 1,}}>
       <Text style={{color: 'black', fontWeight: 'light', fontSize: 18}}>Apply</Text>
       </View>
-    </TouchableOpacity>
+    </TouchableOpacity> }
     </View>
     </View>))}
    </ScrollView>
@@ -198,6 +211,7 @@ export default function Description({navigation,route}) {
      })
      
      const [save,setSave] = React.useState()
+     const [apply,setApply] = React.useState()
      
      const { itemId,title } = route.params
      
@@ -276,6 +290,16 @@ await axiosRequest.post('api/condition2.php',JSON.stringify(Data),headers).then(
      }
      
     })
+    
+await axiosRequest.post('api/condition3.php',JSON.stringify(Data),headers).then((res)=>{
+     console.log(res.data)
+     if(res.data == 'Already applied'){
+      setApply(true)
+     }else{
+      
+     }
+     
+    })
       
 }
 
@@ -299,7 +323,7 @@ await axiosRequest.post('api/condition2.php',JSON.stringify(Data),headers).then(
     const renderScene = ({ route }) => {
         switch (route.key) {
           case 'first':
-            return <FirstRoute bookmark = {Bookmark} Remove = {Remove} save = {save} navigation={navigation} arr = {gets.post}/>;
+            return <FirstRoute bookmark = {Bookmark} Remove = {Remove} save = {save} navigation={navigation} arr = {gets.post} apply = {apply}/>;
           case 'second':
             return <SecondRoute arr={gets.post} />;
           default:
