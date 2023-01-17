@@ -51,7 +51,7 @@ const Settings = ({navigation}) => {
       <Text style={{fontSize: 40, fontWeight: '500', }}>Account</Text>
       <Text style={{fontSize: 12}}>Update your info to keep your account secure</Text>
     </View>
-    <TouchableOpacity onPress={() => navigation.navigate('')}>
+    <TouchableOpacity onPress={() => navigation.navigate('Personal & account information')}>
     <View style={{flexDirection: 'row', alignItems: 'center' , }}>
     <Fontaw 
       name='user-circle'
@@ -66,7 +66,7 @@ const Settings = ({navigation}) => {
       </View>
     </View>
     </TouchableOpacity>
-    <TouchableOpacity onPress={() => navigation.navigate('')}>
+    <TouchableOpacity onPress={() => navigation.navigate('Password and security')}>
     <View style={{flexDirection: 'row', alignItems: 'center' , }}>
     <MatIcon 
       name='security'
@@ -84,7 +84,7 @@ const Settings = ({navigation}) => {
     <View style={[Universalstyles.setAccount, {borderTopWidth: 1,}]}>
       <Text style={{fontSize: 40, fontWeight: '500'}}>Help and support   </Text>
     </View>
-    <TouchableOpacity onPress={() => navigation.navigate('')}>
+    <TouchableOpacity onPress={() => navigation.navigate('Help')}>
     <View style={{flexDirection: 'row', alignItems: 'center' , }}>
     <Fontaw 
       name='support'
@@ -100,7 +100,7 @@ const Settings = ({navigation}) => {
     </View>
     </TouchableOpacity>
 
-    <TouchableOpacity onPress={() => navigation.navigate('')}>
+    <TouchableOpacity onPress={() => navigation.navigate('Support inbox')}>
     <View style={{flexDirection: 'row', alignItems: 'center' , }}>
     <Fontaw 
       name='inbox'
@@ -115,7 +115,7 @@ const Settings = ({navigation}) => {
       </View>
     </View>
     </TouchableOpacity>
-<TouchableOpacity onPress={() => navigation.navigate('')}>
+<TouchableOpacity onPress={() => navigation.navigate('About us')}>
     <View style={{flexDirection: 'row', alignItems: 'center'}}>
     <Fontaw 
       name='exclamation-circle'
@@ -130,7 +130,7 @@ const Settings = ({navigation}) => {
       </View>
     </View>
     </TouchableOpacity>
-    <TouchableOpacity onPress={() => navigation.navigate('')}>
+    <TouchableOpacity onPress={() => navigation.navigate('Report a problem')}>
     <View style={{flexDirection: 'row', alignItems: 'center'}}>
     <MatIcon2 
       name='report-problem'

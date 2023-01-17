@@ -33,6 +33,18 @@ import JSprofile from './src/views/screens/Employerscreen/JSprofile';
 import Location from './src/views/components/Location';
 import { axiosRequest } from './src/views/components/api';
 import Attachfile from './src/views/screens/Studentscreen/Attachfile';
+import Editprofile from './src/views/screens/Employerscreen/Editprofile';
+import PassSec from './src/views/screens/Employerscreen/PassSec';
+import PerAcc from './src/views/screens/Employerscreen/PerAcc';
+import Help from './src/views/screens/Employerscreen/Help';
+import Support from './src/views/screens/Employerscreen/Support';
+import About from './src/views/screens/Employerscreen/About';
+import Reportprob from './src/views/screens/Employerscreen/Reportprob';
+import Cemail from './src/views/screens/Employerscreen/Cemail';
+import Review from './src/views/screens/Employerscreen/Review';
+import Interview from './src/views/screens/Employerscreen/Interview';
+import Interviewinfo from './src/views/screens/Studentscreen/Interviewinfo';
+
 
 const Stack = createNativeStackNavigator();
 
@@ -44,9 +56,12 @@ export default function App() {
 //  })
 //  .catch(error => console.log(error));
   return (
-    <SafeAreaView style={{flex: 1, paddingTop: 30, backgroundColor: "#eee"}}>
+    
+<SafeAreaView style={{flex: 1, paddingTop: 30, backgroundColor: "#eee"}}>
 <NavigationContainer>
 <Stack.Navigator screenOptions={{headerShown: false}}>
+
+
 
  <Stack.Screen 
       name='Log in'
@@ -106,8 +121,19 @@ export default function App() {
       name='Manage'
       component={Manage}
       />
-
-<Stack.Screen 
+<Stack.Screen options={{headerShown: true}}
+      name='Review'
+      component={Review}
+      />
+<Stack.Screen options={{headerShown: true}}
+      name='Interview schedule'
+      component={Interview}
+      />
+<Stack.Screen options={{headerShown: true}}
+      name='Interview information'
+      component={Interviewinfo}
+      />
+<Stack.Screen options={{headerShown: true}}
       name='Settings'
       component={Settings2}
       />
@@ -115,10 +141,45 @@ export default function App() {
       name='Company profile'
       component={Cprofile}
       />
-
+<Stack.Screen options={{headerShown: true}}
+      name='Password and security'
+      component={PassSec}
+      />
+<Stack.Screen options={{headerShown: true}}
+      name='Personal & account information'
+      component={PerAcc}
+      />
+<Stack.Screen options={{headerShown: true}}
+      name='Help'
+      component={Help}
+      />
+<Stack.Screen options={{headerShown: true}}
+      name='Support inbox'
+      component={Support}
+      />
+<Stack.Screen options={{headerShown: true}}
+      name='About us'
+      component={About}
+      />
+<Stack.Screen options={{headerShown: true}}
+      name='Report a problem'
+      component={Reportprob}
+      />
 <Stack.Screen options={{headerShown: true}}
       name='Applicant profile'
       component={JSprofile}
+      />
+<Stack.Screen options={{headerShown: true}}
+      name='Edit profile'
+      component={Editprofile}
+      />
+<Stack.Screen 
+      name='Profile2'
+      component={Profile2}
+      />
+<Stack.Screen options={{headerShown: true}}
+      name='Change email address'
+      component={Cemail}
       />
 <Stack.Screen options={{headerShown: true}}
       name='Notifications'

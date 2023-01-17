@@ -57,11 +57,10 @@ setGet (prevState => ({...prevState, post: response.data}))
      
 })
 
-
-
 }
 
   )},[])
+
   const myIcon = (<Icon name='dots-horizontal' size={30} color="black "/>)
 const report = () => Alert.alert(
     "", 

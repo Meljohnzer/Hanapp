@@ -332,7 +332,7 @@ var Data ={
               />
               )}
               <Input 
-            placeholder= 'Hiring Start Date (YYYY-MM-DD)' 
+            placeholder= 'Hiring End Date (YYYY-MM-DD)' 
             iconName= 'calendar-month' 
             keyboardType='numeric'
             error={errors.enddate}

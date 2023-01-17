@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useState} from 'react';
 import { View, useWindowDimensions, Dimensions, Text, SafeAreaView, ScrollView, Image, TouchableOpacity} from 'react-native';
 import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
 import Logo from '../../../../assets/bg/bgimage5.jpg';
@@ -253,8 +253,8 @@ React.useEffect(()=>{
 navigation.setOptions({
    title: title,
    headerTitleAlign: 'center',
-   headerStyle: { backgroundColor: '#eede28', height: 150 },
-   headerTitleStyle: { fontWeight: '100', fontSize: 30 }
+   headerStyle: { backgroundColor: 'white', height: 150, },
+   headerTitleStyle: { fontWeight: '100', fontSize: 25,  }
   })
  
  
@@ -279,9 +279,23 @@ await axiosRequest.post('api/condition2.php',JSON.stringify(Data),headers).then(
       
 }
 
- 
   )},[])
-    
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  const pickImageAsync = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      
+      allowsEditing: true,
+      quality: 1,
+    });
+
+
+    if (!result.canceled) {
+      setSelectedImage (result.assets[0].uri);
+    } else{
+      alert('You did not select any image.'); 
+    }
+  };
     const renderScene = ({ route }) => {
         switch (route.key) {
           case 'first':
@@ -304,15 +318,21 @@ await axiosRequest.post('api/condition2.php',JSON.stringify(Data),headers).then(
   return (
     <SafeAreaView style={{flex: 1}}>
         
-   <Image source={Logo} style={[{  
-     
-      width: 'auto',
-      height: 'auto',
-      resizeMode: 'cover',height: height * 0.20, 
-     
-    
-      }]} 
-      /> 
+        { selectedImage ? <Image 
+    source= {{uri: selectedImage}}
+    style={[{  
+     width: 'auto',
+     height: 100,
+     resizeMode: 'cover', height: height * 0.20, 
+     }]} 
+     /> :  <Image 
+     source= {Logo}
+      style={[{  
+       width: 'auto',
+       height: 100,
+       resizeMode: 'cover', height: height * 0.20, 
+       }]} 
+       /> }
 
     <TabView
     navigationState={{ index, routes }}

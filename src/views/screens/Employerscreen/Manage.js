@@ -62,6 +62,10 @@ const report = () => Alert.alert(
   );
   
   
+<<<<<<< HEAD
+=======
+
+>>>>>>> 38505d50bab43f10e27994dcfe8e9c903b94536c
       
   
 const FirstRoute = ({navigation,arr}) => 
@@ -81,6 +85,7 @@ const FirstRoute = ({navigation,arr}) =>
       <Text style={Universalstyles.text}><Icon name='account-group' style={{fontSize: 20, color: 'black', marginRight: 10}}/> Employees hired: </Text>
       <Text style={Universalstyles.text}><Icon name='account-group' style={{fontSize: 20, color: 'black', marginRight: 10}}/> Number of customers serve: </Text> */}
     <Text style={Universalstyles.text}><Icon name='briefcase-outline' style={{fontSize: 20, color: 'black', }}/> {label.jobtype}</Text> 
+    <Text style={Universalstyles.text}><Icon name='currency-php' style={{fontSize: 20, color: 'red', }}/> {label.salary} {label.rate} </Text>
 
       
       <View style={{ alignItems: 'center', flexDirection:'row', justifyContent: 'flex-start'}}>
@@ -140,8 +145,13 @@ const FirstRoute = ({navigation,arr}) =>
  
 
 
+<<<<<<< HEAD
 const SecondRoute = ({navigation, onPress,profile}) => (
  
+=======
+const SecondRoute = ({navigation, profile}) => (
+  
+>>>>>>> 38505d50bab43f10e27994dcfe8e9c903b94536c
 <ScrollView style={{}}>
 <View style={{height: 'auto', borderWidth: 2, borderColor: '#e8e8e8', borderRadius: 0, margin: 0}}>
     
@@ -218,9 +228,9 @@ const SecondRoute = ({navigation, onPress,profile}) => (
 // const PlaceholderImage = require('../../../../assets/bg/bgimage5.jpg');
 
 
-export default function Manage({navigation,route, onPress }) {
+export default function Manage({navigation,route, }) {
  
-
+  const profile = () => navigation.navigate('Applicant profile');
   const [selectedImage, setSelectedImage] = useState(null);
 
   const pickImageAsync = async () => {
@@ -233,8 +243,12 @@ export default function Manage({navigation,route, onPress }) {
 
 
     if (!result.canceled) {
+<<<<<<< HEAD
       setSelectedImage(result.assets[0].uri);
       console.log(result.assets[0].uri)
+=======
+      setSelectedImage (result.assets[0].uri);
+>>>>>>> 38505d50bab43f10e27994dcfe8e9c903b94536c
     } else{
       alert('You did not select any image.'); 
     }
@@ -244,11 +258,15 @@ export default function Manage({navigation,route, onPress }) {
       post : []
      })
      
+<<<<<<< HEAD
  const Profile = () => {
     navigation.navigate('Applicant profile')
   }
      
      const { itemId,title } = route.params
+=======
+const { itemId,title } = route.params
+>>>>>>> 38505d50bab43f10e27994dcfe8e9c903b94536c
      
 var Data ={
       postID : itemId
@@ -265,8 +283,8 @@ React.useEffect(()=>{
 navigation.setOptions({
    title: title,
    headerTitleAlign: 'center',
-   headerStyle: { backgroundColor: '#eede28', height: 150 },
-   headerTitleStyle: { fontWeight: '100', fontSize: 30 }
+   headerStyle: { backgroundColor: 'white', height: 150 },
+   headerTitleStyle: { fontWeight: '100', fontSize: 25 }
   })
  
  navigation.addListener('focus',async () => {
@@ -288,7 +306,11 @@ setGet (prevState => ({...prevState, post: response.data}))
           case 'first':
             return <FirstRoute navigation={navigation} arr = {gets.post}/>;
           case 'second':
+<<<<<<< HEAD
             return <SecondRoute navigation={navigation}  profile = {Profile}  />;
+=======
+            return <SecondRoute navigation={navigation} profile={profile} />;
+>>>>>>> 38505d50bab43f10e27994dcfe8e9c903b94536c
          
             
           default:
@@ -303,10 +325,10 @@ setGet (prevState => ({...prevState, post: response.data}))
     { key: 'second', title: 'Applicants' },
   ]
   );
-
+  
   return (
     <SafeAreaView style={{flex: 1}}>
-     
+    
     { selectedImage ? <Image 
     source= {{uri: selectedImage}}
     style={[{  
@@ -322,10 +344,10 @@ setGet (prevState => ({...prevState, post: response.data}))
        resizeMode: 'cover', height: height * 0.20, 
        }]} 
        /> }
-     
-     <View style={{padding: 5, position: 'absolute', flex: 1}}>
+     <View style={{flexDirection: 'row-reverse',  justifyContent: 'flex-start', alignItems: 'flex-end'}}>
+     <View style={{padding: 5, position: 'absolute', flex: 1, }}>
      <TouchableOpacity onPress={pickImageAsync}>
-     <View style={{backgroundColor: 'grey', width: 50, height: 50,  borderRadius: 25, padding: 6}}>
+     <View style={{backgroundColor: 'grey', width: 50, height: 50,  borderRadius: 25, padding: 6,}}>
      <Icon3 name='edit' style={{
       fontSize: 35, 
       color: 'gold', 
@@ -335,7 +357,7 @@ setGet (prevState => ({...prevState, post: response.data}))
      </View>
      </TouchableOpacity>
      </View>
-     
+     </View>
      {gets.post.map((label,index)=>(
      
 <TabView key= {index}

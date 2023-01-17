@@ -6,7 +6,9 @@ import Universalstyles from '../../../const/Universalstyle'
 import Icon from 'react-native-vector-icons/EvilIcons'
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon3 from 'react-native-vector-icons/Fontisto'
+import Icon4 from 'react-native-vector-icons/Octicons'
 //import axios from 'axios'
+import OptionsMenu from "react-native-option-menu";
 import moment from 'moment'
 import { axiosRequest } from '../../components/api';
 const wait = (timeout) => {
@@ -53,15 +55,42 @@ setGet (prevState => ({...prevState, post: response.data}))
 }
 
   )},[])
-
-
+  const myIcon = (<Icon2 name='dots-horizontal' size={30} color="black "/>)
+  const remove = () => Alert.alert(
+    "", 
+    "Are you sure you want to report this post?",
+    [
+      {
+        text: "Yes",
+        onPress: () => console.log("Yes Pressed"),
+        style: "yes"
+      },
+      { 
+        text: "No", onPress: () => console.log("No Pressed")
+      }
+    ]
+  );
+  const change_status = () => Alert.alert(
+    "", 
+    "Are you sure you want to save this post?",
+    [
+      {
+        text: "Yes",
+        onPress: () => console.log("Yes Pressed"),
+        style: "yes"
+      },
+      { 
+        text: "No", onPress: () => console.log("No Pressed")
+      }
+    ]
+  );
   return (
     <SafeAreaView style={{flex: 1, }}>
    <ScrollView style={{}}
         contentContainerStyle={{
           
           width: Dimensions.get('window').width,
-          height: Dimensions.get('window').height,
+         
         }}
         refreshControl={
           <RefreshControl
@@ -94,12 +123,20 @@ setGet (prevState => ({...prevState, post: response.data}))
     <View style={Universalstyles.jobContent}>
     <Image source={Logo1} style={Universalstyles.Jobimage}/>
     <View style={Universalstyles.jobContent2}>
+    <View style={{flex: 1,  flexDirection: 'row' ,alignSelf: 'flex-end', left: 5, bottom: 5}}>
+    
+    <OptionsMenu
+  customButton={myIcon}
 
+  options={["Remove", "Change status", "Cancel"]}
+  actions={[remove, change_status]}
+  />
+  </View>
     <Text style={{fontSize: 20, borderBottomWidth: 1, marginBottom: 5, borderColor: '#cbc8ce'}}><Icon3 name='person' style={{fontSize: 23, color: 'black',}}/><Text style={{color: 'black', }}>  {label.lookingfor}</Text></Text>
     
-   { label.status ? <Text style={{opacity:.5}}><Icon name='exclamation' style={{fontSize: 20, color: 'orange', alignContent: 'center'}}/> {'Status: '} <Text style={{color: 'green', }}>open</Text></Text> : <Text style={{opacity:.5}}><Icon name='exclamation' style={{fontSize: 20, color: 'orange', alignContent: 'center'}}/> {'Status: '} <Text style={{color: 'red', }}>close</Text></Text>}
+    { label.status ? <Text style={{opacity:.5}}><Icon4 name='dot-fill' style={{fontSize: 20, color: 'green', alignContent: 'center'}}/>  Open</Text> : <Text style={{opacity:.5}}><Icon4 name='dot-fill' style={{fontSize: 20, color: 'red', alignContent: 'center'}}/>  Close</Text>}
 
-    <Text style={{opacity:.5}}><Icon2 name='account-group' style={{fontSize: 20, color: 'brown', alignContent: 'center'}}/> Applicants: <Text style={{color: 'blue', }}> 87</Text></Text>
+    <Text style={{opacity:.5}}><Icon2 name='account-group' style={{fontSize: 20, color: 'brown', alignContent: 'center'}}/> <Text style={{color: 'black', }}> 87</Text> People applied</Text>
 <Text style={{opacity: .5 }}><Icon2 name='clock-outline' style={{fontSize: 20, color: 'black', }}/> {moment(label.createdat).local().startOf('seconds').fromNow()}</Text>
 
     <TouchableOpacity onPress={()=>{

@@ -2,18 +2,18 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ScrollView, Text, View, ImageBackground, useWindowDimensions, Dimensions, Keyboard, Alert,Image, SafeAreaView, RefreshControl, TouchableOpacity} from 'react-native'
 import React, { useState } from "react";
 import DateTimePicker from "@react-native-community/datetimepicker";
-import Input from "../components/Input";
-import {Universalstyles} from "../../const/Universalstyle";
-import Button from "../components/Button";
-import Loader from "../components/Loader";
+import Input from "../../components/Input";
+import {Universalstyles} from "../../../const/Universalstyle";
+import Button from "../../components/Button";
+import Loader from "../../components/Loader";
 //import axios from 'axios'
-import { axiosRequest } from "../components/api";
+import { axiosRequest } from "../../components/api";
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
 }
 
 
-const Userinfo = ({navigation, error,  onFocus=()=>{}, ...props
+const Editprofile = ({navigation, error,  onFocus=()=>{}, ...props
 }) => {
   const [date, setDate] = useState(new Date());
   const [mode, setMode] = useState('date');
@@ -39,6 +39,24 @@ const Userinfo = ({navigation, error,  onFocus=()=>{}, ...props
   const showDatePicker = () => {
     showMode('date');
   };
+  const [gets,setGet] = React.useState({
+    post : []
+   })
+const [postID,setPostID] = React.useState()
+
+
+React.useEffect(()=>{
+navigation.addListener('focus',async () => {
+
+await axiosRequest.get('/api/feed.php').then((response)=>{
+   
+setGet (prevState => ({...prevState, post: response.data}))
+   
+})
+
+}
+
+)},[])
 
   
     const [isFocused, setisFocused] = React.useState(false);
@@ -86,65 +104,65 @@ var Data ={
   const {height} = useWindowDimensions();
   const [errors, setErrors] = React.useState({});
   const [loading, setLoading] = React.useState(false);
-  const validate = () => {
+//   const validate = () => {
     
-    Keyboard.dismiss();
-    let valid = true;
+//     Keyboard.dismiss();
+//     let valid = true;
     
-    if (!inputs.firstname){
-      handleError('Please enter your first name', 'firstname');
-      valid = false;
-    } else if (inputs.firstname.match(/[0-9]/)){
-      handleError('Name should not have numbers', 'firstname');
-      valid = false;
-    }
+//     if (!inputs.firstname){
+//       handleError('Please enter your first name', 'firstname');
+//       valid = false;
+//     } else if (inputs.firstname.match(/[0-9]/)){
+//       handleError('Name should not have numbers', 'firstname');
+//       valid = false;
+//     }
 
-    if (!inputs.lastname){
-      handleError('Please enter your last name', 'lastname');
-      valid = false;
-    } else if (inputs.lastname.match(/[0-9]/)){
-      handleError('Name should not have numbers', 'lastname');
-      valid = false;
-    }
+//     if (!inputs.lastname){
+//       handleError('Please enter your last name', 'lastname');
+//       valid = false;
+//     } else if (inputs.lastname.match(/[0-9]/)){
+//       handleError('Name should not have numbers', 'lastname');
+//       valid = false;
+//     }
 
-    if (!inputs.birthday){
-      handleError('Please select your birthdate', 'birthday');
-      valid = false;
-  }
+//     if (!inputs.birthday){
+//       handleError('Please enter your birthdate', 'birthday');
+//       valid = false;
+//   }
 
-    if (!inputs.age){
-        handleError('Please enter your age', 'age');
-        valid = false;
-    }
+//     if (!inputs.age){
+//         handleError('Please enter your age', 'age');
+//         valid = false;
+//     }
     
     
-    if (!inputs.contactno){
-        handleError('Please enter your contact number', 'contactno');
-        valid = false;
-    }
+//     if (!inputs.contactno){
+//         handleError('Please enter your contact number', 'contactno');
+//         valid = false;
+//     }
 
-    if (!inputs.street){
-        handleError('Please enter your street', 'street');
-        valid = false;
-    }
-    if (!inputs.city){
-        handleError('Please enter your city', 'city');
-        valid = false;
-    }
-    if (!inputs.province){
-        handleError('Please enter your province', 'province');
-        valid = false;
-    }
-    if (!inputs.zipcode){
-        handleError('Please enter your zipcode', 'zipcode');
-        valid = false;
-    }
+//     if (!inputs.street){
+//         handleError('Please enter your street', 'street');
+//         valid = false;
+//     }
+//     if (!inputs.city){
+//         handleError('Please enter your city', 'city');
+//         valid = false;
+//     }
+//     if (!inputs.province){
+//         handleError('Please enter your province', 'province');
+//         valid = false;
+//     }
+//     if (!inputs.zipcode){
+//         handleError('Please enter your zipcode', 'zipcode');
+//         valid = false;
+//     }
 
     
-    if (valid) {
-      register();
-    }
-  };
+//     if (valid) {
+//       register();
+//     }
+//   };
 
   const register = () => {
     setLoading(true);
@@ -191,7 +209,7 @@ axiosRequest.post('/api/user.php', JSON.stringify(Data), headers)
       >
         
         <Loader visible={loading}/>
-    <View style={[Universalstyles.signup, {height: 'auto'}]}>
+        <View style={[Universalstyles.signup, {height: 'auto'}]}>
     
   
           <View style={[Universalstyles.signupbg, { height: 'auto', paddingBottom: 50, justifyContent: 'center'}]}>
@@ -205,7 +223,7 @@ axiosRequest.post('/api/user.php', JSON.stringify(Data), headers)
             fontWeight: '500',
           }}>
 
-        Personal information
+        Edit information
         </Text>
 
         
@@ -312,7 +330,7 @@ axiosRequest.post('/api/user.php', JSON.stringify(Data), headers)
             fontWeight: '500',
           }}>
 
-        Complete Address
+        Edit Address
         </Text>
 
           <Input 
@@ -358,11 +376,23 @@ axiosRequest.post('/api/user.php', JSON.stringify(Data), headers)
             onChangeText = {text => handleOnChange(text, 'zipcode')}
             />
          
-            <View style={{}}>
-            <Button title='Next' onPress={validate}/>
-            
-            
-            </View>
+         <View style={{marginTop: 15, marginBottom: 50, alignItems: 'center', flexDirection:'row', justifyContent: 'space-around'}}>
+    
+    <TouchableOpacity  onPress={() => navigation.navigate('Employerscreen', 'Profile2')}>
+      <View style={{backgroundColor: '#4169e1',
+    alignSelf: 'center',
+    width: 150,
+    height: 'auto',
+    alignItems: 'center',
+    marginBottom: 0,
+    marginVertical: 10,
+    padding: 10,
+    borderRadius: 30,
+    }}>
+      <Text style={{color: 'white', fontWeight: 'light', fontSize: 18}}>Done</Text>
+      </View>
+    </TouchableOpacity>
+    </View>
         </View>
         
         </View>
@@ -372,4 +402,4 @@ axiosRequest.post('/api/user.php', JSON.stringify(Data), headers)
   );
 };
 
-export default Userinfo
+export default Editprofile
