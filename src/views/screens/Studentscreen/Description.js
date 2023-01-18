@@ -9,7 +9,7 @@ import Logo1 from '../../../../assets/bg/profile2.png';
 import Icon2 from 'react-native-vector-icons/AntDesign';
 import Icon3 from 'react-native-vector-icons/Entypo';
 import * as DocumentPicker from "expo-document-picker"
-
+import HTMLView from 'react-native-htmlview';
 import { axiosRequest } from '../../components/api';
 
 const FirstRoute = ({navigation, arr,bookmark,Remove,save,apply}) => (
@@ -39,10 +39,12 @@ const FirstRoute = ({navigation, arr,bookmark,Remove,save,apply}) => (
    <View style={{padding: 10, margin: 10, borderBottomWidth: 1, borderColor: '#cbc8ce'}}>
     <Text style={{fontSize:20, textAlign: 'center', fontWeight: '500'}}>Job Description</Text>
     </View>
-    <View style={{padding: 5, }}>
-    <Text style={{paddingBottom: 10, margin: 3, fontSize: 20, alignSelf: 'center', fontWeight: '500'}}>
-      {label.jobdesc} 
-    </Text>
+    <View style={{paddingHorizontal: 50,paddingVertical:20}}>
+       
+    <HTMLView
+    
+    value = {label.jobdesc}
+  />
     </View>
     </View>
     <View style={{marginTop: 15, marginBottom: 50, alignItems: 'center', flexDirection:'row', justifyContent: 'space-around'}}>
