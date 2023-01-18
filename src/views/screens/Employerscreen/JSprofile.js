@@ -1,8 +1,9 @@
-import { View, Text, TouchableOpacity, Image, ScrollView, SafeAreaView, RefreshControl, Dimensions} from 'react-native'
+import { View, Text, TouchableOpacity, Image, ScrollView, SafeAreaView, RefreshControl, Dimensions,Linking} from 'react-native'
 import React from 'react'
 import Universalstyles from '../../../const/Universalstyle'
 import Logo1 from '../../../../assets/bg/profile.png';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { axiosRequest, server } from '../../components/api';
 
 
 const wait = (timeout) => {
@@ -10,12 +11,48 @@ const wait = (timeout) => {
 }
 
 
-const Profile = ({navigation}) => {
+const Profile = ({navigation,route}) => {
+ 
+ //const server = 'http://localhost:8080/api/'
+ 
+ const {itemId,postID} = route.params
+ const [app,setApp] = React.useState({
+  post: []
+ })
+var Data ={
+      userID : itemId,
+      postID : postID
+      };
+ 
   const [refreshing, setRefreshing] = React.useState(false);
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
     wait(2000).then(() => setRefreshing(false));
   }, []);
+    React.useEffect(()=>{
+ 
+navigation.setOptions({
+   title: "PROFILE",
+   headerTitleAlign: 'center',
+   headerStyle: { backgroundColor: 'white', height: 150 },
+   headerTitleStyle: { fontWeight: '100', fontSize: 25 }
+  })
+ 
+ navigation.addListener('focus',async () => {
+  
+ await axiosRequest.post('/api/profile.php', JSON.stringify(Data))  
+      .then((response) => {
+     //  console.log(response.data)
+    setApp (prevState => ({...prevState, post: response.data}))
+
+      })
+ 
+}
+
+  )},[])
+   
+    
+  
   
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
@@ -32,18 +69,18 @@ const Profile = ({navigation}) => {
        />
      }>
       
-      <View style={[Universalstyles.studprofile, {borderWidth: 2,}]}>
+      {app.post.map((label,index)=>(<View key = {index} style={[Universalstyles.studprofile, {borderWidth: 2,}]}>
       
         <View style={{flex: 1, margin:10, flexDirection: 'row', alignSelf: 'flex-end',}}>
         <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center',  }}> 
           <Text style={{ opacity: 0.6}}>
-          Email: <Text style={{fontWeight: 'bold',}}></Text>
+          Email: {label.email}<Text style={{fontWeight: 'bold',}}></Text>
         </Text>
         <Text style={{opacity: 0.6}}>
-          Contact number: <Text style={{fontWeight: 'bold',}}></Text>
+          Contact number: {label.contactno}<Text style={{fontWeight: 'bold',}}></Text>
         </Text>
         <Text style={{opacity: 0.6}}>
-          Address: <Text style={{fontWeight: 'bold',}}></Text>
+          Address: {label.street} {label.city} {label.province} {label.zipcode}<Text style={{fontWeight: 'bold',}}></Text>
         </Text>
         </View>
        
@@ -59,18 +96,19 @@ const Profile = ({navigation}) => {
     }}/>
   </TouchableOpacity>
         </View>
+        
         <View style={{borderWidth: .3, borderColor: '#aba9ab', marginHorizontal: 10, position: 'relative'}}></View>
         <View style={{paddingHorizontal: 5, paddingVertical: 20, alignSelf: 'flex-start'}}>
         <Text style={{fontSize: 20, fontWeight: '500'}}> Personal information</Text>
         <View style={{padding: 5}}>
         <Text style={{opacity: 0.6}}>
-          Full name: <Text style={{fontWeight: 'bold', textTransform: 'capitalize'}}></Text>
+          Full name: {label.lastname}, {label.firstname} {label.midname}<Text style={{fontWeight: 'bold', textTransform: 'capitalize'}}></Text>
         </Text>
         <Text style={{opacity: 0.6}}>
-          Birthday: <Text style={{fontWeight: 'bold', textTransform: 'capitalize'}}></Text>
+          Birthday: {label.birthday}<Text style={{fontWeight: 'bold', textTransform: 'capitalize'}}></Text>
         </Text>
         <Text style={{opacity: 0.6}}>
-          Age: <Text style={{fontWeight: 'bold', textTransform: 'capitalize'}}></Text>
+          Age: {label.age}<Text style={{fontWeight: 'bold', textTransform: 'capitalize'}}></Text>
         </Text>
         
         </View>
@@ -84,10 +122,10 @@ const Profile = ({navigation}) => {
         <View style={{padding: 5}}>
         
         <Text style={{opacity: 0.6}}>
-          Guardian name: <Text style={{fontWeight: 'bold', textTransform: 'capitalize'}}></Text>
+          Guardian name: {label.gname}<Text style={{fontWeight: 'bold', textTransform: 'capitalize'}}></Text>
         </Text>
         <Text style={{opacity: 0.6}}>
-          Contact number: <Text style={{fontWeight: 'bold', textTransform: 'capitalize'}}></Text>
+          Contact number: {label.gcontactno}<Text style={{fontWeight: 'bold', textTransform: 'capitalize'}}></Text>
         </Text>
         </View>
       </View>
@@ -96,13 +134,13 @@ const Profile = ({navigation}) => {
         <Text style={{fontSize: 20, fontWeight: '500'}}> Educational background (current)</Text>
         <View style={{padding: 5}}>
         <Text style={{opacity: 0.6}}>
-          School name: <Text style={{fontWeight: 'bold', }}></Text>
+          School name: {label.schname}<Text style={{fontWeight: 'bold', }}></Text>
         </Text>
         <Text style={{opacity: 0.6}}>
-          School address: <Text style={{fontWeight: 'bold', }}></Text>
+          School address: {label.schaddress}<Text style={{fontWeight: 'bold', }}></Text>
         </Text>
         <Text style={{opacity: 0.6}}>
-          Year & level: <Text style={{fontWeight: 'bold', textTransform: 'capitalize'}}></Text>
+          Year & level: {label.yearlevel} <Text style={{fontWeight: 'bold', textTransform: 'capitalize'}}></Text>
         </Text>
         <Text style={{opacity: 0.6}}>
         <Text style={{fontWeight: 'bold', textTransform: 'capitalize'}}></Text>
@@ -117,12 +155,12 @@ const Profile = ({navigation}) => {
         <View style={{ flex: 1, flexDirection: 'row',  alignSelf: 'center' , }}>
       
       <View style={{}}>
-      <TouchableOpacity onPress={() => navigation.navigate('')}>
+      <TouchableOpacity onPress={() => Linking.openURL(server + label.covlet)}>
       <View style={[Universalstyles.jobContent3, {flexDirection: 'column',height: 45, alignItems: 'center' }]}>
       <Text style={{fontSize: 20, color: 'white', fontWeight: 'bold'}}>Cover letter</Text>
       </View>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate('')}>
+      <TouchableOpacity onPress={() => Linking.openURL(server + label.cor)}>
       <View style={[Universalstyles.jobContent3, {flexDirection: 'column',height: 45 }]}>
       <Text style={{fontSize: 20, color: 'white', fontWeight: 'bold'}}>Certificate of Registration</Text>
       </View>
@@ -131,7 +169,8 @@ const Profile = ({navigation}) => {
       </View>
       </View>
       </View>
-      </View>
+      
+      </View>))}
       <View style={{marginTop: 15, marginBottom: 50, alignItems: 'center', flexDirection:'row', justifyContent: 'space-around'}}>
     <TouchableOpacity  onPress={() => navigation.navigate('Home')}>
     <View style={{borderColor: 'red',
