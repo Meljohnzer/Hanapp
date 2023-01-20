@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "my-first-application1",
+    "name": "HanApp",
     "slug": "my-first-application1",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -22,7 +22,8 @@
       "userInterfaceStyle": "light"
     },
     "android": {
-      
+      "package" : "com.BeSagunsa.HanApp",
+      "versionCode" : 1,
       "userInterfaceStyle": "light",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",

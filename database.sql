@@ -12,6 +12,14 @@ CREATE TABLE IF NOT EXISTS address (
   PRIMARY KEY (userID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+CREATE TABLE IF NOT EXISTS applicant (
+  applicantID int(11) NOT NULL AUTO_INCREMENT,
+  applyID int(11) NOT NULL,
+  status varchar(12) NOT NULL,
+  date@ timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (applicantID)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 CREATE TABLE IF NOT EXISTS apply (
   applyID int(11) NOT NULL AUTO_INCREMENT,
   postID int(11) NOT NULL,
@@ -58,7 +66,7 @@ CREATE TABLE IF NOT EXISTS post (
   postID int(11) NOT NULL AUTO_INCREMENT,
   userID int(11) NOT NULL,
   lookingfor varchar(64) NOT NULL,
-  jobdesc varchar(2500) NOT NULL,
+  jobdesc text NOT NULL,
   jobtype varchar(64) NOT NULL,
   startdate date NOT NULL,
   enddate date NOT NULL,

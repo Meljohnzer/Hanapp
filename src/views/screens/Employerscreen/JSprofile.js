@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, Image, ScrollView, SafeAreaView, RefreshControl, Dimensions,Linking} from 'react-native'
+import { View, Text, TouchableOpacity, Image, ScrollView, SafeAreaView, RefreshControl, Dimensions,Linking,Alert} from 'react-native'
 import React from 'react'
 import Universalstyles from '../../../const/Universalstyle'
 import Logo1 from '../../../../assets/bg/profile.png';
@@ -42,7 +42,7 @@ navigation.setOptions({
   
  await axiosRequest.post('/api/profile.php', JSON.stringify(Data))  
       .then((response) => {
-     //  console.log(response.data)
+      // console.log(response.data)
     setApp (prevState => ({...prevState, post: response.data}))
 
       })
@@ -69,7 +69,10 @@ navigation.setOptions({
        />
      }>
       
-      {app.post.map((label,index)=>(<View key = {index} style={[Universalstyles.studprofile, {borderWidth: 2,}]}>
+      {app.post.map((label,index)=>(
+      
+      <View key = {index}>
+      <View  style={[Universalstyles.studprofile, {borderWidth: 2,}]}>
       
         <View style={{flex: 1, margin:10, flexDirection: 'row', alignSelf: 'flex-end',}}>
         <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center',  }}> 
@@ -170,7 +173,7 @@ navigation.setOptions({
       </View>
       </View>
       
-      </View>))}
+      </View>
       <View style={{marginTop: 15, marginBottom: 50, alignItems: 'center', flexDirection:'row', justifyContent: 'space-around'}}>
     <TouchableOpacity  onPress={() => navigation.navigate('Home')}>
     <View style={{borderColor: 'red',
@@ -186,7 +189,28 @@ navigation.setOptions({
       <Text style={{color: 'black', fontWeight: '400', fontSize: 18}}>Decline</Text>
       </View>
     </TouchableOpacity>
-    <TouchableOpacity  onPress={() => navigation.navigate('Home')}>
+    <TouchableOpacity  onPress={() => Alert.alert(
+  "", 
+  "Are you sure you want to Approved the applicant?",
+  [
+    {
+      text: "Yes",
+      onPress: () => {
+        axiosRequest.post('api/applicant.php',JSON.stringify({applyID:label.applyID,status:"Approved"})).then((response) => {
+       
+          console.log(response.data)
+         // navigation.navigate('Manage')
+          // setApp (prevState => ({...prevState, post: response.data}))
+      
+            })
+        },
+      style: "yes"
+    },
+    { 
+      text: "No", onPress: () => console.log("No Pressed")
+    }
+  ]
+)}>
       <View style={{borderColor: '#4169e1',
     alignSelf: 'center',
     width: 150,
@@ -201,7 +225,7 @@ navigation.setOptions({
       </View>
     </TouchableOpacity>
     </View>
-
+</View>))}
     </ScrollView>
     </SafeAreaView>
   )

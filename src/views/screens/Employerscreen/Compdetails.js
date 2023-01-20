@@ -89,6 +89,10 @@ var Data ={
         handleError('Please enter the company description', 'Compdesc');
       valid = false;
     }
+    if (!inputs.WebsiteURL){
+        handleError('Please enter the Website URL', 'WebsiteURL');
+      valid = false;
+    }
     
     if (valid) {
       register();
@@ -124,7 +128,7 @@ axiosRequest.post('/api/company.php', JSON.stringify(Data), headers)
     <SafeAreaView style={{flex: 1}}>
     <ScrollView
         contentContainerStyle={{ 
-         
+         justifyContent:"center"
         }}
           refreshControl={
             <RefreshControl
@@ -136,9 +140,9 @@ axiosRequest.post('/api/company.php', JSON.stringify(Data), headers)
         >
 
       <Loader visible={loading}/>
-      <View style={[Universalstyles.signup, {}]}>
+      <View style={[Universalstyles.signup, {height:'auto',alignSelf:"center"}]}>
   
-        <View style={[Universalstyles.signupbg, { height: 'auto', paddingBottom: 50, justifyContent: 'center'}]}>
+        <View style={[Universalstyles.signupbg, { height: 'auto', paddingBottom: 50, justifyContent: "center"}]}>
           
         <Text style= {{
             color: '#2f2f2f', 
@@ -203,15 +207,15 @@ axiosRequest.post('/api/company.php', JSON.stringify(Data), headers)
             
 <RichText
               placeholder= 'Company description...' 
-              error={errors.compdesc}
+              error={errors.Compdesc}
               onFocus={() =>{
-                handleError(null, 'compdesc');
+                handleError(null, 'Compdesc');
               }}
-              onChange = {text => handleOnChange(text, 'compdesc')}
+              onChange = {text => handleOnChange(text, 'Compdesc')}
             />
         
              
-    <View style={{marginBottom: 50, alignItems: 'center', flexDirection:'row', justifyContent: 'space-around'}}>
+    <View style={{marginBottom: 50, alignItems: 'center',justifyContent:"flex-end", flexDirection:'row', justifyContent: 'space-around'}}>
     <TouchableOpacity  onPress={() => navigation.navigate('Employerscreen')}>
     <View style={{borderColor: 'red',
     alignSelf: 'center',

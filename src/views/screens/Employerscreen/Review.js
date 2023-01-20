@@ -66,6 +66,7 @@ const report = () => Alert.alert(
   
 export default function Review({navigation,route, }) {
  
+
   const profile = () => navigation.navigate('Applicant profile');
   const [selectedImage, setSelectedImage] = useState(null);
 
@@ -88,6 +89,11 @@ export default function Review({navigation,route, }) {
     post : []
    })
    
+  const [rev,setRev] = React.useState({
+    post : []
+   })
+   
+   
 const { itemId,title } = route.params
    
 var Data ={
@@ -108,11 +114,25 @@ var Data ={
     
       React.useEffect(()=>{
         navigation.addListener('focus',async () => {
+         
+         navigation.setOptions({
+   title: title,
+   headerTitleAlign: 'center',
+   headerStyle: { backgroundColor: 'white', height: 150 },
+   headerTitleStyle: { fontWeight: '100', fontSize: 25 }
+  })
+ 
   
             await axiosRequest.post('/api/manage.php', JSON.stringify(Data), headers)  
                  .then((response) => {
                   
            setGet (prevState => ({...prevState, post: response.data}))
+           
+                 })
+                   await axiosRequest.post('/api/applied.php', JSON.stringify(Data), headers)  
+                 .then((response) => {
+             //console.log(response.data)     
+           setRev (prevState => ({...prevState, post: response.data}))
            
                  })
            }
@@ -176,15 +196,15 @@ var Data ={
      </View>))}
 
     
-     {gets.post.map((label,index)=>(<View key={index} style={{height: 'auto', borderWidth: 2, borderColor: '#e8e8e8', borderRadius: 10, }}>
+    <View  style={{height: 'auto', borderWidth: 1, borderColor: '#e8e8e8', borderRadius: 10, }}>
    
-   <View style={{padding: 10, margin: 10, borderBottomWidth: 1, borderColor: '#cbc8ce'}}>
+   <View style={{margin: 10, borderColor: '#cbc8ce'}}>
     <Text style={{fontSize:20, textAlign: 'center', fontWeight: '500'}}>Approved applicants</Text>
     </View>
-    <View style={{height: 'auto', borderWidth: 2, borderColor: '#e8e8e8', borderRadius: 0, margin: 0}}>
+    <View  style={{height: 'auto', borderWidth: 2, borderColor: '#e8e8e8', borderRadius: 0, margin: 0}}>
     
     
-    <View style={{paddingVertical: 5}}>
+   {rev.post.map((label,index)=>(  <View key = {index} style={{paddingVertical: 1}}>
     <View style={{backgroundColor: 'white',
     borderColor: '#e8e8e8',
     padding: 5,
@@ -209,9 +229,11 @@ var Data ={
     marginLeft: 0,
     flexDirection: 'column',
     justifyContent: 'center'}}>
-    <Text style={{ marginBottom: 0, fontSize: 15}}>Rickne Arohn Pacana<Text style={{color: 'blue', textTransform: 'capitalize'}}> </Text> </Text>
-    <Text style={{ opacity: .5, fontSize: 12}}>Zone 1 Imbatug, Baungon, Bukidnon <Text style={{color: 'green', textTransform: 'capitalize'}}></Text> </Text>
-    <Text style={{ opacity: .5}}>04-22-22 <Text style={{color: 'green', textTransform: 'capitalize'}}></Text> </Text>
+    <Text style={{ marginBottom: 0, fontSize: 15}}>{label.lastname}, {label.firstname} {label.midname}<Text style={{color: 'blue', textTransform: 'capitalize'}}> </Text> </Text>
+    <Text style={{ opacity: .5, fontSize: 12}}>
+    {label.street} {label.city} {label.province} {label.zipcode}
+    <Text style={{color: 'green', textTransform: 'capitalize'}}></Text> </Text>
+    <Text style={{ opacity: .5}}>{label.birthday} <Text style={{color: 'green', textTransform: 'capitalize'}}></Text> </Text>
         </View>
       
       <View style={{ flex: 1, flexDirection: 'row',  alignSelf: 'center' , }}>
@@ -229,13 +251,13 @@ var Data ={
   
    
     </View>
-    </View>
+    </View>))}
     
     </View>
-    </View>))}
+    </View>
     <View style={{marginBottom: 50, alignItems: 'center', flexDirection:'row', justifyContent: 'space-around'}}>
     
-    <TouchableOpacity onPress={() => navigation.navigate('Interview schedule')}>
+   {/* <TouchableOpacity onPress={() => navigation.navigate('Interview schedule')}>
     <View style={{backgroundColor: '#4169e1',
     alignSelf: 'center',
     width: '150%',
@@ -248,7 +270,7 @@ var Data ={
     }}>
       <Text style={{color: 'white', fontWeight: 'light', fontSize: 18}}>Set schedule</Text>
       </View>
-    </TouchableOpacity>
+    </TouchableOpacity>*/}
 
     </View>
     

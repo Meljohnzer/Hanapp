@@ -27,20 +27,7 @@ import {
 const myIcon = (<Icon3 name='dots-three-vertical' size={30} color="black " />)
 
 
-const checkIconAlert = () => Alert.alert(
-  "",
-  "Are you sure you want to accept new applicant?",
-  [
-    {
-      text: "Yes",
-      onPress: () => console.log("Yes Pressed"),
-      style: "yes"
-    },
-    { 
-      text: "No", onPress: () => console.log("No Pressed") 
-    }
-  ]
-);
+
 
 const closeIconAlert = () => Alert.alert(
   "", 
@@ -83,7 +70,7 @@ const FirstRoute = ({navigation,arr}) =>
 
 
     <ScrollView style={{}}>
-   {arr.map((label,index)=>(<View key = {index}>
+   {arr.map((label,index)=>( <View key = {index}>
    <View style={{borderWidth: 2, borderColor: '#e8e8e8', margin: 5, borderRadius: 10, padding: 5}}>
       <Text style={Universalstyles.text2}><Icon4 name='person' style={{fontSize: 25, color: 'black',}}/>  {label.lookingfor}</Text>
       {/* <Text style={{ paddingHorizontal: 5, paddingBottom: 5, fontSize: 30}}>Company name:</Text>
@@ -172,12 +159,23 @@ const SecondRoute = ({navigation, profile,arr}) => (
 <View style={{height: 'auto', borderWidth: 2, borderColor: '#e8e8e8', borderRadius: 0, margin: 0}}>
     
     <View style={{paddingVertical: 10}}>
-   {arr.map((label,index)=>(  <View key = {index} style={{backgroundColor: 'white',
+   {arr.map((label,index)=>(  label.applyID ? <View key = {index}  style={{backgroundColor: 'white',
+    borderColor: '#e8e8e8',
+    padding: 5,
+    borderWidth:  2,
+    justifyContent:"center",
+    alignItems:"center",
+    borderRadius: 5}}>
+    <Text>
+    No Applicants</Text>
+    </View>: <View key = {index} style={{backgroundColor: 'white',
     borderColor: '#e8e8e8',
     padding: 5,
     borderWidth:  2,
     flexDirection: 'row',
     borderRadius: 5}}>
+    
+    
     <Image source={Logo1} style={{
       width: 70,
       height: 70,
@@ -209,14 +207,35 @@ const SecondRoute = ({navigation, profile,arr}) => (
       </TouchableOpacity>
      
       
-      <TouchableOpacity onPress={checkIconAlert}>
+      <TouchableOpacity onPress={() => Alert.alert(
+  "", 
+  "Are you sure you want to Approved the applicant?",
+  [
+    {
+      text: "Yes",
+      onPress: () => {
+        axiosRequest.post('api/applicant.php',JSON.stringify({applyID:label.aid,status:"Approved"})).then((response) => {
+       
+         // console.log(response.data)
+         // navigation.navigate('Manage')
+          // setApp (prevState => ({...prevState, post: response.data}))
+      
+            })
+        },
+      style: "yes"
+    },
+    { 
+      text: "No", onPress: () => console.log("No Pressed")
+    }
+  ]
+)}>
       <Icon2 name='checkcircle' style={{fontSize: 30, color: 'green', marginHorizontal: 10}}/>
       </TouchableOpacity>
       <OptionsMenu
       customButton={myIcon}
       options={["Profile", "Report", "Cancel"]}
       actions={[()=>navigation.navigate('Applicant profile',{
-       itemId:label.userID,postID:label.postID
+       itemId:label.userID,postID:label.pid
       }), report]}
       />
     {/*  <MenuProvider style = {{flex:1,justifyContent:"center",alignItems:"center",width:100}}>
@@ -236,7 +255,7 @@ const SecondRoute = ({navigation, profile,arr}) => (
       </View>
       </View>
   
-   
+ 
     </View>))}
     </View>
     </View>
@@ -262,6 +281,8 @@ const SecondRoute = ({navigation, profile,arr}) => (
 
 
 export default function Manage({navigation,route, }) {
+ 
+ 
  
   const profile = () => navigation.navigate('Applicant profile');
   const [selectedImage, setSelectedImage] = useState(null);
@@ -333,7 +354,6 @@ setGet (prevState => ({...prevState, post: response.data}))
 
     axiosRequest.post('/api/applied.php', JSON.stringify(Data), headers)  
       .then((response) => {
-       
     setApp (prevState => ({...prevState, post: response.data}))
 
       })

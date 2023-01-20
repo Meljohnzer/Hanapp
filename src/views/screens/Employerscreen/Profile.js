@@ -6,6 +6,8 @@ import axios from 'axios'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { axiosRequest } from '../../components/api';
 import * as ImagePicker from 'expo-image-picker';
+import HTMLView from 'react-native-htmlview';
+
 
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
@@ -155,9 +157,15 @@ setGet (prevState => ({...prevState, profile: data}))
        { profiles.compdesc &&  <View style={{paddingHorizontal: 5, paddingVertical: 20, alignSelf: 'flex-start'}}>
         <Text style={{fontSize: 20, fontWeight: '500'}}> Company description</Text>
         <View style={{padding: 5}}>
-        <Text style={{paddingBottom: 10, margin: 3, opacity: 0.6, fontSize: 15, alignSelf: 'center', fontWeight: '500'}}>
+        
+       {/* <Text style={{paddingBottom: 10, margin: 3, opacity: 0.6, fontSize: 15, alignSelf: 'center', fontWeight: '500'}}>
       {profiles.compdesc} 
-    </Text>
+    </Text>*/}
+    
+    <HTMLView
+    value = {profiles.compdesc}
+    />
+    
      </View>
         </View>}
       </View>))} 

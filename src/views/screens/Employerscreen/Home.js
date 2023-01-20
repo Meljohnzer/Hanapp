@@ -148,7 +148,7 @@ setGet (prevState => ({...prevState, post: response.data}))
     <View style={Universalstyles.jobContent3}>
       
       <Text style={{color: 'white', fontWeight: 'bold', fontSize: 18,}}>
-          {label.lookingfor}
+          Manage
       </Text>
       </View>
       </TouchableOpacity>
