@@ -136,7 +136,7 @@ axiosRequest.post('/api/company.php', JSON.stringify(Data), headers)
         >
 
       <Loader visible={loading}/>
-      <View style={[Universalstyles.signup, {}]}>
+      <View style={[Universalstyles.signup, {height: 'auto'}]}>
   
         <View style={[Universalstyles.signupbg, { height: 'auto', paddingBottom: 50, justifyContent: 'center'}]}>
           
@@ -201,13 +201,13 @@ axiosRequest.post('/api/company.php', JSON.stringify(Data), headers)
 {/* TEMPORAY */}
 
             
-<RichText
+            <RichText
               placeholder= 'Company description...' 
-              error={errors.compdesc}
+              error={errors.Compdesc}
               onFocus={() =>{
-                handleError(null, 'compdesc');
+                handleError(null, 'Compdesc');
               }}
-              onChange = {text => handleOnChange(text, 'compdesc')}
+              onChange = {text => handleOnChange(text, 'Compdesc')}
             />
         
              
