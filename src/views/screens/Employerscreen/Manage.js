@@ -159,15 +159,9 @@ const SecondRoute = ({navigation, profile,arr}) => (
 <View style={{height: 'auto', borderWidth: 2, borderColor: '#e8e8e8', borderRadius: 0, margin: 0}}>
     
     <View style={{paddingVertical: 10}}>
-   {arr.map((label,index)=>(  label.applyID ? <View key = {index}  style={{backgroundColor: 'white',
-    borderColor: '#e8e8e8',
-    padding: 5,
-    borderWidth:  2,
-    justifyContent:"center",
-    alignItems:"center",
-    borderRadius: 5}}>
-    <Text>
-    No Applicants</Text>
+   {arr.map((label,index)=>(  label.applyID ? <View key = {index}>
+    {/* <Text>
+    No Applicants</Text> */}
     </View>: <View key = {index} style={{backgroundColor: 'white',
     borderColor: '#e8e8e8',
     padding: 5,

@@ -19,6 +19,13 @@ const wait = (timeout) => {
 
 
 const Applicant = ({navigation}) => {
+  // navigation.setOptions({
+  //   title: "Applicants",
+  //   headerTitleAlign: 'center',
+  //   headerStyle: { backgroundColor: 'white', height: 150 },
+  //   headerTitleStyle: { fontWeight: '100', fontSize: 25 }
+  //  })
+  
     const {height} = useWindowDimensions();
     const [refreshing, setRefreshing] = React.useState(false);
     const onRefresh = React.useCallback(() => {
@@ -94,7 +101,7 @@ setGet (prevState => ({...prevState, post: response.data}))
     
     { label.status ? <Text style={{opacity:.5}}><Icon4 name='dot-fill' style={{fontSize: 20, color: 'green', alignContent: 'center'}}/>  Open</Text> : <Text style={{opacity:.5}}><Icon4 name='dot-fill' style={{fontSize: 20, color: 'red', alignContent: 'center'}}/>  Close</Text>}
 
-<Text style={{opacity:.5}}><Icon2 name='account-group' style={{fontSize: 20, color: 'brown', alignContent: 'center'}}/> <Text style={{color: 'black', }}> {label.applicantNO}</Text> Approved applicant</Text>
+<Text style={{opacity:.5}}><Icon2 name='account-group' style={{fontSize: 20, color: 'brown', alignContent: 'center'}}/> <Text style={{color: 'black', }}> {label.noApprove}</Text> Approved applicant</Text>
 <Text style={{opacity: .5 }}><Icon2 name='clock-outline' style={{fontSize: 20, color: 'black', }}/> {moment(label.createdat).local().startOf('seconds').fromNow()}</Text>
 
     <TouchableOpacity onPress={()=>{

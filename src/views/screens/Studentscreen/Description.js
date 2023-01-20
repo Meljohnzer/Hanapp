@@ -167,10 +167,13 @@ const SecondRoute = ({arr}) => (
    <View style={{padding: 10, margin: 10, borderBottomWidth: 1, borderColor: '#cbc8ce'}}>
     <Text style={{fontSize: 20, textAlign: 'center', fontWeight: '500'}}>Company Description</Text>
     </View>
-    <View style={{padding: 5, }}>
-    <Text style={{paddingBottom: 10, margin: 3, fontSize: 20, alignSelf: 'center', fontWeight: '500'}}>
+    <View style={{padding: 5, paddingBottom: 10, margin: 3, fontSize: 20, alignSelf: 'center', fontWeight: '500',height:'auto'}}>
+    {/* <Text style={{paddingBottom: 10, margin: 3, fontSize: 20, alignSelf: 'center', fontWeight: '500'}}>
       {label.compdesc}
-    </Text>
+    </Text> */}
+    <HTMLView
+    value = {label.compdesc}
+    />
     </View>
     </View>}
     </View>))}
@@ -255,8 +258,8 @@ React.useEffect(()=>{
 navigation.setOptions({
    title: title,
    headerTitleAlign: 'center',
-   headerStyle: { backgroundColor: 'white', height: 150, },
-   headerTitleStyle: { fontWeight: '100', fontSize: 25,  }
+   headerStyle: { backgroundColor: 'white', height: 100, },
+   headerTitleStyle: { fontWeight: '100', fontSize: 25, }
   })
  
  

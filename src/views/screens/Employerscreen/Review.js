@@ -205,7 +205,7 @@ var Data ={
     
     
    {rev.post.map((label,index)=>(  <View key = {index} style={{paddingVertical: 1}}>
-    <View style={{backgroundColor: 'white',
+   { label.applicantID && <View style={{backgroundColor: 'white',
     borderColor: '#e8e8e8',
     padding: 5,
     borderWidth:  2,
@@ -250,7 +250,7 @@ var Data ={
       
   
    
-    </View>
+    </View> }
     </View>))}
     
     </View>
