@@ -11,25 +11,23 @@ import Icon3 from 'react-native-vector-icons/Entypo';
 import Icon4 from 'react-native-vector-icons/Fontisto';
 import OptionsMenu from "react-native-option-menu";
 import { axiosRequest } from '../../components/api';
+import { WebView } from 'react-native-webview';
+import HTMLView from 'react-native-htmlview';
+import {
+ Menu,
+ MenuProvider,
+ MenuOptions,
+ MenuOption,
+ MenuTrigger,
+ renderers
+} from "react-native-popup-menu";
+
 
 
 const myIcon = (<Icon3 name='dots-three-vertical' size={30} color="black " />)
 
 
-const checkIconAlert = () => Alert.alert(
-  "",
-  "Are you sure you want to accept new applicant?",
-  [
-    {
-      text: "Yes",
-      onPress: () => console.log("Yes Pressed"),
-      style: "yes"
-    },
-    { 
-      text: "No", onPress: () => console.log("No Pressed") 
-    }
-  ]
-);
+
 
 const closeIconAlert = () => Alert.alert(
   "", 
@@ -63,13 +61,16 @@ const report = () => Alert.alert(
   
   
 
+
+
+
       
   
 const FirstRoute = ({navigation,arr}) => 
 
 
     <ScrollView style={{}}>
-   {arr.map((label,index)=>(<View key = {index}>
+   {arr.map((label,index)=>( <View key = {index}>
    <View style={{borderWidth: 2, borderColor: '#e8e8e8', margin: 5, borderRadius: 10, padding: 5}}>
       <Text style={Universalstyles.text2}><Icon4 name='person' style={{fontSize: 25, color: 'black',}}/>  {label.lookingfor}</Text>
       {/* <Text style={{ paddingHorizontal: 5, paddingBottom: 5, fontSize: 30}}>Company name:</Text>
@@ -102,9 +103,14 @@ const FirstRoute = ({navigation,arr}) =>
    <View style={{padding: 10, margin: 10, borderBottomWidth: 1, borderColor: '#cbc8ce'}}>
     <Text style={{fontSize:20, textAlign: 'center', fontWeight: '500'}}>Job Description</Text>
     </View>
-    <View style={{padding: 5, }}>
-    <Text style={{paddingBottom: 10, margin: 3, fontSize: 20, alignSelf: 'center', fontWeight: '500'}}> {label.jobdesc}
-    </Text>
+    <View style={{paddingHorizontal: 50,paddingVertical:20}}>
+  {/* <Text style={{paddingBottom: 10, margin: 3, fontSize: 20, alignSelf: 'center', fontWeight: '500'}}> {label.jobdesc}
+    </Text>*/}
+    
+    <HTMLView
+    
+    value = {label.jobdesc}
+  />
     </View>
     </View>
     </View>))}
@@ -142,18 +148,34 @@ const FirstRoute = ({navigation,arr}) =>
  
 
 
-const SecondRoute = ({navigation, profile}) => (
+
+
+ 
+
+const SecondRoute = ({navigation, profile,arr}) => (
   
+
 <ScrollView style={{}}>
 <View style={{height: 'auto', borderWidth: 2, borderColor: '#e8e8e8', borderRadius: 0, margin: 0}}>
     
     <View style={{paddingVertical: 10}}>
-    <View style={{backgroundColor: 'white',
+   {arr.map((label,index)=>(  label.applyID ? <View key = {index}  style={{backgroundColor: 'white',
+    borderColor: '#e8e8e8',
+    padding: 5,
+    borderWidth:  2,
+    justifyContent:"center",
+    alignItems:"center",
+    borderRadius: 5}}>
+    <Text>
+    No Applicants</Text>
+    </View>: <View key = {index} style={{backgroundColor: 'white',
     borderColor: '#e8e8e8',
     padding: 5,
     borderWidth:  2,
     flexDirection: 'row',
     borderRadius: 5}}>
+    
+    
     <Image source={Logo1} style={{
       width: 70,
       height: 70,
@@ -162,41 +184,79 @@ const SecondRoute = ({navigation, profile}) => (
       alignSelf: 'center'
       
     }}/>
-    <View style={{padding: 10,
+    
+    
+    <View style={{flex:1,flexDirection:"row"}}>
+    <View key = {index} style={{padding: 10,
     flex: 1,
     borderColor: '#e8e8e8',
-    borderLeftWidth: 1.5,
     marginLeft: 0,
     flexDirection: 'column',
-    justifyContent: 'center'}}>
-    <Text style={{ marginBottom: 0, fontSize: 15}}>Rickne Arohn Pacana<Text style={{color: 'blue', textTransform: 'capitalize'}}> </Text> </Text>
-    <Text style={{ opacity: .5, fontSize: 12}}>Zone 1 Imbatug, Baungon, Bukidnon <Text style={{color: 'green', textTransform: 'capitalize'}}></Text> </Text>
-    <Text style={{ opacity: .5}}>04-22-22 <Text style={{color: 'green', textTransform: 'capitalize'}}></Text> </Text>
+    justifyContent: 'space-evenly'}}>
+    <Text style={{ marginBottom: 0, fontSize: 15}}>{label.lastname}, {label.firstname} {label.midname}<Text style={{color: 'blue', textTransform: 'capitalize'}}> </Text> </Text>
+    <Text style={{ opacity: .5, fontSize: 12}}>{label.street} {label.city} {label.province} {label.zipcode} <Text style={{color: 'green', textTransform: 'capitalize'}}></Text> </Text>
+    <Text style={{ opacity: .5}}>{label.birthday}<Text style={{color: 'green', textTransform: 'capitalize'}}></Text> </Text>
         </View>
       
-      <View style={{ flex: 1, flexDirection: 'row',  alignSelf: 'center' , }}>
+      <View style={{ flex: 1, flexDirection: 'row',position:"relative",flexDirection:"row",justifyContent:"flex-end" ,alignItems:"center"}}>
       
       
-      <View style={{alignItems: 'center', flexDirection: 'row',justifyContent:"flex-end", width:"100%" }}>
+    
       <TouchableOpacity onPress={closeIconAlert}>
       <Icon2 name='closecircle' style={{fontSize: 30, color: 'red', marginHorizontal: 10}}/>
       </TouchableOpacity>
-      <TouchableOpacity onPress={checkIconAlert}>
+     
+      
+      <TouchableOpacity onPress={() => Alert.alert(
+  "", 
+  "Are you sure you want to Approved the applicant?",
+  [
+    {
+      text: "Yes",
+      onPress: () => {
+        axiosRequest.post('api/applicant.php',JSON.stringify({applyID:label.aid,status:"Approved"})).then((response) => {
+       
+         // console.log(response.data)
+         // navigation.navigate('Manage')
+          // setApp (prevState => ({...prevState, post: response.data}))
+      
+            })
+        },
+      style: "yes"
+    },
+    { 
+      text: "No", onPress: () => console.log("No Pressed")
+    }
+  ]
+)}>
       <Icon2 name='checkcircle' style={{fontSize: 30, color: 'green', marginHorizontal: 10}}/>
       </TouchableOpacity>
       <OptionsMenu
-      
       customButton={myIcon}
       options={["Profile", "Report", "Cancel"]}
-      actions={[profile, report]}
+      actions={[()=>navigation.navigate('Applicant profile',{
+       itemId:label.userID,postID:label.pid
+      }), report]}
       />
-     
+    {/*  <MenuProvider style = {{flex:1,justifyContent:"center",alignItems:"center",width:100}}>
+            <Menu o renderer={renderers.Popover}
+     rendererProps={{ placement: 'auto' }} style= {{height:80,width:100,flex:1,alignItems:"center",justifyContent:"center"}}>
+  <MenuTrigger><Icon3 name='dots-three-vertical' size={30} color="black " />
+  </MenuTrigger>
+  <MenuOptions optionsContainerStyle={{ marginLeft:-15,width:300,position:"relative",top:5 }}>
+    <MenuOption onSelect= {()=> navigation.navigate('Applicant profile',{itemId:label.userID,postID:label.postID})} style={{color:"whiteSmoke"} }value={1} text='PROFILE' />
+    <MenuOption style={{color:"whiteSmoke"}} value={2}>
+      <Text style={{color:"whiteSmoke"}}>REPORT</Text>
+    </MenuOption>
+    <MenuOption value={3} text='CLOSE' />
+  </MenuOptions>
+</Menu>
+        </MenuProvider>  */}        
       </View>
       </View>
-      
   
-   
-    </View>
+ 
+    </View>))}
     </View>
     </View>
     
@@ -222,6 +282,8 @@ const SecondRoute = ({navigation, profile}) => (
 
 export default function Manage({navigation,route, }) {
  
+ 
+ 
   const profile = () => navigation.navigate('Applicant profile');
   const [selectedImage, setSelectedImage] = useState(null);
 
@@ -233,8 +295,14 @@ export default function Manage({navigation,route, }) {
     });
 
 
+
     if (!result.canceled) {
+
+      setSelectedImage(result.assets[0].uri);
+      console.log(result.assets[0].uri)
+
       setSelectedImage (result.assets[0].uri);
+
     } else{
       alert('You did not select any image.'); 
     }
@@ -243,8 +311,20 @@ export default function Manage({navigation,route, }) {
  const [gets,setGet] = React.useState({
       post : []
      })
+ const [app,setApp] = React.useState({
+      post : []
+     })
      
+     
+
+ const Profile = () => {
+    navigation.navigate('Applicant profile')
+  }
+     
+    
+
 const { itemId,title } = route.params
+
      
 var Data ={
       postID : itemId
@@ -272,11 +352,22 @@ navigation.setOptions({
        
 setGet (prevState => ({...prevState, post: response.data}))
 
+    axiosRequest.post('/api/applied.php', JSON.stringify(Data), headers)  
+      .then((response) => {
+    setApp (prevState => ({...prevState, post: response.data}))
+
       })
+      
+      
+
+
+      })
+      
+ 
+      
 }
 
   )},[])
-  //console.log(gets.post)
 
     
     const renderScene = ({ route }) => {
@@ -284,7 +375,9 @@ setGet (prevState => ({...prevState, post: response.data}))
           case 'first':
             return <FirstRoute navigation={navigation} arr = {gets.post}/>;
           case 'second':
-            return <SecondRoute navigation={navigation} profile={profile} />;
+
+            return <SecondRoute navigation={navigation}  profile = {Profile} arr = {app.post}  />;
+
          
             
           default:
@@ -332,7 +425,7 @@ setGet (prevState => ({...prevState, post: response.data}))
      </TouchableOpacity>
      </View>
      </View>
-     {gets.post.map((label,index)=>(
+     
      
 <TabView key= {index}
     navigationState={{ index, routes }}
@@ -342,8 +435,8 @@ setGet (prevState => ({...prevState, post: response.data}))
     initialLayout={{ width: Dimensions.get('window').width }}
     />
      
-     ))
-    }
+     
+    
 </SafeAreaView>
   );
 }

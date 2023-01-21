@@ -12,7 +12,9 @@ $id = $_SESSION['id'];
 
 
  
- $select = "SELECT postID,lookingfor,status,createdat FROM post WHERE userID = '$id' ORDER BY createdat DESC";
+ $select = "SELECT post.postID,lookingfor,status,createdat,COUNT(apply.postID) AS applicantNO FROM post 
+LEFT JOIN apply ON post.postID = apply.postID
+WHERE post.userID = '$id' GROUP BY post.postID ORDER BY createdat DESC";
 
 $exec = mysqli_query($connect_db,$select);
  $i=0;

@@ -23,7 +23,7 @@ $DB_Elements= mysqli_fetch_array($query_result);
        $result = mysqli_query($connect_db,$query);
        $element = mysqli_fetch_array($result);
       if($DB_Elements['usertype']== 1){
-       if(!$element['firstname']){
+       if(!isset($element['firstname'])){
            $Message = "no details yet";
        }else if(!$element['gname']){
         $Message = "no guardian yet";

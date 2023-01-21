@@ -13,7 +13,9 @@ const wait = (timeout) => {
 }
 
 
-const Attachfile = ({navigation}) => {
+const Attachfile = ({navigation,route}) => {
+ 
+ const { postID } = route.params
  
   const [inputs, setInputs] = React.useState({
     CoR: '',
@@ -24,15 +26,21 @@ const Attachfile = ({navigation}) => {
   });
   
 var Data ={
-        CoR: inputs.CoR.uri ,
-        SchoolID: inputs.SchoolID.uri,
+        CoR: inputs.CoR ,
+        SchoolID: inputs.SchoolID,
         Facebook: inputs.Facebook,
-        CovLet: inputs.CovLet.uri
+        CovLet: inputs.CovLet
       };
+      
+     
 
-      var headers = {
-        'Access-Control-Allow-Origin': 'true',
-        'Content-Type': 'application/json',
+      var config = {
+       headers:{
+       //'Access-Control-Allow-Origin': 'true',
+     //   'Content-Type': 'application/json',
+   //  Accept:'application/json',
+    'Content-type':'multipart/form-data'
+       }
       };
 
   const [refreshing, setRefreshing] = React.useState(false);
@@ -73,17 +81,37 @@ var Data ={
     }
   };
 
+ var formData = new FormData();
+ formData.append('file1',{type:inputs.CoR.mimeType,uri:inputs.CoR.uri,name:inputs.CoR.name})
+ formData.append('file2',{type:inputs.SchoolID.mimeType,uri:inputs.SchoolID.uri,name:inputs.SchoolID.name})
+ formData.append('file3',{type:inputs.CovLet.mimeType,uri:inputs.CovLet.uri,name:inputs.CovLet.name})
+ formData.append('file4',inputs.Facebook)
+ formData.append('file5',postID)
+ //formData.append('file2',true)
+
   const register = () => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
+      
      
-axiosRequest.post('/api/company.php', JSON.stringify(Data), headers)  
+     
+    //  formData.append('file','ok')
+      //formData.append('fileName',JSON.stringify(inputs.CoR.name))
+     console.log(formData)
+axiosRequest.post('/api/apply.php',formData,config)
       .then((response) => {
         console.log(response.data);
-          if (response.data == "Registered successfully!") {
-          navigation.navigate("Employerscreen");
-           }
+       Alert.alert("Application Sent Successfully","Wait for the Employer to respond for your application",
+        [
+    {
+      text: "Okay!",
+      onPress: () => navigation.navigate("Home"),
+      style: "yes"
+    }
+  ]
+       )
+          
       });
      
     }, 3000);
@@ -101,15 +129,14 @@ axiosRequest.post('/api/company.php', JSON.stringify(Data), headers)
   const PickFile = async (file) => {
       let File = await DocumentPicker.getDocumentAsync({
         
-        type: ['application/*','image/*']
-       
+       copyToCacheDirectory : false
 
       })
       if(File.type === 'cancel'){
         console.log("cancel")
       }else{
       setInputs (prevState => ({...prevState, [file]: File}));
-      console.log(File.uri)
+      console.log(File)
       }
   }
 
