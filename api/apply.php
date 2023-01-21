@@ -43,7 +43,7 @@ $apply = "INSERT INTO apply(postID,userID,cor,schoolid,covlet)VALUES('$postID','
 $appl_query = mysqli_query($connect_db,$apply);
 
 if($appl_query){
- echo json_encode("Appliaction Sent Successfully");
+ echo json_encode("Application Sent Successfully");
 }else{
  echo json_encode("unkown error");
 }

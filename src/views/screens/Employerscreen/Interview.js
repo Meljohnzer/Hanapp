@@ -41,8 +41,8 @@ const Interview = ({navigation}) => {
     
   const [inputs, setInputs] = React.useState({
    inttype: '',
-   intonline: '',
-   intftf: '',
+  //  intWays: '',
+   intWays: '',
    intstartdate: '',
    intenddate: '',
 
@@ -50,8 +50,8 @@ const Interview = ({navigation}) => {
   
 var Data ={
         inttype: inputs.inttype,
-        intonline: inputs.intonline,
-        intftf: inputs.intftf,
+        // intWays: inputs.intWays,
+        intWays: inputs.intWays,
         intstartdate: inputs.intstartdate,
         intenddate: inputs.intenddate
       };
@@ -81,12 +81,12 @@ var Data ={
       handleError('Please choose interview type', 'inttype');
       valid = false;
     } 
-    if (!inputs.intonline){
-        handleError('Please provide the link of the online interview', 'intonline');
-      valid = false;
-    }
-    if (!inputs.intftf){
-        handleError('Please provide the complete address of the interview', 'intftf');
+    // if (!inputs.intWays){
+    //     handleError('Please provide the link of the online interview', 'intWays');
+    //   valid = false;
+    // }
+    if (!inputs.intWays){
+        handleError('Please provide the complete address of the interview', 'intWays');
       valid = false;
     }
     if (!inputs.intstartdate){
@@ -188,29 +188,29 @@ axiosRequest.post('/api/company.php', JSON.stringify(Data), headers)
             onFocus={() =>{ 
                 handleError(null, 'inttype');
               }}
-            onChange = {item => handleOnChange(item.value, 'inttype')}
+            onChange = {item => handleOnChange(item.label, 'inttype')}
             />
-            <Input 
+           { inputs.inttype == "Online" && <Input 
             placeholder= 'Link of the interview' 
-            value={inputs.intonline}
+            value={inputs.intWays}
             iconName= 'link' 
            
-            error={errors.intonline}
+            error={errors.intWays}
             onFocus={() =>{
-              handleError(null, 'intonline');
+              handleError(null, 'intWays');
             }}
-            onChangeText = {text => handleOnChange(text, 'intonline')}
-            /> 
-            <Input 
+            onChangeText = {text => handleOnChange(text, 'intWays')}
+            /> }
+           { inputs.inttype == "Face to face" && <Input 
             placeholder= 'Location of the interview' 
-            value={inputs.intftf}
+            value={inputs.intWays}
             iconName= 'map-marker' 
-            error={errors.intftf}
+            error={errors.intWays}
             onFocus={() =>{
-              handleError(null, 'intftf');
+              handleError(null, 'intWays');
             }}
-            onChangeText = {text => handleOnChange(text, 'intftf')}
-            />
+            onChangeText = {text => handleOnChange(text, 'intWays')}
+            />}
             
             
              <TouchableOpacity onPress = {()=>{showDatePicker()

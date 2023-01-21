@@ -42,6 +42,30 @@ const Post = ({navigation}) => {
   const showDatePicker1 = () => {
     showMode1('date');
   };
+  const [date, setDate] = useState(new Date());
+  const [mode, setMode] = useState('date');
+  const [show, setShow] = useState(false);
+
+  const onChange = (event1, selectedDate1) => {
+    
+    const currentDate1 = selectedDate1 || event1;
+    setShow(false);
+    setDate(currentDate1);
+    let tempDate1 = new Date(currentDate1);
+    let fDate1 = tempDate1.getFullYear() + '-' + (tempDate1.getMonth() + 1) + '-' + tempDate1.getDate() ;
+    setInputs (prevState1 => ({...prevState1, enddate: fDate1}));
+   
+  };
+
+  
+  const showMode = (currentMode1) => {
+    setShow(true);
+    setMode(currentMode1);
+  };
+
+  const showDatePicker = () => {
+    showMode('date');
+  };
 
 
 
@@ -342,7 +366,34 @@ var Data ={
               onChange={onChange1}
               />
               )}
-              <Input 
+              <TouchableOpacity onPress={()=>{showDatePicker()
+            handleError(null, 'enddate')
+            }}>
+            <Input 
+            placeholder= 'Hiring End Date (YYYY-MM-DD)' 
+            iconName= 'calendar-month' 
+            editable={false}
+            value = {inputs.enddate}
+            error={errors.enddate}
+            onFocus={() =>{
+              handleError(null, 'enddate');
+            }}
+            onChangeText = {text => handleOnChange(text, 'enddate')}
+            /></TouchableOpacity>
+              {show && (
+              <DateTimePicker
+              testID="dateTimePicker"
+              value={date}
+              mode={mode}
+              is24Hour={true}
+              display='default'
+              onChange={onChange}
+              />
+              )}
+              
+              
+              
+              {/* <Input 
             placeholder= 'Hiring End Date (YYYY-MM-DD)' 
             iconName= 'calendar-month' 
             keyboardType='numeric'
@@ -352,7 +403,7 @@ var Data ={
             }}
             onChangeText = {text => handleOnChange(text, 'enddate')}
            
-            />
+            /> */}
            
      
 <View style={{marginBottom: 50, alignItems: 'center'}}>
