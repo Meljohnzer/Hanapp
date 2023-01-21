@@ -22,18 +22,21 @@
       "userInterfaceStyle": "light"
     },
     "android": {
-      "package" : "com.BeSagunsa.HanApp",
-      "versionCode" : 1,
+      "package": "com.BeSagunsa.HanApp",
+      "versionCode": 1,
       "userInterfaceStyle": "light",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-        
       }
     },
-    
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "5d2892c2-99b9-4c3d-897f-5b76288eaa5c"
+      }
     }
   }
 }
