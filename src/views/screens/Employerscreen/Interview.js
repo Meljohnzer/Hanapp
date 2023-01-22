@@ -13,17 +13,27 @@ const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
 }
 
-const Interview = ({navigation}) => {
+const Interview = ({navigation,route}) => {
     const [date, setDate] = useState(new Date());
     const [mode, setMode] = useState('date');
     const [show, setShow] = useState(false);
 
-      navigation.setOptions({
+    
+
+
+React.useEffect(()=>{
+ navigation.addListener('focus',async () => {
+  
+  await navigation.setOptions({
    title: "Interview Schedule",
    headerTitleAlign: 'center',
    headerStyle: { backgroundColor: 'white', height: 150 },
    headerTitleStyle: { fontWeight: '100', fontSize: 25 }
   })
+
+}
+
+  )},[])
 
     
     const onChange = (event, selectedDate) => {
@@ -55,7 +65,10 @@ const Interview = ({navigation}) => {
 
   });
   
+  const {itemId} = route.params
+  
 var Data ={
+        applicantID : itemId,
         inttype: inputs.inttype,
         // intWays: inputs.intWays,
         intWays: inputs.intWays,
@@ -115,12 +128,10 @@ var Data ={
     setTimeout(() => {
       setLoading(false);
      
-axiosRequest.post('/api/company.php', JSON.stringify(Data), headers)  
+axiosRequest.post('/api/schedule.php', JSON.stringify(Data))  
       .then((response) => {
         console.log(response.data);
-          if (response.data == "Registered successfully!") {
-          navigation.navigate("Employerscreen");
-           }
+        navigation.goBack()
       });
      
     }, 3000);

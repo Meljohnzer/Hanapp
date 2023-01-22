@@ -348,6 +348,7 @@ setGet (prevState => ({...prevState, post: response.data}))
 
     axiosRequest.post('/api/applied.php', JSON.stringify(Data), headers)  
       .then((response) => {
+     //  console.log(response.data)
     setApp (prevState => ({...prevState, post: response.data}))
 
       })

@@ -12,7 +12,7 @@ $id = $_SESSION['id'];
 $post = $Decode_React_APP_Data['postID'];
 $userID = $Decode_React_APP_Data['userID'];
 
-$select = "SELECT apply.*,userDetails.*,educationBG.*,guardian.*,user.email,address.*,applicant.*
+$select = "SELECT apply.*,userDetails.*,educationBG.*,guardian.*,user.email,address.*,applicant.*,schedule.scheduleID
 FROM apply
 INNER JOIN userDetails ON apply.userID = userDetails.userID
 INNER JOIN educationBG ON userDetails.userID = educationBG.userID
@@ -20,6 +20,7 @@ INNER JOIN guardian ON educationBG.userID = guardian.userID
 INNER JOIN address ON guardian.userID = address.userID
 INNER JOIN user ON address.userID =user.userID
 LEFT JOIN applicant ON apply.applyID = applicant.applyID
+LEFT JOIN schedule ON applicant.applicantID = schedule.applicantID
 WHERE apply.postID = '$post' AND userDetails.userID = '$userID'";
 
 $exec = mysqli_query($connect_db,$select);

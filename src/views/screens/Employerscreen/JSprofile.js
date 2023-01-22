@@ -227,8 +227,8 @@ navigation.setOptions({
     </View>}
     
     
-    { label.applicantID  &&   <View style={{marginTop: 15, marginBottom: 50, alignItems: 'center', flexDirection:'row', justifyContent: 'space-around'}}>
-  <TouchableOpacity onPress ={() => navigation.navigate('Interview schedule')}>
+    { label.applicantID  && label.scheduleID == null &&  <View style={{marginTop: 15, marginBottom: 50, alignItems: 'center', flexDirection:'row', justifyContent: 'space-around'}}>
+  <TouchableOpacity onPress ={() => navigation.navigate('Interview schedule',{itemId:label.applicantID})}>
       <View style={{backgroundColor: '#2175b6',
     alignSelf: 'center',
     width: 300,
@@ -239,6 +239,21 @@ navigation.setOptions({
     padding: 10,
     borderRadius: 30,}}>
       <Text style={{color: 'white', fontWeight: 'light', fontSize: 18}}>Set Schedule</Text>
+      </View>
+    </TouchableOpacity>
+    </View>}
+    { label.scheduleID &&  <View style={{marginTop: 15, marginBottom: 50, alignItems: 'center', flexDirection:'row', justifyContent: 'space-around'}}>
+  <TouchableOpacity onPress ={() => navigation.navigate('Interview schedule',{itemId:label.applicantID})}>
+      <View style={{backgroundColor: '#7eeebc',
+    alignSelf: 'center',
+    width: 300,
+    height: 'auto',
+    alignItems: 'center',
+    marginBottom: 0,
+    marginVertical: 10,
+    padding: 10,
+    borderRadius: 30,}}>
+      <Text style={{color: 'white', fontWeight: 'light', fontSize: 18}}>Edit Schedule</Text>
       </View>
     </TouchableOpacity>
     </View>}

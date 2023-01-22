@@ -30,12 +30,27 @@ const Settings = ({navigation}) => {
   }, []);
 
 
+React.useEffect(()=>{
+ navigation.addListener('focus',async () => {
+  
+  await navigation.setOptions({
+   title: "Settings",
+   headerTitleAlign: 'center',
+   headerStyle: { backgroundColor: 'white', height: 150 },
+   headerTitleStyle: { fontWeight: '100', fontSize: 25 }
+  })
+
+}
+
+  )},[])
+
+
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={{}}>
      <ScrollView
           contentContainerStyle={{
             justifyContent: 'center',
-            height: Dimensions.get('window').height,
+           // height: Dimensions.get('window').height,
             width: Dimensions.get('window').width,
           }}
           refreshControl={

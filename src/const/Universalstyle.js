@@ -158,8 +158,8 @@ searchContainer:{
 },
 
 jobPost: {
-    marginVertical: 5,
-    margin: 5,
+    marginVertical: 0,
+    margin: 0,
 },
 
 profile1: {
@@ -212,7 +212,7 @@ Jobimage:{
 },
 
 jobContent: {
-    padding: 10,
+    padding: 5,
     backgroundColor: 'white',
     borderColor: '#e8e8e8',
     borderWidth:  2,

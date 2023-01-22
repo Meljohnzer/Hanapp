@@ -132,12 +132,12 @@ setGet (prevState => ({...prevState, post: response.data}))
          Pending
       </Text>
       </View> }
-  {label.Astatus == "Decline" && <View style={[Universalstyles.jobstatus, {backgroundColor:red}]}>
+  {label.Astatus == "Decline" && <View style={[Universalstyles.jobstatus, {backgroundColor:"red"}]}>
       <Text style={{color: 'white', fontWeight: 'bold', fontSize: 18,}}>
          Pending
       </Text>
       </View> }
-  {label.scheduleID && <View style={[Universalstyles.jobstatus, {backgroundColor:red}]}>
+  {label.scheduleID && <View style={[Universalstyles.jobstatus, {backgroundColor:"red"}]}>
       <Text style={{color: 'white', fontWeight: 'bold', fontSize: 18,}}>
          Interview Infromation must display Here!
       </Text>

@@ -207,7 +207,7 @@ var Data ={
     
     
    {rev.post.map((label,index)=>(  <View key = {index} style={{paddingVertical: 1}}>
-   { label.applicantID && <View style={{backgroundColor: 'white',
+   { label.aid && <View style={{backgroundColor: 'white',
     borderColor: '#e8e8e8',
     padding: 5,
     borderWidth:  2,
@@ -243,13 +243,20 @@ var Data ={
       <View style={{ flex: 1, flexDirection: 'row',  alignSelf: 'center' , }}>
       
       
-      <View style={{alignItems: 'center', flexDirection: 'row',justifyContent:"flex-end", width:"100%" }}>
-      <TouchableOpacity  onPress={() => navigation.navigate('Interview schedule')}>
+      {label.scheduleID == null && <View style={{alignItems: 'center', flexDirection: 'row',justifyContent:"flex-end", width:"100%" }}>
+      <TouchableOpacity  onPress={() => navigation.navigate('Interview schedule',{itemId:label.applicantID})}>
       <Text style={{color: 'green', fontSize: 18, marginHorizontal: 10}}>Schedule Interview</Text>
       </TouchableOpacity>
       
      
-      </View>
+      </View>}
+      {label.scheduleID && <View style={{alignItems: 'center', flexDirection: 'row',justifyContent:"flex-end", width:"100%" }}>
+      <TouchableOpacity  onPress={() => navigation.navigate('Interview schedule',{itemId:label.applicantID})}>
+      <Text style={{color: 'blue', fontSize: 18, marginHorizontal: 10}}>{label.startdate}/{label.enddate}</Text>
+      </TouchableOpacity>
+      
+     
+      </View>}
       </View>
       
   

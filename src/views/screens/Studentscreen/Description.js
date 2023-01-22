@@ -268,7 +268,7 @@ navigation.setOptions({
  navigation.addListener('focus',async () => {
  await axiosRequest.post('/api/manage.php', JSON.stringify(Data), headers)  
       .then((response) => {
-
+console.log(response.data)
 setGet (prevState => ({...prevState, post: response.data}))
       })
       
