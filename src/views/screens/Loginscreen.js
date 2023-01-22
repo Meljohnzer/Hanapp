@@ -117,13 +117,12 @@ const Loginscreen = ({navigation}) => {
   
  // console.log(moment("2023-01-02 11:31:27").local().startOf('seconds').fromNow());
   return (
-    <SafeAreaView style={{flex: 1, }}>
+    <SafeAreaView>
     
     <ScrollView
       contentContainerStyle={{
-        
         justifyContent: 'center',
-        height: Dimensions.get('window').height,
+      // height: Dimensions.get('window').height,
         width: Dimensions.get('window').width,
         }}
         refreshControl={

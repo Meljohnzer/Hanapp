@@ -18,6 +18,13 @@ const Interview = ({navigation}) => {
     const [mode, setMode] = useState('date');
     const [show, setShow] = useState(false);
 
+      navigation.setOptions({
+   title: "Interview Schedule",
+   headerTitleAlign: 'center',
+   headerStyle: { backgroundColor: 'white', height: 150 },
+   headerTitleStyle: { fontWeight: '100', fontSize: 25 }
+  })
+
     
     const onChange = (event, selectedDate) => {
       const currentDate = selectedDate || date;

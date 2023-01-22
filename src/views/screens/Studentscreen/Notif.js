@@ -22,44 +22,36 @@ const Notif = ({navigation}) => {
     wait(2000).then(() => setRefreshing(false));
   }, []);
 
-   const [gets,setGet] = React.useState({
-    post : []
-   })
-const [postID,setPostID] = React.useState()
+  const [gets,setGet] = React.useState({
+      post : []
+     })
 
-// var Data ={
-//       postID : postID
-//       };
-
-//       var headers = {
-//         'Access-Control-Allow-Origin': 'true',
-//         'Content-Type': 'application/json',
-//       };
-
-
-
-React.useEffect(()=>{
-navigation.addListener('focus',async () => {
-
-await axiosRequest.get('/api/posted.php').then((response)=>{
-   
+    React.useEffect(()=>{
+ navigation.addListener('focus',async () => {
+  
+navigation.setOptions({
+   title: "Notification",
+   headerTitleAlign: 'center',
+   headerStyle: { backgroundColor: 'white', height: 100, },
+   headerTitleStyle: { fontWeight: '100', fontSize: 25, }
+  })
+ await axiosRequest.get('/api/activity.php').then((response)=>{
+     
 setGet (prevState => ({...prevState, post: response.data}))
-   
+     
 })
-
-
 
 }
 
-)},[])
+  )},[])
 
 
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView>
       <ScrollView
         contentContainerStyle={{ 
-          
-          height: Dimensions.get('window').height,
+          //height: Dimensions.get('window').height,
+          justifyContent: 'center',
           width: Dimensions.get('window').width,
         }}
           refreshControl={
@@ -71,25 +63,26 @@ setGet (prevState => ({...prevState, post: response.data}))
           }
         >
     {/* {gets.post.map((label,index)=>( */}
-    <TouchableOpacity onPress={() => navigation.navigate('Interview information')}>
-    <View style={[Universalstyles.jobPost,{}]}>
+ { gets.post.map((label,index)=>( <TouchableOpacity key={index} onPress={() => navigation.navigate('Application status',{itemId:label.postID})}>
+  { label.status == "Approved"  && <View style={[Universalstyles.jobPost,{}]}>
 
-      <View style={Universalstyles.jobContent}>
+      <View style={[Universalstyles.jobContent,{backgroundColor:"#83e0f8"}]}>
           <Image source={Logo1} style={Universalstyles.Jobimage}/>
           
           <View style={Universalstyles.jobContent2}>
           <Text style={{fontSize: 17, }}><Icon3 name='person' style={{fontSize: 20, color: 'black',}}/>
-          <Text style={{color: 'black', }}>  Uchiha, Itachi</Text></Text>
+          <Text style={{color: 'black', }}>  {label.lastname}, {label.firstname} {label.midname}</Text></Text>
           <Text style={{fontSize: 17, opacity: 0.6}}>
-          <Text style={{color: 'black',}}>approved your application for <Text>Front end programmer.</Text></Text></Text>
+          <Text style={{color: 'black',}}>approved your application for <Text>{label.lookingfor}</Text></Text></Text>
           <Text style={{fontSize: 17,}}>See more...</Text>
           <View style={{flex: 1,  flexDirection: 'row' ,alignSelf: 'flex-end', left: 5, bottom: 5}}>
-          <Text style={{opacity: .5 }}><Icon2 name='clock-outline' style={{fontSize: 20, color: 'black', }}/> 1 hour ago</Text>
+          <Text style={{opacity: .5 }}><Icon2 name='clock-outline' style={{fontSize: 20, color: 'black', }}/> {moment(label.appliedat).local().startOf('seconds').fromNow()}</Text>
             </View>
     </View>
     </View>
-    </View>
-    </TouchableOpacity>
+    </View> }
+    </TouchableOpacity>))}
+    
     {/* ))} */}
     </ScrollView>
     </SafeAreaView>

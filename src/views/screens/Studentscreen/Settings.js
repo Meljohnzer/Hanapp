@@ -31,11 +31,11 @@ const Settings = ({navigation}) => {
 
 
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView>
      <ScrollView
           contentContainerStyle={{
             justifyContent: 'center',
-            height: Dimensions.get('window').height,
+           // height: Dimensions.get('window').height,
             width: Dimensions.get('window').width,
           }}
           refreshControl={

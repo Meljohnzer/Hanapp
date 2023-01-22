@@ -128,7 +128,8 @@ axiosRequest.post('/api/company.php', JSON.stringify(Data), headers)
     <SafeAreaView style={{flex: 1}}>
     <ScrollView
         contentContainerStyle={{ 
-         justifyContent:"center"
+         justifyContent:"center",
+         width: Dimensions.get('window').width,
         }}
           refreshControl={
             <RefreshControl

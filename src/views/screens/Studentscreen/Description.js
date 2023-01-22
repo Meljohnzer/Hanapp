@@ -48,7 +48,7 @@ const FirstRoute = ({navigation, arr,bookmark,Remove,save,apply}) => (
     </View>
     </View>
     <View style={{marginTop: 15, marginBottom: 50, alignItems: 'center', flexDirection:'row', justifyContent: 'space-around'}}>
-   { save ? <TouchableOpacity  onPress={Remove}>
+   { save  ? <TouchableOpacity  onPress={Remove}>
     <View style={{borderColor: 'red',
     alignSelf: 'center',
     width: 150,
@@ -74,9 +74,9 @@ const FirstRoute = ({navigation, arr,bookmark,Remove,save,apply}) => (
     borderWidth: 1,}}>
       <Text style={{color: 'black', fontWeight: '400', fontSize: 18}}>save</Text>
       </View>
-    </TouchableOpacity>
+    </TouchableOpacity>}
     
-   }
+   
     {apply ? <TouchableOpacity  >
       <View style={{borderColor: 'red',
     alignSelf: 'center',

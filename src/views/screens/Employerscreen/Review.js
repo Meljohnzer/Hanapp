@@ -101,8 +101,10 @@ var Data ={
     };
 
     var headers = {
+     "headers":{
       'Access-Control-Allow-Origin': 'true',
       'Content-Type': 'application/json',
+     }
     };
    
      
@@ -123,7 +125,7 @@ var Data ={
   })
  
   
-            await axiosRequest.post('/api/manage.php', JSON.stringify(Data), headers)  
+            await axiosRequest.post('/api/manage.php', JSON.stringify(Data))  
                  .then((response) => {
                   
            setGet (prevState => ({...prevState, post: response.data}))
@@ -211,7 +213,9 @@ var Data ={
     borderWidth:  2,
     flexDirection: 'row',
     borderRadius: 5}}>
-      <TouchableOpacity onPress={() => navigation.navigate('Applicant profile')}>
+      <TouchableOpacity onPress={() => navigation.navigate('Applicant profile' ,{
+       itemId:label.userID,postID:label.pid
+      })}>
     <Image source={Logo1} style={{
       marginTop: 15,
       width: 70,

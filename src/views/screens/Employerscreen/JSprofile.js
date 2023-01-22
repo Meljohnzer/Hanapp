@@ -42,7 +42,7 @@ navigation.setOptions({
   
  await axiosRequest.post('/api/profile.php', JSON.stringify(Data))  
       .then((response) => {
-      // console.log(response.data)
+     // console.log(response.data)
     setApp (prevState => ({...prevState, post: response.data}))
 
       })
@@ -174,7 +174,7 @@ navigation.setOptions({
       </View>
       
       </View>
-      <View style={{marginTop: 15, marginBottom: 50, alignItems: 'center', flexDirection:'row', justifyContent: 'space-around'}}>
+   { label.applicantID == null &&     <View style={{marginTop: 15, marginBottom: 50, alignItems: 'center', flexDirection:'row', justifyContent: 'space-around'}}>
     <TouchableOpacity  onPress={() => navigation.navigate('Home')}>
     <View style={{borderColor: 'red',
     alignSelf: 'center',
@@ -189,7 +189,7 @@ navigation.setOptions({
       <Text style={{color: 'black', fontWeight: '400', fontSize: 18}}>Decline</Text>
       </View>
     </TouchableOpacity>
-    <TouchableOpacity  onPress={() => Alert.alert(
+  <TouchableOpacity  onPress={() => Alert.alert(
   "", 
   "Are you sure you want to Approved the applicant?",
   [
@@ -198,7 +198,7 @@ navigation.setOptions({
       onPress: () => {
         axiosRequest.post('api/applicant.php',JSON.stringify({applyID:label.applyID,status:"Approved"})).then((response) => {
        
-          console.log(response.data)
+        //  console.log(response.data)
          // navigation.navigate('Manage')
           // setApp (prevState => ({...prevState, post: response.data}))
       
@@ -224,7 +224,25 @@ navigation.setOptions({
       <Text style={{color: 'black', fontWeight: 'light', fontSize: 18}}>Approve</Text>
       </View>
     </TouchableOpacity>
-    </View>
+    </View>}
+    
+    
+    { label.applicantID  &&   <View style={{marginTop: 15, marginBottom: 50, alignItems: 'center', flexDirection:'row', justifyContent: 'space-around'}}>
+  <TouchableOpacity onPress ={() => navigation.navigate('Interview schedule')}>
+      <View style={{backgroundColor: '#2175b6',
+    alignSelf: 'center',
+    width: 300,
+    height: 'auto',
+    alignItems: 'center',
+    marginBottom: 0,
+    marginVertical: 10,
+    padding: 10,
+    borderRadius: 30,}}>
+      <Text style={{color: 'white', fontWeight: 'light', fontSize: 18}}>Set Schedule</Text>
+      </View>
+    </TouchableOpacity>
+    </View>}
+    
 </View>))}
     </ScrollView>
     </SafeAreaView>

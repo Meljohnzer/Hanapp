@@ -20,6 +20,24 @@ const Activity = ({navigation}) => {
     wait(2000).then(() => setRefreshing(false));
   }, []);
 
+const [gets,setGet] = React.useState({
+      post : []
+     })
+
+    React.useEffect(()=>{
+ navigation.addListener('focus',async () => {
+  
+ await axiosRequest.get('/api/activity.php').then((response)=>{
+     
+setGet (prevState => ({...prevState, post: response.data}))
+     
+})
+
+}
+
+  )},[])
+
+
   return (
     <SafeAreaView style={{flex: 1}}>
       <ScrollView
@@ -44,30 +62,38 @@ const Activity = ({navigation}) => {
             </View>
              </View>
       </View>
-      <View style={[Universalstyles.jobPost, {}]}>
+   <View style={[Universalstyles.jobPost, {}]}>
   
-    <View style={Universalstyles.jobContent}>
+      {gets.post.map((label,index)=>( <View key = {index}style={Universalstyles.jobContent}>
       
     <Image source={Logo1} style={Universalstyles.Jobimage}/>
    
     <View style={Universalstyles.jobContent2}>
     
-    <Text style={{fontSize: 20, borderBottomWidth: 1, marginBottom: 5, borderColor: '#cbc8ce'}}><Icon2 name='person' style={{fontSize: 23, color: 'black',}}/>  Back-end developer</Text>
-    <Text style={{opacity: .5}}><Icon name='warehouse' style={{fontSize: 20, color: 'black',}}/> Be Sagunsa Inc.</Text>
-    <Text style={{opacity: .5 }}><Icon name='map-marker' style={{fontSize: 20, color: 'black', }}/> Imbatug, Baungon, Bukidnon, 8707</Text>
-    <Text style={{opacity: .5 }}><Icon name='briefcase-outline' style={{fontSize: 20, color: 'black', }}/> Remote</Text>   
-    <Text style={{opacity: .5 }}><Icon name='clock-outline' style={{fontSize: 20, color: 'black', }}/> 5 hours ago</Text>
+    <Text style={{fontSize: 20, borderBottomWidth: 1, marginBottom: 5, borderColor: '#cbc8ce'}}><Icon2 name='person' style={{fontSize: 23, color: 'black',}}/>  {label.lookingfor}</Text>
+   {label.compname && <Text style={{opacity: .5}}><Icon name='warehouse' style={{fontSize: 20, color: 'black',}}/> {label.compname}</Text>}
+    <Text style={{opacity: .5 }}><Icon name='map-marker' style={{fontSize: 20, color: 'black', }}/> {label.street} {label.city} {label.province} {label.zipcode}</Text>
+    <Text style={{opacity: .5 }}><Icon name='briefcase-outline' style={{fontSize: 20, color: 'black', }}/> {label.jobtype}</Text>   
+    <Text style={{opacity: .5 }}><Icon name='clock-outline' style={{fontSize: 20, color: 'black', }}/> {moment(label.appliedat).local().startOf('seconds').fromNow()}</Text>
 
     
-      <TouchableOpacity onPress={()=> navigation.navigate('Application status')}>
+    {label.status == null &&  <TouchableOpacity onPress={()=> navigation.navigate('Application status',{itemId:label.postID})}>
       <View style={[Universalstyles.jobstatus, {}]}>
       <Text style={{color: 'white', fontWeight: 'bold', fontSize: 18,}}>
          Pending
       </Text>
       </View>
-      </TouchableOpacity>
+      </TouchableOpacity> }
+      
+    {label.status == "Approved" &&  <TouchableOpacity onPress={()=> navigation.navigate('Application status',{itemId:label.postID})}>
+      <View style={[Universalstyles.jobstatus, {backgroundColor:"green"}]}>
+      <Text style={{color: 'white', fontWeight: 'bold', fontSize: 18,}}>
+         {label.status}
+      </Text>
+      </View>
+      </TouchableOpacity> }
     </View>
-    </View>
+    </View>))}
     
     </View>
     </ScrollView>
