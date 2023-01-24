@@ -71,7 +71,7 @@ setGet (prevState => ({...prevState, post: response.data}))
         contentContainerStyle={{
           
           width: Dimensions.get('window').width,
-          height: Dimensions.get('window').height,
+          
         }}
         refreshControl={
           <RefreshControl
@@ -91,7 +91,7 @@ setGet (prevState => ({...prevState, post: response.data}))
              </View>
       </View>
   {gets.post.map((label,index)=>(
-<View key = {index} style={[Universalstyles.jobPost,{}]}>
+<View key = {index} style={[Universalstyles.jobPost,{paddingBottom: 10}]}>
 
     <View style={Universalstyles.jobContent}>
     <Image source={Logo1} style={Universalstyles.Jobimage}/>

@@ -14,9 +14,55 @@ const wait = (timeout) => {
 }
 
 const Interview = ({navigation,route}) => {
-    const [date, setDate] = useState(new Date());
-    const [mode, setMode] = useState('date');
-    const [show, setShow] = useState(false);
+  const [date1, setDate1] = useState(new Date());
+  const [mode1, setMode1] = useState('date');
+  const [show1, setShow1] = useState(false);
+
+  const onChange1 = (event, selectedDate) => {
+    
+    const currentDate = selectedDate || event;
+    setShow1(false);
+    setDate1(currentDate);
+    let tempDate = new Date(currentDate);
+    let fDate = tempDate.getFullYear() + '-' + (tempDate.getMonth() + 1) + '-' + tempDate.getDate() ;
+    setInputs (prevState => ({...prevState, intstartdate: fDate}));
+   
+  };
+
+  
+  const showMode1 = (currentMode) => {
+    setShow1(true);
+    setMode1(currentMode);
+  };
+
+  const showDatePicker1 = () => {
+    showMode1('date');
+  };
+  const [date, setDate] = useState(new Date());
+  const [mode, setMode] = useState('date');
+  const [show, setShow] = useState(false);
+
+  const onChange = (event1, selectedDate1) => {
+    
+    const currentDate1 = selectedDate1 || event1;
+    setShow(false);
+    setDate(currentDate1);
+    let tempDate1 = new Date(currentDate1);
+    let fDate1 = tempDate1.getFullYear() + '-' + (tempDate1.getMonth() + 1) + '-' + tempDate1.getDate() ;
+    setInputs (prevState1 => ({...prevState1, intenddate: fDate1}));
+   
+  };
+
+  
+  const showMode = (currentMode1) => {
+    setShow(true);
+    setMode(currentMode1);
+  };
+
+  const showDatePicker = () => {
+    showMode('date');
+  };
+
 
     
 
@@ -36,26 +82,7 @@ React.useEffect(()=>{
   )},[])
 
     
-    const onChange = (event, selectedDate) => {
-      const currentDate = selectedDate || date;
-      setShow(false);
-      setDate(currentDate);
-      let tempDate = new Date(currentDate);
-      let fDate = tempDate.getFullYear() + '-' + (tempDate.getMonth() + 1) + '-' + tempDate.getDate() ;
-      setInputs (prevState => ({...prevState, intstartdate: fDate}));
-      
-    };
-    
-    const showMode = (currentMode) => {
-      setShow(true);
-      setMode(currentMode);
-      
-    };
-    
-    const showDatePicker = () => {
-      showMode('date');
-    };
-    
+  
   const [inputs, setInputs] = React.useState({
    inttype: '',
   //  intWays: '',
@@ -115,6 +142,10 @@ var Data ={
     }
     if (!inputs.intenddate){
         handleError('Please select the date the end of the interview', 'intenddate');
+      valid = false;
+    }
+    else if(inputs.intenddate < inputs.intstartdate){
+      handleError('Interview end date must be greater than starting date', 'intenddate');
       valid = false;
     }
     
@@ -231,26 +262,45 @@ axiosRequest.post('/api/schedule.php', JSON.stringify(Data))
             />}
             
             
-             <TouchableOpacity onPress = {()=>{showDatePicker()
-            handleError(null, 'intstartdate')}
-            }>
-          <Input 
-            placeholder= {"Interview Start Date (YYYY-MM-DD)"}
-            value = {inputs.intstartdate}
-            iconName= 'calendar' 
-            keyboardType= 'none'
+            <TouchableOpacity onPress={()=>{showDatePicker1()
+            handleError(null, 'intstartdate')
+            }}>
+            <Input 
+            placeholder= 'Hiring Start Date (YYYY-MM-DD)' 
+            iconName= 'calendar-month' 
             editable={false}
+            value = {inputs.intstartdate}
             error={errors.intstartdate}
-            showSoftInputOnFocus = {false}
-            onFocus = {() =>{
-              handleError(null, 'intstartdate')
-              Keyboard.dismiss()
+            onFocus={() =>{
+              handleError(null, 'intstartdate');
             }}
             onChangeText = {text => handleOnChange(text, 'intstartdate')}
-            />
-           
-            </TouchableOpacity>
-            {show && (
+            /></TouchableOpacity>
+              {show1 && (
+              <DateTimePicker
+              testID="dateTimePicker"
+              value={date1}
+              mode={mode1}
+              is24Hour={true}
+              display='default'
+              onChange={onChange1}
+              />
+              )}
+              <TouchableOpacity onPress={()=>{showDatePicker()
+            handleError(null, 'intenddate')
+            }}>
+            <Input 
+            placeholder= 'Hiring End Date (YYYY-MM-DD)' 
+            iconName= 'calendar-month' 
+            editable={false}
+            value = {inputs.intenddate}
+            error={errors.intenddate}
+            onFocus={() =>{
+              handleError(null, 'intenddate');
+            }}
+            onChangeText = {text => handleOnChange(text, 'intenddate')}
+            /></TouchableOpacity>
+              {show && (
               <DateTimePicker
               testID="dateTimePicker"
               value={date}
@@ -260,20 +310,8 @@ axiosRequest.post('/api/schedule.php', JSON.stringify(Data))
               onChange={onChange}
               />
               )}
-               <Input 
-            placeholder= 'Interview End Date (YYYY-MM-DD)' 
-            iconName= 'calendar' 
-            keyboardType='numeric'
-            error={errors.intenddate}
-            onFocus={() =>{
-              handleError(null, 'intenddate');
-            }}
-            onChangeText = {text => handleOnChange(text, 'intenddate')}
            
-            />
-           
-            
-             
+
              <View style={{marginBottom: 50, alignItems: 'center', flexDirection:'row', justifyContent: 'space-around'}}>
     
     <TouchableOpacity  onPress={validate}>

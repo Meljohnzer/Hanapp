@@ -170,20 +170,7 @@ axiosRequest.post('/api/guardian.php', JSON.stringify(Data), headers)
             
             </View> */}
           <View style={{marginBottom: 50, alignItems: 'center', flexDirection:'row', justifyContent: 'space-around'}}>
-    <TouchableOpacity  onPress={() => navigation.navigate('User info')}>
-    <View style={{borderColor: 'red',
-    alignSelf: 'center',
-    width: 150,
-    height: 'auto',
-    alignItems: 'center',
-    marginBottom: 0,
-    marginVertical: 10,
-    padding: 10,
-    borderRadius: 30,
-    borderWidth: 1,}}>
-      <Text style={{color: 'black', fontWeight: '400', fontSize: 18}}>Back</Text>
-      </View>
-    </TouchableOpacity>
+   
     <TouchableOpacity  onPress={validate}>
     <View style={{backgroundColor: '#4169e1',
     alignSelf: 'center',

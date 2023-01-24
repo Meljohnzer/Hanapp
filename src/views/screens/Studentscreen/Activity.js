@@ -62,9 +62,9 @@ setGet (prevState => ({...prevState, post: response.data}))
             </View>
              </View>
       </View>
-   <View style={[Universalstyles.jobPost, {}]}>
+      {gets.post.map((label,index)=>(<View key = {index} style={[Universalstyles.jobPost, {paddingBottom: 10}]}>
   
-      {gets.post.map((label,index)=>( <View key = {index}style={Universalstyles.jobContent}>
+       <View style={Universalstyles.jobContent}>
       
     <Image source={Logo1} style={Universalstyles.Jobimage}/>
    
@@ -93,9 +93,9 @@ setGet (prevState => ({...prevState, post: response.data}))
       </View>
       </TouchableOpacity> }
     </View>
-    </View>))}
-    
     </View>
+    
+    </View>))}
     </ScrollView>
     </SafeAreaView>
   )

@@ -67,10 +67,6 @@ const Post = ({navigation}) => {
     showMode('date');
   };
 
-
-
-  
- 
   const [inputs, setInputs] = React.useState({
     
     Lookingfor: '',
@@ -168,6 +164,10 @@ var Data ={
     }
     if (!inputs.enddate){
       handleError('Please Input Hiring End Date', 'enddate');
+      valid = false;
+    }
+    else if(inputs.enddate < inputs.startdate){
+      handleError('Hiring end date must be greater than starting date', 'enddate');
       valid = false;
     }
    

@@ -2,6 +2,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Loginscreen from './src/views/screens/Loginscreen';
 import Signupscreen from './src/views/screens/Signupscreen';
 import Infoscreen from './src/views/screens/Signupscreen';
+
 import Homescreen from './src/views/screens/Homescreen';
 import Forgotscreen from './src/views/screens/Forgotscreen';
 import { SafeAreaView } from 'react-native';
@@ -242,19 +243,19 @@ function Studentscreen () {
             let filePath;
             switch (route.name) {
               case "Home":
-                  filePath = require("../Hanapp/assets/Lottie/Home.json");
+                  filePath = require("./assets/Lottie/Home.json");
                   break;
               case "Profile":
-                filePath = require("../Hanapp/assets/Lottie/Profile.json");
+                filePath = require("./assets/Lottie/Profile.json");
                 break;
               case "Bookmarks":
-                filePath = require("../Hanapp/assets/Lottie/Bookmarks.json");
+                filePath = require("./assets/Lottie/Bookmarks.json");
                 break;
               case "Activity log":
-                filePath = require("../Hanapp/assets/Lottie/Activitylog.json");
+                filePath = require("./assets/Lottie/Activitylog.json");
                 break;
               case "Settings":
-                filePath = require("../Hanapp/assets/Lottie/Settings.json");
+                filePath = require("./assets/Lottie/Settings.json");
                 break;
               default:
                 iconName = focused
@@ -313,16 +314,16 @@ function Studentscreen () {
             switch (route.name) {
               
               case "Home":
-                  filePath = require("../Hanapp/assets/Lottie/Home.json");
+                  filePath = require("./assets/Lottie/Home.json");
                   break;
               case "Applicant":
-                  filePath = require("../Hanapp/assets/Lottie/Applicant.json");
+                  filePath = require("./assets/Lottie/Applicant.json");
                   break;
               case "Create post":
-                  filePath = require("../Hanapp/assets/Lottie/Add.json");
+                  filePath = require("./assets/Lottie/Add.json");
                   break;
               case "Profile":
-                filePath = require("../Hanapp/assets/Lottie/Profile.json");
+                filePath = require("./assets/Lottie/Profile.json");
                 break;
               default:
                 iconName = focused

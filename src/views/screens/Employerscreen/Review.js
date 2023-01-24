@@ -244,14 +244,14 @@ var Data ={
       
       
       {label.scheduleID == null && <View style={{alignItems: 'center', flexDirection: 'row',justifyContent:"flex-end", width:"100%" }}>
-      <TouchableOpacity  onPress={() => navigation.navigate('Interview schedule',{itemId:label.applicantID})}>
+      <TouchableOpacity  onPress={() => navigation.navigate('Interview schedule',{itemId:label.appID})}>
       <Text style={{color: 'green', fontSize: 18, marginHorizontal: 10}}>Schedule Interview</Text>
       </TouchableOpacity>
       
      
       </View>}
       {label.scheduleID && <View style={{alignItems: 'center', flexDirection: 'row',justifyContent:"flex-end", width:"100%" }}>
-      <TouchableOpacity  onPress={() => navigation.navigate('Interview schedule',{itemId:label.applicantID})}>
+      <TouchableOpacity  onPress={() => navigation.navigate('Interview schedule',{itemId:label.appID})}>
       <Text style={{color: 'blue', fontSize: 18, marginHorizontal: 10}}>{label.startdate}/{label.enddate}</Text>
       </TouchableOpacity>
       

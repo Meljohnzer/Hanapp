@@ -19,7 +19,8 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "userInterfaceStyle": "light"
+      "userInterfaceStyle": "light",
+      "bundleIdentifier": "com.BeSagunsa.HanApp"
     },
     "android": {
       "package": "com.BeSagunsa.HanApp",
@@ -35,7 +36,7 @@
     },
     "extra": {
       "eas": {
-        "projectId": "5d2892c2-99b9-4c3d-897f-5b76288eaa5c"
+        "projectId": "2f339e4b-6c1a-46f0-a896-389e711a2925"
       }
     }
   }
