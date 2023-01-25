@@ -1,15 +1,10 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { View, useWindowDimensions, Dimensions, RefreshControl, Text, SafeAreaView, ScrollView, Image, Alert, TouchableOpacity} from 'react-native';
-import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Universalstyles from '../../../const/Universalstyle';
-import * as ImagePicker from 'expo-image-picker';
-import Logo1 from '../../../../assets/bg/profile.png';
 import Logo from './../../../../assets/bg/bgimage5.jpg'
-import Icon2 from 'react-native-vector-icons/AntDesign';
 import Icon3 from 'react-native-vector-icons/Entypo';
 import Icon4 from 'react-native-vector-icons/Fontisto';
-import OptionsMenu from "react-native-option-menu";
 import { axiosRequest } from '../../components/api';
 
 

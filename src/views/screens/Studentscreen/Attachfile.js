@@ -1,10 +1,8 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ScrollView, Text, View, StyleSheet, useWindowDimensions, Dimensions, Keyboard, Alert,Image, SafeAreaView, RefreshControl, TouchableOpacity, FlatList} from 'react-native'
 import Input from "../../components/Input";
 import {Universalstyles} from "../../../const/Universalstyle";
 import Loader from "../../components/Loader";
 import React, { useState } from "react";
-import axios from 'axios'
 import { axiosRequest } from "../../components/api";
 import * as DocumentPicker from "expo-document-picker"
 

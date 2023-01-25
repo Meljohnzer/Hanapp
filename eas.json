@@ -5,27 +5,24 @@
   "build": {
     "development": {
       "developmentClient": true,
-      "distribution": "internal"
+      "distribution": "internal",
+      "ios": {
+        "resourceClass": "m1-medium"
+      }
     },
-   
-   
     "preview": {
       "distribution": "internal",
-      "android": {
-        "buildType": "apk"
+      "ios": {
+        "resourceClass": "m1-medium"
       }
     },
-    "preview2": {
-      "android": {
-        "gradleCommand": ":app:assembleRelease"
+    "production": {
+      "ios": {
+        "resourceClass": "m1-medium"
       }
-    },
-    "preview3": {
-      "developmentClient": true
-    },
+    }
+  },
+  "submit": {
     "production": {}
   }
-} 
-
-
-
+}

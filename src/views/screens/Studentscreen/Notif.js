@@ -1,9 +1,7 @@
 import { View, Text, Image, useWindowDimensions, TouchableOpacity, ScrollView, SafeAreaView, RefreshControl, Dimensions} from 'react-native'
-import Logo from '../../../../assets/bg/Picture3.png'
 import Logo1 from '../../../../assets/bg/profile2.png';
 import React from 'react'
 import Universalstyles from '../../../const/Universalstyle'
-import Icon from 'react-native-vector-icons/EvilIcons'
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon3 from 'react-native-vector-icons/Fontisto'
 //import axios from 'axios'

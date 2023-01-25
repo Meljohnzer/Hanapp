@@ -2,7 +2,6 @@ import { View, Text, TouchableOpacity, Image, ScrollView, SafeAreaView, RefreshC
 import React from 'react'
 import Universalstyles from '../../../const/Universalstyle'
 import Logo1 from '../../../../assets/bg/profile.png';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { axiosRequest, server } from '../../components/api';
 
 

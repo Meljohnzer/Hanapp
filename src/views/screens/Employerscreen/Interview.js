@@ -1,4 +1,3 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ScrollView, Text, View, StyleSheet, useWindowDimensions, Dimensions, Keyboard, Alert,Image, SafeAreaView, RefreshControl, TouchableOpacity, FlatList} from 'react-native'
 import Input from "../../components/Input";
 import {Universalstyles} from "../../../const/Universalstyle";
@@ -7,7 +6,6 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 import React, {useState } from "react";
 import Selectlist from "../../components/Selectlist4";
 import { axiosRequest } from "../../components/api";
-import * as DocumentPicker from "expo-document-picker"
 
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));

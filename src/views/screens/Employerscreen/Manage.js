@@ -11,17 +11,7 @@ import Icon3 from 'react-native-vector-icons/Entypo';
 import Icon4 from 'react-native-vector-icons/Fontisto';
 import OptionsMenu from "react-native-option-menu";
 import { axiosRequest } from '../../components/api';
-import { WebView } from 'react-native-webview';
 import HTMLView from 'react-native-htmlview';
-import {
- Menu,
- MenuProvider,
- MenuOptions,
- MenuOption,
- MenuTrigger,
- renderers
-} from "react-native-popup-menu";
-
 
 
 const myIcon = (<Icon3 name='dots-three-vertical' size={30} color="black " />)

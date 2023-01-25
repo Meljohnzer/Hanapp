@@ -1,6 +1,5 @@
 import { SafeAreaView, ScrollView, Text, View, Dimensions, useWindowDimensions, TouchableOpacity, Keyboard, Alert,Image, RefreshControl} from 'react-native'
 import React from 'react'
-import Logo from '../../../../assets/bg/Picture2.png';
 import Logo1 from '../../../../assets/bg/profile2.png';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon2 from 'react-native-vector-icons/Fontisto';

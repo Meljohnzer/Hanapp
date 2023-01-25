@@ -1,4 +1,3 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { SafeAreaView, ScrollView, StyleSheet, Pressable, Text, View, Dimensions, useWindowDimensions, TouchableOpacity, Keyboard, Alert,Image, RefreshControl} from 'react-native'
 import React, { useState } from 'react';
 import Logo from '../../../../assets/bg/Picture2.png';
@@ -6,7 +5,6 @@ import Logo1 from '../../../../assets/bg/profile2.png';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon2 from 'react-native-vector-icons/Fontisto';
 import Searchbar from '../../components/Searchbar';
-import Modal from 'react-native-modal';
 import OptionsMenu from "react-native-option-menu";
 import Universalstyles from "../../../const/Universalstyle";
 import { axiosRequest } from '../../components/api';

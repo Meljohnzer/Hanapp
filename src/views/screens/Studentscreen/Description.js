@@ -6,9 +6,6 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon4 from 'react-native-vector-icons/Fontisto';
 import Universalstyles from '../../../const/Universalstyle';
 import Logo1 from '../../../../assets/bg/profile2.png';
-import Icon2 from 'react-native-vector-icons/AntDesign';
-import Icon3 from 'react-native-vector-icons/Entypo';
-import * as DocumentPicker from "expo-document-picker"
 import HTMLView from 'react-native-htmlview';
 import { axiosRequest } from '../../components/api';
 

@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "HanApp",
-    "slug": "my-first-application1",
+    "name": "test",
+    "slug": "test",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -18,25 +18,21 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true,
-      "userInterfaceStyle": "light",
-      "bundleIdentifier": "com.BeSagunsa.HanApp"
+      "supportsTablet": true
     },
     "android": {
-      "package": "com.BeSagunsa.HanApp",
-      "versionCode": 1,
-      "userInterfaceStyle": "light",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.meljohnzer.test"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "extra": {
       "eas": {
-        "projectId": "2f339e4b-6c1a-46f0-a896-389e711a2925"
+        "projectId": "2c88f4c5-08c9-4ab4-a2a1-39cc0953ba39"
       }
     }
   }

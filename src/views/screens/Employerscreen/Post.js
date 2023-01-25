@@ -1,4 +1,3 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ScrollView, Text, View, StyleSheet, useWindowDimensions, Dimensions, Keyboard, Alert,Image, SafeAreaView, RefreshControl, TouchableOpacity, FlatList} from 'react-native'
 import Input from "../../components/Input";
 import {Universalstyles} from "../../../const/Universalstyle";
@@ -9,7 +8,6 @@ import Selectlist2 from "../../components/Selectlist2";
 import Selectlist3 from "../../components/Selectlist3";
 import { axiosRequest } from "../../components/api";
 import RichText from "../../components/Richtext";
-import { WebView } from 'react-native-webview';
 
 
 const wait = (timeout) => {

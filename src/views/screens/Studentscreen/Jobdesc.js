@@ -2,7 +2,6 @@ import { View, Text, TouchableOpacity, Image, useWindowDimensions, RefreshContro
 import React from 'react'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Logo from '../../../../assets/bg/bgimage5.jpg';
-import Universalstyles from '../../../const/Universalstyle';
 
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));

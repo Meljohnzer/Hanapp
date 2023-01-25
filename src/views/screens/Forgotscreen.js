@@ -1,4 +1,4 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
+
 import { ScrollView, Text, View, useWindowDimensions, Keyboard, Alert, TouchableOpacity, Image, SafeAreaView, RefreshControl, Dimensions} from 'react-native'
 import React from 'react'
 import Input from "../components/Input";
@@ -54,22 +54,7 @@ const Forgotscreen = ({navigation}) => {
         setLoading(true);
         setTimeout(async() => {
           setLoading(false);
-          let userData = await AsyncStorage.getItem('user');
-          if (userData) {
-            userData = JSON.parse(userData);
-            if (inputs.email == userData.email 
-              ){
-                AsyncStorage.setItem(
-                  'user', JSON.stringify({...userData, loggedIn: true}),
-                );
-                Alert.alert('Forgotten Password', userData.password)
-               navigation.navigate('Log in',{fname:userData.firstname,lname:userData.Lastname,email:userData.email});
-                setValid(true)
-              } 
-              else {
-                  Alert.alert('Error', 'User does not exists')
-              }
-          }
+  
               
             }, 1000)
       };

@@ -13,7 +13,6 @@ import {
   RichToolbar,
 } from "react-native-pell-rich-editor";
 
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 const Richtext = ({
     label,

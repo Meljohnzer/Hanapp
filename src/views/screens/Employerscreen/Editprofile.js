@@ -1,10 +1,8 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ScrollView, Text, View, ImageBackground, useWindowDimensions, Dimensions, Keyboard, Alert,Image, SafeAreaView, RefreshControl, TouchableOpacity} from 'react-native'
 import React, { useState } from "react";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import Input from "../../components/Input";
 import {Universalstyles} from "../../../const/Universalstyle";
-import Button from "../../components/Button";
 import Loader from "../../components/Loader";
 //import axios from 'axios'
 import { axiosRequest } from "../../components/api";

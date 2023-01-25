@@ -4,7 +4,6 @@ import Universalstyles from '../../../const/Universalstyle'
 import Fontaw from 'react-native-vector-icons/FontAwesome';
 import MatIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import MatIcon2 from 'react-native-vector-icons/MaterialIcons';
-import Logo1 from '../../../../assets/bg/bgimage5.jpg';
 import { axiosRequest } from '../../components/api';
 
 

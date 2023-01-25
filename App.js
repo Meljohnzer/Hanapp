@@ -1,12 +1,8 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Loginscreen from './src/views/screens/Loginscreen';
 import Signupscreen from './src/views/screens/Signupscreen';
-import Infoscreen from './src/views/screens/Signupscreen';
-
-import Homescreen from './src/views/screens/Homescreen';
 import Forgotscreen from './src/views/screens/Forgotscreen';
 import { SafeAreaView } from 'react-native';
-import Userstypescreen from './src/views/screens/Userstypescreen';
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Home from './src/views/screens/Studentscreen/Home'
@@ -25,14 +21,12 @@ import LottieView from "lottie-react-native";
 import Userinfo from './src/views/screens/Userinfo';
 import Educbg from './src/views/screens/Studentscreen/Educbg';
 import Guardianbg from './src/views/screens/Studentscreen/Guardianbg';
-import Skills from './src/views/screens/Studentscreen/Skills';
 import Compdetails from './src/views/screens/Employerscreen/Compdetails';
 import Description from './src/views/screens/Studentscreen/Description';
 import Manage from './src/views/screens/Employerscreen/Manage';
 import Cprofile from './src/views/screens/Studentscreen/Cprofile'
 import JSprofile from './src/views/screens/Employerscreen/JSprofile';
 import Location from './src/views/components/Location';
-import { axiosRequest } from './src/views/components/api';
 import Attachfile from './src/views/screens/Studentscreen/Attachfile';
 import Editprofile from './src/views/screens/Employerscreen/Editprofile';
 import PassSec from './src/views/screens/Employerscreen/PassSec';
@@ -44,7 +38,6 @@ import Reportprob from './src/views/screens/Employerscreen/Reportprob';
 import Cemail from './src/views/screens/Employerscreen/Cemail';
 import Review from './src/views/screens/Employerscreen/Review';
 import Interview from './src/views/screens/Employerscreen/Interview';
-import Interviewinfo from './src/views/screens/Studentscreen/Interviewinfo';
 import Richtext from './src/views/components/Richtext';
 import Appstatus from './src/views/screens/Studentscreen/Appstatus';
 
@@ -87,14 +80,6 @@ export default function App() {
       name='Guardian'
       component={Guardianbg}
       />
-<Stack.Screen
-      name='Skills'
-      component={Skills}
-      />
-<Stack.Screen
-      name='Users type'
-      component={Userstypescreen}
-      />
 
 <Stack.Screen
       name='Sign up'
@@ -132,10 +117,7 @@ export default function App() {
       name='Interview schedule'
       component={Interview}
       />
-<Stack.Screen options={{headerShown: true}}
-      name='Interview information'
-      component={Interviewinfo}
-      />
+
 <Stack.Screen options={{headerShown: true}}
       name='Application status'
       component={Appstatus}
@@ -208,10 +190,7 @@ export default function App() {
       name='Forgotscreen'
       component={Forgotscreen}
       />
-   <Stack.Screen 
-      name='Homescreen'
-      component={Homescreen}
-      />
+ 
  
 
 

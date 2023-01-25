@@ -1,12 +1,8 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ScrollView, Text, View, ImageBackground, useWindowDimensions, Dimensions, Keyboard, Alert,Image, SafeAreaView, RefreshControl, TouchableOpacity} from 'react-native'
 import React from 'react'
-
 import Input from "../../components/Input";
 import {Universalstyles} from "../../../const/Universalstyle";
-import Button from "../../components/Button";
 import Loader from "../../components/Loader";
-import Selectlist from "../../components/Selectlist";
 import { axiosRequest } from '../../components/api';
 
 const wait = (timeout) => {

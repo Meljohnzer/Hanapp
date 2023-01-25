@@ -1,7 +1,5 @@
 import { View, Text, SafeAreaView, Dimensions, ScrollView, RefreshControl} from 'react-native'
 import React from 'react'
-import Universalstyles from '../../../const/Universalstyle';
-
 
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));

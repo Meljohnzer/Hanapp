@@ -1,4 +1,3 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ScrollView, Text, View, Dimensions, useWindowDimensions, Keyboard, Alert, TouchableOpacity, Image, SafeAreaView, RefreshControl} from 'react-native'
 import React from 'react';
 import Logo from '../../../assets/bg/Picture1.png';
