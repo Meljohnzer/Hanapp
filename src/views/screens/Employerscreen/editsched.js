@@ -11,7 +11,7 @@ const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
 }
 
-const Interview = ({navigation,route}) => {
+const EditSched = ({navigation,route}) => {
   const [date1, setDate1] = useState(new Date());
   const [mode1, setMode1] = useState('date');
   const [show1, setShow1] = useState(false);
@@ -130,7 +130,7 @@ React.useEffect(()=>{
  navigation.addListener('focus',async () => {
   
   await navigation.setOptions({
-   title: "Interview Schedule",
+   title: "Edit Schedule",
    headerTitleAlign: 'center',
    headerStyle: { backgroundColor: 'white', height: 150 },
    headerTitleStyle: { fontWeight: '100', fontSize: 25 }
@@ -140,22 +140,21 @@ React.useEffect(()=>{
 
   )},[])
 
-    
+  const {scheduleID,interviewType,method,startdate,enddate,starttime,endtime} = route.params
   
   const [inputs, setInputs] = React.useState({
-   inttype: '',
-   intWays: '',
-   intstartdate: '',
-   intenddate: '',
-   intstarttime: '',
-   intendtime: '',
-
+   inttype: interviewType,
+   intWays: method,
+   intstartdate: startdate,
+   intenddate: enddate,
+   intstarttime: starttime,
+   intendtime: endtime,
   });
+
   
-  const {itemId} = route.params
   
 var Data ={
-        applicantID : itemId,
+        scheduleID : scheduleID,
         inttype: inputs.inttype,
         intWays: inputs.intWays,
         intstartdate: inputs.intstartdate,
@@ -163,7 +162,6 @@ var Data ={
         starttime:inputs.intstarttime,
         endtime:inputs.intendtime
       };
-
       var headers = {
         'Access-Control-Allow-Origin': 'true',
         'Content-Type': 'application/json',
@@ -240,10 +238,20 @@ var Data ={
     setTimeout(() => {
       setLoading(false);
      
-axiosRequest.post('/api/schedule.php', JSON.stringify(Data))  
+axiosRequest.post('/api/editschedule.php', JSON.stringify(Data))  
       .then((response) => {
         console.log(response.data);
-        navigation.goBack()
+       if(response.data === "Schedule is Updated Successfully!"){
+        Alert.alert(response.data,"Change screen to see the changes made",
+        [
+    {
+      text: "Okay!",
+      onPress: () => navigation.goBack(),
+      style: "yes"
+    }
+  ]
+       )
+       }
       });
      
     }, 3000);
@@ -303,18 +311,11 @@ axiosRequest.post('/api/schedule.php', JSON.stringify(Data))
   
         <View style={[Universalstyles.signupbg, { height: 'auto', paddingBottom: 50, justifyContent:'center'}]}>
         {/* {Data.SchoolID && <Image style= {{height:100,width:100,alignSelf:'center',borderRadius:100}} source={{uri : Data.SchoolID}}/>} */}
-        <Text style= {{
-            color: '#2f2f2f', 
-            paddingVertical: 10,  
-            fontSize: 25, 
-            fontWeight: '500',
-          }}>
-
-        Set schedule
-        </Text>
+  
            
                <Selectlist
             error={errors.inttype}
+            placeholder = {inputs.inttype}
             onFocus={() =>{ 
                 handleError(null, 'inttype');
               }}
@@ -461,7 +462,7 @@ axiosRequest.post('/api/schedule.php', JSON.stringify(Data))
     padding: 10,
     borderRadius: 30,
     }}>
-      <Text style={{color: 'white', fontWeight: 'light', fontSize: 18}}>Done</Text>
+      <Text style={{color: 'white', fontWeight: 'light', fontSize: 18}}>Update</Text>
       </View>
     </TouchableOpacity>
 
@@ -477,4 +478,4 @@ axiosRequest.post('/api/schedule.php', JSON.stringify(Data))
   );
 };
 
-export default Interview
+export default EditSched

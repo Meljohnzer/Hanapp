@@ -63,7 +63,7 @@ setGet (prevState => ({...prevState, post: response.data}))
     {/* {gets.post.map((label,index)=>( */}
  { gets.post.map((label,index)=>( <TouchableOpacity key={index} onPress={() => navigation.navigate('Application status',{itemId:label.postID})}>
   { label.status == "Approved"  && <View style={[Universalstyles.jobPost,{}]}>
-
+{console.log(label.status)}
       <View style={[Universalstyles.jobContent,{backgroundColor:"#83e0f8"}]}>
           <Image source={Logo1} style={Universalstyles.Jobimage}/>
           

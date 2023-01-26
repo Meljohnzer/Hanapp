@@ -188,7 +188,7 @@ var Data ={
       <Text style={{ paddingHorizontal: 80, paddingBottom: 5, fontSize: 15,opacity:.5}}><Icon name='calendar-month' style={{fontSize: 20, color: 'red', marginRight: 10}}/> Hiring end on: </Text>
       </View>
       <View style={{ alignItems: 'center', flexDirection:'row', justifyContent: 'flex-start'}}>
-      <Text style={{paddingHorizontal: 25, fontSize: 15, opacity:.5}}>{label.startdate} </Text>
+      <Text style={{paddingHorizontal: 25, fontSize: 15, opacity:.5}}>{label.startdate}</Text>
       <Text style={{paddingHorizontal: 100,fontSize: 15, opacity:.5}}>{label.enddate}</Text>
       </View>
       <Text style={Universalstyles.text}></Text>
@@ -217,6 +217,9 @@ var Data ={
       marginTop: 15,
       width: 70,
       height: 70,
+      justifyContent:'center',
+      alignContent:'center',
+      alignItems:'center',
       marginRight: 7,
       borderRadius: 35,
       alignSelf: 'center'
@@ -248,8 +251,14 @@ var Data ={
      
       </View>}
       {label.scheduleID && <View style={{alignItems: 'center', flexDirection: 'row',justifyContent:"flex-end", width:"100%" }}>
-      <TouchableOpacity  onPress={() => navigation.navigate('Interview schedule',{itemId:label.appID})}>
-      <Text style={{color: 'blue', fontSize: 18, marginHorizontal: 10}}>{label.startdate}/{label.enddate}</Text>
+      <TouchableOpacity  onPress={() => navigation.navigate('Edit schedule',{scheduleID:label.scheduleID,interviewType:label.interviewType,
+        method:label.method,
+        startdate:label.startdate,
+        startdate:label.startdate,
+        enddate:label.enddate,
+       starttime:label.starttime,
+       endtime:label.endtime})}>
+      <Text style={{color: 'blue', fontSize: 18, marginHorizontal: 10}}>Edit Schedule</Text>
       </TouchableOpacity>
       
      

@@ -56,20 +56,7 @@ setGet (prevState => ({...prevState, post: response.data}))
 
   )},[])
   const myIcon = (<Icon2 name='dots-horizontal' size={30} color="black "/>)
-  const change_status = () => Alert.alert(
-    "", 
-    "Are you sure you want to save this post?",
-    [
-      {
-        text: "Yes",
-        onPress: () => console.log("Yes Pressed"),
-        style: "yes"
-      },
-      { 
-        text: "No", onPress: () => console.log("No Pressed")
-      }
-    ]
-  );
+
   return (
     <SafeAreaView style={{flex: 1, }}>
    <ScrollView style={{}}
@@ -115,7 +102,32 @@ setGet (prevState => ({...prevState, post: response.data}))
   customButton={myIcon}
 
   options={["Remove", "close", "Cancel"]}
-  actions={[change_status, () => Alert.alert(
+  actions={[() => Alert.alert(
+    "", 
+    "Are you sure you want to save this post?",
+    [
+      {
+        text: "Yes",
+        onPress: () => { axiosRequest.post('api/removepost.php',JSON.stringify({postID:label.postID})).then((response) => {
+          console.log(response.data)
+          Alert.alert(response.data,"Change screen to see the changes made",
+          [
+      {
+        text: "Okay!",
+        onPress: () => console.log("NO ACCTION"),
+        style: "yes"
+      }
+    ]
+         )
+       
+             })},
+        style: "yes"
+      },
+      { 
+        text: "No", onPress: () => console.log("No Pressed")
+      }
+    ]
+  ), () => Alert.alert(
     "", 
     "Disable The post for applicants??",
     [
@@ -146,7 +158,20 @@ setGet (prevState => ({...prevState, post: response.data}))
   customButton={myIcon}
 
   options={["Remove", "Open", "Cancel"]}
-  actions={[change_status, () => Alert.alert(
+  actions={[() => Alert.alert(
+    "", 
+    "Are you sure you want to Remove this post?",
+    [
+      {
+        text: "Yes",
+        onPress: () => console.log("Yes Pressed"),
+        style: "yes"
+      },
+      { 
+        text: "No", onPress: () => console.log("No Pressed")
+      }
+    ]
+  ), () => Alert.alert(
     "", 
     "Enable The post for applicants??",
     [

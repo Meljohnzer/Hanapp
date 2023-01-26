@@ -41,7 +41,6 @@ navigation.setOptions({
   
  await axiosRequest.post('/api/profile.php', JSON.stringify(Data))  
       .then((response) => {
-     // console.log(response.data)
     setApp (prevState => ({...prevState, post: response.data}))
 
       })
@@ -173,7 +172,7 @@ navigation.setOptions({
       </View>
       
       </View>
-   { label.applicantID == null &&     <View style={{marginTop: 15, marginBottom: 50, alignItems: 'center', flexDirection:'row', justifyContent: 'space-around'}}>
+   { label.applicantID == null &&   <View style={{marginTop: 15, marginBottom: 50, alignItems: 'center', flexDirection:'row', justifyContent: 'space-around'}}>
     <TouchableOpacity  onPress={() => navigation.navigate('Home')}>
     <View style={{borderColor: 'red',
     alignSelf: 'center',
@@ -242,7 +241,13 @@ navigation.setOptions({
     </TouchableOpacity>
     </View>}
     { label.scheduleID &&  <View style={{marginTop: 15, marginBottom: 50, alignItems: 'center', flexDirection:'row', justifyContent: 'space-around'}}>
-  <TouchableOpacity onPress ={() => navigation.navigate('Interview schedule',{itemId:label.applicantID})}>
+  <TouchableOpacity onPress ={() => navigation.navigate('Edit schedule',{scheduleID:label.scheduleID,interviewType:label.interviewType,
+        method:label.method,
+        startdate:label.startdate,
+        startdate:label.startdate,
+        enddate:label.enddate,
+       starttime:label.starttime,
+       endtime:label.endtime})}>
       <View style={{backgroundColor: '#7eeebc',
     alignSelf: 'center',
     width: 300,

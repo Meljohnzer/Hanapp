@@ -1,11 +1,13 @@
-import { View, Text, TouchableOpacity, Image, ScrollView, SafeAreaView, RefreshControl, Dimensions} from 'react-native'
+import { View, Text, TouchableOpacity, Image, ScrollView, SafeAreaView, RefreshControl, Dimensions,Alert} from 'react-native'
 import React, {useState} from 'react'
 import Universalstyles from '../../../const/Universalstyle'
 import Logo1 from '../../../../assets/bg/profile2.png';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { axiosRequest } from '../../components/api';
+import { axiosRequest,server } from '../../components/api';
 import * as ImagePicker from 'expo-image-picker';
+import * as DocumentPicker from "expo-document-picker"
 import HTMLView from 'react-native-htmlview';
+
 
 
 const wait = (timeout) => {
@@ -15,27 +17,61 @@ const wait = (timeout) => {
 
 const Profile = ({navigation}) => {
 
+
 const [gets,setGet] = React.useState({
    profile: []
   })
   const [selectedImage, setSelectedImage] = useState(null);
 
-  const pickImageAsync = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      
-      allowsEditing: true,
-      quality: 1,
-    });
+
+  const PickFile = async (file) => {
 
 
-    if (!result.canceled) {
-      setSelectedImage (result.assets[0].uri);
-    } else{
-      alert('You did not select any image.'); 
+    let File = await DocumentPicker.getDocumentAsync({
+     copyToCacheDirectory : false,
+      type: 'image/*'
+    })
+    if(File.type === 'cancel'){
+      console.log("cancel")
+    }else{
+
+      var config = {
+        headers:{
+     'Content-type':'multipart/form-data'
+        }
+       };
+       var formData = new FormData();
+       formData.append('file1',{type:File.mimeType,uri:File.uri,name:File.name})
+      Alert.alert(
+        "", 
+        "You Want To Apply This As Profile Picture?",
+        [
+          {
+            text: "Yes",
+            onPress: () => { axiosRequest.post('api/applyprofile.php',formData,config).then((response) => {
+              if(response.data === "Profile Picture Added"){
+              Alert.alert(response.data,"Change screen to see the changes made",
+              [
+          {
+            text: "Okay!",
+            onPress: () => console.log("NO ACCTION"),
+            style: "yes"
+          }
+        ]
+             )
+      }
+           
+                 })},
+            style: "yes"
+          },
+          { 
+            text: "No", onPress: () => console.log("No Pressed")
+          }
+        ]
+      )
     }
-  };
+}
 
- 
   const [refreshing, setRefreshing] = React.useState(false);
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
@@ -118,8 +154,8 @@ setGet (prevState => ({...prevState, profile: data}))
     </TouchableOpacity>
         </View>}
        
-        <TouchableOpacity onPress={pickImageAsync}>
-        { selectedImage ? <Image source={{uri: selectedImage}} style={{
+        <TouchableOpacity onPress={PickFile}>
+        { profiles.profile ? <Image source={{uri: server + profiles.profile}} style={{
      marginTop: 10,
      marginBottom: 20,
      marginLeft: 0,

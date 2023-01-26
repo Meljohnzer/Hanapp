@@ -46,6 +46,7 @@ import Reportprob2 from './src/views/screens/Studentscreen/Reportprob';
 import Cemail from './src/views/screens/Employerscreen/Cemail';
 import Review from './src/views/screens/Employerscreen/Review';
 import Interview from './src/views/screens/Employerscreen/Interview';
+import EditSched from './src/views/screens/Employerscreen/editsched';
 import Richtext from './src/views/components/Richtext';
 import Appstatus from './src/views/screens/Studentscreen/Appstatus';
 
@@ -133,6 +134,10 @@ export default function App() {
 <Stack.Screen options={{headerShown: true}}
       name='Interview schedule'
       component={Interview}
+      />
+      <Stack.Screen options={{headerShown: true}}
+      name='Edit schedule'
+      component={EditSched}
       />
 
 <Stack.Screen options={{headerShown: true}}
@@ -380,6 +385,7 @@ function Studentscreen () {
         <Tabs.Screen 
         name="Profile" 
         component={Profile2}
+        options={{unmountOnBlur: true}}
       />
 
 
