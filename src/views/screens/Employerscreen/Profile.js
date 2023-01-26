@@ -46,6 +46,7 @@ React.useEffect(()=>{
  navigation.addListener('focus',async () => {
   
  await axiosRequest.get('/api/sprofile.php').then((response)=>response.data).then((data)=>{
+  // console.log(data)
 setGet (prevState => ({...prevState, profile: data}))
  })
   
@@ -70,12 +71,23 @@ setGet (prevState => ({...prevState, profile: data}))
        />
      }>
       
-     {gets.profile.map((profiles,index)=>(<View key = {index} style={[Universalstyles.studprofile, {borderWidth: 2,}]}>
+     {gets.profile.map((profiles,index)=>(<View key = {index} style={[Universalstyles.studprofile, {}]}>
       
         <View style={{flex: 1, margin:10, flexDirection: 'row', alignSelf: 'flex-end',}}>
     {  profiles.compname ? <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center',  }}> 
         
-        <Text style={{fontSize: 20, fontWeight: '500'}}> Company information</Text>
+       <TouchableOpacity onPress={()=>navigation.navigate('Company edit',{compname:profiles.compname,
+       establishdate:profiles.establishdate,
+       websiteurl:profiles.websiteurl,
+       compdesc:profiles.compdesc})}>
+         <View>
+        <Text style={{fontSize: 15, fontWeight: '500'}}> Company information <Icon 
+            name= 'pencil'
+            style={{fontSize: 15, marginRight: 10}}
+            color='black'
+        />
+        </Text>
+        </View></TouchableOpacity>
         <View style={{padding: 5}}>
         <Text style={{paddingBottom: 5, fontSize: 15,opacity:.5}}> 
         <Icon name='warehouse' style={{fontSize: 20, color: 'black', marginRight: 10}}/>
@@ -101,7 +113,7 @@ setGet (prevState => ({...prevState, profile: data}))
         
       <TouchableOpacity  onPress={()=> navigation.navigate('Company details')}>
       <View style={[Universalstyles.jobContent3, {marginRight: 20}]}>
-      <Text style={{color: 'white', fontWeight: 'bold', fontSize: 18,}}>Add Company</Text>
+      <Text style={{color: 'white', fontWeight: 'bold', fontSize: 18,}}>Add Company </Text>
       </View>
     </TouchableOpacity>
         </View>}
@@ -138,13 +150,35 @@ setGet (prevState => ({...prevState, profile: data}))
       
       
         <View style={{paddingHorizontal: 5, paddingVertical: 20, alignSelf: 'flex-start'}}>
-        <Text style={{fontSize: 20, fontWeight: '500'}}> Employer information</Text>
+     <TouchableOpacity onPress={() => navigation.navigate('Edit profile',{Fname:profiles.firstname,
+     Lname:profiles.lastname,
+      Mname:profiles.midname,
+      Sname:profiles.suffname,
+      birth:profiles.birthday,
+      age:profiles.age,
+      contact:profiles.contactno,
+      street:profiles.street,
+      city:profiles.city,
+      province:profiles.province,
+      zipcode:profiles.zipcode})}>
+        <View>
+       <Text style={{fontSize: 15, fontWeight: '500'}}> Employer information <Icon 
+            name= 'pencil'
+            style={{fontSize: 15, marginRight: 10}}
+            color='black'
+        />
+        </Text>
+        </View>
+        </TouchableOpacity> 
         <View style={{padding: 5}}>
         <Text style={{opacity: 0.6}}>
         Name: <Text style={{fontWeight: 'bold', textTransform: 'capitalize'}}>{profiles.lastname}, {profiles.firstname} {profiles.midname}</Text>
         </Text>
         <Text style={{opacity: 0.6}}>
-        Address: <Text style={{fontWeight: 'bold', textTransform: 'capitalize'}}>{profiles.street}, {profiles.city}, {profiles.province}, {profiles.zipcode}</Text>
+        Address: <Text style={{fontWeight: 'bold', textTransform: 'capitalize'}}>{profiles.street} {profiles.city} {profiles.province} {profiles.zipcode}</Text>
+        </Text>
+        <Text style={{opacity: 0.6}}>
+        Contact#: <Text style={{fontWeight: 'bold', textTransform: 'capitalize'}}>{profiles.contactno}</Text>
         </Text>
         <Text style={{opacity: 0.6}}>Date of birth: <Text style={{fontWeight: 'bold', textTransform: 'capitalize'}}>{profiles.birthday}</Text>
         </Text>
@@ -154,7 +188,7 @@ setGet (prevState => ({...prevState, profile: data}))
       </View>
        <View style={{borderWidth: .3, borderColor: '#aba9ab', marginHorizontal: 10, position: 'relative'}}></View>
        { profiles.compdesc &&  <View style={{paddingHorizontal: 5, paddingVertical: 20, alignSelf: 'flex-start'}}>
-        <Text style={{fontSize: 20, fontWeight: '500'}}> Company description</Text>
+        <Text style={{fontSize: 15, fontWeight: '500'}}> Company description</Text>
         <View style={{padding: 5}}>
         
        {/* <Text style={{paddingBottom: 10, margin: 3, opacity: 0.6, fontSize: 15, alignSelf: 'center', fontWeight: '500'}}>
@@ -167,16 +201,18 @@ setGet (prevState => ({...prevState, profile: data}))
     
      </View>
         </View>}
-      </View>))} 
-     
-     <View style={{marginBottom: 50}}>
+
+        {/* <View style={{marginBottom: 10}}>
       <TouchableOpacity  onPress={() => navigation.navigate('Edit profile')}>
-      <View style={[Universalstyles.logout,{marginVertical: 20,}]}>
+      <View style={[Universalstyles.logout,{}]}>
       <Text style={{color: 'white', fontWeight: 'bold', fontSize: 18}}>Edit</Text>
       </View>
     </TouchableOpacity>
  
-    </View>
+    </View> */}
+      </View>))} 
+     
+ 
     
    
     </ScrollView>

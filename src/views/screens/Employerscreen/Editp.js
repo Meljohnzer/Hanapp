@@ -8,6 +8,7 @@ import Selectlist2 from "../../components/Selectlist2";
 import Selectlist3 from "../../components/Selectlist3";
 import { axiosRequest } from "../../components/api";
 import RichText from "../../components/Richtext";
+import HTMLView from 'react-native-htmlview';
 
 
 const wait = (timeout) => {
@@ -15,7 +16,26 @@ const wait = (timeout) => {
 }
 
 
-const Post = ({navigation,route}) => {
+const EditP = ({navigation,route}) => {
+
+    const { postID,jobtype,jobtitle,salary,rate,jobdesc,street,city,province,zipcode,enddate,startdate } = route.params
+
+    React.useEffect(()=>{
+ 
+        navigation.setOptions({
+           title: "Edit Post",
+           headerTitleAlign: 'center',
+           headerStyle: { backgroundColor: 'white', height: 150 },
+           headerTitleStyle: { fontWeight: '100', fontSize: 25 }
+          })
+         
+         navigation.addListener('focus',async () => {
+          
+
+              
+        }
+        
+          )},[])
  
 
      
@@ -71,23 +91,24 @@ const Post = ({navigation,route}) => {
 
   const [inputs, setInputs] = React.useState({
     
-    Lookingfor: '',
-    street: '',
-    city: '',
-    province: '',
-    zipcode: '',
-    Jobdesc: '',
-    Jobtype: '',
-    startdate: '',
-    enddate:'',
-    rate: '',
-    salary:'',
+    Lookingfor: jobtitle,
+    street: street,
+    city: city,
+    province: province,
+    zipcode: zipcode,
+    Jobdesc: jobdesc,
+    Jobtype: jobtype,
+    startdate: startdate,
+    enddate:enddate,
+    rate: rate,
+    salary:salary,
 
   });
   
-  
+
   
 var Data ={
+       postID:postID,
        lookingfor:inputs.Lookingfor,
        street:inputs.street,
        city:inputs.city,
@@ -185,11 +206,19 @@ var Data ={
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-     axiosRequest.post('/api/post.php', JSON.stringify(Data), headers)  
+     axiosRequest.post('/api/editpost.php', JSON.stringify(Data), headers)  
       .then((response) => {
-        // console.log(response.data);
-         if(response.data = "Post created Successfully"){
-          navigation.navigate("Home");
+        console.log(response.data);
+         if(response.data = "Post Edited Successfully"){
+            Alert.alert("Post Edited Successfully","Check your post to see the changes!!",
+            [
+        {
+          text: "Okay!",
+          onPress: () => navigation.navigate("Home"),
+          style: "yes"
+        }
+      ]
+           )
          }else{
           alert(response.data)
          }
@@ -227,15 +256,12 @@ var Data ={
   
    
           <View style={{height: 'auto', padding: 5, flex: 1,  }}>
-            <View  style= {[Universalstyles.txt2, {}]}>
-            <Text style={{ fontSize: 40, fontWeight: '500',}}>Create post</Text>
-            <Text style={{ fontSize: 12, marginLeft: 5}}>Create a job hiring application with valid information</Text>
-            </View>
+          
 
             <Text style={{fontSize: 20, fontWeight: '500' ,opacity:0.6, marginBottom: 10}}> Job information</Text>
             <Selectlist2
             error={errors.Jobtype}
-            
+            value= {inputs.Jobtype}
             onFocus={() =>{
               
                 handleError(null, 'Jobtype');
@@ -256,6 +282,7 @@ var Data ={
             />
             <Input 
             placeholder= 'Salary of employee' 
+            value={inputs.salary}
             iconName= 'currency-php' 
             keyboardType= 'numeric'
             error={errors.salary}
@@ -267,36 +294,35 @@ var Data ={
             />
              <Selectlist3
             error={errors.rate}
+            value={inputs.rate}
             onFocus={() =>{ 
                 handleError(null, 'rate');
               }}
             onChange = {item => handleOnChange(item.label, 'rate')}
             />
-             {/* <Input 
-            placeholder= 'Job description' 
-            iconName= 'newspaper-variant-outline' 
-            error={errors.Jobdesc}
-            onFocus={() =>{
-              handleError(null, 'Jobdesc');
-            }}
-            onChangeText = {text => handleOnChange(text, 'Jobdesc')}
-            /> */}
-            <RichText
+   
+
+
+           { <RichText
             
-              placeholder= 'Job description...' 
+              placeholder= 'Job description...'
+              value={inputs.Jobdesc} 
               error={errors.Jobdesc}
               onFocus={() =>{
                 handleError(null, 'Jobdesc');
+                
               }}
               onChange = {text => handleOnChange(text, 'Jobdesc')}
-            />
+            />}
  <Text style={{fontSize: 20, fontWeight: '500' ,opacity:0.6, marginBottom: 10}}> Job Location</Text>
             
            <View style = {{}}>
            
             <Input 
             placeholder= 'Street' 
+            value = {inputs.street}
             iconName= 'map-marker' 
+           
             error={errors.street}
             onFocus={() =>{
               handleError(null, 'street');
@@ -307,7 +333,7 @@ var Data ={
              <Input 
             placeholder= 'City' 
             iconName= 'map-marker' 
-            
+            value={inputs.city}
             error={errors.city}
             onFocus={() =>{
               handleError(null, 'city');
@@ -318,7 +344,7 @@ var Data ={
              <Input 
             placeholder= 'Province' 
             iconName= 'map-marker' 
-            
+            value={inputs.province}
             error={errors.province}
             onFocus={() =>{
               handleError(null, 'province');
@@ -329,7 +355,7 @@ var Data ={
              <Input 
             placeholder= 'Zipcode' 
             iconName= 'map-marker' 
-            
+            value={inputs.zipcode}
             error={errors.zipcode}
             onFocus={() =>{
               handleError(null, 'zipcode');
@@ -350,15 +376,14 @@ var Data ={
             <Input 
             placeholder= 'Hiring Start Date (YYYY-MM-DD)' 
             iconName= 'calendar-month' 
+            value={inputs.startdate}
             editable={false}
-            value = {inputs.startdate}
             error={errors.startdate}
             onFocus={() =>{
               handleError(null, 'startdate');
             }}
             onChangeText = {text => handleOnChange(text, 'startdate')}
-            />
-            </TouchableOpacity>
+            /></TouchableOpacity>
               {show1 && (
               <DateTimePicker
               testID="dateTimePicker"
@@ -369,7 +394,7 @@ var Data ={
               onChange={onChange1}
               />
               )}
-         {inputs.startdate &&     <TouchableOpacity onPress={()=>{showDatePicker()
+              <TouchableOpacity onPress={()=>{showDatePicker()
             handleError(null, 'enddate')
             }}>
             <Input 
@@ -382,7 +407,9 @@ var Data ={
               handleError(null, 'enddate');
             }}
             onChangeText = {text => handleOnChange(text, 'enddate')}
-            /></TouchableOpacity> }
+            />
+            
+            </TouchableOpacity>
               {show && (
               <DateTimePicker
               testID="dateTimePicker"
@@ -412,7 +439,7 @@ var Data ={
 <View style={{marginBottom: 50, alignItems: 'center'}}>
     <TouchableOpacity  onPress={validate}>
       <View style={[Universalstyles.logout, {height: 'auto'}]}>
-      <Text style={{color: 'white', fontWeight: 'bold', fontSize: 18}}>Post</Text>
+      <Text style={{color: 'white', fontWeight: 'bold', fontSize: 18}}>Done</Text>
       </View>
     </TouchableOpacity>
     </View>
@@ -426,4 +453,4 @@ var Data ={
   );
 };
 
-export default Post
+export default EditP

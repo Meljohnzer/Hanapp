@@ -1,4 +1,4 @@
-import { View, Text, Image, useWindowDimensions, TouchableOpacity, ScrollView, SafeAreaView, RefreshControl, Dimensions} from 'react-native'
+import { View, Text, Image, useWindowDimensions, TouchableOpacity, ScrollView, SafeAreaView, RefreshControl, Alert,Dimensions} from 'react-native'
 import Logo from '../../../../assets/bg/Picture3.png'
 import Logo1 from '../../../../assets/bg/profile2.png';
 import React from 'react'
@@ -56,20 +56,6 @@ setGet (prevState => ({...prevState, post: response.data}))
 
   )},[])
   const myIcon = (<Icon2 name='dots-horizontal' size={30} color="black "/>)
-  const remove = () => Alert.alert(
-    "", 
-    "Are you sure you want to report this post?",
-    [
-      {
-        text: "Yes",
-        onPress: () => console.log("Yes Pressed"),
-        style: "yes"
-      },
-      { 
-        text: "No", onPress: () => console.log("No Pressed")
-      }
-    ]
-  );
   const change_status = () => Alert.alert(
     "", 
     "Are you sure you want to save this post?",
@@ -125,16 +111,72 @@ setGet (prevState => ({...prevState, post: response.data}))
     <View style={Universalstyles.jobContent2}>
     <View style={{flex: 1,  flexDirection: 'row' ,alignSelf: 'flex-end', left: 5, bottom: 5}}>
     
-    <OptionsMenu
+  {label.status == "open" &&  <OptionsMenu
   customButton={myIcon}
 
-  options={["Remove", "Change status", "Cancel"]}
-  actions={[remove, change_status]}
-  />
+  options={["Remove", "close", "Cancel"]}
+  actions={[change_status, () => Alert.alert(
+    "", 
+    "Disable The post for applicants??",
+    [
+      {
+        text: "Yes",
+        onPress: () => { axiosRequest.post('api/poststatus.php',JSON.stringify({status:label.status,status:"close",postID:label.postID})).then((response) => {
+          Alert.alert(response.data,"Change screen to see the changes made",
+          [
+      {
+        text: "Okay!",
+        onPress: () => console.log("NO ACCTION"),
+        style: "yes"
+      }
+    ]
+         )
+       
+             })},
+        style: "yes"
+      },
+      { 
+        text: "No", onPress: () => console.log("No Pressed")
+      }
+    ]
+  )]}
+  /> }
+
+{label.status == "close" &&  <OptionsMenu
+  customButton={myIcon}
+
+  options={["Remove", "Open", "Cancel"]}
+  actions={[change_status, () => Alert.alert(
+    "", 
+    "Enable The post for applicants??",
+    [
+      {
+        text: "Yes",
+        onPress: () => { axiosRequest.post('api/poststatus.php',JSON.stringify({status:label.status,status:"open",postID:label.postID})).then((response) => {
+          Alert.alert(response.data,"Change screen to see the changes made",
+          [
+      {
+        text: "Okay!",
+        onPress: () => console.log("NO ACCTION"),
+        style: "yes"
+      }
+    ]
+         )
+       
+             })},
+        style: "yes"
+      },
+      { 
+        text: "No", onPress: () => console.log("No Pressed")
+      }
+    ]
+  )]}
+  /> }
   </View>
     <Text style={{fontSize: 20, borderBottomWidth: 1, marginBottom: 5, borderColor: '#cbc8ce'}}><Icon3 name='person' style={{fontSize: 23, color: 'black',}}/><Text style={{color: 'black', }}>  {label.lookingfor}</Text></Text>
     
-    { label.status ? <Text style={{opacity:.5}}><Icon4 name='dot-fill' style={{fontSize: 20, color: 'green', alignContent: 'center'}}/>  Open</Text> : <Text style={{opacity:.5}}><Icon4 name='dot-fill' style={{fontSize: 20, color: 'red', alignContent: 'center'}}/>  Close</Text>}
+    { label.status == "open" && <Text style={{opacity:.5}}><Icon4 name='dot-fill' style={{fontSize: 20, color: 'green', alignContent: 'center'}}/>  Open</Text> }
+    { label.status == "close" && <Text style={{opacity:.5}}><Icon4 name='dot-fill' style={{fontSize: 20, color: 'red', alignContent: 'center'}}/>  Close</Text>}
 
     <Text style={{opacity:.5}}><Icon2 name='account-group' style={{fontSize: 20, color: 'brown', alignContent: 'center'}}/> <Text style={{color: 'black', }}> {label.applicantNO}</Text> People applied</Text>
 <Text style={{opacity: .5 }}><Icon2 name='clock-outline' style={{fontSize: 20, color: 'black', }}/> {moment(label.createdat).local().startOf('seconds').fromNow()}</Text>

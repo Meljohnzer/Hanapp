@@ -16,6 +16,7 @@ import Universalstyles from '../../const/Universalstyle';
     error, 
     onChange,
     password, 
+    value,
     keyboardType,
     onFocus=()=>{},
     ...props
@@ -37,11 +38,13 @@ import Universalstyles from '../../const/Universalstyle';
           maxHeight={300}
           labelField="label"
           valueField="value"
-          placeholder={!isFocused ? 'Job type' : '...'}
+          value={value}
+          // placeholder={!isFocused ? 'Job type' : '...'}
+          placeholder = {value}
           dropdownPosition = 'bottom'
           itemContainerStyle = {{}}
           selectedTextStyle={styles.selectedTextStyle}
-          //value={value}
+        
           onFocus={() => {
             onFocus();
             setIsFocused(true);

@@ -9,15 +9,16 @@ import Ggl from "../../../assets/bg/Google-Logo-PNG3.png";
 import Fb from "../../../assets/bg/Facebook-Logo-PNG4.png";
 import Apl from "../../../assets/bg/Apple-Logo-PNG5.png";
 import { axiosRequest } from "../components/api";
-
+import * as Network from 'expo-network';
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
 }
 
 
 const Loginscreen = ({navigation}) => {
- 
-  
+
+
+
   const [inputs, setInputs] = React.useState({
     email: '',
     password: '',
@@ -113,7 +114,7 @@ const Loginscreen = ({navigation}) => {
   const handleError = async (errorMessage, input) =>{
    setErrors((prevState) => ({ ...prevState, [input]: errorMessage }))
   }
-  
+   
  // console.log(moment("2023-01-02 11:31:27").local().startOf('seconds').fromNow());
   return (
     <SafeAreaView>
@@ -137,7 +138,7 @@ const Loginscreen = ({navigation}) => {
 
       
         
-          <View style={[Universalstyles.signupbg, {height: 'auto', paddingVertical: 20}]}>
+          <View style={[Universalstyles.signupbg, {height: 'auto'}]}>
           <Image source={Logo} style={[Universalstyles.logo, {height: height * 0.19, marginLeft: 10}]} />
       <Text style= {Universalstyles.txt}>
         Login account

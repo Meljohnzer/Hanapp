@@ -65,6 +65,7 @@ const Richtext = ({
             placeholder={placeholder}
             androidHardwareAccelerationDisabled={true}
             initialHeight={250}
+            initialContentHTML = {value}
             showSoftInputOnFocus = {showSoftInputOnFocus}
             value = {value}
         onFocus={() => {
@@ -81,16 +82,6 @@ const Richtext = ({
             editor={richText}
             selectedIconTint="#873c1e"
             iconTint="#312921"
-            actions={[
-              actions.insertImage,
-              actions.setBold,
-              actions.setItalic,
-              actions.insertBulletsList,
-              actions.insertOrderedList,
-              actions.insertLink,
-              actions.setStrikethrough,
-              actions.setUnderline,
-            ]}
             style={styles.richTextToolbarStyle}
           />
         </View>

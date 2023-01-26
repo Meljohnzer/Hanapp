@@ -15,6 +15,7 @@ import Settings from './src/views/screens/Studentscreen/Settings'
 import Settings2 from './src/views/screens/Employerscreen/Settings';
 import Applicant from './src/views/screens/Employerscreen/Applicant';
 import CreatePost from './src/views/screens/Employerscreen/Post';
+import EditP from './src/views/screens/Employerscreen/Editp';
 import Notif from './src/views/screens/Studentscreen/Notif';
 import Notif2 from './src/views/screens/Employerscreen/Notif';
 import LottieView from "lottie-react-native";
@@ -22,6 +23,7 @@ import Userinfo from './src/views/screens/Userinfo';
 import Educbg from './src/views/screens/Studentscreen/Educbg';
 import Guardianbg from './src/views/screens/Studentscreen/Guardianbg';
 import Compdetails from './src/views/screens/Employerscreen/Compdetails';
+import CompEdit from './src/views/screens/Employerscreen/compedit';
 import Description from './src/views/screens/Studentscreen/Description';
 import Manage from './src/views/screens/Employerscreen/Manage';
 import Cprofile from './src/views/screens/Studentscreen/Cprofile'
@@ -68,6 +70,11 @@ export default function App() {
       name='Company details'
       component={Compdetails}
       />
+
+<Stack.Screen options={{headerShown:true}}
+      name='Company edit'
+      component={CompEdit}
+      />
 <Stack.Screen
       name='User info'
       component={Userinfo}
@@ -75,6 +82,10 @@ export default function App() {
 <Stack.Screen
       name='Education'
       component={Educbg}
+      />
+      <Stack.Screen options={{headerShown:true}}
+      name='Edit post'
+      component={EditP}
       />
 <Stack.Screen
       name='Guardian'
@@ -280,6 +291,8 @@ function Studentscreen () {
           headerTitleAlign: "center",
           headerStyle: {
             backgroundColor: '#F5E44C',
+            unmountOnBlur : true
+            
           },
           
           headerShown: false,
@@ -315,19 +328,29 @@ function Studentscreen () {
       >
         <Tabs2.Screen 
         name="Home" 
-        component={Home2} />
+        component={Home2} 
+        options={{unmountOnBlur: true}}/>
        
        <Tabs2.Screen 
         name="Applicant" 
-        component={Applicant} />
+        component={Applicant}
+        options={{unmountOnBlur: true}}
+         />
 
         <Tabs2.Screen 
-        name="Create post" 
-        component={CreatePost} />
+        name="Create post"
+        component={CreatePost}
+        initialParams={{jobtype:null,jobtitle:null,
+            salary:null,rate:null,jobdesc:null,
+            street:null,city:null,province:null,zipcode:null,startdate:null,enddate:null}}
+        options={{unmountOnBlur: true}}
+            />
+            
         
         <Tabs.Screen 
         name="Profile" 
-        component={Profile2} />
+        component={Profile2}
+      />
 
 
       </Tabs2.Navigator>

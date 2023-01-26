@@ -1,11 +1,12 @@
 import React from 'react';
-import { View, useWindowDimensions, Dimensions, RefreshControl, Text, SafeAreaView, ScrollView, Image, Alert, TouchableOpacity} from 'react-native';
+import { View, useWindowDimensions, Dimensions, RefreshControl, Text, SafeAreaView, ScrollView, Image, Alert, TouchableOpacity,Linking} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Universalstyles from '../../../const/Universalstyle';
 import Logo from './../../../../assets/bg/bgimage5.jpg'
 import Icon3 from 'react-native-vector-icons/Entypo';
 import Icon4 from 'react-native-vector-icons/Fontisto';
 import { axiosRequest } from '../../components/api';
+import { style } from 'deprecated-react-native-prop-types/DeprecatedTextPropTypes';
 
 
 const myIcon = (<Icon3 name='dots-three-vertical' size={30} color="black " />)
@@ -132,23 +133,17 @@ setGet (prevState => ({...prevState, post: response.data}))
          Pending
       </Text>
       </View> }
-  {label.scheduleID && <View style={[Universalstyles.jobstatus, {backgroundColor:"red"}]}>
-      <Text style={{color: 'white', fontWeight: 'bold', fontSize: 18,}}>
-         Interview Infromation must display Here!
-      </Text>
+  {label.scheduleID && <View style={[Universalstyles.jobstatus, {backgroundColor:'#C7F9B5'}]}>
+  <Text style ={[Universalstyles.text,{width:'100%'}]}><Icon name='web' style={{fontSize: 20, color: 'blue',}}/> {label.interviewType}</Text>
+  {label.interviewType == "Online" && <TouchableOpacity onPress={()=>{Linking.openURL(label.method)}}><Text style ={[Universalstyles.text,{width:'100%'}]}><Icon name='link' style={{fontSize: 20, color: 'blue',}}/> {label.method}</Text> </TouchableOpacity>}
+  { label.interviewType == "Face to face" && <Text style ={[Universalstyles.text,{width:'100%'}]}><Icon name='link' style={{fontSize: 20, color: 'blue',}}/> {label.method}</Text> }
+    <Text style ={[Universalstyles.text,{width:'100%'}]} ><Icon name='calendar-month' style={{fontSize: 20, color: 'green', marginRight: 10}}/> {label.startdate}</Text> 
+    <Text style ={[Universalstyles.text,{width:'100%'}]}><Icon name='calendar-month' style={{fontSize: 20, color: 'green', marginRight: 10}}/> {label.enddate}</Text> 
+        
       </View> }
       
-    {/* <Text style={Universalstyles.text}><Icon name='web' style={{fontSize: 20, color: 'blue',}}/> Online</Text>
-    <Text style={Universalstyles.text}><Icon name='link' style={{fontSize: 20, color: 'blue',}}/> https://meet.google.com</Text>
-    <Text style={Universalstyles.text}><Icon name='calendar-month' style={{fontSize: 20, color: 'green', marginRight: 10}}/> 2023-02-01</Text> 
-    <Text style={Universalstyles.text}><Icon name='calendar-month' style={{fontSize: 20, color: 'green', marginRight: 10}}/> 2023-02-05</Text> 
-        */}
-        
-    {/* <Text style={Universalstyles.text}><Icon name='handshake-outline' style={{fontSize: 20, color: 'blue',}}/> Face to face</Text>
-    <Text style={Universalstyles.text}><Icon name='map-marker' style={{fontSize: 20, color: 'blue',}}/> Imbatug, Baungon, Bukidnon, 8707</Text>
-    <Text style={Universalstyles.text}><Icon name='calendar-month' style={{fontSize: 20, color: 'green', marginRight: 10}}/> 2023-02-01</Text> 
-    <Text style={Universalstyles.text}><Icon name='calendar-month' style={{fontSize: 20, color: 'green', marginRight: 10}}/> 2023-02-05</Text> 
-      */}
+  
+      
     
     </View>
     

@@ -16,6 +16,7 @@ const data = [
     iconName, 
     error, 
     onChange,
+    value,
     password, 
     keyboardType,
     onFocus=()=>{},
@@ -41,7 +42,7 @@ const data = [
           maxHeight={300}
           labelField="label"
           valueField="value"
-          placeholder={!isFocused ? 'Rate per' : '...'}
+          placeholder={value}
           dropdownPosition = 'bottom'
           itemContainerStyle = {{}}
           selectedTextStyle={styles.selectedTextStyle}

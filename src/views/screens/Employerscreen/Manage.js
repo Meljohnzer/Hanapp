@@ -60,7 +60,10 @@ const FirstRoute = ({navigation,arr}) =>
 
 
     <ScrollView style={{}}>
-   {arr.map((label,index)=>( <View key = {index}>
+   {arr.map((label,index)=>( 
+   
+   
+   <View key = {index}>
    <View style={{borderWidth: 2, borderColor: '#e8e8e8', margin: 5, borderRadius: 10, padding: 5}}>
       <Text style={Universalstyles.text2}><Icon4 name='person' style={{fontSize: 25, color: 'black',}}/>  {label.lookingfor}</Text>
       {/* <Text style={{ paddingHorizontal: 5, paddingBottom: 5, fontSize: 30}}>Company name:</Text>
@@ -103,9 +106,11 @@ const FirstRoute = ({navigation,arr}) =>
   />
     </View>
     </View>
-    </View>))}
+   
     <View style={{marginTop: 15, marginBottom: 50, alignItems: 'center', flexDirection:'row', justifyContent: 'space-around'}}>
-    <TouchableOpacity  onPress={() => navigation.navigate('Home')}>
+    <TouchableOpacity  onPress={() => navigation.navigate('Edit post',{postID:label.postID,jobtype:label.jobtype,jobtitle:label.lookingfor,
+      salary:label.salary,rate:label.rate,jobdesc:label.jobdesc,
+      street:label.street,city:label.city,province:label.province,zipcode:label.zipcode,startdate:label.startdate,enddate:label.enddate})}>
     <View style={{borderColor: 'orange',
     alignSelf: 'center',
     width: 150,
@@ -119,21 +124,9 @@ const FirstRoute = ({navigation,arr}) =>
       <Text style={{color: 'black', fontWeight: '400', fontSize: 18}}>Edit</Text>
       </View>
     </TouchableOpacity>
-    <TouchableOpacity  onPress={() => navigation.navigate('Home')}>
-      <View style={{borderColor: '#4169e1',
-    alignSelf: 'center',
-    width: 150,
-    height: 'auto',
-    alignItems: 'center',
-    marginBottom: 0,
-    marginVertical: 10,
-    padding: 10,
-    borderRadius: 30,
-    borderWidth: 1,}}>
-      <Text style={{color: 'black', fontWeight: 'light', fontSize: 18}}>Done</Text>
-      </View>
-    </TouchableOpacity>
     </View>
+
+    </View>))}
    </ScrollView>
  
 
@@ -267,8 +260,7 @@ const SecondRoute = ({navigation, profile,arr}) => (
 export default function Manage({navigation,route, }) {
  
  
- 
-  const profile = () => navigation.navigate('Applicant profile');
+
   const [selectedImage, setSelectedImage] = useState(null);
 
   const pickImageAsync = async () => {
@@ -335,6 +327,7 @@ navigation.setOptions({
       .then((response) => {
        
 setGet (prevState => ({...prevState, post: response.data}))
+// console.log(response.data)
 
     axiosRequest.post('/api/applied.php', JSON.stringify(Data), headers)  
       .then((response) => {
