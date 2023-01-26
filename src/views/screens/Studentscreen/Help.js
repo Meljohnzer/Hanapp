@@ -144,21 +144,22 @@ const Help = () => {
     <View style={{height: 'auto', borderWidth: 2, borderColor: '#e8e8e8', borderRadius: 10, margin: 5}}>
    
    <View style={{padding: 10, margin: 10, borderBottomWidth: 1, borderColor: '#cbc8ce'}}>
-    <Text style={{fontSize:20, textAlign: 'center', fontWeight: '500', color: 'blue'}}>How to create a job post</Text>
+    <Text style={{fontSize:20, textAlign: 'center', fontWeight: '500', color: 'blue'}}>How to apply for a job</Text>
     </View>
     <View style={{paddingHorizontal: 10, paddingVertical: 10}}>
-       <Text style={{ fontSize: 18,}}><Text style={{fontWeight: 'bold'}}>Han</Text><Text style={{color: 'blue', fontWeight: 'bold'}}>app</Text>  makes it simple to post a jobs and you will find it interesting while inputting job info.
+       <Text style={{ fontSize: 18,}}><Text style={{fontWeight: 'bold'}}>Han</Text><Text style={{color: 'blue', fontWeight: 'bold'}}>app</Text>  makes it simple to apply for jobs you find interesting while searching for a job.
 
           {'\n\n'}
-          To create job post on <Text style={{fontWeight: 'bold'}}>Han</Text><Text style={{color: 'blue', fontWeight: 'bold'}}>app</Text>:
+          To apply for a job on <Text style={{fontWeight: 'bold'}}>Han</Text><Text style={{color: 'blue', fontWeight: 'bold'}}>app</Text>:
           {'\n\n\t'}
-          <Text style={{color: 'orange', fontSize: 20}}>{'1.)'}</Text> Navigate and tap create post in the navigation bar.{'\n\t'}
-          <Text style={{color: 'orange', fontSize: 20}}>{'2.)'}</Text> fill up the following:
+          <Text style={{color: 'orange', fontSize: 20}}>{'1.)'}</Text> To view details, tap on a job title.{'\n\t'}
+          <Text style={{color: 'orange', fontSize: 20}}>{'2.)'}</Text> Tap the <Text style={{fontWeight: '600'}}>company overview</Text> on the right side, below the company cover photo, to view the company details.
 {'\n\t'}
-          <Text style={{color: 'orange', fontSize: 20}}>{'3.)'}</Text> Job information.{'\n\t'}
-          <Text style={{color: 'orange', fontSize: 20}}>{'4.)'}</Text> Job location.{'\n\t'}
-          <Text style={{color: 'orange', fontSize: 20}}>{'5.)'}</Text> Hiring Start and End{'\n\t'}
-          <Text style={{color: 'orange', fontSize: 20}}>{'6.)'}</Text> When Finished click post{'\n\t'}
+          <Text style={{color: 'orange', fontSize: 20}}>{'3.)'}</Text> Tap the <Text style={{fontWeight: '600'}}>apply</Text> button below.{'\n\t'}
+          <Text style={{color: 'orange', fontSize: 20}}>{'4.)'}</Text> Attach the application requirements, a photo ID, and the social media link.{'\n\t'}
+          <Text style={{color: 'orange', fontSize: 20}}>{'5.)'}</Text> Tap <Text style={{fontWeight: '600'}}>apply</Text> button
+ {'\n\t'}
+
           
 </Text>
     </View>
@@ -167,15 +168,16 @@ const Help = () => {
     <View style={{height: 'auto', borderWidth: 2, borderColor: '#e8e8e8', borderRadius: 10, margin: 5}}>
    
    <View style={{padding: 10, margin: 10, borderBottomWidth: 1, borderColor: '#cbc8ce'}}>
-    <Text style={{fontSize:20, textAlign: 'center', fontWeight: '500', color: 'blue'}}>How to edit Job post</Text>
+    <Text style={{fontSize:20, textAlign: 'center', fontWeight: '500', color: 'blue'}}>How to search for a job</Text>
     </View>
     <View style={{paddingHorizontal: 10, paddingVertical: 10}}>
-       <Text style={{ fontSize: 18,}}><Text style={{fontWeight: 'bold'}}>Han</Text><Text style={{color: 'blue', fontWeight: 'bold'}}>app</Text> will assist you on managing your posted job.{'\n\n'}
-          To edit your posted jobs:{'\n\n\t'}
-          <Text style={{color: 'orange', fontSize: 20}}>{'1.)'}</Text> Go to home and click Manage{'\n\t'}
-          <Text style={{color: 'orange', fontSize: 20}}>{'2.)'}</Text> Click edit{'\n\t'}
-          <Text style={{color: 'orange', fontSize: 20}}>{'3.)'}</Text> Modify the information{'\n\t'}
-          <Text style={{color: 'orange', fontSize: 20}}>{'4.)'}</Text> When Finished click done{'\n\t'}
+       <Text style={{ fontSize: 18,}}><Text style={{fontWeight: 'bold'}}>Han</Text><Text style={{color: 'blue', fontWeight: 'bold'}}>app</Text>  assists you in finding specific positions that match your qualifications and skill set. You can either go directly to the Jobs page, where you can search and apply for jobs, or you can use the search box at the top of the Hanapp homepage.
+          {'\n\n'}
+          To search for jobs:{'\n\n\t'}
+          <Text style={{color: 'orange', fontSize: 20}}>{'1.)'}</Text> Navigate to the homepage{'\n\t'}
+          <Text style={{color: 'orange', fontSize: 20}}>{'2.)'}</Text> At the top of the page, tap the search box{'\n\t'}
+          <Text style={{color: 'orange', fontSize: 20}}>{'3.)'}</Text> Enter the keywords in the field marked "Search jobs."{'\n\t'}
+          <Text style={{color: 'orange', fontSize: 20}}>{'4.)'}</Text> Tap the search icon{'\n\t'}
 
           
 </Text>
@@ -186,39 +188,19 @@ const Help = () => {
     <View style={{height: 'auto', borderWidth: 2, borderColor: '#e8e8e8', borderRadius: 10, margin: 5}}>
    
    <View style={{padding: 10, margin: 10, borderBottomWidth: 1, borderColor: '#cbc8ce'}}>
-    <Text style={{fontSize:20, textAlign: 'center', fontWeight: '500', color: 'blue'}}>How to view applicants and its profile</Text>
+    <Text style={{fontSize:20, textAlign: 'center', fontWeight: '500', color: 'blue'}}>How to bookmark/save job post</Text>
     </View>
     <View style={{paddingHorizontal: 10, paddingVertical: 10}}>
-       <Text style={{ fontSize: 18,}}> <Text style={{fontWeight: 'bold'}}>Han</Text><Text style={{color: 'blue', fontWeight: 'bold'}}>app</Text> will help you manage your applicants.{'\n\n'}
-       To view the applicants :{'\n\n\t'}
-          <Text style={{color: 'orange', fontSize: 20}}>{'1.)'}</Text> Go to home and click Manage{'\n\t'}
-          <Text style={{color: 'orange', fontSize: 20}}>{'2.)'}</Text> Tap appplicants{'\n\t'}
-          <Text style={{color: 'orange', fontSize: 20}}>{'3.)'}</Text> Tap vertical three dots{'\n\t'}
-          <Text style={{color: 'orange', fontSize: 20}}>{'4.)'}</Text> Tap Profile{'\n\t'}
-         
-         
-          
-</Text>
-    </View>
-    </View>
-
-
-
-    <View style={{height: 'auto', borderWidth: 2, borderColor: '#e8e8e8', borderRadius: 10, margin: 5}}>
-   
-   <View style={{padding: 10, margin: 10, borderBottomWidth: 1, borderColor: '#cbc8ce'}}>
-    <Text style={{fontSize:20, textAlign: 'center', fontWeight: '500', color: 'blue'}}>How to manage applicants request</Text>
-    </View>
-    <View style={{paddingHorizontal: 10, paddingVertical: 10}}>
-       <Text style={{ fontSize: 18,}}>You can manage the applicants request.{'\n\n'}
+       <Text style={{ fontSize: 18,}}>Bookmarking allows you to privately save posts to your account so that you can quickly return to them later.{'\n\n'}
        
-To manage your applicants request:
-{'\n\n\t'}
-          <Text style={{color: 'orange', fontSize: 20}}>{'1.)'}</Text> Go to home and click Manage{'\n\t'}
-          <Text style={{color: 'orange', fontSize: 20}}>{'2.)'}</Text> Tap appplicants{'\n\t'}
-          <Text style={{color: 'orange', fontSize: 20}}>{'3.)'}</Text> Tap "X icon" to reject the applicant request{'\n\t'}
-          <Text style={{color: 'orange', fontSize: 20}}>{'4.)'}</Text> Tap "Check icon" to approve the applicant request{'\n\t'}
-          
+       To successfully saved job post :{'\n\n\t'}
+          <Text style={{color: 'orange', fontSize: 20}}>{'1.)'}</Text> To view job details, tap the job title of the posted job.{'\n\t'}
+          <Text style={{color: 'orange', fontSize: 20}}>{'2.)'}</Text> Tap the <Text style={{fontWeight: '600'}}>company overview</Text> on the right side, below the company cover photo, to view the company details.
+{'\n\t'}
+          <Text style={{color: 'orange', fontSize: 20}}>{'3.)'}</Text> Tap <Text style={{fontWeight: '600'}}>save</Text> button below.{'\n\t'}
+          <Text style={{color: 'orange', fontSize: 20}}>{'4.)'}</Text> Navigate to the homepage{'\n\t'}
+          <Text style={{color: 'orange', fontSize: 20}}>{'5.)'}</Text> To view saved job posts, tap the bookmarks icon at the bottom of the page.
+{'\n\t'}
           
 </Text>
     </View>
@@ -229,41 +211,75 @@ To manage your applicants request:
     <View style={{height: 'auto', borderWidth: 2, borderColor: '#e8e8e8', borderRadius: 10, margin: 5}}>
    
    <View style={{padding: 10, margin: 10, borderBottomWidth: 1, borderColor: '#cbc8ce'}}>
-    <Text style={{fontSize:20, textAlign: 'center', fontWeight: '500', color: 'blue'}}>How to manage approved applicants</Text>
+    <Text style={{fontSize:20, textAlign: 'center', fontWeight: '500', color: 'blue'}}>How to edit personal information</Text>
     </View>
     <View style={{paddingHorizontal: 10, paddingVertical: 10}}>
-       <Text style={{ fontSize: 18,}}><Text style={{fontWeight: 'bold'}}>Han</Text><Text style={{color: 'blue', fontWeight: 'bold'}}>app</Text> allows you to explore applicants request you can set an interview schedule for the approve applicants{'\n\n'}
-       
-To set an interview schedule:
-{'\n\n\t'}
-          <Text style={{color: 'orange', fontSize: 20}}>{'1.)'}</Text> Navigate and tap applicants in the navigation bar.{'\n\t'}
-          <Text style={{color: 'orange', fontSize: 20}}>{'2.)'}</Text> Tap the set schedule beside applicant profile{'\n\t'}
-          <Text style={{color: 'orange', fontSize: 20}}>{'3.)'}</Text> Choose interview type{'\n\t'}
-          <Text style={{color: 'orange', fontSize: 20}}>{'4.)'}</Text> Set Interview starting and end date and time{'\n\t'}
-          <Text style={{color: 'orange', fontSize: 20}}>{'5.)'}</Text> Tap Done{'\n\t'}
-          
-</Text>
-    </View>
-    </View>
-
-
-    <View style={{height: 'auto', borderWidth: 2, borderColor: '#e8e8e8', borderRadius: 10, margin: 5}}>
-   
-   <View style={{padding: 10, margin: 10, borderBottomWidth: 1, borderColor: '#cbc8ce'}}>
-    <Text style={{fontSize:20, textAlign: 'center', fontWeight: '500', color: 'blue'}}>How to report applicants</Text>
-    </View>
-    <View style={{paddingHorizontal: 10, paddingVertical: 10}}>
-       <Text style={{ fontSize: 18,}}>If you come across an applicants request on <Text style={{fontWeight: 'bold'}}>Han</Text><Text style={{color: 'blue', fontWeight: 'bold'}}>app</Text> that you believe is inappropriate, fake, or incorrect, you can report it and provide feedback so that it can be removed. 
+       <Text style={{ fontSize: 18,}}>You can manage the contact and personal information displayed in your profile's introduction section by editing the personal info section.
 {'\n\n'}
-To successfully report a suspicious applicants:
+       
+To edit sections on your profile:
+{'\n\n\t'}
+          <Text style={{color: 'orange', fontSize: 20}}>{'1.)'}</Text> Navigate to homepage{'\n\t'}
+          <Text style={{color: 'orange', fontSize: 20}}>{'2.)'}</Text> Tap profile icon at the bottom of the page.{'\n\t'}
+          <Text style={{color: 'orange', fontSize: 20}}>{'3.)'}</Text> Tap the <Text style={{fontWeight: '600'}}>edit</Text> button below.{'\n\t'}
+          <Text style={{color: 'orange', fontSize: 20}}>{'4.)'}</Text> Select the section you’d like to change{'\n\t'}
+          <Text style={{color: 'orange', fontSize: 20}}>{'5.)'}</Text> Tap <Text style={{fontWeight: '600'}}>done</Text>{'\n\t'}
+          
+</Text>
+    </View>
+    </View>
+
+
+
+    <View style={{height: 'auto', borderWidth: 2, borderColor: '#e8e8e8', borderRadius: 10, margin: 5}}>
+   
+   <View style={{padding: 10, margin: 10, borderBottomWidth: 1, borderColor: '#cbc8ce'}}>
+    <Text style={{fontSize:20, textAlign: 'center', fontWeight: '500', color: 'blue'}}>How to view employer/company details</Text>
+    </View>
+    <View style={{paddingHorizontal: 10, paddingVertical: 10}}>
+       <Text style={{ fontSize: 18,}}><Text style={{fontWeight: 'bold'}}>Han</Text><Text style={{color: 'blue', fontWeight: 'bold'}}>app</Text> allows you to explore companies and jobs that interest you. Hanapp also provides you with necessary information for applying for a job to a specific company.
+{'\n\n'}
+       
+To view company details:
+{'\n\n\t'}
+          <Text style={{color: 'orange', fontSize: 20}}>{'1.)'}</Text> Tap the job title of the posted job.{'\n\t'}
+          <Text style={{color: 'orange', fontSize: 20}}>{'2.)'}</Text> To view the company details, tap the company overview on the right side, just below the company cover photo.{'\n\t'}
+          
+</Text>
+    </View>
+    </View>
+
+
+    <View style={{height: 'auto', borderWidth: 2, borderColor: '#e8e8e8', borderRadius: 10, margin: 5}}>
+   
+   <View style={{padding: 10, margin: 10, borderBottomWidth: 1, borderColor: '#cbc8ce'}}>
+    <Text style={{fontSize:20, textAlign: 'center', fontWeight: '500', color: 'blue'}}>How to view activity log</Text>
+    </View>
+    <View style={{paddingHorizontal: 10, paddingVertical: 10}}>
+       <Text style={{ fontSize: 18,}}>You can view a job you applied for on Hanapp at any time.
+{'\n\n'}
+       
+To view activity log:
 {'\n\n\t'}
           <Text style={{color: 'orange', fontSize: 20}}>{'1.)'}</Text> Navigate to the homepage{'\n\t'}
-          <Text style={{color: 'orange', fontSize: 20}}>{'2.)'}</Text> Tap manage.{'\n\t'}
-          <Text style={{color: 'orange', fontSize: 20}}>{'3.)'}</Text> Tap applicants {'\n\t'}
-          <Text style={{color: 'orange', fontSize: 20}}>{'4.)'}</Text> Tap vertical three dots.{'\n\t'}
-          <Text style={{color: 'orange', fontSize: 20}}>{'5.)'}</Text> Tap report {'\n\n'}
+          <Text style={{color: 'orange', fontSize: 20}}>{'2.)'}</Text> Tap Activity log icon at the bottom of the page.{'\n\t'}
+          <Text style={{color: 'orange', fontSize: 20}}>{'2.)'}</Text> Tap the <Text style={{fontWeight: '600'}}>pending</Text> or <Text style={{fontWeight: '600'}}>approved</Text> button to view more information about the job application status.{'\n\t'}          
+</Text>
+    </View>
+    </View>
 
-These reports are taken seriously by us. Our teams will review, correct, and/or remove the applicants in your job hiring post. Please take the time to look over our efforts.
+
+    <View style={{height: 'auto', borderWidth: 2, borderColor: '#e8e8e8', borderRadius: 10, margin: 5}}>
+   
+   <View style={{padding: 10, margin: 10, borderBottomWidth: 1, borderColor: '#cbc8ce'}}>
+    <Text style={{fontSize:20, textAlign: 'center', fontWeight: '500', color: 'blue'}}>How to report employer/company</Text>
+    </View>
+    <View style={{paddingHorizontal: 10, paddingVertical: 10}}>
+       <Text style={{ fontSize: 18,}}>If you come across a job posting on <Text style={{fontWeight: 'bold'}}>Han</Text><Text style={{color: 'blue', fontWeight: 'bold'}}>app</Text> that you believe is inappropriate, broken, or incorrect, you can report it and provide feedback so that it can be removed. 
+{'\n\n'}
+To successfully report a suspicious job post, tap the three dots at the upper right of the job post and tap <Text style={{fontWeight: '600'}}>report</Text>.
+{'\n\n'}
+These reports are taken seriously by us. Our teams will review, correct, and/or remove the posting after you report it. Please take the time to look over our efforts.
 
 
 </Text>
@@ -277,11 +293,11 @@ These reports are taken seriously by us. Our teams will review, correct, and/or 
     <Text style={{fontSize:20, textAlign: 'center', fontWeight: '500', color: 'blue'}}>How to view notification</Text>
     </View>
     <View style={{paddingHorizontal: 10, paddingVertical: 10}}>
-       <Text style={{ fontSize: 18,}}>You can view notifications about yourself, your job hiring activity, and your connections on the Notifications page. 
+       <Text style={{ fontSize: 18,}}>You can view notifications about yourself, your activity, and your connections on the Notifications page. 
 {'\n\n'}
 To view your notifications,Tap the Notifications icon at the top of the Hanapp homepage.
 {'\n\n'}
-Notifications appear at the upper-right of your Hanapp homepage. The number displayed on the icon is intended to notify you to any notifications since your last visit.
+Notifications appear alongside the search box at the top of your Hanapp homepage. The number displayed on the icon is intended to notify you to any notifications since your last visit.
 
 
 </Text>
@@ -295,10 +311,12 @@ Notifications appear at the upper-right of your Hanapp homepage. The number disp
     <Text style={{fontSize:20, textAlign: 'center', fontWeight: '500', color: 'blue'}}>How to log out</Text>
     </View>
     <View style={{paddingHorizontal: 10, paddingVertical: 10}}>
-       <Text style={{ fontSize: 18,}}>To sign out:{'\n\n\t'}
-
+       <Text style={{ fontSize: 18,}}>You can view notifications about yourself, your activity, and your connections on the Notifications page. 
+{'\n\n'}
+To sign out:
+{'\n\n\t'}
           <Text style={{color: 'orange', fontSize: 20}}>{'1.)'}</Text> Navigate to the homepage{'\n\t'}
-          <Text style={{color: 'orange', fontSize: 20}}>{'2.)'}</Text> Tap the Settings icon at the upper-left of the page.{'\n\t'}
+          <Text style={{color: 'orange', fontSize: 20}}>{'2.)'}</Text> Tap the Settings icon at the buttom of the page.{'\n\t'}
           <Text style={{color: 'orange', fontSize: 20}}>{'3.)'}</Text> Scroll down and tap Logout.{'\n\t'}
 
 </Text>
