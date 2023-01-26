@@ -32,11 +32,17 @@ import Location from './src/views/components/Location';
 import Attachfile from './src/views/screens/Studentscreen/Attachfile';
 import Editprofile from './src/views/screens/Employerscreen/Editprofile';
 import PassSec from './src/views/screens/Employerscreen/PassSec';
+import PassSec2 from './src/views/screens/Studentscreen/PassSec';
 import PerAcc from './src/views/screens/Employerscreen/PerAcc';
+import PerAcc2 from './src/views/screens/Studentscreen/PerAcc';
 import Help from './src/views/screens/Employerscreen/Help';
+import Help2 from './src/views/screens/Studentscreen/Help';
 import Support from './src/views/screens/Employerscreen/Support';
+import Support2 from './src/views/screens/Studentscreen/Support';
 import About from './src/views/screens/Employerscreen/About';
+import About2 from './src/views/screens/Studentscreen/About';
 import Reportprob from './src/views/screens/Employerscreen/Reportprob';
+import Reportprob2 from './src/views/screens/Studentscreen/Reportprob';
 import Cemail from './src/views/screens/Employerscreen/Cemail';
 import Review from './src/views/screens/Employerscreen/Review';
 import Interview from './src/views/screens/Employerscreen/Interview';
@@ -150,24 +156,48 @@ export default function App() {
       component={PassSec}
       />
 <Stack.Screen options={{headerShown: true}}
+      name='Passwords and security'
+      component={PassSec2}
+      />
+<Stack.Screen options={{headerShown: true}}
       name='Personal & account information'
       component={PerAcc}
       />
 <Stack.Screen options={{headerShown: true}}
-      name='Help'
+      name='Personal & account informations'
+      component={PerAcc2}
+      />
+<Stack.Screen options={{headerShown: true}}
+      name='Employer help'
       component={Help}
+      />
+<Stack.Screen options={{headerShown: true}}
+      name='Student help'
+      component={Help2}
       />
 <Stack.Screen options={{headerShown: true}}
       name='Support inbox'
       component={Support}
       />
 <Stack.Screen options={{headerShown: true}}
+      name='Support Inbox'
+      component={Support2}
+      />
+<Stack.Screen options={{headerShown: true}}
       name='About us'
       component={About}
       />
 <Stack.Screen options={{headerShown: true}}
+      name='About Us'
+      component={About2}
+      />
+<Stack.Screen options={{headerShown: true}}
       name='Report a problem'
       component={Reportprob}
+      />
+<Stack.Screen options={{headerShown: true}}
+      name='Report a Problem'
+      component={Reportprob2}
       />
 <Stack.Screen options={{headerShown: true}}
       name='Applicant profile'

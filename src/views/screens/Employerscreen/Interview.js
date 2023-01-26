@@ -62,8 +62,69 @@ const Interview = ({navigation,route}) => {
   };
 
 
-    
+  const [time, setTime] = useState(new Date());
+  const [mode2, setMode2] = useState('time');
+  const [show2, setShow2] = useState(false);
 
+  const onChange3 = (event, selectedTime) => {
+    
+    const currentTime = selectedTime || event;
+    setShow2(false);
+    setTime(currentTime);
+    let tempTime = new Date(currentTime);
+    var hours1 = tempTime.getHours();
+    var AmorPm1 = hours1 >= 12 ? "PM" : "AM";
+    var minutes1 = tempTime.getMinutes();
+    hours1 = (hours1 % 12) || 12;
+    hours1 = hours1 > 9 ? hours1 : '0' + hours1;
+    minutes1 = minutes1 > 9 ? minutes1 : '0' + minutes1;
+    let final1 = hours1  + ' : ' + minutes1 + '\t\t' + AmorPm1;
+    
+    setInputs (prevState => ({...prevState, intstarttime: final1}));
+   
+  };
+
+  
+  const showMode2 = (currentTmode) => {
+    setShow2(true);
+    setMode2(currentTmode);
+  };
+
+  const showTimePicker = () => {
+    showMode2('time');
+  };
+    
+  const [time2, setTime2] = useState(new Date());
+  const [mode3, setMode3] = useState('time');
+  const [show3, setShow3] = useState(false);
+
+  const onChange4 = (event2, selectedTime2) => {
+    
+    const currentTime2 = selectedTime2 || event2;
+    
+    setShow3(false);
+    setTime2(currentTime2);
+    let tempTime2 = new Date(currentTime2);
+    var hours = tempTime2.getHours();
+    var AmorPm = hours >= 12 ? "PM" : "AM";
+    var minutes = tempTime2.getMinutes();
+    hours = (hours % 12) || 12;
+    hours = hours > 9 ? hours : '0' + hours;
+    minutes = minutes > 9 ? minutes : '0' + minutes;
+    let final = hours  + ' : ' + minutes + '\t\t' + AmorPm;
+    
+    setInputs (prevState2 => ({...prevState2, intendtime: final}));
+   
+  };
+
+  const showMode3 = (currentTmode2) => {
+    setShow3(true);
+    setMode3(currentTmode2);
+  };
+
+  const showTimePicker2 = () => {
+    showMode3('time');
+  };
 
 React.useEffect(()=>{
  navigation.addListener('focus',async () => {
@@ -83,10 +144,11 @@ React.useEffect(()=>{
   
   const [inputs, setInputs] = React.useState({
    inttype: '',
-  //  intWays: '',
    intWays: '',
    intstartdate: '',
    intenddate: '',
+   intstarttime: '',
+   intendtime: '',
 
   });
   
@@ -146,7 +208,27 @@ var Data ={
       handleError('Interview end date must be greater than starting date', 'intenddate');
       valid = false;
     }
-    
+    if (!inputs.intstarttime){
+      handleError('Please provide the starting time of the interview', 'intstarttime');
+    valid = false;
+  }
+  if (!inputs.intendtime){
+    handleError('Please provide the end time of the interview', 'intendtime');
+  valid = false;
+  }
+  else if(inputs.intendtime < inputs.intstarttime ){
+    handleError('Interview end time must be greater than starting time','intendtime')
+    valid = false;
+  }
+
+  if (!inputs.intWays){
+    handleError('Please provide the complete address of the interview', 'intWays');
+  valid = false;
+}
+
+
+
+
     if (valid) {
       register();
     }
@@ -276,6 +358,7 @@ axiosRequest.post('/api/schedule.php', JSON.stringify(Data))
             /></TouchableOpacity>
               {show1 && (
               <DateTimePicker
+              
               testID="dateTimePicker"
               value={date1}
               mode={mode1}
@@ -309,7 +392,56 @@ axiosRequest.post('/api/schedule.php', JSON.stringify(Data))
               />
               )}
            
-
+           <TouchableOpacity onPress={()=>{showTimePicker()
+            handleError(null, 'intstarttime')
+            }}>
+            <Input 
+            placeholder= 'Interview Start time' 
+            iconName= 'clock-outline' 
+            editable={false}
+            value = {inputs.intstarttime}
+            error={errors.intstarttime}
+            onFocus={() =>{
+              handleError(null, 'intstarttime');
+            }}
+            onChangeText = {text => handleOnChange(text, 'intstarttime')}
+            /></TouchableOpacity>
+              {show2 && (
+              <DateTimePicker
+              testID="dateTimePicker"
+              value={time}
+              mode={mode2}
+              format = "hh:mm:ss"
+              is24Hour={false}
+              display='default'
+              onChange={onChange3}
+              />
+              )}
+              <TouchableOpacity onPress={()=>{showTimePicker2()
+            handleError(null, 'intendtime')
+            }}>
+            <Input 
+            placeholder= 'Interview end time' 
+            iconName= 'clock-outline' 
+            editable={false}
+            value = {inputs.intendtime}
+            error={errors.intendtime}
+            onFocus={() =>{
+              handleError(null, 'intendtime');
+            }}
+            onChangeText = {text => handleOnChange(text, 'intendtime')}
+            /></TouchableOpacity>
+              {show3 && (
+              <DateTimePicker
+              testID="dateTimePicker"
+              value={time2}
+              mode={mode3}
+              is24Hour={false}
+              display='default'
+              onChange={onChange4}
+              />
+              )}
+            
              <View style={{marginBottom: 50, alignItems: 'center', flexDirection:'row', justifyContent: 'space-around'}}>
     
     <TouchableOpacity  onPress={validate}>

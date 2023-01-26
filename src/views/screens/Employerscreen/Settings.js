@@ -98,7 +98,7 @@ React.useEffect(()=>{
     <View style={[Universalstyles.setAccount, {borderTopWidth: 1,}]}>
       <Text style={{fontSize: 40, fontWeight: '500'}}>Help and support   </Text>
     </View>
-    <TouchableOpacity onPress={() => navigation.navigate('Help')}>
+    <TouchableOpacity onPress={() => navigation.navigate('Employer help')}>
     <View style={{flexDirection: 'row', alignItems: 'center' , }}>
     <Fontaw 
       name='support'
