@@ -8,7 +8,7 @@ import Icon4 from 'react-native-vector-icons/Fontisto';
 import { axiosRequest } from '../../components/api';
 import { style } from 'deprecated-react-native-prop-types/DeprecatedTextPropTypes';
 
-
+//with mysql database using php for backend
 const myIcon = (<Icon3 name='dots-three-vertical' size={30} color="black " />)
 
 const wait = (timeout) => {

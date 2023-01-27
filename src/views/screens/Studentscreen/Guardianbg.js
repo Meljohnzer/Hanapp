@@ -5,6 +5,11 @@ import {Universalstyles} from "../../../const/Universalstyle";
 import Loader from "../../components/Loader";
 import { axiosRequest } from '../../components/api';
 
+
+
+
+//with mysql database using php for backend
+
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
 }

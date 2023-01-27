@@ -5,6 +5,9 @@ import Logo1 from '../../../../assets/bg/profile.png';
 import { axiosRequest, server } from '../../components/api';
 
 
+
+//with mysql database using php for backend
+
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
 }

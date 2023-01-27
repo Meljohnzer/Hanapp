@@ -8,7 +8,7 @@ import Icon2 from 'react-native-vector-icons/Feather';
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
 }
-
+//with mysql database using php for backend
 const Empmanage = ({navigation}) => {
 
   const {height, width} = useWindowDimensions();

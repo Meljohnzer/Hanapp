@@ -8,9 +8,13 @@ import Universalstyles from '../../../const/Universalstyle';
 import { axiosRequest,server} from '../../components/api';
 import moment from 'moment'
 
+
+//with mysql database using php for backend
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
 }
+
+
 
 
 const Bookmarks = ({navigation}) => {

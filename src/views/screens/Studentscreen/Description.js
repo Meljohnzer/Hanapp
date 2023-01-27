@@ -9,6 +9,10 @@ import Logo1 from '../../../../assets/bg/profile2.png';
 import HTMLView from 'react-native-htmlview';
 import { axiosRequest,server} from '../../components/api';
 
+
+
+
+//with mysql database using php for backend
 const FirstRoute = ({navigation, arr,bookmark,Remove,save,apply}) => (
     <ScrollView style={{}}>
    { arr.map((label,index)=>(<View key={index}>

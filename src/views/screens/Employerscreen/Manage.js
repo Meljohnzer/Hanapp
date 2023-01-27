@@ -17,6 +17,7 @@ import HTMLView from 'react-native-htmlview';
 const myIcon = (<Icon3 name='dots-three-vertical' size={30} color="black " />)
 
 
+//with mysql database using php for backend
 
 
 const closeIconAlert = () => Alert.alert(

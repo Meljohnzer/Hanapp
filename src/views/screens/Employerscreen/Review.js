@@ -9,7 +9,7 @@ import Icon3 from 'react-native-vector-icons/Entypo';
 import Icon4 from 'react-native-vector-icons/Fontisto';
 import { axiosRequest,server } from '../../components/api';
 
-
+//with mysql database using php for backend
 const myIcon = (<Icon3 name='dots-three-vertical' size={30} color="black " />)
 const wait = (timeout) => {
     return new Promise(resolve => setTimeout(resolve, timeout));

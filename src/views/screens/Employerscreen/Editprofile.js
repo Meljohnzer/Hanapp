@@ -10,7 +10,7 @@ import { axiosRequest } from '../../components/api';
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
 }
-
+//with mysql database using php for backend
 
 const Editprofile = ({navigation, route ,error,  onFocus=()=>{}, ...props
 }) => {

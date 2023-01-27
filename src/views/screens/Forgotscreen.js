@@ -8,6 +8,7 @@ import Loader from "../components/Loader";
 import Logo from '../../../assets/bg/Picture1.png';
 
 
+
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
 }

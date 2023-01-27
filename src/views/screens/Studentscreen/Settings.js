@@ -7,6 +7,7 @@ import MatIcon2 from 'react-native-vector-icons/MaterialIcons';
 import Logo1 from '../../../../assets/bg/bgimage5.jpg';
 import { axiosRequest } from '../../components/api';
 
+//with mysql database using php for backend
 
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));

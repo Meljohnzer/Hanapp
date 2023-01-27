@@ -10,6 +10,7 @@ const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
 }
 
+//with mysql database using php for backend
 
 const Notif = ({navigation}) => {
   const [refreshing, setRefreshing] = React.useState(false);

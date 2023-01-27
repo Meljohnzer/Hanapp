@@ -3,6 +3,8 @@ import React from 'react'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Logo from '../../../../assets/bg/bgimage5.jpg';
 
+
+//with mysql database using php for backend
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
 }

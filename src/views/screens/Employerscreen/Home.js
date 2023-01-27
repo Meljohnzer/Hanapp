@@ -7,10 +7,18 @@ import Icon from 'react-native-vector-icons/EvilIcons'
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon3 from 'react-native-vector-icons/Fontisto'
 import Icon4 from 'react-native-vector-icons/Octicons'
-//import axios from 'axios'
 import OptionsMenu from "react-native-option-menu";
 import moment from 'moment'
+<<<<<<< HEAD
 import { axiosRequest,server } from '../../components/api';
+=======
+import { axiosRequest } from '../../components/api';
+
+
+
+//with mysql database using php for backend
+
+>>>>>>> 1cf0e88a492f8098aa0e13e83c353eae98985d60
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
 }

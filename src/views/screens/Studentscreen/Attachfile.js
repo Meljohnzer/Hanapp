@@ -6,6 +6,10 @@ import React, { useState } from "react";
 import { axiosRequest } from "../../components/api";
 import * as DocumentPicker from "expo-document-picker"
 
+
+
+//with mysql database using php for backend
+
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
 }

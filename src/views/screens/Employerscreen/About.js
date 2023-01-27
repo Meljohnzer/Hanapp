@@ -1,6 +1,8 @@
 import { View, Text, SafeAreaView, ScrollView, Dimensions } from 'react-native'
 import React from 'react'
 
+
+//with mysql database using php for backend
 const About = () => {
   return (
     <SafeAreaView>

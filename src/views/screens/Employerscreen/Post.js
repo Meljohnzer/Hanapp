@@ -10,6 +10,8 @@ import { axiosRequest } from "../../components/api";
 import RichText from "../../components/Richtext";
 
 
+//with mysql database using php for backend
+
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
 }

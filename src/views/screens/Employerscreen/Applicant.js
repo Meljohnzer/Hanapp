@@ -9,7 +9,7 @@ import Icon4 from 'react-native-vector-icons/Octicons'
 import moment from 'moment'
 import { axiosRequest,server } from '../../components/api';
 
-
+//with mysql database using php for backend
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
 }

@@ -5,7 +5,7 @@ import Input from '../../components/Input'
 import Button1 from '../../components/Button1'
 
 
-
+//with mysql database using php for backend
 const PassSec = ({navigation, error, onFocus=()=>{}}) => {
     const [inputs, setInputs] = React.useState({
         oldpass: '',
