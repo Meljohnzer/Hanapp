@@ -85,16 +85,24 @@ navigation.setOptions({
         </Text>
         </View>
        
-        <TouchableOpacity onPress={() => navigation.navigate('')}>
-        <Image source={Logo1} style={{
+        <TouchableOpacity onPress={() => {Linking.openURL(server+label.profile)}}>
+       {label.profile ? <Image source={{uri:server+label.profile}} style={{
      marginTop: 10,
      marginBottom: 20,
      marginLeft: 0,
      borderRadius: 65, 
      width: 130, 
      height: 130, 
-     resizeMode: 'contain'
-    }}/>
+     resizeMode: 'cover'
+    }}/>: <Image source={Logo1} style={{
+     marginTop: 10,
+     marginBottom: 20,
+     marginLeft: 0,
+     borderRadius: 65, 
+     width: 130, 
+     height: 130, 
+     resizeMode: 'cover'
+    }}/>}
   </TouchableOpacity>
         </View>
         

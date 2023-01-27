@@ -7,7 +7,7 @@ import Icon4 from 'react-native-vector-icons/Fontisto';
 import Universalstyles from '../../../const/Universalstyle';
 import Logo1 from '../../../../assets/bg/profile2.png';
 import HTMLView from 'react-native-htmlview';
-import { axiosRequest } from '../../components/api';
+import { axiosRequest,server} from '../../components/api';
 
 const FirstRoute = ({navigation, arr,bookmark,Remove,save,apply}) => (
     <ScrollView style={{}}>
@@ -124,14 +124,21 @@ const SecondRoute = ({arr}) => (
       alignSelf: 'center',
       }}>
         
-    <Image source={Logo1} style={{
+   {label.profile ? <Image source={{uri:server+label.profile}} style={{
      marginTop: 2.5,
      borderRadius: 65, 
      width: 130, 
      height: 130, 
      resizeMode: 'contain',
      alignSelf: 'center',
-    }}/>
+    }}/>: <Image source={Logo1} style={{
+     marginTop: 2.5,
+     borderRadius: 65, 
+     width: 130, 
+     height: 130, 
+     resizeMode: 'contain',
+     alignSelf: 'center',
+    }}/>}
     </View>
     </View>
      <Text style= {{

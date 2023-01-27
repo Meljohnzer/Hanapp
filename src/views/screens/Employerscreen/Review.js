@@ -222,7 +222,8 @@ var Data ={
       alignItems:'center',
       marginRight: 7,
       borderRadius: 35,
-      alignSelf: 'center'
+      alignSelf: 'center',
+      resizeMode:'cover'
       
     }}/> :<Image source={Logo1} style={{
       marginTop: 15,
@@ -233,7 +234,8 @@ var Data ={
       alignItems:'center',
       marginRight: 7,
       borderRadius: 35,
-      alignSelf: 'center'
+      alignSelf: 'center',
+      resizeMode:'cover'
       
     }}/>}
     </TouchableOpacity>

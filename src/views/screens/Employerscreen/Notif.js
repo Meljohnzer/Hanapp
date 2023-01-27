@@ -34,7 +34,7 @@ React.useEffect(()=>{
 
   await axiosRequest.get('/api/empnotif.php').then((response)=>{
     setGet (prevState => ({...prevState, post: response.data}))
-         
+         console.log(response.data)
     })
     
 
@@ -56,9 +56,9 @@ React.useEffect(()=>{
             />
           }
         >
-   { gets.post.map((label,index)=>( <TouchableOpacity key={index} onPress={() =>  navigation.navigate('Manage', { itemId : label.postID,title:label.lookingfor })}>
-  { label.status != "Approved" ? <View style={[Universalstyles.jobPost,{}]}>
-{console.log(label.status)}
+  { gets.post.map((label,index)=>( <TouchableOpacity key={index} onPress={() =>  navigation.navigate('Manage', { itemId : label.postID,title:label.lookingfor })}>
+  { label.cor && label.applicantID == null ? <View style={[Universalstyles.jobPost,{}]}>
+
       <View style={[Universalstyles.jobContent,{backgroundColor:"#83e0f8"}]}>
           {label.profile ? <Image source={{uri:server + label.profile}} style={Universalstyles.Jobimage}/>: <Image source={Logo1} style={Universalstyles.Jobimage}/>}
           
@@ -74,7 +74,7 @@ React.useEffect(()=>{
     </View>
     </View>
     </View> : <View></View>}
-    </TouchableOpacity>))}
+    </TouchableOpacity>))} 
     </ScrollView>
     </SafeAreaView>
   )

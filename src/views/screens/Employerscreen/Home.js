@@ -81,7 +81,7 @@ setGet (prevState => ({...prevState, post: response.data}))
       style={{ fontSize: 50,  color: 'black', }} />
       </TouchableOpacity>
 
-      <Image source={Logo} style={[Universalstyles.Logo1, {height: height * 0.1, }]} />
+      <Image source={Logo} style={[Universalstyles.Logo1, {height: height * 0.1,resizeMode:'center'}]} />
 
       <TouchableOpacity onPress={() => navigation.navigate('Notification')}>
       <Icon
@@ -94,8 +94,8 @@ setGet (prevState => ({...prevState, post: response.data}))
 <View key = {index} style={[Universalstyles.jobPost,{}]}>
 
     <View style={Universalstyles.jobContent}>
-    {label.profile ? <Image source={{uri : server + label.profile}} style={Universalstyles.Jobimage}/> : <Image source={Logo1} style={Universalstyles.Jobimage}/>}
-    <View style={Universalstyles.jobContent2}>
+    {label.profile ? <Image source={{uri : server + label.profile}} style={[Universalstyles.Jobimage,{resizeMode:'cover'}]}/> : <Image source={Logo1} style={Universalstyles.Jobimage}/>}
+    <View style={[Universalstyles.jobContent2,{resizeMode:'cover'}]}>
     <View style={{flex: 1,  flexDirection: 'row' ,alignSelf: 'flex-end', left: 5, bottom: 5}}>
     
   {label.status == "open" &&  <OptionsMenu

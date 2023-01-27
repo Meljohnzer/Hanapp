@@ -167,7 +167,7 @@ ALTER TABLE `address`
   ADD CONSTRAINT `address_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `user` (`userID`) ON DELETE CASCADE;
 
 ALTER TABLE `applicant`
-  ADD CONSTRAINT `applicant_ibfk_1` FOREIGN KEY (`applyID`) REFERENCES `apply` (`applyID`);
+  ADD CONSTRAINT `applicant_ibfk_1` FOREIGN KEY (`applyID`) REFERENCES `apply` (`applyID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 ALTER TABLE `apply`
   ADD CONSTRAINT `apply_ibfk_1` FOREIGN KEY (`postID`) REFERENCES `post` (`postID`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -186,7 +186,7 @@ ALTER TABLE `guardian`
   ADD CONSTRAINT `guardian_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `user` (`userID`) ON DELETE CASCADE;
 
 ALTER TABLE `post`
-  ADD CONSTRAINT `post_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `user` (`userID`) ON DELETE CASCADE;
+  ADD CONSTRAINT `post_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `user` (`userID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 ALTER TABLE `schedule`
   ADD CONSTRAINT `schedule_ibfk_1` FOREIGN KEY (`applicantID`) REFERENCES `applicant` (`applicantID`) ON DELETE CASCADE;
