@@ -10,7 +10,7 @@ $user_data = check_login($connect_db);
 
 $postID = $Decode_React_APP_Data['postID'];
 
-$select = "SELECT post.*,userdetails.firstname,userdetails.lastname,userdetails.midname,company.compname,company.establishdate,company.compdesc FROM post,userdetails LEFT JOIN company ON userdetails.userID = company.userID WHERE post.userID = userdetails.userID AND postID = '$postID'";
+$select = "SELECT post.*,userdetails.firstname,userdetails.lastname,userdetails.midname,userdetails.profile,company.compname,company.establishdate,company.compdesc FROM post,userdetails LEFT JOIN company ON userdetails.userID = company.userID WHERE post.userID = userdetails.userID AND postID = '$postID'";
 
 $exec = mysqli_query($connect_db,$select);
 //$row =mysqli_fetch_assoc($exec);

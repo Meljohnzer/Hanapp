@@ -8,10 +8,8 @@ import * as DocumentPicker from "expo-document-picker"
 import HTMLView from 'react-native-htmlview';
 
 
-<<<<<<< HEAD
-=======
 //with mysql database using php for backend
->>>>>>> 1cf0e88a492f8098aa0e13e83c353eae98985d60
+
 
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));

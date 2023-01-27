@@ -1,12 +1,12 @@
-
 <?php
 session_start();
-include('conDB.php');
-include('check.php');
 header("Access-Control-Allow-Headers: Authorization, Content-Type");
 header("Access-Control-Allow-Origin: *");
 header('content-type: application/json; charset=utf-8');
-
+?>
+<?php
+include('conDB.php');
+include('check.php');
 $user_data = check_login($connect_db);
 
 $lookingfor = $Decode_React_APP_Data['lookingfor'];
@@ -32,7 +32,7 @@ $Reg_Query = "INSERT INTO post (`userID`,`lookingfor`,`jobdesc`, `jobtype`,`star
 	 $Message = "Post created Successfully";
 	  } else 
 	{
-        $Message = "Error - Try again";
+        $Message = $Reg_Query_Result;
     }
 	
 

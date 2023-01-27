@@ -189,7 +189,7 @@ var Data ={
       setLoading(false);
      axiosRequest.post('/api/post.php', JSON.stringify(Data), headers)  
       .then((response) => {
-        // console.log(response.data);
+        console.log(response.data);
          if(response.data = "Post created Successfully"){
           navigation.navigate("Home");
          }else{

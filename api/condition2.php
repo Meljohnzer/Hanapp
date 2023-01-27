@@ -1,10 +1,13 @@
 <?php
 session_start();
-include('conDB.php');
-include('check.php');
 header("Access-Control-Allow-Headers: Authorization, Content-Type");
 header("Access-Control-Allow-Origin: *");
 header('content-type: application/json; charset=utf-8');
+?>
+
+<?php
+include('conDB.php');
+include('check.php');
 
 $user_data = check_login($connect_db);
 $postID = $Decode_React_APP_Data['postID'];

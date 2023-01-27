@@ -131,7 +131,7 @@ const Profile = ({navigation,}) => {
      borderRadius: 65, 
      width: 130, 
      height: 130, 
-     resizeMode: 'contain'
+     resizeMode: 'cover'
     }}/> }
      { profiles.profile && <Image source={{uri:server + profiles.profile}} style={{
      marginTop: 10,
@@ -140,7 +140,7 @@ const Profile = ({navigation,}) => {
      borderRadius: 65, 
      width: 130, 
      height: 130, 
-     resizeMode: 'contain'
+     resizeMode: 'cover'
     }}/> }
   </TouchableOpacity>
         </View>

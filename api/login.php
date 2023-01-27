@@ -2,9 +2,9 @@
 include('conDB.php');
 session_start();
 include('check.php');
-header("Access-Control-Allow-Headers: Authorization, Content-Type");
-header("Access-Control-Allow-Origin: *");
-header('content-type: application/json; charset=utf-8');
+// header("Access-Control-Allow-Headers: Authorization, Content-Type");
+// header("Access-Control-Allow-Origin: *");
+// header('content-type: application/json; charset=utf-8');
 
 $email = $Decode_React_APP_Data['email'];
 $password = $Decode_React_APP_Data['password']; 
@@ -19,7 +19,7 @@ $DB_Elements= mysqli_fetch_array($query_result);
     if ($DB_Elements['password'] == $password && $DB_Elements['email'] == $email) {
       //  $Message = "Logged In Successfully";
        $id = $DB_Elements['userID'];
-       $query = "SELECT * FROM `userdetails` LEFT JOIN guardian ON userdetails.userID = guardian.userID LEFT JOIN educationBG ON guardian.userID = educationBG.userID WHERE userdetails.userID = '$id'";
+       $query = "SELECT * FROM `userdetails` LEFT JOIN guardian ON userdetails.userID = guardian.userID LEFT JOIN educationbg ON guardian.userID = educationbg.userID WHERE userdetails.userID = '$id'";
        $result = mysqli_query($connect_db,$query);
        $element = mysqli_fetch_array($result);
       if($DB_Elements['usertype']== 1){

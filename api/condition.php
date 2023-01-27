@@ -1,10 +1,13 @@
 <?php
-include('conDB.php');
-include('check.php');
 session_start();
 header("Access-Control-Allow-Headers: Authorization, Content-Type");
 header("Access-Control-Allow-Origin: *");
 header('content-type: application/json; charset=utf-8');
+?>
+
+<?php
+include('conDB.php');
+include('check.php');
 
 
 $user_data = check_login($connect_db);
