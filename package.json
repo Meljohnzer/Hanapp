@@ -35,8 +35,7 @@
     "react-native-screens": "~3.18.0",
     "react-native-tab-view": "^3.3.4",
     "expo-network": "~5.0.0",
-    "react-native-webview": "11.23.1",
-    "react-phone-number-input": "^3.2.16"
+    "react-native-webview": "11.23.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"
