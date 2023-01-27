@@ -7,7 +7,7 @@ import Logo1 from '../../../../assets/bg/profile.png';
 import Logo from './../../../../assets/bg/bgimage5.jpg'
 import Icon3 from 'react-native-vector-icons/Entypo';
 import Icon4 from 'react-native-vector-icons/Fontisto';
-import { axiosRequest } from '../../components/api';
+import { axiosRequest,server } from '../../components/api';
 
 
 const myIcon = (<Icon3 name='dots-three-vertical' size={30} color="black " />)
@@ -204,7 +204,7 @@ var Data ={
     
     
    {rev.post.map((label,index)=>(  <View key = {index} style={{paddingVertical: 1}}>
-   { label.aid && <View style={{backgroundColor: 'white',
+   { label.status == 'Approved' && <View style={{backgroundColor: 'white',
     borderColor: '#e8e8e8',
     padding: 5,
     borderWidth:  2,
@@ -213,7 +213,7 @@ var Data ={
       <TouchableOpacity onPress={() => navigation.navigate('Applicant profile' ,{
        itemId:label.userID,postID:label.pid
       })}>
-    <Image source={Logo1} style={{
+    {label.profile ? <Image source={{uri:server+label.profile}} style={{
       marginTop: 15,
       width: 70,
       height: 70,
@@ -224,7 +224,18 @@ var Data ={
       borderRadius: 35,
       alignSelf: 'center'
       
-    }}/>
+    }}/> :<Image source={Logo1} style={{
+      marginTop: 15,
+      width: 70,
+      height: 70,
+      justifyContent:'center',
+      alignContent:'center',
+      alignItems:'center',
+      marginRight: 7,
+      borderRadius: 35,
+      alignSelf: 'center'
+      
+    }}/>}
     </TouchableOpacity>
     <View style={{padding: 10,
     flex: 1,

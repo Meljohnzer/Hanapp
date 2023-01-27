@@ -10,7 +10,7 @@ import Icon4 from 'react-native-vector-icons/Octicons'
 //import axios from 'axios'
 import OptionsMenu from "react-native-option-menu";
 import moment from 'moment'
-import { axiosRequest } from '../../components/api';
+import { axiosRequest,server } from '../../components/api';
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
 }
@@ -73,7 +73,7 @@ setGet (prevState => ({...prevState, post: response.data}))
           />
         }
       >
-    <View style={[Universalstyles.HomeEmp, {backgroundColor: '#F5E44C', paddingVertical: 5, paddingHorizontal: 10, }]}>
+    <View style={[Universalstyles.HomeEmp, {backgroundColor: '#F5E44C', paddingVertical: 5, paddingHorizontal: 10}]}>
 
     <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
       <Icon
@@ -84,17 +84,17 @@ setGet (prevState => ({...prevState, post: response.data}))
       <Image source={Logo} style={[Universalstyles.Logo1, {height: height * 0.1, }]} />
 
       <TouchableOpacity onPress={() => navigation.navigate('Notification')}>
-      <Icon2
+      <Icon
       name="bell"
       style={{ fontSize: 50,  color: 'black', }} />
       </TouchableOpacity>    
     </View>
 
   {gets.post.map((label,index)=>(
-<View key = {index} style={[Universalstyles.jobPost,{paddingBottom: 10}]}>
+<View key = {index} style={[Universalstyles.jobPost,{}]}>
 
     <View style={Universalstyles.jobContent}>
-    <Image source={Logo1} style={Universalstyles.Jobimage}/>
+    {label.profile ? <Image source={{uri : server + label.profile}} style={Universalstyles.Jobimage}/> : <Image source={Logo1} style={Universalstyles.Jobimage}/>}
     <View style={Universalstyles.jobContent2}>
     <View style={{flex: 1,  flexDirection: 'row' ,alignSelf: 'flex-end', left: 5, bottom: 5}}>
     

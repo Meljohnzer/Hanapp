@@ -10,15 +10,33 @@ const wait = (timeout) => {
 }
 
 
-const Educbg = ({navigation, error,  onFocus=()=>{}, ...props
+const EditeducBG = ({navigation, error,route, onFocus=()=>{}, ...props
 }) => {
+    const {schname,schaddress,course,yearlevel} = route.params
+
+    React.useEffect(()=>{
+ 
+        navigation.setOptions({
+           title: "Edit Education Info",
+           headerTitleAlign: 'center',
+           headerStyle: { backgroundColor: 'white', height: 150 },
+           headerTitleStyle: { fontWeight: '100', fontSize: 25 }
+          })
+         
+         navigation.addListener('focus',async () => {
+          
+    
+              
+        }
+        
+          )},[])
     const [isFocused, setisFocused] = React.useState(false);
     const [inputs, setInputs] = React.useState({
     
-    schname: '',
-    schaddress: '',
-    course: '',
-    yearlevel: '',
+    schname: schname,
+    schaddress: schaddress,
+    course: course,
+    yearlevel: yearlevel,
    
   });
   
@@ -72,15 +90,24 @@ var Data ={
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-    axiosRequest.post('/api/educ.php', JSON.stringify(Data), headers)  
+      console.log(Data)
+      axiosRequest.post('/api/editeduc.php', JSON.stringify(Data), headers)  
       .then((response) => {
-        console.log(response.data);
-        if(response.data == "Registered successfully!"){
-         navigation.navigate('Studentscreen')
-        }else{
-         alert(response.data)
+        console.log(response.data)
+        if(response.data === "Educational Background is Successfully updated!!"){
+          Alert.alert(response.data,"Go Back to Profile to see the changes Made",
+          [
+      {
+        text: "Okay!",
+        onPress: () => navigation.navigate("Profile"),
+        style: "yes"
+      }
+    ]
+         )
         }
+
       });
+ 
     }, 3000);
   };
 
@@ -126,6 +153,7 @@ var Data ={
           <Input 
             placeholder= 'School name' 
             iconName= 'school' 
+            value={inputs.schname}
             error={errors.schname}
             onFocus={() =>{
               handleError(null, 'schname');
@@ -135,6 +163,7 @@ var Data ={
           <Input 
             placeholder= 'School address' 
             iconName= 'school' 
+            value={inputs.schaddress}
             error={errors.schaddress}
             onFocus={() =>{
               handleError(null, 'schaddress');
@@ -142,6 +171,7 @@ var Data ={
             onChangeText = {text => handleOnChange(text, 'schaddress')}
             />
           <Input 
+          value={inputs.yearlevel}
             placeholder= 'Year & level' 
             iconName= 'school' 
             error={errors.yearlevel}
@@ -155,7 +185,7 @@ var Data ={
             
             placeholder= 'Course (if applicable)' 
             iconName= 'school' 
-            
+            value={inputs.course}
             error={errors.Course}
             onFocus={() =>{
               handleError(null, 'course');
@@ -193,4 +223,4 @@ var Data ={
   );
 };
 
-export default Educbg
+export default EditeducBG

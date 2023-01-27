@@ -4,7 +4,7 @@ import Logo1 from '../../../../assets/bg/profile2.png';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon2 from 'react-native-vector-icons/Fontisto';
 import Universalstyles from '../../../const/Universalstyle';
-import { axiosRequest } from '../../components/api';
+import { axiosRequest,server} from '../../components/api';
 import moment from 'moment'
 
 const wait = (timeout) => {
@@ -65,7 +65,8 @@ setGet (prevState => ({...prevState, post: response.data}))
   
        <View style={Universalstyles.jobContent}>
       
-    <Image source={Logo1} style={Universalstyles.Jobimage}/>
+       {label.profile ? <Image source={{uri:server+label.profile}} style={Universalstyles.Jobimage}/>
+     : <Image source={Logo1} style={Universalstyles.Jobimage}/>} 
    
     <View style={Universalstyles.jobContent2}>
     

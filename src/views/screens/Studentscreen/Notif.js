@@ -6,7 +6,7 @@ import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon3 from 'react-native-vector-icons/Fontisto'
 //import axios from 'axios'
 import moment from 'moment'
-import { axiosRequest } from '../../components/api';
+import { axiosRequest,server } from '../../components/api';
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
 }
@@ -65,7 +65,7 @@ setGet (prevState => ({...prevState, post: response.data}))
   { label.status == "Approved"  && <View style={[Universalstyles.jobPost,{}]}>
 {console.log(label.status)}
       <View style={[Universalstyles.jobContent,{backgroundColor:"#83e0f8"}]}>
-          <Image source={Logo1} style={Universalstyles.Jobimage}/>
+      { label.profile ? <Image source={{uri: server + label.profile}} style={Universalstyles.Jobimage}/>: <Image source={Logo1} style={Universalstyles.Jobimage}/>}
           
           <View style={Universalstyles.jobContent2}>
           <Text style={{fontSize: 17, }}><Icon3 name='person' style={{fontSize: 20, color: 'black',}}/>

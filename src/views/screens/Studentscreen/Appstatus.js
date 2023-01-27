@@ -135,8 +135,8 @@ setGet (prevState => ({...prevState, post: response.data}))
       </View> }
   {label.scheduleID && <View style={[Universalstyles.jobstatus, {backgroundColor:'#C7F9B5'}]}>
   <Text style ={[Universalstyles.text,{width:'100%'}]}><Icon name='web' style={{fontSize: 20, color: 'blue',}}/> {label.interviewType}</Text>
-  {label.interviewType == "Online" && <TouchableOpacity onPress={()=>{Linking.openURL(label.method)}}><Text style ={[Universalstyles.text,{width:'100%'}]}><Icon name='link' style={{fontSize: 20, color: 'blue',}}/> {label.method}</Text> </TouchableOpacity>}
-  { label.interviewType == "Face to face" && <Text style ={[Universalstyles.text,{width:'100%'}]}><Icon name='link' style={{fontSize: 20, color: 'blue',}}/> {label.method}</Text> }
+  {label.interviewType == "Online" && <Text onPress={()=>{Linking.openURL(label.method)}} style ={[Universalstyles.text,{width:'100%'}]}><Icon name='link' style={{fontSize: 20, color: 'blue',}}/> {label.method}</Text>}
+  { label.interviewType == "Face to face" && <Text style ={[Universalstyles.text,{width:'100%'}]}><Icon name='link' style={{fontSize: 20, color: 'blue',}}/> {label.method}</Text>}
     <Text style ={[Universalstyles.text,{width:'100%'}]} ><Icon name='calendar-month' style={{fontSize: 20, color: 'green', marginRight: 10}}/> {label.startdate}</Text> 
     <Text style ={[Universalstyles.text,{width:'100%'}]}><Icon name='calendar-month' style={{fontSize: 20, color: 'green', marginRight: 10}}/> {label.enddate}</Text> 
         

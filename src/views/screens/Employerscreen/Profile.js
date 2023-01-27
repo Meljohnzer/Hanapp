@@ -4,7 +4,6 @@ import Universalstyles from '../../../const/Universalstyle'
 import Logo1 from '../../../../assets/bg/profile2.png';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { axiosRequest,server } from '../../components/api';
-import * as ImagePicker from 'expo-image-picker';
 import * as DocumentPicker from "expo-document-picker"
 import HTMLView from 'react-native-htmlview';
 
@@ -117,9 +116,9 @@ setGet (prevState => ({...prevState, profile: data}))
        websiteurl:profiles.websiteurl,
        compdesc:profiles.compdesc})}>
          <View>
-        <Text style={{fontSize: 15, fontWeight: '500'}}> Company information <Icon 
+        <Text style={{fontSize: 20, fontWeight: '500'}}> Company information <Icon 
             name= 'pencil'
-            style={{fontSize: 15, marginRight: 10}}
+            style={{fontSize: 20, marginRight: 10}}
             color='black'
         />
         </Text>
@@ -198,9 +197,9 @@ setGet (prevState => ({...prevState, profile: data}))
       province:profiles.province,
       zipcode:profiles.zipcode})}>
         <View>
-       <Text style={{fontSize: 15, fontWeight: '500'}}> Employer information <Icon 
+       <Text style={{fontSize: 20, fontWeight: '500'}}> Employer information <Icon 
             name= 'pencil'
-            style={{fontSize: 15, marginRight: 10}}
+            style={{fontSize: 20, marginRight: 10}}
             color='black'
         />
         </Text>
@@ -224,7 +223,7 @@ setGet (prevState => ({...prevState, profile: data}))
       </View>
        <View style={{borderWidth: .3, borderColor: '#aba9ab', marginHorizontal: 10, position: 'relative'}}></View>
        { profiles.compdesc &&  <View style={{paddingHorizontal: 5, paddingVertical: 20, alignSelf: 'flex-start'}}>
-        <Text style={{fontSize: 15, fontWeight: '500'}}> Company description</Text>
+        <Text style={{fontSize: 20, fontWeight: '500'}}> Company description</Text>
         <View style={{padding: 5}}>
         
        {/* <Text style={{paddingBottom: 10, margin: 3, opacity: 0.6, fontSize: 15, alignSelf: 'center', fontWeight: '500'}}>

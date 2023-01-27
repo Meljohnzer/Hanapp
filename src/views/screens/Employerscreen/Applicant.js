@@ -7,7 +7,7 @@ import Icon3 from 'react-native-vector-icons/Fontisto'
 import Icon4 from 'react-native-vector-icons/Octicons'
 //import axios from 'axios'
 import moment from 'moment'
-import { axiosRequest } from '../../components/api';
+import { axiosRequest,server } from '../../components/api';
 
 
 const wait = (timeout) => {
@@ -92,10 +92,10 @@ setGet (prevState => ({...prevState, post: response.data}))
 <View key = {index} style={[Universalstyles.jobPost,{paddingBottom: 10}]}>
 
     <View style={Universalstyles.jobContent}>
-    <Image source={Logo1} style={Universalstyles.Jobimage}/>
+    {label.profile ? <Image source={{uri : server + label.profile}} style={Universalstyles.Jobimage}/> :  <Image source={Logo1} style={Universalstyles.Jobimage}/>}
     <View style={Universalstyles.jobContent2}>
 
-    <Text style={{fontSize: 20, borderBottomWidth: 1, marginBottom: 5, borderColor: '#cbc8ce'}}><Icon3 name='person' style={{fontSize: 23, color: 'black',}}/><Text style={{color: 'black', }}>  {label.lookingfor}</Text></Text>
+    <Text style={{fontSize: 20, borderBottomWidth:1, marginBottom: 5, borderColor: '#cbc8ce'}}><Icon3 name='person' style={{fontSize: 23, color: 'black',}}/><Text style={{color: 'black', }}>  {label.lookingfor}</Text></Text>
     
     { label.status == "open"  && <Text style={{opacity:.5}}><Icon4 name='dot-fill' style={{fontSize: 20, color: 'green', alignContent: 'center'}}/>  Open</Text> }
     { label.status == "close"  &&<Text style={{opacity:.5}}><Icon4 name='dot-fill' style={{fontSize: 20, color: 'red', alignContent: 'center'}}/>  Close</Text>}

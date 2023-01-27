@@ -172,7 +172,7 @@ navigation.setOptions({
       </View>
       
       </View>
-   { label.applicantID == null &&   <View style={{marginTop: 15, marginBottom: 50, alignItems: 'center', flexDirection:'row', justifyContent: 'space-around'}}>
+   { label.status == null &&   <View style={{marginTop: 15, marginBottom: 50, alignItems: 'center', flexDirection:'row', justifyContent: 'space-around'}}>
     <TouchableOpacity  onPress={() => navigation.navigate('Home')}>
     <View style={{borderColor: 'red',
     alignSelf: 'center',
@@ -225,7 +225,7 @@ navigation.setOptions({
     </View>}
     
     
-    { label.applicantID  && label.scheduleID == null &&  <View style={{marginTop: 15, marginBottom: 50, alignItems: 'center', flexDirection:'row', justifyContent: 'space-around'}}>
+    { label.status == "Approved"  && label.scheduleID == null &&  <View style={{marginTop: 15, marginBottom: 50, alignItems: 'center', flexDirection:'row', justifyContent: 'space-around'}}>
   <TouchableOpacity onPress ={() => navigation.navigate('Interview schedule',{itemId:label.applicantID})}>
       <View style={{backgroundColor: '#2175b6',
     alignSelf: 'center',

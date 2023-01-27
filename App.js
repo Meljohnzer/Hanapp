@@ -49,7 +49,9 @@ import Interview from './src/views/screens/Employerscreen/Interview';
 import EditSched from './src/views/screens/Employerscreen/editsched';
 import Richtext from './src/views/components/Richtext';
 import Appstatus from './src/views/screens/Studentscreen/Appstatus';
-
+import EditprofileS from './src/views/screens/Studentscreen/Editprofile';
+import EditG from './src/views/screens/Studentscreen/EditgG';
+import EditeducBG from './src/views/screens/Studentscreen/EditeducBG';
 
 const Stack = createNativeStackNavigator();
 
@@ -62,7 +64,7 @@ export default function App() {
 //  .catch(error => console.log(error));
   return (
     
-<SafeAreaView style={{flex: 1, paddingTop: 30, backgroundColor: "#eee"}}>
+<SafeAreaView style={{flex: 1, backgroundColor: "#eee"}}>
 <NavigationContainer>
 <Stack.Navigator screenOptions={{headerShown: false}}>
 
@@ -211,6 +213,19 @@ export default function App() {
 <Stack.Screen options={{headerShown: true}}
       name='Edit profile'
       component={Editprofile}
+      />
+
+<Stack.Screen options={{headerShown: true}}
+      name='Edit profile S'
+      component={EditprofileS}
+      />
+      <Stack.Screen options={{headerShown: true}}
+      name='Edit guardian'
+      component={EditG}
+      />
+        <Stack.Screen options={{headerShown: true}}
+      name='Edit educBG'
+      component={EditeducBG}
       />
 <Stack.Screen 
       name='Profile2'

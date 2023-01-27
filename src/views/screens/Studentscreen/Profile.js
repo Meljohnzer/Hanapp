@@ -1,8 +1,10 @@
-import { View, Text, TouchableOpacity, Image, ScrollView, SafeAreaView, RefreshControl, Dimensions} from 'react-native'
+import { View, Text, TouchableOpacity, Image, ScrollView, SafeAreaView, RefreshControl, Dimensions,Alert} from 'react-native'
 import React from 'react'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Universalstyles from '../../../const/Universalstyle'
 import Logo1 from '../../../../assets/bg/profile.png';
-import { axiosRequest } from '../../components/api';
+import { axiosRequest,server} from '../../components/api';
+import * as DocumentPicker from "expo-document-picker"
 
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
@@ -11,10 +13,60 @@ const wait = (timeout) => {
 
 const Profile = ({navigation,}) => {
  
- 
   const [gets,setGet] = React.useState({
    profile: []
   })
+
+
+  const PickFile = async (file) => {
+
+
+    let File = await DocumentPicker.getDocumentAsync({
+     copyToCacheDirectory : false,
+      type: 'image/*'
+    })
+    if(File.type === 'cancel'){
+      console.log("cancel")
+    }else{
+
+      var config = {
+        headers:{
+     'Content-type':'multipart/form-data'
+        }
+       };
+       var formData = new FormData();
+       formData.append('file1',{type:File.mimeType,uri:File.uri,name:File.name})
+      Alert.alert(
+        "", 
+        "You Want To Apply This As Profile Picture?",
+        [
+          {
+            text: "Yes",
+            onPress: () => { axiosRequest.post('api/applyprofile.php',formData,config).then((response) => {
+              if(response.data === "Profile Picture Added"){
+              Alert.alert(response.data,"Change screen to see the changes made",
+              [
+          {
+            text: "Okay!",
+            onPress: () => console.log("NO ACCTION"),
+            style: "yes"
+          }
+        ]
+             )
+      }
+           
+                 })},
+            style: "yes"
+          },
+          { 
+            text: "No", onPress: () => console.log("No Pressed")
+          }
+        ]
+      )
+    }
+}
+
+
   const [refreshing, setRefreshing] = React.useState(false);
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
@@ -69,8 +121,8 @@ const Profile = ({navigation,}) => {
         </Text>
         </View>
        
-        <TouchableOpacity onPress={() => navigation.navigate('')}>
-        <Image source={Logo1} style={{
+        <TouchableOpacity onPress={PickFile}>
+      { profiles.profile == '' && <Image source={Logo1} style={{
      marginTop: 10,
      marginBottom: 20,
      marginLeft: 0,
@@ -78,12 +130,40 @@ const Profile = ({navigation,}) => {
      width: 130, 
      height: 130, 
      resizeMode: 'contain'
-    }}/>
+    }}/> }
+     { profiles.profile && <Image source={{uri:server + profiles.profile}} style={{
+     marginTop: 10,
+     marginBottom: 20,
+     marginLeft: 0,
+     borderRadius: 65, 
+     width: 130, 
+     height: 130, 
+     resizeMode: 'contain'
+    }}/> }
   </TouchableOpacity>
         </View>
         <View style={{borderWidth: .3, borderColor: '#aba9ab', marginHorizontal: 10, position: 'relative'}}></View>
         <View style={{paddingHorizontal: 5, paddingVertical: 20, alignSelf: 'flex-start'}}>
-        <Text style={{fontSize: 20, fontWeight: '500'}}> Personal information</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('Edit profile S',{Fname:profiles.firstname,
+     Lname:profiles.lastname,
+      Mname:profiles.midname,
+      Sname:profiles.suffname,
+      birth:profiles.birthday,
+      age:profiles.age,
+      contact:profiles.contactno,
+      street:profiles.street,
+      city:profiles.city,
+      province:profiles.province,
+      zipcode:profiles.zipcode})}>
+        <View>
+       <Text style={{fontSize: 20, fontWeight: '500'}}> Personal information <Icon 
+            name= 'pencil'
+            style={{fontSize: 20, marginRight: 10}}
+            color='black'
+        />
+        </Text>
+        </View>
+        </TouchableOpacity> 
         <View style={{padding: 5}}>
         <Text style={{opacity: 0.6}}>Name: <Text style={{fontWeight: 'bold', textTransform: 'capitalize'}}>{profiles.lastname}, {profiles.firstname} {profiles.midname}</Text>
         </Text>
@@ -101,10 +181,21 @@ const Profile = ({navigation,}) => {
       </View>
       <View style={{borderWidth: .3, borderColor: '#aba9ab', marginHorizontal: 10, position: 'relative'}}></View>
         <View style={{paddingHorizontal: 5, paddingVertical: 20, alignSelf: 'flex-start'}}>
-        <Text style={{fontSize: 20, fontWeight: '500'}}> Guardian information</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('Edit guardian',{gname:profiles.gname,gaddress:profiles.gaddress,gcontactno:profiles.gcontactno})}>
+        <View>
+       <Text style={{fontSize: 20, fontWeight: '500'}}> Guardian information <Icon 
+            name= 'pencil'
+            style={{fontSize: 20, marginRight: 10}}
+            color='black'
+        />
+        </Text>
+        </View>
+        </TouchableOpacity> 
         <View style={{padding: 5}}>
         
         <Text style={{opacity: 0.6}}>Guardian name: <Text style={{fontWeight: 'bold', textTransform: 'capitalize'}}>{profiles.gname}</Text>
+        </Text>
+        <Text style={{opacity: 0.6}}>Address: <Text style={{fontWeight: 'bold', textTransform: 'capitalize'}}>{profiles.gaddress}</Text>
         </Text>
         <Text style={{opacity: 0.6}}>Contact no: <Text style={{fontWeight: 'bold', textTransform: 'capitalize'}}>{profiles.gcontactno}</Text>
         </Text>
@@ -112,7 +203,16 @@ const Profile = ({navigation,}) => {
       </View>
       <View style={{borderWidth: .3, borderColor: '#aba9ab', marginHorizontal: 10, position: 'relative', }}></View>
         <View style={{paddingHorizontal: 5, paddingVertical: 20, alignSelf: 'flex-start'}}>
-        <Text style={{fontSize: 20, fontWeight: '500'}}> Educational background (current)</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('Edit educBG',{schname:profiles.schname,schaddress:profiles.schaddress,yearlevel:profiles.yearlevel,course:profiles.course})}>
+        <View>
+       <Text style={{fontSize: 20, fontWeight: '500'}}> <Text style={{fontSize: 20, fontWeight: '500'}}>Educational background (current)</Text> <Icon 
+            name= 'pencil'
+            style={{fontSize: 20, marginRight: 10}}
+            color='black'
+        />
+        </Text>
+        </View>
+        </TouchableOpacity> 
         <View style={{padding: 5}}>
         <Text style={{opacity: 0.6}}>School name: <Text style={{fontWeight: 'bold'}}>{profiles.schname}</Text>
         </Text>
@@ -159,15 +259,7 @@ const Profile = ({navigation,}) => {
           <Text style={{textAlign: 'center', fontWeight: '400', fontSize: 20, borderBottomWidth: 2, borderColor: '#e8e8e8', width: 'auto', textTransform: 'uppercase'}}>BS - Information technology</Text>
           <Text style={{textAlign: 'center', fontWeight: '500', textTransform: 'capitalize', color: 'blue'}}>Course</Text>
       </View> */}
-     
-     <View style={{marginBottom: 50}}>
-      <TouchableOpacity  onPress={''}>
-      <View style={[Universalstyles.logout,{marginVertical: 20,}]}>
-      <Text style={{color: 'white', fontWeight: 'bold', fontSize: 18}}>Edit</Text>
-      </View>
-    </TouchableOpacity>
- 
-    </View>
+    
    
     </ScrollView>
     </SafeAreaView>

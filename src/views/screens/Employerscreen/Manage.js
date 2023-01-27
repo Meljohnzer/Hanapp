@@ -10,7 +10,7 @@ import Icon2 from 'react-native-vector-icons/AntDesign';
 import Icon3 from 'react-native-vector-icons/Entypo';
 import Icon4 from 'react-native-vector-icons/Fontisto';
 import OptionsMenu from "react-native-option-menu";
-import { axiosRequest } from '../../components/api';
+import { axiosRequest, server } from '../../components/api';
 import HTMLView from 'react-native-htmlview';
 
 
@@ -153,14 +153,21 @@ const SecondRoute = ({navigation, profile,arr}) => (
     borderRadius: 5}}>
     
     
-    <Image source={Logo1} style={{
+   {label.profile ? <Image source={{uri:server+label.profile}} style={{
       width: 70,
       height: 70,
       marginRight: 7,
       borderRadius: 35,
       alignSelf: 'center'
       
-    }}/>
+    }}/> :  <Image source={Logo1} style={{
+      width: 70,
+      height: 70,
+      marginRight: 7,
+      borderRadius: 35,
+      alignSelf: 'center'
+      
+    }}/> }
     
     
     <View style={{flex:1,flexDirection:"row"}}>

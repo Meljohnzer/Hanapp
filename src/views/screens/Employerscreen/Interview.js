@@ -217,10 +217,10 @@ var Data ={
     handleError('Please provide the end time of the interview', 'intendtime');
   valid = false;
   }
-  else if(inputs.intendtime < inputs.intstarttime ){
-    handleError('Interview end time must be greater than starting time','intendtime')
-    valid = false;
-  }
+  // else if(inputs.intendtime < inputs.intstarttime ){
+  //   handleError('Interview end time must be greater than starting time','intendtime')
+  //   valid = false;
+  // }
 
   if (!inputs.intWays){
     handleError('Please provide the complete address of the interview', 'intWays');

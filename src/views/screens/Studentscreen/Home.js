@@ -7,7 +7,7 @@ import Icon2 from 'react-native-vector-icons/Fontisto';
 import Searchbar from '../../components/Searchbar';
 import OptionsMenu from "react-native-option-menu";
 import Universalstyles from "../../../const/Universalstyle";
-import { axiosRequest } from '../../components/api';
+import { axiosRequest,server} from '../../components/api';
 import moment from 'moment'
 
 
@@ -74,22 +74,7 @@ const report = () => Alert.alert(
       }
     ]
   );
-  function Save(id){ Alert.alert(
-    "", 
-    "Are you sure you want to save this post?",
-    [
-      {
-        text: "Yes",
-        onPress:  () =>{console.log(id)}
-        ,
-        style: "yes"
-      },
-      { 
-        text: "No", onPress: () => console.log("No Pressed")
-      }
-    ]
-  )
-  };
+  
   
   
   return (
@@ -136,11 +121,12 @@ const report = () => Alert.alert(
 </View>
 
 {gets.post.map((label,index)=>(
-<View key = {index} style={[Universalstyles.jobPost,{paddingBottom: 10}]}>
+<View key = {index} style={[Universalstyles.jobPost,{}]}>
   
     <View style={Universalstyles.jobContent}>
       
-    <Image source={Logo1} style={Universalstyles.Jobimage}/>
+    {label.profile  ? <Image source={{uri:server+label.profile}} style={Universalstyles.Jobimage}/>
+     : <Image source={Logo1} style={Universalstyles.Jobimage}/>} 
     
 
     <View style={Universalstyles.jobContent2}>
@@ -148,8 +134,8 @@ const report = () => Alert.alert(
     <OptionsMenu
     key={label.postID}
   customButton={myIcon}
-  options={["Save", "Report", "Cancel"]}
-  actions={[Save, report]}
+  options={["Report", "Cancel"]}
+  actions={[report]}
   
  // onPress = {()=>setId(()=>{label.postID})}
   
@@ -165,7 +151,7 @@ const report = () => Alert.alert(
     <Text style={{opacity: .5 }}><Icon name='clock-outline' style={{fontSize: 20, color: 'black', }}/> {moment(label.createdat).local().startOf('seconds').fromNow()}</Text>
 
     
-      <TouchableOpacity onPress={()=>{
+   {label.status == 'open' &&  <TouchableOpacity onPress={()=>{
      setPostID(label.postID)
         navigation.navigate('Job description', { itemId : label.postID, title : label.lookingfor})
     }
@@ -175,7 +161,18 @@ const report = () => Alert.alert(
           {label.lookingfor}
       </Text>
       </View>
-      </TouchableOpacity>
+      </TouchableOpacity>}
+      {label.status == 'close' &&  <TouchableOpacity disabled = {true} onPress={()=>{
+     setPostID(label.postID)
+        navigation.navigate('Job description', { itemId : label.postID, title : label.lookingfor})
+    }
+    }>
+      <View style={[Universalstyles.jobContent3, {backgroundColor:"red"}]}>
+      <Text style={{color: 'white', fontWeight: 'bold', fontSize: 18,}}>
+      Application is Now Closed
+      </Text>
+      </View>
+      </TouchableOpacity>}
     </View>
     </View>
   
