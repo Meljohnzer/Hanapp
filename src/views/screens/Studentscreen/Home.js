@@ -78,23 +78,7 @@ const report = () => Alert.alert(
   
   
   return (
-<SafeAreaView>
-
-<ScrollView
-        contentContainerStyle={{
-          justifyContent: 'center',
-          width: Dimensions.get('window').width,
-        }}
-        refreshControl={
-          <RefreshControl
-            refreshing={refreshing}
-            onRefresh={onRefresh}
-            colors={['#F5E44C']}
-          />
-        }
-      >
-        <>
-      
+<SafeAreaView style={{flex:1}}>
 <View style={{padding: 10, flexDirection: 'row', backgroundColor: '#F5E44C' }}>
 
   
@@ -119,6 +103,22 @@ const report = () => Alert.alert(
       style={{ fontSize: 40, marginLeft: 5, color: 'black', }} />
   </TouchableOpacity>
 </View>
+<ScrollView
+        contentContainerStyle={{
+          
+          width: Dimensions.get('window').width,
+        }}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+            colors={['#F5E44C']}
+          />
+        }
+      >
+        <>
+      
+
 
 {gets.post.map((label,index)=>(
 <View key = {index} style={[Universalstyles.jobPost,{}]}>
@@ -148,7 +148,7 @@ const report = () => Alert.alert(
     {label.compname && <Text style={{opacity: .5}}><Icon name='warehouse' style={{fontSize: 20, color: 'blue',}}/> {label.compname}</Text>}
     <Text style={{opacity: .5 }}><Icon name='map-marker' style={{fontSize: 20, color: 'blue', }}/> {label.street}, {label.city}, {label.province}, {label.zipcode}</Text>
     <Text style={{opacity: .5 }}><Icon name='briefcase-outline' style={{fontSize: 20, color: 'blue', }}/> {label.jobtype}</Text>   
-    <Text style={{opacity: .5 }}><Icon name='clock-outline' style={{fontSize: 20, color: 'black', }}/> {moment(label.createdat).add(8,'hour').startOf('seconds').fromNow()}</Text>
+    <Text style={{opacity: .5 }}><Icon name='clock-outline' style={{fontSize: 20, color: 'black', }}/> {moment(label.createdat).local().startOf('seconds').fromNow()}</Text>
 
     
    {label.status == 'open' &&  <TouchableOpacity onPress={()=>{
