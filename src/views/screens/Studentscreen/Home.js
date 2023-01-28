@@ -148,7 +148,7 @@ const report = () => Alert.alert(
     {label.compname && <Text style={{opacity: .5}}><Icon name='warehouse' style={{fontSize: 20, color: 'blue',}}/> {label.compname}</Text>}
     <Text style={{opacity: .5 }}><Icon name='map-marker' style={{fontSize: 20, color: 'blue', }}/> {label.street}, {label.city}, {label.province}, {label.zipcode}</Text>
     <Text style={{opacity: .5 }}><Icon name='briefcase-outline' style={{fontSize: 20, color: 'blue', }}/> {label.jobtype}</Text>   
-    <Text style={{opacity: .5 }}><Icon name='clock-outline' style={{fontSize: 20, color: 'black', }}/> {moment(label.createdat).local().startOf('seconds').fromNow()}</Text>
+    <Text style={{opacity: .5 }}><Icon name='clock-outline' style={{fontSize: 20, color: 'black', }}/> {moment(label.createdat).add(8,'hour').startOf('seconds').fromNow()}</Text>
 
     
    {label.status == 'open' &&  <TouchableOpacity onPress={()=>{
@@ -158,7 +158,7 @@ const report = () => Alert.alert(
     }>
       <View style={[Universalstyles.jobContent3, {}]}>
       <Text style={{color: 'white', fontWeight: 'bold', fontSize: 18,}}>
-          {label.lookingfor}
+          VIEW
       </Text>
       </View>
       </TouchableOpacity>}

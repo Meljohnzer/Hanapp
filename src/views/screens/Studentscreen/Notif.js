@@ -80,7 +80,7 @@ setGet (prevState => ({...prevState, post: response.data}))
           <Text style={{color: 'black',}}>approved your application for <Text>{label.lookingfor}</Text></Text></Text>
           <Text style={{fontSize: 17,}}>See more...</Text>
           <View style={{flex: 1,  flexDirection: 'row' ,alignSelf: 'flex-end', left: 5, bottom: 5}}>
-          <Text style={{opacity: .5 }}><Icon2 name='clock-outline' style={{fontSize: 20, color: 'black', }}/> {moment(label.appliedat).local().startOf('seconds').fromNow()}</Text>
+          <Text style={{opacity: .5 }}><Icon2 name='clock-outline' style={{fontSize: 20, color: 'black', }}/> {moment(label.applieddat).add(8,'hour').startOf('seconds').fromNow()}</Text>
             </View>
     </View>
     </View>
