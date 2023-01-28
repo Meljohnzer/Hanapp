@@ -86,9 +86,9 @@ setGet (prevState => ({...prevState, post: response.data}))
     <Text style={{opacity: .5 }}><Icon name='clock-outline' style={{fontSize: 20, color: 'black', }}/> {moment(label.createdat).local().startOf('seconds').fromNow()}</Text>
 
     
-      <TouchableOpacity onPress={()=>{
+    {label.status == 'open' &&  <TouchableOpacity onPress={()=>{
      setPostID(label.postID)
-        navigation.navigate('Job description', { itemId : label.postID,title:label.lookingfor })
+        navigation.navigate('Job description', { itemId : label.postID, title : label.lookingfor})
     }
     }>
       <View style={[Universalstyles.jobContent3, {}]}>
@@ -96,7 +96,18 @@ setGet (prevState => ({...prevState, post: response.data}))
           {label.lookingfor}
       </Text>
       </View>
-      </TouchableOpacity>
+      </TouchableOpacity>}
+      {label.status == 'close' &&  <TouchableOpacity disabled = {true} onPress={()=>{
+     setPostID(label.postID)
+        navigation.navigate('Job description', { itemId : label.postID, title : label.lookingfor})
+    }
+    }>
+      <View style={[Universalstyles.jobContent3, {backgroundColor:"red"}]}>
+      <Text style={{color: 'white', fontWeight: 'bold', fontSize: 18,}}>
+      Application is Now Closed
+      </Text>
+      </View>
+      </TouchableOpacity>}
     </View>
     </View>
     

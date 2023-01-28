@@ -74,7 +74,7 @@ const Loginscreen = ({navigation}) => {
       setLoading(false);
       await axiosRequest.post('/api/login.php', JSON.stringify(Data), headers)  
       .then((response) => {
-        //console.log(response.data);
+        console.log(response.data);
        switch (response.data) {
         case 'no details yet':
          navigation.navigate('User info')

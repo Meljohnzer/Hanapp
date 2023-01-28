@@ -3,7 +3,8 @@ import { View, useWindowDimensions, Dimensions, StyleSheet, Text, SafeAreaView, 
 import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Universalstyles from '../../../const/Universalstyle';
-import * as ImagePicker from 'expo-image-picker';
+// import * as ImagePicker from 'expo-image-picker';
+import * as DocumentPicker from "expo-document-picker"
 import Logo1 from '../../../../assets/bg/profile.png';
 import Logo from './../../../../assets/bg/bgimage5.jpg'
 import Icon2 from 'react-native-vector-icons/AntDesign';
@@ -20,20 +21,20 @@ const myIcon = (<Icon3 name='dots-three-vertical' size={30} color="black " />)
 //with mysql database using php for backend
 
 
-const closeIconAlert = () => Alert.alert(
-  "", 
-  "Are you sure you want to reject the applicant?",
-  [
-    {
-      text: "Yes",
-      onPress: () => console.log("Yes Pressed"),
-      style: "yes"
-    },
-    { 
-      text: "No", onPress: () => console.log("No Pressed")
-    }
-  ]
-);
+// const closeIconAlert = () => Alert.alert(
+//   "", 
+//   "Are you sure you want to reject the applicant?",
+//   [
+//     {
+//       text: "Yes",
+//       onPress: () => console.log("Yes Pressed"),
+//       style: "yes"
+//     },
+//     { 
+//       text: "No", onPress: () => console.log("No Pressed")
+//     }
+//   ]
+// );
 
 const report = () => Alert.alert(
     "", 
@@ -187,7 +188,32 @@ const SecondRoute = ({navigation, profile,arr}) => (
       
       
     
-      <TouchableOpacity onPress={closeIconAlert}>
+      <TouchableOpacity onPress={()=>Alert.alert(
+  "", 
+  "Are you sure you want to reject the applicant?",
+  [
+    {
+      text: "Yes",
+      onPress: () => {
+        axiosRequest.post('api/applicant.php',JSON.stringify({applyID:label.aid,status:"Decline"})).then((response) => {
+          Alert.alert("Application rejected","",
+          [
+      {
+        text: "Okay!",
+        onPress: () => navigation.goBack(),
+        style: "yes"
+      }
+    ]
+         )
+            })
+        },
+      style: "yes"
+    },
+    { 
+      text: "No", onPress: () => console.log("No Pressed")
+    }
+  ]
+)}>
       <Icon2 name='closecircle' style={{fontSize: 30, color: 'red', marginHorizontal: 10}}/>
       </TouchableOpacity>
      
@@ -271,26 +297,56 @@ export default function Manage({navigation,route, }) {
 
   const [selectedImage, setSelectedImage] = useState(null);
 
-  const pickImageAsync = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      
-      allowsEditing: true,
-      quality: 1,
-    });
+  const pickImageAsync = async (file) => {
 
 
+    let File = await DocumentPicker.getDocumentAsync({
+     copyToCacheDirectory : false,
+      type: 'image/*'
+    })
+    if(File.type === 'cancel'){
+      console.log("cancel")
+    }else{
 
-    if (!result.canceled) {
-
-      setSelectedImage(result.assets[0].uri);
-      console.log(result.assets[0].uri)
-
-      setSelectedImage (result.assets[0].uri);
-
-    } else{
-      alert('You did not select any image.'); 
+      var config = {
+        headers:{
+     'Content-type':'multipart/form-data'
+        }
+       };
+       var formData = new FormData();
+       formData.append('file1',{type:File.mimeType,uri:File.uri,name:File.name})
+       gets.post.map((label) =>{
+        formData.append('postID',label.postID)
+       })
+      Alert.alert(
+        "", 
+        "You Want To Apply This Picture?",
+        [
+          {
+            text: "Yes",
+            onPress: () => { axiosRequest.post('api/postpicture.php',formData,config).then((response) => {
+              if(response.data === "Picture Added"){
+              Alert.alert(response.data,"Change screen to see the changes made",
+              [
+          {
+            text: "Okay!",
+            onPress: () => console.log("NO ACCTION"),
+            style: "yes"
+          }
+        ]
+             )
+      }
+           
+                 })},
+            style: "yes"
+          },
+          { 
+            text: "No", onPress: () => console.log("No Pressed")
+          }
+        ]
+      )
     }
-  };
+}
 
  const [gets,setGet] = React.useState({
       post : []
@@ -335,7 +391,7 @@ navigation.setOptions({
       .then((response) => {
        
 setGet (prevState => ({...prevState, post: response.data}))
-// console.log(response.data)
+console.log(response.data)
 
     axiosRequest.post('/api/applied.php', JSON.stringify(Data), headers)  
       .then((response) => {
@@ -381,22 +437,23 @@ setGet (prevState => ({...prevState, post: response.data}))
   
   return (
     <SafeAreaView style={{flex: 1}}>
-    
-    { selectedImage ? <Image 
-    source= {{uri: selectedImage}}
+   {gets.post.map((label,index)=>(
+    label.image ? <Image key={index}
+    source= {{uri: server+label.image}}
     style={[{  
      width: 'auto',
      height: 100,
      resizeMode: 'cover', height: height * 0.20, 
      }]} 
-     /> :  <Image 
+     /> :  <Image key={index}
      source= {Logo}
       style={[{  
        width: 'auto',
        height: 100,
        resizeMode: 'cover', height: height * 0.20, 
        }]} 
-       /> }
+       /> 
+       ))}
      <View style={{flexDirection: 'row-reverse',  justifyContent: 'flex-start', alignItems: 'flex-end'}}>
      <View style={{padding: 5, position: 'absolute', flex: 1, }}>
      <TouchableOpacity onPress={pickImageAsync}>

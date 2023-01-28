@@ -93,6 +93,15 @@ setGet (prevState => ({...prevState, post: response.data}))
       </Text>
       </View>
       </TouchableOpacity> }
+
+      {label.status == "Decline" &&  <TouchableOpacity onPress={()=> navigation.navigate('Application status',{itemId:label.postID})}>
+      <View style={[Universalstyles.jobstatus, {backgroundColor:"red"}]}>
+      <Text style={{color: 'white', fontWeight: 'bold', fontSize: 18,}}>
+         {label.status}
+      </Text>
+      </View>
+      </TouchableOpacity> }
+
     </View>
     </View>
     

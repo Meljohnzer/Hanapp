@@ -158,8 +158,15 @@ var Data ={
           />
         }
       >
-   
-    <Image 
+   {gets.post.map((label,index)=>(<View  key = {index} style={{ borderColor: '#e8e8e8'}}>
+{label.image ? <Image
+    source= {{uri: server+label.image}}
+    style={[{  
+     width: 'auto',
+     height: 100,
+     resizeMode: 'cover', height: height * 0.20, 
+     }]} 
+     /> :  <Image
      source= {Logo}
       style={[{  
        width: 'auto',
@@ -167,8 +174,8 @@ var Data ={
        resizeMode: 'cover', height: height * 0.20, 
        }]} 
        /> 
-    
-     {gets.post.map((label,index)=>(<View  key = {index} style={{borderWidth: 2, borderColor: '#e8e8e8', margin: 5, borderRadius: 10, padding: 5}}>
+      }
+     
       <Text style={Universalstyles.text2}><Icon4 name='person' style={{fontSize: 25, color: 'black',}}/>  {label.lookingfor}</Text>
       {/* <Text style={{ paddingHorizontal: 5, paddingBottom: 5, fontSize: 30}}>Company name:</Text>
       <Text style=style={Universalstyles.text}><Icon name='email' style={{fontSize: 20, color: 'black', marginRight: 10}}/> Company email address: </Text> */}

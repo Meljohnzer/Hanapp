@@ -51,7 +51,7 @@ React.useEffect(()=>{
  navigation.addListener('focus',async () => {
   
  await axiosRequest.get('/api/posted.php').then((response)=>{
-     
+     console.log(response.data)
 setGet (prevState => ({...prevState, post: response.data}))
      
 })
@@ -65,9 +65,9 @@ setGet (prevState => ({...prevState, post: response.data}))
 
   return (
     <SafeAreaView style={{flex: 1, }}>
-   <ScrollView style={{}}
+   <ScrollView style={{height:'auto'}}
         contentContainerStyle={{
-          
+          height: Dimensions.get('window').height,
           width: Dimensions.get('window').width,
          
         }}
@@ -104,9 +104,8 @@ setGet (prevState => ({...prevState, post: response.data}))
     <View style={[Universalstyles.jobContent2,{resizeMode:'cover'}]}>
     <View style={{flex: 1,  flexDirection: 'row' ,alignSelf: 'flex-end', left: 5, bottom: 5}}>
     
-  {label.status == "open" &&  <OptionsMenu
+  {label.status == 'open' &&  <OptionsMenu
   customButton={myIcon}
-
   options={["Remove", "close", "Cancel"]}
   actions={[() => Alert.alert(
     "", 
@@ -160,7 +159,7 @@ setGet (prevState => ({...prevState, post: response.data}))
   )]}
   /> }
 
-{label.status == "close" &&  <OptionsMenu
+{label.status == 'close' &&  <OptionsMenu
   customButton={myIcon}
 
   options={["Remove", "Open", "Cancel"]}

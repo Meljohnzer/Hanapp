@@ -341,21 +341,21 @@ await axiosRequest.post('api/condition3.php',JSON.stringify(Data),headers).then(
   return (
     <SafeAreaView style={{flex: 1}}>
         
-        { selectedImage ? <Image 
-    source= {{uri: selectedImage}}
+        { gets.post.map((label,index)=> (label.image ? <Image key={index} 
+    source= {{uri: server+label.image}}
     style={[{  
      width: 'auto',
      height: 100,
      resizeMode: 'cover', height: height * 0.20, 
      }]} 
-     /> :  <Image 
+     /> :  <Image  key={index}
      source= {Logo}
       style={[{  
        width: 'auto',
        height: 100,
        resizeMode: 'cover', height: height * 0.20, 
        }]} 
-       /> }
+       />))}
 
     <TabView
     navigationState={{ index, routes }}

@@ -124,7 +124,8 @@ const Profile = ({navigation,}) => {
         </View>
        
         <TouchableOpacity onPress={PickFile}>
-      { profiles.profile == '' && <Image source={Logo1} style={{
+      
+     { profiles.profile ? <Image source={{uri:server + profiles.profile}} style={{
      marginTop: 10,
      marginBottom: 20,
      marginLeft: 0,
@@ -132,16 +133,15 @@ const Profile = ({navigation,}) => {
      width: 130, 
      height: 130, 
      resizeMode: 'cover'
-    }}/> }
-     { profiles.profile && <Image source={{uri:server + profiles.profile}} style={{
-     marginTop: 10,
-     marginBottom: 20,
-     marginLeft: 0,
-     borderRadius: 65, 
-     width: 130, 
-     height: 130, 
-     resizeMode: 'cover'
-    }}/> }
+    }}/> : <Image source={Logo1} style={{
+      marginTop: 10,
+      marginBottom: 20,
+      marginLeft: 0,
+      borderRadius: 65, 
+      width: 130, 
+      height: 130, 
+      resizeMode: 'cover'
+     }}/> }
   </TouchableOpacity>
         </View>
         <View style={{borderWidth: .3, borderColor: '#aba9ab', marginHorizontal: 10, position: 'relative'}}></View>

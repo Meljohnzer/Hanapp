@@ -5,7 +5,7 @@ import Universalstyles from '../../../const/Universalstyle';
 import Logo from './../../../../assets/bg/bgimage5.jpg'
 import Icon3 from 'react-native-vector-icons/Entypo';
 import Icon4 from 'react-native-vector-icons/Fontisto';
-import { axiosRequest } from '../../components/api';
+import { axiosRequest , server} from '../../components/api';
 import { style } from 'deprecated-react-native-prop-types/DeprecatedTextPropTypes';
 
 //with mysql database using php for backend
@@ -45,6 +45,7 @@ navigation.setOptions({
   
  await axiosRequest.post('/api/status.php',JSON.stringify(Data)).then((response)=>{
      console.log(response.data)
+     console.log(response.data)
 setGet (prevState => ({...prevState, post: response.data}))
      
 })
@@ -73,14 +74,21 @@ setGet (prevState => ({...prevState, post: response.data}))
       >
    
    {gets.post.map((label,index)=>(<View key = {index}>
-    <Image 
+    {label.image ? <Image 
+     source= {{uri:server+label.image}}
+      style={[{  
+       width: 'auto',
+       height: 100,
+       resizeMode: 'cover', height: height * 0.20, 
+       }]} 
+       /> :<Image 
      source= {Logo}
       style={[{  
        width: 'auto',
        height: 100,
        resizeMode: 'cover', height: height * 0.20, 
        }]} 
-       /> 
+       /> }
     
     <View style={{borderWidth: 2, borderColor: '#e8e8e8', margin: 5, borderRadius: 10, padding: 5}}>
       <Text style={Universalstyles.text2}><Icon4 name='person' style={{fontSize: 25, color: 'grey',}}/>  {label.lookingfor}</Text>
@@ -113,7 +121,6 @@ setGet (prevState => ({...prevState, post: response.data}))
     <Text style={Universalstyles.text}><Icon name='email-outline' style={{fontSize: 20, color: 'blue',}}/> {label.email}</Text>
     <Text style={Universalstyles.text}><Icon name='phone-outline' style={{fontSize: 20, color: 'blue',}}/> {label.Scontactno}</Text>
     <Text style={Universalstyles.text}><Icon name='map-marker' style={{fontSize: 20, color: 'blue',}}/> {label.Sstreet} {label.Scity} {label.Sprovince} {label.Szipcode}</Text>
-    
     </View>
     <View style={{borderWidth: 2, borderColor: '#e8e8e8', margin: 5, borderRadius: 10, padding: 5}}>
    <Text style={Universalstyles.text3}><Text style={{fontSize: 20, fontWeight: '500'}}>Interview Information</Text></Text>
@@ -123,16 +130,19 @@ setGet (prevState => ({...prevState, post: response.data}))
          No Schedule Yet
       </Text>
       </View> }
+
+   {label.Astatus == 'Decline' && <View style={[Universalstyles.jobstatus, {backgroundColor:"red"}]}>
+      <Text style={{color: 'white', fontWeight: 'bold', fontSize: 18,}}>
+         Decline
+      </Text>
+      </View> }
   {label.Astatus == null && <View style={[Universalstyles.jobstatus, {}]}>
       <Text style={{color: 'white', fontWeight: 'bold', fontSize: 18,}}>
          Pending
       </Text>
       </View> }
-  {label.Astatus == "Decline" && <View style={[Universalstyles.jobstatus, {backgroundColor:"red"}]}>
-      <Text style={{color: 'white', fontWeight: 'bold', fontSize: 18,}}>
-         Pending
-      </Text>
-      </View> }
+      {console.log(label.Astatus)}
+  
   {label.scheduleID && <View style={[Universalstyles.jobstatus, {backgroundColor:'#C7F9B5'}]}>
   <Text style ={[Universalstyles.text,{width:'100%'}]}><Icon name='web' style={{fontSize: 20, color: 'blue',}}/> {label.interviewType}</Text>
   {label.interviewType == "Online" && <Text onPress={()=>{Linking.openURL(label.method)}} style ={[Universalstyles.text,{width:'100%'}]}><Icon name='link' style={{fontSize: 20, color: 'blue',}}/> {label.method}</Text>}
