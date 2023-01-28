@@ -101,7 +101,7 @@ setGet (prevState => ({...prevState, post: response.data}))
     { label.status == "close"  &&<Text style={{opacity:.5}}><Icon4 name='dot-fill' style={{fontSize: 20, color: 'red', alignContent: 'center'}}/>  Close</Text>}
 
 <Text style={{opacity:.5}}><Icon2 name='account-group' style={{fontSize: 20, color: 'brown', alignContent: 'center'}}/> <Text style={{color: 'black', }}> {label.noApprove}</Text> Approved applicant</Text>
-<Text style={{opacity: .5 }}><Icon2 name='clock-outline' style={{fontSize: 20, color: 'black', }}/> {moment(label.createdat).local().startOf('seconds').fromNow()}</Text>
+<Text style={{opacity: .5 }}><Icon2 name='clock-outline' style={{fontSize: 20, color: 'black', }}/>{moment(label.createdat).add(8,'hour').startOf('seconds').fromNow()}</Text>
 
     <TouchableOpacity onPress={()=>{
      setPostID(label.postID)

@@ -51,7 +51,7 @@ React.useEffect(()=>{
  navigation.addListener('focus',async () => {
   
  await axiosRequest.get('/api/posted.php').then((response)=>{
-     console.log(response.data)
+     
 setGet (prevState => ({...prevState, post: response.data}))
      
 })
@@ -65,9 +65,9 @@ setGet (prevState => ({...prevState, post: response.data}))
 
   return (
     <SafeAreaView style={{flex: 1, }}>
-   <ScrollView style={{height:'auto'}}
+   <ScrollView style={{}}
         contentContainerStyle={{
-          height: Dimensions.get('window').height,
+          
           width: Dimensions.get('window').width,
          
         }}
@@ -104,8 +104,9 @@ setGet (prevState => ({...prevState, post: response.data}))
     <View style={[Universalstyles.jobContent2,{resizeMode:'cover'}]}>
     <View style={{flex: 1,  flexDirection: 'row' ,alignSelf: 'flex-end', left: 5, bottom: 5}}>
     
-  {label.status == 'open' &&  <OptionsMenu
+  {label.status == "open" &&  <OptionsMenu
   customButton={myIcon}
+
   options={["Remove", "close", "Cancel"]}
   actions={[() => Alert.alert(
     "", 
@@ -159,7 +160,7 @@ setGet (prevState => ({...prevState, post: response.data}))
   )]}
   /> }
 
-{label.status == 'close' &&  <OptionsMenu
+{label.status == "close" &&  <OptionsMenu
   customButton={myIcon}
 
   options={["Remove", "Open", "Cancel"]}
@@ -209,7 +210,7 @@ setGet (prevState => ({...prevState, post: response.data}))
     { label.status == "close" && <Text style={{opacity:.5}}><Icon4 name='dot-fill' style={{fontSize: 20, color: 'red', alignContent: 'center'}}/>  Close</Text>}
 
     <Text style={{opacity:.5}}><Icon2 name='account-group' style={{fontSize: 20, color: 'brown', alignContent: 'center'}}/> <Text style={{color: 'black', }}> {label.applicantNO}</Text> People applied</Text>
-<Text style={{opacity: .5 }}><Icon2 name='clock-outline' style={{fontSize: 20, color: 'black', }}/> {moment(label.createdat).local().startOf('seconds').fromNow()}</Text>
+<Text style={{opacity: .5 }}><Icon2 name='clock-outline' style={{fontSize: 20, color: 'black', }}/> {moment(label.createdat).add(8,'hour').startOf('seconds').fromNow()}</Text>
 
     <TouchableOpacity onPress={()=>{
      setPostID(label.postID)
