@@ -50,7 +50,7 @@ const [postID,setPostID] = React.useState()
 React.useEffect(()=>{
  navigation.addListener('focus',async () => {
   
- await axiosRequest.get('/api/posted.php').then((response)=>{
+ await axiosRequest.get('/api/pendings.php').then((response)=>{
      
 setGet (prevState => ({...prevState, post: response.data}))
      

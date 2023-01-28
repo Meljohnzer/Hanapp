@@ -101,7 +101,19 @@ var Data ={
       .then((response) => {
         console.log(response.data);
           if (response.data == "Registered successfully!") {
-          navigation.navigate("Log in");
+            Alert.alert(response.data,"Go to Login screen to Sign in",
+            [
+        {
+          text: "Okay!",
+          onPress: () => navigation.goBack(),
+          style: "yes"
+        },{
+          text:"Stay",
+          onPress: ()=>navigation.navigate("Sign up"),
+          style:'cancel' 
+        }
+      ]
+           )   
            }
       });
      

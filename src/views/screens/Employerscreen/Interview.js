@@ -247,7 +247,15 @@ var Data ={
 axiosRequest.post('/api/schedule.php', JSON.stringify(Data))  
       .then((response) => {
         console.log(response.data);
-        navigation.goBack()
+        Alert.alert(response.data,"Schedule Set Successfully",
+        [
+    {
+      text: "Okay!",
+      onPress: () => navigation.goBack(),
+      style: "yes"
+    }
+  ]
+       )
       });
      
     }, 3000);

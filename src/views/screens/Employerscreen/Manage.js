@@ -196,7 +196,7 @@ const SecondRoute = ({navigation, profile,arr}) => (
       text: "Yes",
       onPress: () => {
         axiosRequest.post('api/applicant.php',JSON.stringify({applyID:label.aid,status:"Decline"})).then((response) => {
-          Alert.alert("Application rejected","",
+          Alert.alert(response.data,"Application Successfully Decline",
           [
       {
         text: "Okay!",
@@ -227,10 +227,19 @@ const SecondRoute = ({navigation, profile,arr}) => (
       onPress: () => {
         axiosRequest.post('api/applicant.php',JSON.stringify({applyID:label.aid,status:"Approved"})).then((response) => {
        
-         // console.log(response.data)
-         // navigation.navigate('Manage')
-          // setApp (prevState => ({...prevState, post: response.data}))
-      
+          Alert.alert(response.data,"Go to Applicant to Manage Approved Applicants",
+            [
+        {
+          text: "Okay!",
+          onPress: () => navigation.navigate('Applicant'),
+          style: "yes"
+        },{
+          text:"Stay",
+          onPress: ()=>navigation.goBack(),
+          style:'cancel' 
+        }
+      ]
+           ) 
             })
         },
       style: "yes"

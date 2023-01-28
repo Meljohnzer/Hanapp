@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-nativ
 import React, { useState } from 'react'
 import Universalstyles from '../../const/Universalstyle';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-export default function Searchbar({value, updateSearch, style, IconName, placeholder}) {
+export default function Searchbar({value, updateSearch, style, IconName, placeholder,onChange}) {
     const [query, setQuery] = useState();
 
   return (
@@ -16,6 +16,8 @@ export default function Searchbar({value, updateSearch, style, IconName, placeho
         />
         <TextInput
          placeholder={placeholder}
+         value={value}
+         onChangeText={onChange}
         />
       </View>
     </View>
