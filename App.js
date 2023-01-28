@@ -2,7 +2,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Loginscreen from './src/views/screens/Loginscreen';
 import Signupscreen from './src/views/screens/Signupscreen';
 import Forgotscreen from './src/views/screens/Forgotscreen';
-import { SafeAreaView } from 'react-native';
+import { SafeAreaView, StatusBar } from 'react-native';
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Home from './src/views/screens/Studentscreen/Home'
@@ -65,6 +65,8 @@ export default function App() {
   return (
     
 <SafeAreaView style={{flex: 1, paddingTop: 30, backgroundColor: "white"}}>
+<StatusBar barStyle = "dark-content" hidden = {false} backgroundColor = "grey" translucent = {true}/>
+   
 <NavigationContainer>
 <Stack.Navigator screenOptions={{headerShown: false}}>
 
