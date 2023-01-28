@@ -78,23 +78,7 @@ const report = () => Alert.alert(
   
   
   return (
-<SafeAreaView>
-
-<ScrollView
-        contentContainerStyle={{
-          justifyContent: 'center',
-          width: Dimensions.get('window').width,
-        }}
-        refreshControl={
-          <RefreshControl
-            refreshing={refreshing}
-            onRefresh={onRefresh}
-            colors={['#F5E44C']}
-          />
-        }
-      >
-        <>
-      
+<SafeAreaView style={{flex: 1}}>
 <View style={{padding: 10, flexDirection: 'row', backgroundColor: '#F5E44C' }}>
 
   
@@ -119,7 +103,22 @@ const report = () => Alert.alert(
       style={{ fontSize: 40, marginLeft: 5, color: 'black', }} />
   </TouchableOpacity>
 </View>
-
+<ScrollView
+        contentContainerStyle={{
+          justifyContent: 'center',
+          
+          width: Dimensions.get('window').width,
+        }}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+            colors={['#F5E44C']}
+          />
+        }
+      >
+        <>
+      
 {gets.post.map((label,index)=>(
 <View key = {index} style={[Universalstyles.jobPost,{}]}>
   

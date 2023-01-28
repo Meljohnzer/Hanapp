@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, Dimensions, ScrollView, Image, SafeAreaView, RefreshControl} from 'react-native'
+import { View, Text, TouchableOpacity, Dimensions, ScrollView, Image, SafeAreaView, RefreshControl, Alert} from 'react-native'
 import React from 'react'
 import Universalstyles from '../../../const/Universalstyle'
 import Fontaw from 'react-native-vector-icons/FontAwesome';
@@ -9,20 +9,40 @@ import { axiosRequest } from '../../components/api';
 
 //with mysql database using php for backend
 
+
+
+
+
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
 }
 
 
 const Settings = ({navigation}) => {
-  const logout = () =>{
+  // const logout = () =>{
    
-    axiosRequest.get('/api/logout.php')  
-      .then((response) => {
+  //   axiosRequest.get('/api/logout.php')  
+  //     .then((response) => {
         
-        navigation.navigate('Log in')
-      });
-  }
+  //       navigation.navigate('Log in')
+  //     });
+  // }
+const Logout = () => Alert.alert(
+  "", 
+  "Are you sure you want to logout?",
+  [
+    {
+      text: "Yes",
+      onPress: () => navigation.navigate('Log in'),
+      
+    },
+    { 
+      text: "No", onPress: () => console.log("No Pressed")
+    }
+    
+  ]
+  
+);
 
   const [refreshing, setRefreshing] = React.useState(false);
   const onRefresh = React.useCallback(() => {
@@ -148,7 +168,7 @@ const Settings = ({navigation}) => {
     </TouchableOpacity>
  
     <View style={{marginBottom: 50, alignItems: 'center'}}>
-    <TouchableOpacity  onPress={logout}>
+    <TouchableOpacity  onPress={Logout}>
       <View style={Universalstyles.logout}>
       <Text style={{color: 'white', fontWeight: 'bold', fontSize: 18}}>Log out</Text>
       </View>
