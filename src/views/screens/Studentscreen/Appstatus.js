@@ -104,7 +104,7 @@ setGet (prevState => ({...prevState, post: response.data}))
       <Text style={{ paddingHorizontal: 80, paddingBottom: 5, fontSize: 15,opacity:.5}}><Icon name='calendar-month' style={{fontSize: 20, color: 'red', marginRight: 10}}/> Hiring end on: </Text>
       </View>
       <View style={{ alignItems: 'center', flexDirection:'row', justifyContent: 'flex-start'}}>
-      <Text style={{paddingHorizontal: 25, fontSize: 15, opacity:.5}}>{label.Pstartdate}</Text>
+      <Text style={{ fontSize: 15, opacity:.5}}>{label.Pstartdate} {label.endtime}</Text>
       <Text style={{paddingHorizontal: 100,fontSize: 15, opacity:.5}}>{label.Penddate}</Text>
       </View>
       <Text style={Universalstyles.text}></Text>
@@ -146,9 +146,9 @@ setGet (prevState => ({...prevState, post: response.data}))
   {label.scheduleID && <View style={[Universalstyles.jobstatus, {backgroundColor:'#C7F9B5'}]}>
   <Text style ={[Universalstyles.text,{width:'100%'}]}><Icon name='web' style={{fontSize: 20, color: 'blue',}}/> {label.interviewType}</Text>
   {label.interviewType == "Online" && <Text onPress={()=>{Linking.openURL(label.method)}} style ={[Universalstyles.text,{width:'100%'}]}><Icon name='link' style={{fontSize: 20, color: 'blue',}}/> {label.method}</Text>}
-  { label.interviewType == "Face to face" && <Text style ={[Universalstyles.text,{width:'100%'}]}><Icon name='link' style={{fontSize: 20, color: 'blue',}}/> {label.method}</Text>}
-    <Text style ={[Universalstyles.text,{width:'100%'}]} ><Icon name='calendar-month' style={{fontSize: 20, color: 'green', marginRight: 10}}/> {label.startdate}</Text> 
-    <Text style ={[Universalstyles.text,{width:'100%'}]}><Icon name='calendar-month' style={{fontSize: 20, color: 'green', marginRight: 10}}/> {label.enddate}</Text> 
+  { label.interviewType == "Face to face" && <Text style ={[Universalstyles.text,{width:'100%'}]}><Icon name='map-marker' style={{fontSize: 20, color: 'red',}}/> {label.method}</Text>}
+    <Text style ={[Universalstyles.text,{width:'100%'}]} ><Icon name='calendar-month' style={{fontSize: 20, color: 'green', marginRight: 10}}/> {label.startdate} {label.starttime}</Text> 
+    <Text style ={[Universalstyles.text,{width:'100%'}]}><Icon name='calendar-month' style={{fontSize: 20, color: 'red', marginRight: 10}}/> {label.enddate} {label.endtime}</Text> 
         
       </View> }
       
