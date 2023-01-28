@@ -64,7 +64,7 @@ export default function App() {
 //  .catch(error => console.log(error));
   return (
     
-<SafeAreaView style={{flex: 1, backgroundColor: "#eee"}}>
+<SafeAreaView style={{flex: 1, paddingTop: 30, backgroundColor: "#eee"}}>
 <NavigationContainer>
 <Stack.Navigator screenOptions={{headerShown: false}}>
 

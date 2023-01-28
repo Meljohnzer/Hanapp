@@ -23,7 +23,7 @@ scrollView: {
   },
 logo:{
        
-    flex: 0,
+    flex: 1,
     right: 4.4,
     width: 'auto',
     height: 'auto',

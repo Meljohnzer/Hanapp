@@ -78,7 +78,11 @@ const report = () => Alert.alert(
   
   
   return (
+<<<<<<< HEAD
 <SafeAreaView style={{flex:1}}>
+=======
+<SafeAreaView style={{flex: 1}}>
+>>>>>>> 48ad56adfed645b8e17e194e6e3693c49b06769f
 <View style={{padding: 10, flexDirection: 'row', backgroundColor: '#F5E44C' }}>
 
   
@@ -105,6 +109,10 @@ const report = () => Alert.alert(
 </View>
 <ScrollView
         contentContainerStyle={{
+<<<<<<< HEAD
+=======
+          justifyContent: 'center',
+>>>>>>> 48ad56adfed645b8e17e194e6e3693c49b06769f
           
           width: Dimensions.get('window').width,
         }}
@@ -118,8 +126,11 @@ const report = () => Alert.alert(
       >
         <>
       
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 48ad56adfed645b8e17e194e6e3693c49b06769f
 {gets.post.map((label,index)=>(
 <View key = {index} style={[Universalstyles.jobPost,{}]}>
   
