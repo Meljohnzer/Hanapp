@@ -10,7 +10,7 @@ include('conDB.php');
 include('check.php');
 
 $id = $_SESSION['id'];
-
+$search =$Decode_React_APP_Data['search'];
  $select = "SELECT
  post.*,
  compname,
@@ -19,6 +19,7 @@ FROM
  post
 LEFT JOIN userdetails ON post.userID = userdetails.userID
 LEFT JOIN company ON userdetails.userID = company.userID
+WHERE post.lookingfor = '$search' OR post.city = '$search'
 ORDER BY
  post.createdat
 DESC";
