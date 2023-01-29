@@ -257,7 +257,7 @@ var Data ={
     <Text style={{ opacity: .5, fontSize: 12}}>
     {label.street} {label.city} {label.province} {label.zipcode}
     <Text style={{color: 'green', textTransform: 'capitalize'}}></Text> </Text>
-    <Text style={{ opacity: .5}}>{label.birthday} <Text style={{color: 'green', textTransform: 'capitalize'}}></Text> </Text>
+    <Text style={{ opacity: .5}}>{label.age} Years old <Text style={{color: 'green', textTransform: 'capitalize'}}></Text> </Text>
         </View>
       
       <View style={{ flex: 1, flexDirection: 'row',  alignSelf: 'center' , }}>

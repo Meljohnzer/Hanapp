@@ -247,19 +247,17 @@ var Data ={
 axiosRequest.post('/api/schedule.php', JSON.stringify(Data))  
       .then((response) => {
         console.log(response.data);
-        if(response.data = "Schedule Set Successfully!"){
-          Alert.alert("Interview schedule successfully updated",
-          [
-      {
-        text: "Okay!",
-        onPress: () => navigation.navigate("Review"),
-        style: "yes"
-      }
-    ]
-         )
-       }else{
-        alert(response.data)
-       }
+        Alert.alert("Schedule Set Successfully!","Interview schedule successfully updated",
+         [
+     {
+       text: "Okay!",
+       onPress: () => navigation.navigate("Review"),
+       style: "yes"
+     }
+   ]
+       
+        ) 
+ 
       });
      
     }, 3000);
@@ -363,7 +361,7 @@ axiosRequest.post('/api/schedule.php', JSON.stringify(Data))
             handleError(null, 'intstartdate')
             }}>
             <Input 
-            placeholder= 'Hiring Start Date (YYYY-MM-DD)' 
+            placeholder= 'Interview Start Date (YYYY-MM-DD)' 
             iconName= 'calendar-month' 
             editable={false}
             value = {inputs.intstartdate}
@@ -386,7 +384,32 @@ axiosRequest.post('/api/schedule.php', JSON.stringify(Data))
               />
               )}
 
-    {inputs.intstartdate && <TouchableOpacity onPress={()=>{showTimePicker()
+             { inputs.intstartdate && <TouchableOpacity onPress={()=>{showDatePicker()
+            handleError(null, 'intenddate')
+            }}>
+            <Input 
+            placeholder= 'Interview End Date (YYYY-MM-DD)' 
+            iconName= 'calendar-month' 
+            editable={false}
+            value = {inputs.intenddate}
+            error={errors.intenddate}
+            onFocus={() =>{
+              handleError(null, 'intenddate');
+            }}
+            onChangeText = {text => handleOnChange(text, 'intenddate')}
+            /></TouchableOpacity> }
+              {show && (
+              <DateTimePicker
+              testID="dateTimePicker"
+              minimumDate={(new Date()).valueOf() + 1000*3600*24}
+              value={date}
+              mode={mode}
+              is24Hour={true}
+              display='default'
+              onChange={onChange}
+              />
+              )}
+            {inputs.intenddate && <TouchableOpacity onPress={()=>{showTimePicker()
             handleError(null, 'intstarttime')
             }}>
             <Input 
@@ -411,35 +434,8 @@ axiosRequest.post('/api/schedule.php', JSON.stringify(Data))
               onChange={onChange3}
               />
               )}
-
-             { inputs.intstarttime && <TouchableOpacity onPress={()=>{showDatePicker()
-            handleError(null, 'intenddate')
-            }}>
-            <Input 
-            placeholder= 'Hiring End Date (YYYY-MM-DD)' 
-            iconName= 'calendar-month' 
-            editable={false}
-            value = {inputs.intenddate}
-            error={errors.intenddate}
-            onFocus={() =>{
-              handleError(null, 'intenddate');
-            }}
-            onChangeText = {text => handleOnChange(text, 'intenddate')}
-            /></TouchableOpacity> }
-              {show && (
-              <DateTimePicker
-              testID="dateTimePicker"
-              minimumDate={(new Date()).valueOf() + 1000*3600*24}
-              value={date}
-              mode={mode}
-              is24Hour={true}
-              display='default'
-              onChange={onChange}
-              />
-              )}
-           
          
-            { inputs.intenddate && <TouchableOpacity onPress={()=>{showTimePicker2()
+            { inputs.intstarttime && <TouchableOpacity onPress={()=>{showTimePicker2()
             handleError(null, 'intendtime')
             }}>
             <Input 
