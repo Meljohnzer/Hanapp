@@ -148,7 +148,9 @@ setGet (prevState => ({...prevState, post: response.data}))
   {label.interviewType == "Online" && <Text onPress={()=>{Linking.openURL(label.method)}} style ={[Universalstyles.text,{width:'100%'}]}><Icon name='link' style={{fontSize: 20, color: 'blue',}}/> {label.method}</Text>}
   { label.interviewType == "Face to face" && <Text style ={[Universalstyles.text,{width:'100%'}]}><Icon name='link' style={{fontSize: 20, color: 'blue',}}/> {label.method}</Text>}
     <Text style ={[Universalstyles.text,{width:'100%'}]} ><Icon name='calendar-month' style={{fontSize: 20, color: 'green', marginRight: 10}}/> {label.startdate}</Text> 
-    <Text style ={[Universalstyles.text,{width:'100%'}]}><Icon name='calendar-month' style={{fontSize: 20, color: 'green', marginRight: 10}}/> {label.enddate}</Text> 
+    <Text style ={[Universalstyles.text,{width:'100%'}]}><Icon name='calendar-month' style={{fontSize: 20, color: 'red', marginRight: 10}}/> {label.enddate}</Text> 
+    <Text style ={[Universalstyles.text,{width:'100%'}]} ><Icon name='clock-outline' style={{fontSize: 20, color: 'green', marginRight: 10}}/> {label.starttime}</Text> 
+    <Text style ={[Universalstyles.text,{width:'100%'}]}><Icon name='clock-outline' style={{fontSize: 20, color: 'red', marginRight: 10}}/> {label.endtime}</Text> 
         
       </View> }
       
