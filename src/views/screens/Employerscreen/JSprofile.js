@@ -44,6 +44,7 @@ navigation.setOptions({
   
  await axiosRequest.post('/api/profile.php', JSON.stringify(Data))  
       .then((response) => {
+        console.log(response.data)
     setApp (prevState => ({...prevState, post: response.data}))
 
       })
@@ -205,12 +206,21 @@ navigation.setOptions({
     {
       text: "Yes",
       onPress: () => {
-        axiosRequest.post('api/applicant.php',JSON.stringify({applyID:label.applyID,status:"Approved"})).then((response) => {
+        axiosRequest.post('api/applicant.php',JSON.stringify({applyID:label.aid,status:"Approved"})).then((response) => {
        
-        //  console.log(response.data)
-         // navigation.navigate('Manage')
-          // setApp (prevState => ({...prevState, post: response.data}))
-      
+          Alert.alert(response.data,"Go to Applicant to Manage Approved Applicants",
+            [
+        {
+          text: "Okay!",
+          onPress: () => navigation.navigate('Applicant'),
+          style: "yes"
+        },{
+          text:"Stay",
+          onPress: ()=>navigation.goBack(),
+          style:'cancel' 
+        }
+      ]
+           ) 
             })
         },
       style: "yes"
