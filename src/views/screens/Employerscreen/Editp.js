@@ -389,6 +389,7 @@ var Data ={
               testID="dateTimePicker"
               value={date1}
               mode={mode1}
+              minimumDate={(new Date())}
               is24Hour={true}
               display='default'
               onChange={onChange1}
@@ -414,6 +415,7 @@ var Data ={
               <DateTimePicker
               testID="dateTimePicker"
               value={date}
+              minimumDate={(new Date()).valueOf() + 1000*3600*24}
               mode={mode}
               is24Hour={true}
               display='default'

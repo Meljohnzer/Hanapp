@@ -389,6 +389,7 @@ var Data ={
               {show && (
               <DateTimePicker
               testID="dateTimePicker"
+              minimumDate={(new Date()).valueOf() + 1000*3600*24}
               value={date}
               minimumDate={(new Date()).valueOf() + 1000*3600*24}
               mode={mode}
