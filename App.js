@@ -64,7 +64,7 @@ export default function App() {
 //  .catch(error => console.log(error));
   return (
     
-<SafeAreaView style={{flex: 1, paddingTop: 30, backgroundColor: "white"}}>
+<SafeAreaView style={{flex: 1, paddingTop: 25, backgroundColor: "white"}}>
 <StatusBar barStyle = "dark-content" hidden = {false} backgroundColor = "grey" translucent = {true}/>
    
 <NavigationContainer>

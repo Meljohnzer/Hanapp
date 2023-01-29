@@ -1,15 +1,13 @@
-<?php
+<?php 
 session_start();
-
+// header("Access-Control-Allow-Headers: Authorization, Content-Type");
+// header("Access-Control-Allow-Origin: *");
+// header('content-type: application/json; charset=utf-8');
+?>
+<?php
 include('conDB.php');
 include('check.php');
-header("Access-Control-Allow-Headers: Authorization, Content-Type");
-header("Access-Control-Allow-Origin: *");
-header('content-type: application/json; charset=utf-8');
-
  $user_data = check_login($connect_db);
-
-
 $schname = $Decode_React_APP_Data['schname'];
 $schaddress = $Decode_React_APP_Data['schaddress'];
 $course = $Decode_React_APP_Data['course'];

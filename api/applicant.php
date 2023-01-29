@@ -21,7 +21,11 @@ $status = $Decode_React_APP_Data['status'];
   $query ="INSERT INTO applicant (applyID,status) VALUES ('$applyID','$status')";
   $result = mysqli_query($connect_db,$query);
   if($result){
+      if($status == "Approved"){
    echo json_encode("Approved Successfully");
+      }else{
+          echo json_encode("Application Decline");
+      }
   }else{
    echo json_encode("Unkown Error");
   }

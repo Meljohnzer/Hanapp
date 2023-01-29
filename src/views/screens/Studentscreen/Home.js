@@ -40,7 +40,7 @@ const [id,setId] = React.useState()
   function updateSearch(text){
       setValue(text)
     axiosRequest.post('/api/search.php',JSON.stringify({search:text})).then((response)=>{
-    //  console.log(response.data)
+     console.log(response.data)
       setSearch (prevState => ({...prevState, post: response.data}))
            
       })

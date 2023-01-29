@@ -9,19 +9,14 @@ header('content-type: application/json; charset=utf-8');
 include('conDB.php');
 include('check.php');
 
+
+
+
 $id = $_SESSION['id'];
 
- $select = "SELECT
- post.*,
- compname,
- userdetails.*
-FROM
- post
-LEFT JOIN userdetails ON post.userID = userdetails.userID
-LEFT JOIN company ON userdetails.userID = company.userID
-ORDER BY
- post.createdat
-DESC";
+
+ 
+ $select = "SELECT * FROM user where userID = '$id'";
 
 $exec = mysqli_query($connect_db,$select);
  $i=0;

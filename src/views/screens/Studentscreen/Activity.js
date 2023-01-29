@@ -62,7 +62,7 @@ setGet (prevState => ({...prevState, post: response.data}))
             </View>
              </View>
       </View>
-      {gets.post.map((label,index)=>(<View key = {index} style={[Universalstyles.jobPost, {paddingBottom: 10}]}>
+      {gets.post.map((label,index)=>(<View key = {index} style={[Universalstyles.jobPost, {}]}>
   
        <View style={Universalstyles.jobContent}>
       
