@@ -247,7 +247,7 @@ var Data ={
 axiosRequest.post('/api/schedule.php', JSON.stringify(Data))  
       .then((response) => {
         console.log(response.data);
-        if(response.data = "Schedule is updated successfully!"){
+        if(response.data = "Schedule Set Successfully!"){
           Alert.alert("Interview schedule successfully updated",
           [
       {

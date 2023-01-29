@@ -178,6 +178,11 @@ navigation.setOptions({
       <Text style={{fontSize: 20, color: 'white', fontWeight: 'bold'}}>Certificate of Registration</Text>
       </View>
       </TouchableOpacity>
+      <TouchableOpacity>
+      <View style={[Universalstyles.jobContent3, {flexDirection: 'column',height: 45 }]}>
+      <Text style={{fontSize: 20, color: 'white', fontWeight: 'bold'}}>Student ID</Text>
+      </View>
+      </TouchableOpacity>
       </View>
       </View>
       </View>

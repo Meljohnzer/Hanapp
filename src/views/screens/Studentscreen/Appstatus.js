@@ -147,8 +147,8 @@ setGet (prevState => ({...prevState, post: response.data}))
   <Text style ={[Universalstyles.text,{width:'100%'}]}><Icon name='web' style={{fontSize: 20, color: 'blue',}}/> {label.interviewType}</Text>
   {label.interviewType == "Online" && <Text onPress={()=>{Linking.openURL(label.method)}} style ={[Universalstyles.text,{width:'100%'}]}><Icon name='link' style={{fontSize: 20, color: 'blue',}}/> {label.method}</Text>}
   { label.interviewType == "Face to face" && <Text style ={[Universalstyles.text,{width:'100%'}]}><Icon name='map-marker' style={{fontSize: 20, color: 'red',}}/> {label.method}</Text>}
-    <Text style ={[Universalstyles.text,{width:'100%'}]} ><Icon name='calendar-month' style={{fontSize: 20, color: 'green', marginRight: 10}}/> {label.startdate} / {label.starttime} - {label.endtime}</Text> 
-    <Text style ={[Universalstyles.text,{width:'100%'}]}><Icon name='calendar-month' style={{fontSize: 20, color: 'red', marginRight: 10}}/> {label.enddate} / {label.starttime} - {label.endtime}</Text> 
+    <Text style ={[Universalstyles.text,{width:'100%'}]} ><Icon name='calendar-month' style={{fontSize: 20, color: 'green', marginRight: 10}}/> {label.startdate} -- <Icon name='calendar-month' style={{fontSize: 20, color: 'red', marginRight: 10}}/> {label.enddate} </Text> 
+    <Text style ={[Universalstyles.text,{width:'100%'}]}><Icon name='clock-outline' style={{fontSize: 20, color: 'green', marginRight: 10}}/> {label.starttime} -- <Icon name='clock-outline' style={{fontSize: 20, color: 'red', marginRight: 10}}/>{label.endtime}</Text> 
         
       </View> }
       
