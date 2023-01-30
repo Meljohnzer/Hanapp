@@ -101,11 +101,11 @@ setGet (prevState => ({...prevState, post: response.data}))
       
       <View style={{ alignItems: 'center', flexDirection:'row', justifyContent: 'flex-start'}}>
       <Text style={Universalstyles.text}><Icon name='calendar-month' style={{fontSize: 20, color: 'green', marginRight: 10}}/> Hiring start in:</Text> 
-      <Text style={{ paddingHorizontal: 48, paddingBottom: 5, fontSize: 15,opacity:.5}}><Icon name='calendar-month' style={{fontSize: 20, color: 'red', marginRight: 10}}/> Hiring end on: </Text>
+      <Text style={{ paddingHorizontal: 80, paddingBottom: 5, fontSize: 15,opacity:.5}}><Icon name='calendar-month' style={{fontSize: 20, color: 'red', marginRight: 10}}/> Hiring end on: </Text>
       </View>
       <View style={{ alignItems: 'center', flexDirection:'row', justifyContent: 'flex-start'}}>
       <Text style={{ paddingHorizontal: 25,  fontSize: 15, opacity:.5, color: "blue"}}> {label.Pstartdate}</Text>
-      <Text style={{ paddingHorizontal: 80,  fontSize: 15, opacity:.5, color: "red"}}>{label.Penddate}</Text>
+      <Text style={{ paddingHorizontal: 105,  fontSize: 15, opacity:.5, color: "red"}}>{label.Penddate}</Text>
       </View>
       <Text style={Universalstyles.text}></Text>
      </View>

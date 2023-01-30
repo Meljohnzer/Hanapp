@@ -191,7 +191,16 @@ var Data ={
       .then((response) => {
         console.log(response.data);
          if(response.data = "Post created Successfully"){
-          navigation.navigate("Home");
+          Alert.alert(response.data,"See Home Screen to See Your post",
+          [
+      {
+        text: "Okay!",
+        onPress: () => navigation.navigate("Home"),
+        style: "yes"
+      }
+    ]
+         )
+          // navigation.navigate("Home");
          }else{
           alert(response.data)
          }

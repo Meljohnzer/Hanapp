@@ -40,7 +40,7 @@ navigation.setOptions({
    headerTitleStyle: { fontWeight: '100', fontSize: 25, }
   })
  await axiosRequest.get('/api/activity.php').then((response)=>{
-     
+    //  console.log(response.data)
 setGet (prevState => ({...prevState, post: response.data}))
      
 })
@@ -69,7 +69,7 @@ setGet (prevState => ({...prevState, post: response.data}))
     {/* {gets.post.map((label,index)=>( */}
  { gets.post.map((label,index)=>( <TouchableOpacity key={index} onPress={() => navigation.navigate('Application status',{itemId:label.postID})}>
   { label.status == "Approved"  && <View style={[Universalstyles.jobPost,{}]}>
-{console.log(label.status)}
+
       <View style={[Universalstyles.jobContent,{backgroundColor:"#83e0f8"}]}>
       { label.profile ? <Image source={{uri: server + label.profile}} style={Universalstyles.Jobimage}/>: <Image source={Logo1} style={Universalstyles.Jobimage}/>}
           
@@ -80,7 +80,7 @@ setGet (prevState => ({...prevState, post: response.data}))
           <Text style={{color: 'black',}}>approved your application for <Text>{label.lookingfor}</Text></Text></Text>
           <Text style={{fontSize: 17,}}>See more...</Text>
           <View style={{flex: 1,  flexDirection: 'row' ,alignSelf: 'flex-end', left: 5, bottom: 5}}>
-          <Text style={{opacity: .5 }}><Icon2 name='clock-outline' style={{fontSize: 20, color: 'black', }}/> {moment(label.applieddat).add(8,'hour').startOf('seconds').fromNow()}</Text>
+          <Text style={{opacity: .5 }}><Icon2 name='clock-outline' style={{fontSize: 20, color: 'black', }}/> {moment(label.dateA).add(8,'hour').startOf('seconds').fromNow()}</Text>
             </View>
     </View>
     </View>
