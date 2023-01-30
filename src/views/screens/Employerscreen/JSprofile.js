@@ -190,7 +190,32 @@ navigation.setOptions({
       
       </View>
    { label.status == null &&   <View style={{marginTop: 15, marginBottom: 50, alignItems: 'center', flexDirection:'row', justifyContent: 'space-around'}}>
-    <TouchableOpacity  onPress={() => navigation.navigate('Home')}>
+    <TouchableOpacity  onPress={()=>Alert.alert(
+  "", 
+  "Are you sure you want to reject the applicant?",
+  [
+    {
+      text: "Yes",
+      onPress: () => {
+        axiosRequest.post('api/applicant.php',JSON.stringify({applyID:label.aid,status:"Decline"})).then((response) => {
+          Alert.alert(response.data,"Application Successfully Decline",
+          [
+      {
+        text: "Okay!",
+        onPress: () => navigation.goBack(),
+        style: "yes"
+      }
+    ]
+         )
+            })
+        },
+      style: "yes"
+    },
+    { 
+      text: "No", onPress: () => console.log("No Pressed")
+    }
+  ]
+)}>
     <View style={{borderColor: 'red',
     alignSelf: 'center',
     width: 150,
