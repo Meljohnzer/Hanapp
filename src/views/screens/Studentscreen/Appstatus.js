@@ -117,7 +117,7 @@ setGet (prevState => ({...prevState, post: response.data}))
    <Text style={Universalstyles.text3}><Text style={{fontSize: 20, fontWeight: '500'}}>Applicant Information</Text></Text>
     
 
-    <Text style={Universalstyles.text}><Icon name='account-outline' style={{fontSize: 20, color: 'blue',}}/> {label.stuLname}, {label.stuFname} {label.stuMname}</Text>
+    <Text style={Universalstyles.text}><Icon name='account-outline' style={{fontSize: 20, color: 'blue',}}/> {label.stuLname}, {label.stuFname} {label.stuMname} {label.stuSname}</Text>
     <Text style={Universalstyles.text}><Icon name='email-outline' style={{fontSize: 20, color: 'blue',}}/> {label.email}</Text>
     <Text style={Universalstyles.text}><Icon name='phone-outline' style={{fontSize: 20, color: 'blue',}}/> {label.Scontactno}</Text>
     <Text style={Universalstyles.text}><Icon name='map-marker' style={{fontSize: 20, color: 'blue',}}/> {label.Sstreet} {label.Scity} {label.Sprovince} {label.Szipcode}</Text>
