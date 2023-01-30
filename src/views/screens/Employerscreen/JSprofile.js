@@ -115,7 +115,7 @@ navigation.setOptions({
         <Text style={{fontSize: 20, fontWeight: '500'}}> Personal information</Text>
         <View style={{padding: 5}}>
         <Text style={{opacity: 0.6}}>
-          Full name: {label.lastname}, {label.firstname} {label.midname}<Text style={{fontWeight: 'bold', textTransform: 'capitalize'}}></Text>
+          Full name: {label.lastname}, {label.firstname} {label.midname} {label.suffname}<Text style={{fontWeight: 'bold', textTransform: 'capitalize'}}></Text>
         </Text>
         <Text style={{opacity: 0.6}}>
           Birthday: {label.birthday}<Text style={{fontWeight: 'bold', textTransform: 'capitalize'}}></Text>
@@ -178,7 +178,7 @@ navigation.setOptions({
       <Text style={{fontSize: 20, color: 'white', fontWeight: 'bold'}}>Certificate of Registration</Text>
       </View>
       </TouchableOpacity>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => Linking.openURL(server + label.schoolid)}>
       <View style={[Universalstyles.jobContent3, {flexDirection: 'column',height: 45 }]}>
       <Text style={{fontSize: 20, color: 'white', fontWeight: 'bold'}}>Student ID</Text>
       </View>

@@ -209,7 +209,7 @@ setGet (prevState => ({...prevState, profile: data}))
         </TouchableOpacity> 
         <View style={{padding: 5}}>
         <Text style={{opacity: 0.6}}>
-        Name: <Text style={{fontWeight: 'bold', textTransform: 'capitalize'}}>{profiles.lastname}, {profiles.firstname} {profiles.midname}</Text>
+        Name: <Text style={{fontWeight: 'bold', textTransform: 'capitalize'}}>{profiles.lastname}, {profiles.firstname} {profiles.midname} {profiles.suffname}</Text>
         </Text>
         <Text style={{opacity: 0.6}}>
         Address: <Text style={{fontWeight: 'bold', textTransform: 'capitalize'}}>{profiles.street} {profiles.city} {profiles.province} {profiles.zipcode}</Text>

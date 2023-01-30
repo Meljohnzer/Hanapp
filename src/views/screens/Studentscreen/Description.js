@@ -19,7 +19,7 @@ const FirstRoute = ({navigation, arr,bookmark,Remove,save,apply}) => (
    <View style={{borderWidth: 2, borderColor: '#e8e8e8', margin: 5, borderRadius: 10, padding: 5}}>
       <Text style={Universalstyles.text2}><Icon4 name='person' style={{fontSize: 30, color: 'grey', }}/> {label.lookingfor}</Text>
       {label.compname && <Text style={Universalstyles.text}><Icon name='warehouse' style={{fontSize: 20, color: 'blue',}}/> {label.compname}</Text>}
-      <Text style={Universalstyles.text}><Icon name='account' style={{fontSize: 20, color: 'blue', }}/> {label.lastname}, {label.firstname} {label.midname}</Text>
+      <Text style={Universalstyles.text}><Icon name='account' style={{fontSize: 20, color: 'blue', }}/> {label.lastname}, {label.firstname} {label.midname} {label.suffname}</Text>
       <Text style={Universalstyles.text}><Icon name='map-marker' style={{fontSize: 20, color: 'blue', }}/> {label.street}, {label.city}, {label.province}, {label.zipcode}</Text>
       <Text style={Universalstyles.text}><Icon name='currency-php' style={{fontSize: 20, color: 'blue', }}/> {label.salary} {label.rate} </Text>
       

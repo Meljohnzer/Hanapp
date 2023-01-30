@@ -93,7 +93,7 @@ setGet (prevState => ({...prevState, post: response.data}))
     <View style={{borderWidth: 2, borderColor: '#e8e8e8', margin: 5, borderRadius: 10, padding: 5}}>
       <Text style={Universalstyles.text2}><Icon4 name='person' style={{fontSize: 25, color: 'grey',}}/>  {label.lookingfor}</Text>
     { label.compname && <Text style={Universalstyles.text}><Icon name='warehouse' style={{fontSize: 20, color: 'blue', marginRight: 10}}/> {label.compname}</Text>}
-      <Text style={Universalstyles.text}><Icon name='account' style={{fontSize: 20, color: 'blue', marginRight: 10}}/> {label.lastname}, {label.firstname} {label.midname}</Text>
+      <Text style={Universalstyles.text}><Icon name='account' style={{fontSize: 20, color: 'blue', marginRight: 10}}/> {label.lastname}, {label.firstname} {label.midname} {label.suffname}</Text>
       <Text style={Universalstyles.text}><Icon name='map-marker' style={{fontSize: 20, color: 'blue', marginRight: 10}}/> {label.street} {label.city} {label.province} {label.zipcode}</Text>
     <Text style={Universalstyles.text}><Icon name='briefcase-outline' style={{fontSize: 20, color: 'blue', }}/> Remote</Text> 
     <Text style={Universalstyles.text}><Icon name='currency-php' style={{fontSize: 20, color: 'blue', }}/> {label.salary} {label.rate}</Text>
@@ -101,11 +101,11 @@ setGet (prevState => ({...prevState, post: response.data}))
       
       <View style={{ alignItems: 'center', flexDirection:'row', justifyContent: 'flex-start'}}>
       <Text style={Universalstyles.text}><Icon name='calendar-month' style={{fontSize: 20, color: 'green', marginRight: 10}}/> Hiring start in:</Text> 
-      <Text style={{ paddingHorizontal: 80, paddingBottom: 5, fontSize: 15,opacity:.5}}><Icon name='calendar-month' style={{fontSize: 20, color: 'red', marginRight: 10}}/> Hiring end on: </Text>
+      <Text style={{ paddingHorizontal: 48, paddingBottom: 5, fontSize: 15,opacity:.5}}><Icon name='calendar-month' style={{fontSize: 20, color: 'red', marginRight: 10}}/> Hiring end on: </Text>
       </View>
       <View style={{ alignItems: 'center', flexDirection:'row', justifyContent: 'flex-start'}}>
       <Text style={{ paddingHorizontal: 25,  fontSize: 15, opacity:.5, color: "blue"}}> {label.Pstartdate}</Text>
-      <Text style={{ paddingHorizontal: 105,  fontSize: 15, opacity:.5, color: "red"}}>{label.Penddate}</Text>
+      <Text style={{ paddingHorizontal: 80,  fontSize: 15, opacity:.5, color: "red"}}>{label.Penddate}</Text>
       </View>
       <Text style={Universalstyles.text}></Text>
      </View>

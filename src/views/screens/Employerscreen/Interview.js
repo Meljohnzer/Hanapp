@@ -251,7 +251,7 @@ axiosRequest.post('/api/schedule.php', JSON.stringify(Data))
          [
      {
        text: "Okay!",
-       onPress: () => navigation.navigate("Review"),
+       onPress: () => navigation.goBack(),
        style: "yes"
      }
    ]

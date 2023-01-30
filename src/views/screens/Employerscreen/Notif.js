@@ -65,7 +65,7 @@ React.useEffect(()=>{
           
           <View style={Universalstyles.jobContent2}>
           <Text style={{fontSize: 17, }}><Icon3 name='person' style={{fontSize: 20, color: 'black',}}/>
-          <Text style={{color: 'black', }}>  {label.lastname}, {label.firstname} {label.midname}</Text></Text>
+          <Text style={{color: 'black', }}>  {label.lastname}, {label.firstname} {label.midname} {label.suffname}</Text></Text>
           <Text style={{fontSize: 17, opacity: 0.6}}>
           <Text style={{color: 'black',}}>Send an Application For <Text>{label.lookingfor}</Text></Text></Text>
           <Text style={{fontSize: 17,}}>See more...</Text>

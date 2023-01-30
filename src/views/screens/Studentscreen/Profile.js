@@ -167,7 +167,7 @@ const Profile = ({navigation,}) => {
         </View>
         </TouchableOpacity> 
         <View style={{padding: 5}}>
-        <Text style={{opacity: 0.6}}>Name: <Text style={{fontWeight: 'bold', textTransform: 'capitalize'}}>{profiles.lastname}, {profiles.firstname} {profiles.midname}</Text>
+        <Text style={{opacity: 0.6}}>Name: <Text style={{fontWeight: 'bold', textTransform: 'capitalize'}}>{profiles.lastname}, {profiles.firstname} {profiles.midname} {profiles.suffname}</Text>
         </Text>
         <Text style={{opacity: 0.6}}>Date of birth: <Text style={{fontWeight: 'bold', textTransform: 'capitalize'}}>{profiles.birthday}</Text>
         </Text>
