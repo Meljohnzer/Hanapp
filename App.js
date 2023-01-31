@@ -85,7 +85,7 @@ export default function App() {
              
                    
               }else{
-                  console.log((await network).isInternetReachable);
+                console.log((await network).isInternetReachable);
               }
           
             }

@@ -17,14 +17,6 @@ const wait = (timeout) => {
 
 const Loginscreen = ({navigation}) => {
   
-
-   
-
-
-
-
-
-
   const [inputs, setInputs] = React.useState({
     email: '',
     password: '',
@@ -100,7 +92,26 @@ const Loginscreen = ({navigation}) => {
         default:
          alert(response.data)
        }
-      });
+      }
+      ).catch(error=>
+        Alert.alert("Network Error","Try Again",
+        [
+    {
+      text: "Reload",
+      onPress: () => {login()}
+      ,
+      style: "yes"
+    },   {
+          text: "Exit",
+          onPress: () => {BackHandler.exitApp()
+              NavigationContainer.navigate('')
+        }
+          ,
+          style: "cancel"
+        }
+  ]
+       )
+      )
         }, 3000)
         
   };
