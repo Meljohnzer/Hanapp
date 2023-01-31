@@ -2,7 +2,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Loginscreen from './src/views/screens/Loginscreen';
 import Signupscreen from './src/views/screens/Signupscreen';
 import Forgotscreen from './src/views/screens/Forgotscreen';
-import { SafeAreaView, StatusBar } from 'react-native';
+import { SafeAreaView, StatusBar,BackHandler ,Alert} from 'react-native';
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Home from './src/views/screens/Studentscreen/Home'
@@ -52,16 +52,48 @@ import Appstatus from './src/views/screens/Studentscreen/Appstatus';
 import EditprofileS from './src/views/screens/Studentscreen/Editprofile';
 import EditG from './src/views/screens/Studentscreen/EditgG';
 import EditeducBG from './src/views/screens/Studentscreen/EditeducBG';
+import * as Network from 'expo-network';
+import React from 'react';
+
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+      React.useEffect(()=>{
+
+      
+            async function fetchdata(){
+              let network =  Network.getNetworkStateAsync()
+            
+              if((await network).isInternetReachable){
+           
+                    console.log((await network).isInternetReachable);
+              }else{
+                  Alert.alert("Network Error","Try Again",
+                  [
+              {
+                text: "Reload",
+                onPress: () => fetchdata()
+                ,
+                style: "yes"
+              },   {
+                    text: "Exit",
+                    onPress: () => BackHandler.exitApp()
+                    ,
+                    style: "cancel"
+                  }
+            ]
+                 )
+              }
+          
+            }
+            fetchdata()
+          
+          },[])
  
-//  axiosRequest.get('/api/check.php')
-//  .then((response)=>{
-//   console.log(response.data)
-//  })
-//  .catch(error => console.log(error));
+
+
+
   return (
     
 <SafeAreaView style={{flex: 1, paddingTop: 25, backgroundColor: "white"}}>
