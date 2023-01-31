@@ -59,16 +59,11 @@ import React from 'react';
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-      React.useEffect(()=>{
 
-      
             async function fetchdata(){
               let network =  Network.getNetworkStateAsync()
             
-              if((await network).isInternetReachable){
-           
-                    console.log((await network).isInternetReachable);
-              }else{
+              if(!(await network).isInternetReachable){
                   Alert.alert("Network Error","Try Again",
                   [
               {
@@ -78,18 +73,24 @@ export default function App() {
                 style: "yes"
               },   {
                     text: "Exit",
-                    onPress: () => BackHandler.exitApp()
+                    onPress: () => {BackHandler.exitApp()
+                        NavigationContainer.navigate('')
+                  }
                     ,
                     style: "cancel"
                   }
             ]
                  )
+           
+             
+                   
+              }else{
+                  console.log((await network).isInternetReachable);
               }
           
             }
             fetchdata()
-          
-          },[])
+
  
 
 
