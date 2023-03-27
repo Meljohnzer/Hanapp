@@ -18,7 +18,7 @@ $result = mysqli_query($connect_db,$query);
 $db = mysqli_fetch_array($result);
 
 if($db['usertype'] == 1){
-$select = "SELECT * FROM user,userdetails,address,guardian,educationbg WHERE user.userID = userdetails.userId AND userdetails.userID = guardian.userID AND guardian.userID = educationbg.userID AND educationbg.userID = address.userID AND user.userID = '$id'";
+$select = "SELECT * FROM user,userdetails,address,guardian,educationbg WHERE user.userID = userdetails.userId AND userdetails.userID = guardian.userID AND guardian.userID = educationbg.userID AND educationbg.userID = address.userID AND user.userID = '$id' LIMIT 1";
 
 }else{
  

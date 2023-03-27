@@ -24,7 +24,7 @@ $Facebook = $_POST['file4'];
 $postID = $_POST['file5'];
 //$cortmp = $Decode_React_APP_Data['CoR']['uri'];
 
-$user = "SELECT * FROM userDetails WHERE userID = '$id'";
+$user = "SELECT * FROM userdetails WHERE userID = '$id'";
 $query = mysqli_query($connect_db,$user);
 $key = mysqli_fetch_array($query);
 

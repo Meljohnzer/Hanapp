@@ -1,9 +1,9 @@
 import axios from "axios";
 export const axiosRequest = axios.create({
-  baseURL : "https://stoss-hub.000webhostapp.com/"
+  baseURL : "http://192.168.43.58:80/"
 });
 
-export const server = "https://stoss-hub.000webhostapp.com/api/"
+export const server = "http://192.168.43.58:80/api/"
 
 
 //change the ipv4 address of your own ip address

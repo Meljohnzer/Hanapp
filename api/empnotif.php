@@ -19,7 +19,7 @@ $select = "Select * FROM post
 LEFT JOIN apply ON post.postID = apply.postID
 LEFT JOIN userdetails ON apply.userID = userdetails.userID
 LEFT JOIN applicant ON apply.applyID = applicant.applyID
-WHERE post.userID = '$id'";
+WHERE post.userID = '$id' ORDER BY appliedat DESC";
 
 $exec = mysqli_query($connect_db,$select);
 //$row =mysqli_fetch_assoc($exec);

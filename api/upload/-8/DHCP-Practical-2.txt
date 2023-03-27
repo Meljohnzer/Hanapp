@@ -1,0 +1,165 @@
+// R1
+enable
+configure terminal
+hostname R1
+no ip domain lookup
+ip domain-name keannu.com
+enable secret pas123
+service password-encryption
+service dhcp
+interface g0/0/0.10
+desc # Default gateway for VLAN 10 #
+encapsulation dot1q 10
+ip address 192.168.10.254 255.255.255.0
+ip dhcp pool vlan10
+network 192.168.10.0 255.255.255.0
+default-router 192.168.10.254 
+dns-server 8.8.8.8
+ip dhcp excluded-address 192.168.10.254
+
+interface g0/0/0.20
+desc # Default gateway for VLAN 20 #
+encapsulation dot1q 20
+ip address 192.168.20.254 255.255.255.0
+ip dhcp pool vlan20
+network 192.168.20.0 255.255.255.0
+default-router 192.168.20.254
+dns-server 8.8.8.8 
+ip dhcp excluded-address 192.168.20.254
+
+interface g0/0/1.30
+desc # Default gateway for VLAN 30 #
+encapsulation dot1q 30
+ip address 192.168.30.254 255.255.255.0
+ip dhcp pool vlan30
+network 192.168.30.0 255.255.255.0
+default-router 192.168.30.254
+dns-server 8.8.8.8
+ip dhcp excluded-address 192.168.30.254
+
+interface g0/0/1.40
+desc # Default gateway for VLAN 40 #
+encapsulation dot1q 40
+ip address 192.168.40.254 255.255.255.0
+ip dhcp pool vlan40
+network 192.168.40.0 255.255.255.0
+default-router 192.168.40.254
+dns-server 8.8.8.8
+ip dhcp excluded-address 192.168.40.254
+
+interface range g0/0/0-1
+no shutdown
+end
+copy running-config startup-config
+
+// S1
+enable
+configure terminal
+hostname S1
+no ip domain lookup
+enable secret pas123
+service password-encryption
+vlan 10
+name Network_1
+vlan 20
+name Network_2
+vlan 30
+name Network_3
+vlan 40
+name Network_4
+interface range g0/1-2
+switchport mode trunk
+switchport trunk allowed vlan 10,20,30,40
+interface range fa0/1-24
+switchport mode access
+switchport access vlan 10
+end
+copy running-config startup-config
+
+// S2
+enable
+configure terminal
+hostname S2
+no ip domain lookup
+enable secret pas123
+service password-encryption
+vlan 10
+name Network_1
+vlan 20
+name Network_2
+vlan 30
+name Network_3
+vlan 40
+name Network_4
+interface range g0/1-2
+switchport mode trunk
+switchport trunk allowed vlan 10,20,30,40
+interface range fa0/1-24
+switchport mode access
+switchport access vlan 20
+end
+copy running-config startup-config
+
+// S3
+enable
+configure terminal
+hostname S3
+no ip domain lookup
+enable secret pas123
+service password-encryption
+vlan 10
+name Network_1
+vlan 20
+name Network_2
+vlan 30
+name Network_3
+vlan 40
+name Network_4
+interface range g0/1-2
+switchport mode trunk
+switchport trunk allowed vlan 10,20,30,40
+interface range fa0/1-24
+switchport mode access
+switchport access vlan 30
+end
+copy running-config startup-config
+
+// S4
+enable
+configure terminal
+hostname S4
+no ip domain lookup
+enable secret pas123
+service password-encryption
+vlan 10
+name Network_1
+vlan 20
+name Network_2
+vlan 30
+name Network_3
+vlan 40
+name Network_4
+interface range g0/1-2
+switchport mode trunk
+switchport trunk allowed vlan 10,20,30,40
+interface range fa0/1-24
+switchport mode access
+switchport access vlan 40
+end
+copy running-config startup-config
+
+// Troubleshooting Commands
+// Show DHCP Section only sa running-config
+show running-config | section dhcp
+// Show stats sa specific DHCP Pool
+// Similar ra sa command above pero isa ra ka DHCP Pool ma display
+show ip dhcp pool 1
+// Show DHCP Leases
+show ip dhcp binding
+// Show DHCP Stats
+// Dili ni siya ga work nga command sa uban model sa router
+show ip dhcp server statistics
+// Show IP Information sa PC
+ipconfig /all
+// Renew IP sa PC
+ipconfig /renew

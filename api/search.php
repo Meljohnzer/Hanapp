@@ -19,7 +19,7 @@ FROM
  post
 LEFT JOIN userdetails ON post.userID = userdetails.userID
 LEFT JOIN company ON userdetails.userID = company.userID
-WHERE post.lookingfor = '$search' OR post.city = '$search'
+WHERE post.lookingfor = '$search' OR post.city = '$search' OR post.jobtype = '$search'
 ORDER BY
  post.createdat
 DESC";
